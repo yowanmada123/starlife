@@ -21,6 +21,7 @@ class DetailDokter extends StatelessWidget {
           child: Row(
             children: [
             Expanded(
+              flex: 1,
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 4.5),
                 decoration: BoxDecoration(
@@ -39,6 +40,7 @@ class DetailDokter extends StatelessWidget {
             SizedBox(
               width: c.sw*18,
             ),Expanded(
+              flex: 1,
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 4.5),
                 decoration: BoxDecoration(

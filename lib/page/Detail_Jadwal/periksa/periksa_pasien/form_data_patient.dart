@@ -1,0 +1,195 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:starlife/widget/ext_text.dart';
+
+import '../../../../widget/base/custom_fixed_form.dart';
+import '../../../../widget/base/custom_form.dart';
+import '../../../global_controller.dart';
+
+class FormDataPatient extends StatefulWidget {
+  final TextEditingController controller;
+  final String title;
+  final bool? passwordMode;
+
+  const FormDataPatient({super.key, required this.controller, required this.title, this.passwordMode});
+
+  @override
+  State<FormDataPatient> createState() => _FormDataPatientState();
+}
+
+class _FormDataPatientState extends State<FormDataPatient> {
+  var screenHeight = Get.height / 763;
+  final c = Get.put(GlobalController());
+  TextEditingController rmController = TextEditingController(text: "");
+  TextEditingController namaController = TextEditingController(text: "");
+  TextEditingController emailController = TextEditingController(text: "");
+  TextEditingController tanggalLahirController = TextEditingController(text: "");
+  TextEditingController statusController = TextEditingController(text: "");
+  TextEditingController jenisKelaminController = TextEditingController(text: "");
+  TextEditingController agamaController = TextEditingController(text: "");
+  TextEditingController alergiObatController = TextEditingController(text: "");
+  TextEditingController goldarController = TextEditingController(text: "");
+  TextEditingController alamatController = TextEditingController(text: "");
+  TextEditingController kotaController = TextEditingController(text: "");
+  TextEditingController kelurahanController = TextEditingController(text: "");
+  TextEditingController rtController = TextEditingController(text: "");
+  TextEditingController rwController = TextEditingController(text: "");
+  TextEditingController kecamatanController = TextEditingController(text: "");
+  TextEditingController teleponController = TextEditingController(text: "");
+  TextEditingController handphoneController = TextEditingController(text: "");
+  TextEditingController orangtuaController = TextEditingController(text: "");
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          SizedBox(
+            height: c.sh * 115,
+          ),
+          ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            child: Container(
+              width: 136,
+              height: 136,
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: Image.asset("assets/images/img_avatar.png"),
+              ),
+            ),
+          ),
+          const CustomFixedForm(content: "RM/545148-1151/015", title: "No. Rekam Medis"),
+          CustomForm(
+            controller: namaController,
+            hintText: "Masukan Nama Lengkap",
+            title: "Nama Lengkap",
+            isMust: true,
+          ),
+          CustomForm(
+            controller: emailController,
+            hintText: "Masukan Email",
+            title: "Email",
+            isMust: true,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: CustomForm(
+                  controller: tanggalLahirController,
+                  hintText: "dd/mm//yyyy",
+                  title: "Tanggal Lahir",
+            isMust: true,
+                ),
+              ),
+              SizedBox(
+                width: c.sw * 24,
+              ),
+              Expanded(
+                child: const CustomFixedForm(content: "42 Tahun", title: "Usia"),
+              )
+            ],
+          ),
+          CustomForm(
+            controller: statusController,
+            hintText: "cth: Suami / Istri / Anak ke-1 / Anak ke-2, dsb",
+            title: "Status Pasien Dalam Keluarga",
+            isMust: true,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: CustomForm(
+                  controller: jenisKelaminController,
+                  hintText: "Pilih Salah Satu",
+                  title: "Jenis Kelamin",
+            isMust: true,
+                ),
+              ),
+              SizedBox(
+                width: c.sw * 24,
+              ),
+              Expanded(
+                child: CustomForm(
+                  controller: agamaController,
+                  hintText: "Pilih Salah Satu",
+                  title: "Agama",
+                ),
+              ),
+            ],
+          ),
+          CustomForm(
+            controller: alergiObatController,
+            hintText: "cth: Alergi Paracetamol",
+            title: "Alergi Obat",
+            isMust: true,
+          ),
+          CustomForm(
+            controller: goldarController,
+            hintText: "B",
+            title: "Golongan Darah",
+          ),
+          CustomForm(
+            controller: alamatController,
+            hintText: "Masukkan Alamat",
+            title: "Alamat",
+            isMust: true,
+          ),
+          CustomForm(
+            controller: kotaController,
+            hintText: "Masukkan Kota",
+            title: "Kota",
+          ),
+          CustomForm(
+            controller: kelurahanController,
+            hintText: "Masukkan Kelurahan",
+            title: "Kelurahan",
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: CustomForm(
+                  controller: rwController,
+                  hintText: "Masukkan RW",
+                  title: "RW",
+                ),
+              ),
+              SizedBox(
+                width: c.sw * 24,
+              ),
+              Expanded(
+                child: CustomForm(
+                  controller: rtController,
+                  hintText: "Masukkan RT",
+                  title: "RT",
+                ),
+              ),
+            ],
+          ),
+          CustomForm(
+            controller: kecamatanController,
+            hintText: "Kecamatan",
+            title: "Masukkan Kecamatan",
+          ),
+          CustomForm(
+            controller: teleponController,
+            hintText: "Masukkan No. Telepon",
+            title: "No. Telepon (Rumah)",
+          ),
+          CustomForm(
+            controller: handphoneController,
+            hintText: "Masukkan No. Handphone",
+            title: "No. Handphone",
+          ),
+          CustomForm(
+            controller: orangtuaController,
+            hintText: "Masukkan Nama Orang Tua",
+            title: "Nama Orang Tua",
+          ),
+        ],
+      ),
+    );
+  }
+}

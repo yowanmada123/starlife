@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:starlife/page/detailjadwal/detail_jadwal.dart';
+import 'package:starlife/page/Detail_Jadwal/detail_jadwal.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -89,8 +89,8 @@ class _DokterPengalamanState extends State<DokterPengalaman> {
                                 ClipRRect(
                                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                                   child: Container(
-                                    width: 80,
-                                    height: 80,
+                                    width: c.sw*80,
+                                    height: c.sh*80,
                                     child: FittedBox(
                                       fit: BoxFit.cover,
                                       child: Image.asset("assets/icon/ic_doctor.png"),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/detailjadwal/body/detail_dokter.dart';
-import 'package:starlife/page/detailjadwal/body/topbar.dart';
+import 'package:starlife/page/Detail_Jadwal/body/detail_dokter.dart';
+import 'package:starlife/page/Detail_Jadwal/body/topbar.dart';
 
 import 'body/biografi_dokter.dart';
 import 'body/bottombar.dart';
@@ -28,6 +28,8 @@ class _DetailJadwalState extends State<DetailJadwal> {
             color: const Color.fromARGB(255, 215, 215, 215),
           ),
           Container(
+            height: Get.height,
+            width: Get.width,
             color: Colors.white,
             child: SingleChildScrollView(
                 child: Column(

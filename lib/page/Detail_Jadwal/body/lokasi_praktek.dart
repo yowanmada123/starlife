@@ -46,7 +46,7 @@ class _LokasiPraktekState extends State<LokasiPraktek> {
           ),
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(10)),
-            child: Container(
+            child: SizedBox(
               height: c.sw * 169,
               child: FittedBox(
                 fit: BoxFit.cover,

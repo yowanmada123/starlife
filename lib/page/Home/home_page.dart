@@ -45,15 +45,6 @@ class _HomePageState extends State<HomePage> {
               const ArtikelKesehatan(),
             ],
           )),
-          
-          //     child: Column(
-          //   children: [
-          //     const Brochure(),
-          //     Pelayanan(),
-          //     const DokterPengalaman(),
-          //     const ArtikelKesehatan(),
-          //   ],
-          // )),
           const TopBar()
         ],
       ),
