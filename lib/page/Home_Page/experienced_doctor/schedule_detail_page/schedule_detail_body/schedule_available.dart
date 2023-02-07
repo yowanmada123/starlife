@@ -15,7 +15,7 @@ class ScheduleAvailable extends StatefulWidget {
 class _ScheduleAvailableState extends State<ScheduleAvailable> {
   final c = Get.put(GlobalController());
   bool _isPagiVisible = false;
-  bool _isMalamVisible = true;
+  bool _isMalamVisible = false;
 
   void showPagiVisible() {
     setState(() {
@@ -55,22 +55,27 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
         ),
         Visibility(
           visible: _isPagiVisible,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  height: 20,
-                  padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 2),
-                  decoration: BoxDecoration(
-                    color: OPrimaryColor,
-                    borderRadius: BorderRadius.circular(10)
-                  ),
-                  child: const Text("8.00 - 10.00").p12m().white(),
+          child: Column(
+            children: [
+              SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 20,
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 2),
+                      decoration: BoxDecoration(
+                        color: OPrimaryColor,
+                        borderRadius: BorderRadius.circular(10)
+                      ),
+                      child: const Text("8.00 - 10.00").p12m().white(),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         const Divider(),
@@ -97,22 +102,27 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
         ),
         Visibility(
           visible: _isMalamVisible,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  height: 20,
-                  padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 2),
-                  decoration: BoxDecoration(
-                    color: OPrimaryColor,
-                    borderRadius: BorderRadius.circular(10)
-                  ),
-                  child: const Text("18.00 - 20.00").p12m().white(),
+          child: Column(
+            children: [
+              SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 20,
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 2),
+                      decoration: BoxDecoration(
+                        color: OPrimaryColor,
+                        borderRadius: BorderRadius.circular(10)
+                      ),
+                      child: const Text("18.00 - 20.00").p12m().white(),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         const Divider(),

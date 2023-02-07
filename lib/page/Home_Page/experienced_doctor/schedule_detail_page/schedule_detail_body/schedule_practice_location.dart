@@ -24,7 +24,7 @@ class _SchedulePracticeLocationState extends State<SchedulePracticeLocation> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset("assets/icon/ic_icon_lokasi.png"),
+              Icon(Icons.location_on, color: OPrimaryColor,size: 25,),
               SizedBox(width:c.sw*13),
               Expanded(
                 child: Container(
@@ -33,6 +33,7 @@ class _SchedulePracticeLocationState extends State<SchedulePracticeLocation> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text("Lokasi Praktek").p14m().black(),
+                      SizedBox(height: 5,),
                       Container(
                         child: const Text("Jl. Nginden Semolo No.42, Nginden Jangkungan, Kec. Sukolilo, Kota SBY, Jawa Timur 60118").p10r().black()),
                     ],

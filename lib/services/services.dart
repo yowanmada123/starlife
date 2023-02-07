@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:starlife/page/Login/login.dart';
+import 'package:starlife/page/Auth_Page/Login/login.dart';
 
 abstract class Services {
   // static Future<Person?> getById(int id) async {}

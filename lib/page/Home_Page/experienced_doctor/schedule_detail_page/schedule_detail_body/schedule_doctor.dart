@@ -127,7 +127,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
                                   ],
                                 ),
                                 height: c.sh * 52,
-                                width: c.sw * 52,
+                                width: c.sw * 50,
                                 child: Center(
                                     child: itemIndex == 0
                                         ? const Text("Hari ini").p12m().white()
@@ -136,8 +136,8 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
                                               SizedBox(
-                                                  width: c.sw * 31,
-                                                  child: Text(
+                                                  width: 30,
+                                                  child: Text( days[itemIndex].toEEEE() == 'Senin' ? "Sen" : days[itemIndex].toEEEE() == 'Sabtu' ? 'Sab' :
                                                     days[itemIndex].toEEEE(),
                                                     maxLines: 1,
                                                     style: TextStyle(height: 1.5),

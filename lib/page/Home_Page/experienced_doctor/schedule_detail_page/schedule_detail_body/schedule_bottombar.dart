@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/main.dart';
 import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/page/Periksa/periksa_pasien/belum_ada_pasien.dart';
-import 'package:starlife/page/Periksa/tambah_pasien/patient_add.dart';
+import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_page.dart';
+import 'package:starlife/page/Patient_Page/patient_feature/patient_add_page/patient_add_page.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/showdialog_fill_button.dart';
 import 'package:starlife/widget/base/showdialog_two_button.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
 
-import '../../../../Periksa/periksa_pasien_sekali_jalan/tambah_pasien_sekali_jalan.dart';
+import '../../../../Patient_Page/patient_feature/patient_oneway_add_page/patient_oneway_add_page.dart';
 
 class ScheduleDoctorBottomBar extends StatefulWidget {
   const ScheduleDoctorBottomBar({super.key});
@@ -39,11 +39,11 @@ class _ScheduleDoctorBottomBarState extends State<ScheduleDoctorBottomBar> {
                       title: "Apakah Calon Pasien Termasuk Pasien Periksa Sekali Jalan ?",
                       buttonLeft: () {
                         Get.back();
-                        Get.to(const PatientAdd());
+                        Get.to(const PatientAddPage());
                       },
                       buttonRight: () {
                         // Get.back();
-                        Get.to(const TambahPasienSekaliJalan());
+                        Get.to(const PatientOneWayAddPage());
                       },
                       leftTittle: "Bukan Termasuk",
                       rightTitle: "Ya, Termasuk", barier: true);
@@ -55,7 +55,7 @@ class _ScheduleDoctorBottomBarState extends State<ScheduleDoctorBottomBar> {
                       context: context,
                       title: "Masukkan No. Rekam Medis",
                       button: () {
-                        Get.to(const BelumAdaPasien());
+                        Get.to(PatientCheckPage());
                       },
                       controller: controller,
                       hint: "Masukkan No. Rekam Medis Anda");

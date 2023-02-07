@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Home_Page/home_page.dart';
-import 'package:starlife/page/Login/login_page.dart';
-import 'package:starlife/page/loading_page.dart';
-import 'package:starlife/page/splashscreen.dart';
+import 'package:starlife/page/Auth_Page/Login/login_page.dart';
+import 'package:starlife/page/Auth_Page/loading_page.dart';
+import 'package:starlife/page/Auth_Page/splashscreen.dart';
 import 'page/Home_Page/navigationbar/navigationbar.dart';
 
 void main() {

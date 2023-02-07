@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/main.dart';
 import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/page/Periksa/tambah_pasien/patient_add.dart';
 import 'package:starlife/utils/colors.dart';
-import 'package:starlife/widget/base/showdialog_fill_button.dart';
-import 'package:starlife/widget/base/showdialog_two_button.dart';
-import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class CustomButtomButton extends StatefulWidget {
@@ -29,11 +24,16 @@ class _CustomButtomButtonState extends State<CustomButtomButton> {
         child: GestureDetector(
           onTap: widget.ontap,
           child: Container(
-            color: Colors.white,
-            height: c.sh * 63,
+            height: c.sh * 80,
             width: Get.width,
+            color: Colors.white,
+            // decoration: BoxDecoration(
+            //   border: Border.all(
+            //     color: Colors.black
+            //   )
+            // ),
             child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+              padding: const EdgeInsets.all(16),
               child: Container(
                 color: Colors.white,
                 height: c.sh * 47,

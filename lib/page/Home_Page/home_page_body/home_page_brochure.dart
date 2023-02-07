@@ -6,7 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:starlife/page/Profile/list_feature/Jadwal_imuniasi/jadwal_imunisasi_main_page.dart';
+import 'package:starlife/page/Profile_Page/profile_feature/profile_immunization_page/profile_immunization_page.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -170,7 +170,7 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
               child: Center(
                 child: GestureDetector(
                   onTap: () {
-                    Get.to(const JadwalImunisasiPage());
+                    Get.to(const ProfileImmunizationPage());
                   },
                   child: RichText(
                     text: TextSpan(
