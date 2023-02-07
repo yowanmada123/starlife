@@ -7,11 +7,12 @@ import 'package:starlife/widget/ext_text.dart';
 
 import '../../utils/colors.dart';
 
-filledShowDialog({required BuildContext context, required String title,
+filledShowDialog({required bool barier, required BuildContext context, required String title,
 required Function() button, required TextEditingController controller, required String hint}) {
   final c = Get.put(GlobalController());
   return showDialog<String>(
     context: context,
+    barrierDismissible: barier,
     builder: (BuildContext context) => AlertDialog(
       title: Center(
           child: Text(

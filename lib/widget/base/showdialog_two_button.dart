@@ -6,11 +6,15 @@ import 'package:starlife/widget/ext_text.dart';
 
 import '../../utils/colors.dart';
 
-dialogBuilder({required BuildContext context, required String title,
-required Function() buttonLeft, required Function() buttonRight, required String leftTittle, required String rightTitle}) {
+dialogBuilder({required bool barier, required BuildContext context, required String title,
+required Function() buttonLeft, required Function() buttonRight, required String leftTittle, required String rightTitle, }) 
+
+
+{
   final c = Get.put(GlobalController());
   return showDialog<void>(
     context: context,
+    barrierDismissible: barier,
     builder: (BuildContext context) {
       return AlertDialog(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),

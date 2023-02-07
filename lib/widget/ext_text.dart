@@ -27,12 +27,17 @@ extension TextExtension on Text {
   Text p10r() => copyWith(style: GoogleFonts.poppins(fontSize: 10, fontWeight: FontWeight.w400));
   Text p10b() => copyWith(style: GoogleFonts.poppins(fontSize: 10, fontWeight: FontWeight.w700));
   Text p9r() => copyWith(style: GoogleFonts.poppins(fontSize: 9, fontWeight: FontWeight.w400));
+  Text p9m() => copyWith(style: GoogleFonts.poppins(fontSize: 9, fontWeight: FontWeight.w600));
+  Text p8r() => copyWith(style: GoogleFonts.poppins(fontSize: 8, fontWeight: FontWeight.w400));
+  Text p8m() => copyWith(style: GoogleFonts.poppins(fontSize: 8, fontWeight: FontWeight.w600));
   Text p7r() => copyWith(style: GoogleFonts.poppins(fontSize: 7, fontWeight: FontWeight.w400));
   Text p7m() => copyWith(style: GoogleFonts.poppins(fontSize: 7, fontWeight: FontWeight.w600));
+  Text p6m() => copyWith(style: GoogleFonts.poppins(fontSize: 6, fontWeight: FontWeight.w600));
 
   Text primary() => copyWith(style: TextStyle(color: OPrimaryColor));
-  Text scondary() => copyWith(style: TextStyle(color: OSecondaryColor));
+  Text secondary() => copyWith(style: TextStyle(color: OSecondaryColor));
   Text white() => copyWith(style: const TextStyle(color: Colors.white));
+  Text red() => copyWith(style: const TextStyle(color: Color.fromARGB(255, 255, 0, 0)));
   Text black() => copyWith(style: const TextStyle(color: Color(0xff050B16)));
   Text grey() => copyWith(style: const TextStyle(color: Color(0xff757575)));
 

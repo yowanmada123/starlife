@@ -19,6 +19,11 @@ extension DatetimeExt on DateTime {
     return res.format('dd MMMM y');
   }
 
+  String toSlashDate() {
+    DateTime res = checkUtc();
+    return res.format('yMd');
+  }
+
   String toDateTime() {
     DateTime res = checkUtc();
     return res.format('dd MMM y, HH:mm', localRegion);

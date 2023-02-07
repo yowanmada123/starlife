@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starlife/page/Home_Page/navigationbar/navigationbar.dart';
 import 'package:starlife/page/Login/login_page.dart';
 import 'package:starlife/utils/colors.dart';
 
@@ -15,11 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: splashtime), () async {
-      Get.to(const BlankScreen(), transition: Transition.circularReveal, duration: Duration(seconds: 2));
-      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-      //   return const BlankScreen();
-      // }));
-      // Get.offAll(BlankScreen, transition: Transition.circularReveal);
+      Get.to(BlankScreen(), transition: Transition.circularReveal, duration: Duration(seconds: 2));
     });
 
     super.initState();
@@ -48,8 +45,9 @@ class _BlankScreenState extends State<BlankScreen> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: time), () async {
+      Get.offAll(HelloConvexAppBar());
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return const LoginPage();
+        return HelloConvexAppBar();
       }));
       // Get.to(const LoginPage());
     });

@@ -7,14 +7,15 @@ import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 
 class GlobalController extends GetxController {
-
   final tabHomeIndex = 0.obs;
+  final isLogin = false.obs;
 
   final box = GetStorage();
   double sw = Get.width / 390;
   double sh = Get.height / 844;
   String token = '';
   String url = "https://appsim.my.id/api/data/";
+  int pasienNumber = 0;
 
   initState() {
     token = getToken() ?? '';
@@ -36,6 +37,4 @@ class GlobalController extends GetxController {
     RegExp regExp = RegExp(p);
     return regExp.hasMatch(phone);
   }
-
-  
 }

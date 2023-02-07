@@ -13,16 +13,18 @@ class ButtonBack extends StatelessWidget {
       onTap: () {
         if (times != null) {
           Get.close(times!);
-
         }
-        Get.back();
+        if(times == null){
+          Get.back();
+          print("back");
+        }
       },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(100),
           boxShadow: const [
-            BoxShadow(color: Color.fromARGB(83, 46, 46, 46), spreadRadius: 1, blurRadius: 1, offset: Offset(0.0, 1.0)),
+            BoxShadow(color: Color.fromARGB(83, 46, 46, 46), spreadRadius: 1, blurRadius: 1, offset: Offset(0.0, 0.2)),
           ],
         ),
         child: ClipOval(

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Login/login_controller.dart';
 import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/page/Home/navigationbar/navigationbar.dart';
+import 'package:starlife/page/Home_Page/navigationbar/navigationbar.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/showdialog_fill_button.dart';
@@ -36,8 +36,10 @@ class _LoginPageState extends State<LoginPage> {
         child: Stack(
           children: [
             Container(
-              width: Get.width,
-            ),
+            width: Get.width,
+            height: Get.height,
+            color: Colors.white,
+          ),
             Positioned(
               top: -300,
               left: -230,
@@ -118,6 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                                       style: const TextStyle(color: Colors.black, fontSize: 14),
                                       controller: _emailController,
                                       decoration: const InputDecoration(
+                                        isDense: true,
                                         labelText: 'Email',
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(color: Colors.grey),
@@ -140,6 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                                       controller: _passwordController,
                                       obscureText: _isObscure,
                                       decoration: InputDecoration(
+                                        isDense: true,
                                         labelText: 'Password',
                                         labelStyle: const TextStyle(color: Colors.grey),
                                         enabledBorder: const UnderlineInputBorder(
@@ -173,6 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                                               content: Text('Login Success'),
                                               backgroundColor: Colors.black87,
                                             ));
+                                            c.isLogin.value = true;
                                             Get.offAll(HelloConvexAppBar());
                                             // lc.email = _emailController.text;
                                             // lc.password = _passwordController.text;
@@ -200,6 +205,7 @@ class _LoginPageState extends State<LoginPage> {
                                   GestureDetector(
                                       onTap: () {
                                         filledShowDialog(
+                                            barier: false,
                                             context: context,
                                             title: 'Masukan Email',
                                             button: () {

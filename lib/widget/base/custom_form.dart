@@ -6,10 +6,11 @@ import 'package:starlife/widget/ext_text.dart';
 import '../../page/global_controller.dart';
 
 class CustomForm extends StatefulWidget {
-  const CustomForm({super.key, required this.controller, required this.hintText, required this.title, this.fillColor, this.isMust});
+  const CustomForm({super.key, required this.controller, required this.hintText, required this.title, this.fillColor, this.isMust, this.editable});
   final TextEditingController controller;
   final String hintText;
   final String title;
+  final bool? editable;
   final bool? fillColor;
   final bool? isMust;
 
@@ -26,14 +27,14 @@ class _CustomFormState extends State<CustomForm> {
         Container(
           color: Colors.white,
           width: Get.width,
-          height: 30,
+          height: c.sh * 30,
           child: RichText(
             text: TextSpan(
               text: widget.title,
               style: GoogleFonts.poppins(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w600),
               children: <TextSpan>[
                 TextSpan(
-                  text: (widget.isMust==true) ? '*' : '',
+                  text: (widget.isMust == true) ? '*' : '',
                   style: GoogleFonts.poppins(color: const Color(0xffF1416C), fontSize: 12, fontWeight: FontWeight.w600),
                 ),
               ],
@@ -41,9 +42,10 @@ class _CustomFormState extends State<CustomForm> {
           ),
         ),
         Container(
-          height: 46,
+          height: c.sh * 46,
           alignment: Alignment.center,
           child: TextField(
+            enabled: (widget.editable == null) ? true : widget.editable,
             controller: widget.controller,
             textAlignVertical: TextAlignVertical.center,
             style: GoogleFonts.poppins(color: Color(0xff868686), fontSize: 12, fontWeight: FontWeight.w600),

@@ -16,11 +16,12 @@ class BaseButton extends StatelessWidget {
   final Function() ontap;
   final String? image;
   final String? iconSvg;
+  final Color? iconColor;
   final Color? outlineColor;
   final double? outlineRadius;
   final double? height;
   final double? width;
-  const BaseButton({Key? key, this.icon, this.text, this.color, required this.ontap, this.textColor, this.image, this.iconSvg, this.outlineColor, this.outlineRadius, this.height, this.width, this.textSize, this.textWeight, this.textStyle}) : super(key: key);
+  const BaseButton({Key? key, this.icon, this.text, this.color, required this.ontap, this.textColor, this.image, this.iconSvg, this.outlineColor, this.outlineRadius, this.height, this.width, this.textSize, this.textWeight, this.textStyle, this.iconColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +34,18 @@ class BaseButton extends StatelessWidget {
         child: Center(
           child: (icon == null && image == null && iconSvg == null)
               ? Center(
-                child: Text(
+                  child: Text(
                     text!,
                     style: GoogleFonts.poppins(fontSize: (textSize == null) ? 18 : textSize, color: (textColor == null) ? Colors.white : textColor, fontWeight: (textWeight == null) ? FontWeight.w700 : textWeight),
-                    textAlign: TextAlign.center,// TextStyle(fontSize: (textSize == null) ? 18 : textSize, color: , fontWeight: (textWeight == null) ? FontWeight.w700 : textWeight),
+                    textAlign: TextAlign.center, // TextStyle(fontSize: (textSize == null) ? 18 : textSize, color: , fontWeight: (textWeight == null) ? FontWeight.w700 : textWeight),
                   ),
-              )
+                )
               : Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     if (image == null) ...[
-                      if (iconSvg == null) ...[Icon(icon)] else ...[SvgPicture.asset(iconSvg!)]
+                      if (iconSvg == null) ...[Icon(icon,color: (iconColor == null ? Colors.black : iconColor),)] else ...[SvgPicture.asset(iconSvg!)]
                     ] else ...[
                       Image.asset(
                         image!,
@@ -55,15 +56,7 @@ class BaseButton extends StatelessWidget {
                     const SizedBox(
                       width: 8,
                     ),
-                    (textColor == null)
-                        ? Text(
-                            text == null ? "" : text!,
-                            style: textStyle
-                          ).white()
-                        : Text(
-                            text == null ? "" : text!,
-                            style: textStyle
-                          )
+                    (textColor == null) ? Text(text == null ? "" : text!, style: GoogleFonts.poppins(fontSize: (textSize == null) ? 18 : textSize, color: (textColor == null) ? Colors.white : textColor, fontWeight: (textWeight == null) ? FontWeight.w700 : textWeight),).white() : Text(text == null ? "" : text!, style: GoogleFonts.poppins(fontSize: (textSize == null) ? 18 : textSize, color: (textColor == null) ? Colors.white : textColor, fontWeight: (textWeight == null) ? FontWeight.w700 : textWeight),)
                     // .pageTitleText()
                   ],
                 ),
