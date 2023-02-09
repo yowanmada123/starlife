@@ -1,8 +1,6 @@
 
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
@@ -19,7 +17,7 @@ class _ArticleBackgroundState extends State<ArticleBackground> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: c.sh*500,
       child: Stack(
         children: [

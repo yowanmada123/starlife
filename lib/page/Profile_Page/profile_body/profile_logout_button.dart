@@ -6,7 +6,7 @@ import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
 
-Widget ProfileLogoutButton(GlobalController c) {
+Widget ProfileLogoutButton(GlobalController c, BuildContext context) {
   return Container(
       width: Get.width,
       height: c.sh * 38,
@@ -30,6 +30,10 @@ Widget ProfileLogoutButton(GlobalController c) {
           c.tabHomeIndex.value = 0;
           c.isLogin.value = false;
           Get.offAll(HelloConvexAppBar());
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Logout Success'),
+            backgroundColor: Colors.black87,
+          ));
         },
         color: OPrimaryColor,
         text: "Keluar",

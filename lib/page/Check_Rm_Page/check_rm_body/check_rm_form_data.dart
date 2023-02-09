@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/custom_list_form.dart';
 import 'package:starlife/widget/base/custom_list_map.dart';
@@ -75,7 +73,7 @@ class _FormDataRmState extends State<FormDataRm> {
           ),
           ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
-            child: Container(
+            child: SizedBox(
               width: 120,
               height: 120,
               child: Image.asset(

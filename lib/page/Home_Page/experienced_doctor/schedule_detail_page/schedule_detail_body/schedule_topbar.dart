@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/main.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -63,7 +62,7 @@ class _ScheduleTopBarState extends State<ScheduleTopBar> {
                 children: [
                   ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    child: Container(
+                    child: SizedBox(
                       width: c.sw * 176,
                       height: c.sw * 176,
                       child: FittedBox(

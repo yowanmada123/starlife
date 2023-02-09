@@ -1,9 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/experienced_doctor.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
@@ -35,12 +32,12 @@ class _ExperiencedDoctorListPageState extends State<ExperiencedDoctorListPage> {
             height: Get.height,
             color: Colors.white,
           ),
-          CustomTopBar(),
+          const CustomTopBar(),
           RoundedInside(
             child: SingleChildScrollView(
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               child: Column(
-                children: [
+                children: const [
                   ListDokter(),
                 ],
               ),

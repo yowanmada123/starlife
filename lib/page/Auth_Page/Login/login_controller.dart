@@ -1,11 +1,5 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:starlife/page/Auth_Page/Login/login_page.dart';
 import 'package:starlife/page/global_controller.dart';
 
 import 'login.dart';
@@ -57,6 +51,7 @@ class LoginController extends GetxController {
     } catch (e) {
       throw Exception(e.toString());
     }
+    return null;
   }
   // Future<void> login() async {
   //   try {

@@ -27,15 +27,15 @@ class _PatientAddPageState extends State<PatientAddPage> {
           color: Colors.white,
            child: SingleChildScrollView(
             child: Column(
-              children: [
-                PatientAddForm(controller: namaController, title: "Nama Lengkap"),
-                const SizedBox(height: 50,)
+              children: const [
+                PatientAddForm(),
+                SizedBox(height: 50,)
               ],
             ),
         ),
          ),
         const PatientAddTopBar(),
-        PatientAddBottomBar()
+        const PatientAddBottomBar()
       ]),
     );
   }

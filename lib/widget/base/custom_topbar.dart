@@ -25,7 +25,7 @@ class _CustomTopBarState extends State<CustomTopBar> {
         width: Get.width,
       ),
       Positioned(
-        bottom: -1,
+        bottom: 0,
         child: Container(
           height: c.sh * 19,
           width: Get.width,

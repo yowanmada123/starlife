@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/main.dart';
 import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -33,7 +31,7 @@ class _PatientAddTopBarState extends State<PatientAddTopBar> {
               children: [
                 const ButtonBack(),
                 SizedBox(width: c.sw*16,),
-                Text("Tambah Pasien").p16b()
+                const Text("Tambah Pasien").p16b()
               ],
             ),
           ),

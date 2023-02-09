@@ -1,17 +1,18 @@
+import 'package:age_calculator/age_calculator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starlife/page/Patient_Page/patient_page_controller.dart';
 import 'package:starlife/widget/base/custom_dropdown.dart';
+import 'package:starlife/widget/extention/ext_date.dart';
 
 import '../../../../../widget/base/custom_fixed_form.dart';
 import '../../../../../widget/base/custom_form.dart';
 import '../../../../global_controller.dart';
 
 class PatientAddForm extends StatefulWidget {
-  final TextEditingController controller;
-  final String title;
   final bool? passwordMode;
 
-  const PatientAddForm({super.key, required this.controller, required this.title, this.passwordMode});
+  const PatientAddForm({super.key, this.passwordMode});
 
   @override
   State<PatientAddForm> createState() => _PatientAddFormState();
@@ -19,24 +20,11 @@ class PatientAddForm extends StatefulWidget {
 
 class _PatientAddFormState extends State<PatientAddForm> {
   final c = Get.put(GlobalController());
-  TextEditingController rmController = TextEditingController(text: "");
-  TextEditingController namaController = TextEditingController(text: "");
-  TextEditingController emailController = TextEditingController(text: "");
-  TextEditingController tanggalLahirController = TextEditingController(text: "");
-  TextEditingController statusController = TextEditingController(text: "");
-  TextEditingController jenisKelaminController = TextEditingController(text: "");
-  TextEditingController agamaController = TextEditingController(text: "");
-  TextEditingController alergiObatController = TextEditingController(text: "");
-  TextEditingController goldarController = TextEditingController(text: "");
-  TextEditingController alamatController = TextEditingController(text: "");
-  TextEditingController kotaController = TextEditingController(text: "");
-  TextEditingController kelurahanController = TextEditingController(text: "");
-  TextEditingController rtController = TextEditingController(text: "");
-  TextEditingController rwController = TextEditingController(text: "");
-  TextEditingController kecamatanController = TextEditingController(text: "");
-  TextEditingController teleponController = TextEditingController(text: "");
-  TextEditingController handphoneController = TextEditingController(text: "");
-  TextEditingController orangtuaController = TextEditingController(text: "");
+  final p = Get.put(PatientPageController());
+
+  DateTime birthday = DateTime.now();
+  late DateDuration duration;
+
   final List<String> genderItems = [
     'Laki -laki',
     'Perempuan',
@@ -49,7 +37,8 @@ class _PatientAddFormState extends State<PatientAddForm> {
     'Budha',
     'Konghucu',
   ];
-
+  String date = "dd/mm/yy";
+  String ageToString = "-";
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -61,13 +50,13 @@ class _PatientAddFormState extends State<PatientAddForm> {
           ),
           const CustomFixedForm(content: "RM/545148-1151/015", title: "No. Rekam Medis"),
           CustomForm(
-            controller: namaController,
+            controller: p.namaController,
             hintText: "Masukan Nama Lengkap",
             title: "Nama Lengkap",
             isMust: true,
           ),
           CustomForm(
-            controller: emailController,
+            controller: p.emailController,
             hintText: "Masukan Email",
             title: "Email",
             isMust: true,
@@ -75,60 +64,97 @@ class _PatientAddFormState extends State<PatientAddForm> {
           Row(
             children: [
               Expanded(
-                child: CustomForm(
-                  controller: tanggalLahirController,
-                  hintText: "dd/mm//yyyy",
+                child: CustomFixedForm(
                   title: "Tanggal Lahir",
-            isMust: true,
+                  isMust: true,
+                  cornerIcon: Icons.calendar_month_outlined,
+                  content: p.tanggalLahirController.text,
+                  backgroundColor: Colors.white,
+                  ontap: () {
+                    showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(1900),
+                      lastDate: DateTime(2099),
+                    ).then((data) {
+                      //tambahkan setState dan panggil variabel _dateTime.
+                      setState(() {
+                        p.tanggalLahirController.text = data!.toSlashDate();
+                        birthday = data;
+                        duration = AgeCalculator.age(birthday, today: DateTime.now());
+                        print(duration.years);
+                        ageToString = duration.years.toString();
+                        p.usiaController.text = ageToString;
+                      });
+                    });
+                  },
                 ),
               ),
               SizedBox(
                 width: c.sw * 24,
               ),
               Expanded(
-                child: const CustomFixedForm(content: "42 Tahun", title: "Usia"),
+                child: CustomFixedForm(
+                  content: "${ageToString} Tahun",
+                  title: "Usia",
+                  isMust: true,
+                ),
               )
             ],
           ),
           CustomForm(
-            controller: statusController,
+            controller: p.statusController,
             hintText: "cth: Suami / Istri / Anak ke-1 / Anak ke-2, dsb",
             title: "Status Pasien Dalam Keluarga",
-            isMust: true, 
+            isMust: true,
           ),
           Row(
             children: [
-              Expanded(child: CustomDropDown(title: "Jenis Kelamin", items: genderItems,firstItem: 'Pilih Salah Satu', controller: jenisKelaminController,)),
+              Expanded(
+                  child: CustomDropDown(
+                title: "Jenis Kelamin",
+                items: genderItems,
+                firstItem: 'Pilih Salah Satu',
+                controller: p.jenisKelaminController,
+                isMust: true,
+              )),
               SizedBox(
                 width: c.sw * 24,
               ),
-              Expanded(child: CustomDropDown(title: "Agama",items: religions, firstItem: 'Pilih Salah Satu', controller: agamaController,))
+              Expanded(
+                  child: CustomDropDown(
+                title: "Agama",
+                items: religions,
+                firstItem: 'Pilih Salah Satu',
+                controller: p.agamaController,
+                isMust: true,
+              ))
             ],
           ),
           CustomForm(
-            controller: alergiObatController,
+            controller: p.alergiObatController,
             hintText: "cth: Alergi Paracetamol",
             title: "Alergi Obat",
             isMust: true,
           ),
           CustomForm(
-            controller: goldarController,
+            controller: p.goldarController,
             hintText: "cth: AB",
             title: "Golongan Darah",
           ),
           CustomForm(
-            controller: alamatController,
+            controller: p.alamatController,
             hintText: "Masukkan Alamat",
             title: "Alamat",
             isMust: true,
           ),
           CustomForm(
-            controller: kotaController,
+            controller: p.kotaController,
             hintText: "Masukkan Kota",
             title: "Kota",
           ),
           CustomForm(
-            controller: kelurahanController,
+            controller: p.kelurahanController,
             hintText: "Masukkan Kelurahan",
             title: "Kelurahan",
           ),
@@ -136,10 +162,10 @@ class _PatientAddFormState extends State<PatientAddForm> {
             children: [
               Expanded(
                 child: CustomForm(
-                  controller: jenisKelaminController,
+                  controller: p.jenisKelaminController,
                   hintText: "Masukkan RW",
                   title: "RW",
-            isMust: false,
+                  isMust: false,
                 ),
               ),
               SizedBox(
@@ -147,31 +173,32 @@ class _PatientAddFormState extends State<PatientAddForm> {
               ),
               Expanded(
                 child: CustomForm(
-                  controller: agamaController,
+                  controller: p.agamaController,
                   hintText: "Masukkan RT",
                   title: "RT",
-            isMust: false,
+                  isMust: false,
                 ),
               ),
             ],
           ),
           CustomForm(
-            controller: kecamatanController,
+            controller: p.kecamatanController,
             hintText: "Kecamatan",
             title: "Masukkan Kecamatan",
           ),
           CustomForm(
-            controller: teleponController,
+            controller: p.teleponController,
             hintText: "Masukkan No. Telepon",
             title: "No. Telepon (Rumah)",
           ),
           CustomForm(
-            controller: handphoneController,
+            controller: p.handphoneController,
             hintText: "Masukkan No. Handphone",
             title: "No. Handphone",
+            isMust: true,
           ),
           CustomForm(
-            controller: orangtuaController,
+            controller: p.orangtuaController,
             hintText: "Masukkan Nama Orang Tua",
             title: "Nama Orang Tua",
           ),

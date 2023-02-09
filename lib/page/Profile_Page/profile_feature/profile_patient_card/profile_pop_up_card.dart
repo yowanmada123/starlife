@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Profile_Page/profile_feature/profile_patient_card/flip_animation.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_patient_card/profile_flip_card_animation.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 Future<Object?> ProfilePopUpCard(BuildContext context) {
-  final controller = FlipCardController();
   final c = Get.put(GlobalController());
   return showAnimatedDialog(
     context: context,

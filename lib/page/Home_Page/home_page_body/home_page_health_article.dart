@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Article_Page/article_detail_page/article_detail_page.dart';
 import 'package:starlife/page/global_controller.dart';
@@ -82,13 +80,13 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
         height: c.sh * 10,
       ),
       ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: articels.length,
         padding: EdgeInsets.zero,
         itemBuilder: (BuildContext context, int index) => GestureDetector(
           onTap: () {
-            Get.to(ArticleDetailPage());
+            Get.to(const ArticleDetailPage());
           },
           child: Column(
             children: [
@@ -99,7 +97,7 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
                   children: [
                     ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      child: Container(
+                      child: SizedBox(
                         width: 80,
                         height: 80,
                         child: FittedBox(
@@ -112,15 +110,15 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
                       width: c.sw * 10,
                     ),
                     Expanded(
-                      child: Container(
+                      child: SizedBox(
                         height: 80,
                         child: Stack(
                           children: [
-                            Container(
+                            SizedBox(
                                 width: c.sw * 258,
                                 child: Text(
                                   articels[index].title,
-                                  style: TextStyle(height: 1.5),
+                                  style: const TextStyle(height: 1.5),
                                 ).p14b().black()),
                             Positioned(
                               bottom: 0,
@@ -176,6 +174,6 @@ class Artikel {
 
   @override
   String toString() {
-    return '{ ${this.title}, ${this.id} }';
+    return '{ $title, $id }';
   }
 }

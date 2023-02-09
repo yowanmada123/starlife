@@ -57,7 +57,7 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
           visible: _isPagiVisible,
           child: Column(
             children: [
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Row(
@@ -104,7 +104,7 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
           visible: _isMalamVisible,
           child: Column(
             children: [
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Row(

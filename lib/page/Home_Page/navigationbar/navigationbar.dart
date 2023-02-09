@@ -3,17 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_page.dart';
-import 'package:starlife/page/Patient_Page/patient_list_page.dart';
+import 'package:starlife/page/Patient_Page/patient_list_main_page.dart';
 import 'package:starlife/page/Home_Page/home_page.dart';
 import 'package:starlife/page/Auth_Page/Login/login_page.dart';
-import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_page.dart';
-import 'package:starlife/page/Patient_Page/patient_feature/patient_oneway_add_page/patient_oneway_add_page.dart';
-import 'package:starlife/page/Patient_Page/patient_feature/patient_add_page/patient_add_page.dart';
 import 'package:starlife/page/Profile_Page/profile_page.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
-import 'package:starlife/widget/base/showdialog_fill_button.dart';
-import 'package:starlife/widget/base/showdialog_two_button.dart';
 
 import '../../Article_Page/article_healthy_page.dart';
 
@@ -23,7 +18,7 @@ class HelloConvexAppBar extends StatelessWidget {
   final List<Widget> _children = [
     const HomePage(),
     const CheckRmPage(),
-    const PatientListPage(),
+    const PatientListMainPage(),
     const HealthyArticlePage(),
     const ProfilePage(),
   ];

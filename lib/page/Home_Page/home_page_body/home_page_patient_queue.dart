@@ -30,12 +30,12 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
               itemCount: c.pasienNumber,
               allowImplicitScrolling: true,
               pageSnapping: true,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               itemBuilder: (BuildContext context, int index) { 
                 return Container(
                   width: Get.width,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(15.0)),
                   border: Border.all(color: Colors.grey.withOpacity(0.3))
                 ),
                         margin: EdgeInsets.symmetric(horizontal: c.sw*8),
@@ -44,16 +44,16 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
                             SizedBox(
                               height: c.sh * 15,
                             ),
-                            Text("Nama Pasien").p14b().black(),
-                            Text(
+                            const Text("Nama Pasien").p14b().black(),
+                            const Text(
                               "Muhaammad Aulia Daffa",
                               textAlign: TextAlign.center,
                             ).p18b().primary(),
                             SizedBox(
                               height: c.sh * 12,
                             ),
-                            Text("Nama Pasien").p14b().black(),
-                            Text("DM016").p80eb().primary(),
+                            const Text("Nama Pasien").p14b().black(),
+                            const Text("DM016").p80eb().primary(),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: c.sw*16),
                               child: Row(
@@ -62,20 +62,20 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
                                 children: [
                                   Column(
                                     children: [
-                                      Text("No. Rekam Medis").p9r().black(),
-                                      Text("RM105").p18b().primary(),
+                                      const Text("No. Rekam Medis").p9r().black(),
+                                      const Text("RM105").p18b().primary(),
                                     ],
                                   ),
                                   Column(
                                     children: [
-                                      Text("Antrian Dilayani").p9r().black(),
-                                      Text("DM016").p18b().secondary(),
+                                      const Text("Antrian Dilayani").p9r().black(),
+                                      const Text("DM016").p18b().secondary(),
                                     ],
                                   ),
                                   Column(
                                     children: [
-                                      Text("Tanggal Pemeriksaan").p9r().black(),
-                                      Text("24 / 11 / 2022").p18b().primary(),
+                                      const Text("Tanggal Pemeriksaan").p9r().black(),
+                                      const Text("24 / 11 / 2022").p18b().primary(),
                                     ],
                                   ),
                                 ],
@@ -96,8 +96,8 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
                             SizedBox(
                               height: c.sh * 10,
                             ),
-                            Text("Status Kedatangan Dokter : ").p9r().black(),
-                            Text("Sudah Datang").p18b().primary(),
+                            const Text("Status Kedatangan Dokter : ").p9r().black(),
+                            const Text("Sudah Datang").p18b().primary(),
                             SizedBox(
                               height: c.sh * 20,
                             ),

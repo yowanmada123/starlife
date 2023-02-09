@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class ScheduleDoctorBiography extends StatefulWidget {
@@ -34,7 +32,7 @@ class _ScheduleDoctorBiographyState extends State<ScheduleDoctorBiography> {
               height: c.sh*6,
             ),
             Container(
-              child: Text("dr. Ana Sulastri mempunyai pengalaman 7 tahun sebagai dokter spesialis anak dengan bidang keahlian nafsu makan, DBD dan penyakit tropis, pencernaan anak, bayi lahir kecil dan prematur, perkembangan anak dan kesehatan remaja.", textAlign: TextAlign.justify,).p12l().black(),
+              child: const Text("dr. Ana Sulastri mempunyai pengalaman 7 tahun sebagai dokter spesialis anak dengan bidang keahlian nafsu makan, DBD dan penyakit tropis, pencernaan anak, bayi lahir kecil dan prematur, perkembangan anak dan kesehatan remaja.", textAlign: TextAlign.justify,).p12l().black(),
             ),
             const Divider(),
             SizedBox(

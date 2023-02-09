@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_page.dart';
+import 'package:starlife/page/Patient_Page/patient_page_controller.dart';
 import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/page/Patient_Page/patient_feature/patient_add_page/patient_add_page.dart';
 import 'package:starlife/utils/colors.dart';
-import 'package:starlife/widget/base/showdialog_fill_button.dart';
-import 'package:starlife/widget/base/showdialog_two_button.dart';
-import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
-
-import '../../patient_oneway_add_page/patient_oneway_add_page.dart';
 
 class PatientAddBottomBar extends StatefulWidget {
   const PatientAddBottomBar({super.key});
@@ -20,6 +15,7 @@ class PatientAddBottomBar extends StatefulWidget {
 
 class _PatientAddBottomBarState extends State<PatientAddBottomBar> {
   final c = Get.put(GlobalController());
+  final p = Get.put(PatientPageController());
   TextEditingController controller = TextEditingController(text: "");
 
   @override
@@ -28,7 +24,20 @@ class _PatientAddBottomBarState extends State<PatientAddBottomBar> {
         bottom: 0,
         child: GestureDetector(
           onTap: () {
-            Get.to(const PatientListPage());
+            // print(p.emailController.text);
+            // print(p.namaController.text);
+            // print(p.tanggalLahirController.text);
+            // print(p.usiaController.text);
+            // print(p.statusController.text);
+            // print(p.jenisKelaminController.text);
+            // print(p.agamaController.text);
+            // print(p.alergiObatController.text);
+            // print(p.alamatController.text);
+            // print(p.handphoneController.text);
+            // print(p.orangtuaController.text);
+            // p.patientAdd(context);
+          Get.to(const PatientListPage());
+
           },
           child: Container(
             color: Colors.white,

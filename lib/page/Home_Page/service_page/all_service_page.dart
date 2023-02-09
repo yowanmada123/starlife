@@ -1,7 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/experienced_doctor_list_page.dart';
@@ -50,7 +48,7 @@ class _AllServicePageState extends State<AllServicePage> {
             height: Get.height,
             color: Colors.white,
           ),
-          CustomTopBar(),
+          const CustomTopBar(),
           SingleChildScrollView(
             physics: ScrollPhysics(),
             child: Column(
@@ -99,7 +97,7 @@ class _AllServicePageState extends State<AllServicePage> {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Container(height: c.sh * 50, child: Center(child: Image.asset(categoryImage[index]))),
+                                        SizedBox(height: c.sh * 50, child: Center(child: Image.asset(categoryImage[index]))),
                                         SizedBox(
                                           height: c.sh * 5,
                                         ),
@@ -144,7 +142,7 @@ class _AllServicePageState extends State<AllServicePage> {
                         SizedBox(
                           width: c.sw * 16,
                         ),
-                        Text("Semua Pelayanan").p16b().white(),
+                        const Text("Semua Pelayanan").p16b().white(),
                       ],
                     ),
                   ],

@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient/profile_edit/profile_patient_edit_data_form.dart';
+import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_edit/profile_patient_edit_data_page.dart';
 import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/utils/colors.dart';
-import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/button_base.dart';
-import 'package:starlife/widget/ext_text.dart';
 
 import '../../../../../../widget/base/custom_fixed_form.dart';
-import '../../../../../../widget/base/custom_form.dart';
 
 class ProfilePatientDataform extends StatefulWidget {
   final bool? passwordMode;
@@ -82,7 +76,7 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
                     height: c.sh * 26,
                     child: BaseButton(
                       ontap: () {
-                        Get.to(ProfilePatientEditForm());
+                        Get.to(const ProfileEditDataPage());
                       },
                       text: "Edit Profile",
                       textSize: 12,

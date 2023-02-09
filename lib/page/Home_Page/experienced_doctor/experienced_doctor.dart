@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/schedule_detail_page/schedule_detail_page.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
-import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class ListDokter extends StatefulWidget {
@@ -37,19 +36,19 @@ class _ListDokterState extends State<ListDokter> {
     return Stack(
       children:[
          SingleChildScrollView(
-          physics: ScrollPhysics(),
+          physics: const ScrollPhysics(),
            child: Column(
                    children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal:16.0),
+              padding: const EdgeInsets.symmetric(horizontal:16.0),
               child: ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: docters.length,
                   padding: EdgeInsets.zero,
                   itemBuilder: (BuildContext context, int index) => GestureDetector(
                         onTap: () {
-                          Get.to(const DetailJadwal());
+                          Get.to(const ScheduleDetailPage());
                         },
                         child: Column(
                           children: [
@@ -61,7 +60,7 @@ class _ListDokterState extends State<ListDokter> {
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: Color.fromRGBO(225, 225, 225, 1)),
+                                  border: Border.all(color: const Color.fromRGBO(225, 225, 225, 1)),
                                   boxShadow: const [
                                     BoxShadow(color: Color(0x54000000), spreadRadius: 0.1, blurRadius: 0.5, offset: Offset(0.0, 0.1)),
                                   ],
@@ -174,6 +173,6 @@ class Dokter {
 
   @override
   String toString() {
-    return '{ ${this.name}, ${this.id} }';
+    return '{ $name, $id }';
   }
 }

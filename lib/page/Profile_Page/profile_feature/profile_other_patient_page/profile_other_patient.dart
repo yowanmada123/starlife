@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
-import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient/profile_data/profile_patient_data_page.dart';
+import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_data/profile_patient_data_page.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -33,7 +33,7 @@ class _ProfileOtherPatientState extends State<ProfileOtherPatient> {
             child: Column(
               children: [
                 Container(
-                padding: EdgeInsets.only(top: c.sh * 109),
+                padding: EdgeInsets.only(top: c.sh * 110),
                 width: Get.width,
                 height: Get.height,
                 child: ListView.builder(

@@ -19,21 +19,18 @@ class _CustomButtomButtonState extends State<CustomButtomButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-        bottom: 0,
-        child: GestureDetector(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        GestureDetector(
           onTap: widget.ontap,
           child: Container(
-            height: c.sh * 80,
+            height: c.sh * 65,
             width: Get.width,
             color: Colors.white,
-            // decoration: BoxDecoration(
-            //   border: Border.all(
-            //     color: Colors.black
-            //   )
-            // ),
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal:16, vertical: 10),
               child: Container(
                 color: Colors.white,
                 height: c.sh * 47,
@@ -46,6 +43,8 @@ class _CustomButtomButtonState extends State<CustomButtomButton> {
               ),
             ),
           ),
-        ));
+        ),
+      ],
+    );
   }
 }

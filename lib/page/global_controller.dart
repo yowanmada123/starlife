@@ -1,10 +1,6 @@
-import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
-import 'package:dio/dio.dart';
 
 class GlobalController extends GetxController {
   final tabHomeIndex = 0.obs;

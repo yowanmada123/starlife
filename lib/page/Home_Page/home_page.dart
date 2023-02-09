@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
         ),
           SingleChildScrollView(
-            physics: ScrollPhysics(),
+            physics: const ScrollPhysics(),
               child: Column(
             children: [
               const HomePageBrochure(),

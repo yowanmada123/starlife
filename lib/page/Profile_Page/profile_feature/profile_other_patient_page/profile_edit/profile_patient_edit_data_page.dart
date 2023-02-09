@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient/profile_data/profile_patient_data_form.dart';
+import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_edit/profile_patient_edit_data_form.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/base/custom_buttom_button.dart';
 import 'package:starlife/widget/ext_text.dart';
 
-class ProfilePatientDataPage extends StatefulWidget {
-  const ProfilePatientDataPage({super.key});
+class ProfileEditDataPage extends StatefulWidget {
+  const ProfileEditDataPage({super.key});
 
   @override
-  State<ProfilePatientDataPage> createState() => _ProfilePatientDataPageState();
+  State<ProfileEditDataPage> createState() => _ProfileEditDataPageState();
 }
 
-class _ProfilePatientDataPageState extends State<ProfilePatientDataPage> {
+class _ProfileEditDataPageState extends State<ProfileEditDataPage> {
   final c = Get.put(GlobalController());
 
   @override
@@ -28,7 +28,7 @@ class _ProfilePatientDataPageState extends State<ProfilePatientDataPage> {
             color: Colors.white,
           ),
           const CustomTopBar(),  
-          const ProfilePatientDataform(),
+          const ProfilePatientEditForm(),
           Container(
             color: Colors.transparent,
             height: c.sh * 128,

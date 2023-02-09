@@ -1,8 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -82,8 +79,8 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Yuk!").p52eb().white(),
-                          Text("Periksakan Kesehatan Anda!").p10r().white(),
+                          const Text("Yuk!").p52eb().white(),
+                          const Text("Periksakan Kesehatan Anda!").p10r().white(),
                         ],
                       ),
                     ),
@@ -128,7 +125,7 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
                 // onPageChanged: callbackFunction,
                 scrollDirection: Axis.horizontal,
               ),
-              itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) => Container(
+              itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) => SizedBox(
                 child: Column(
                   children: [
                     SizedBox(
@@ -166,7 +163,7 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
             child: Container(
               height: c.sh * 42,
               width: Get.width,
-              decoration: BoxDecoration(color: Color(0xffFFEBDB), borderRadius: BorderRadius.circular(15), border: Border.all(color: Color(0xffFFA35C))),
+              decoration: BoxDecoration(color: const Color(0xffFFEBDB), borderRadius: BorderRadius.circular(15), border: Border.all(color: const Color(0xffFFA35C))),
               child: Center(
                 child: GestureDetector(
                   onTap: () {
@@ -177,7 +174,7 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
                       text: 'Ingin Melihat Jadwal Imunisasi ?  ',
                       style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.black),
                       children: <TextSpan>[
-                        TextSpan(text: 'Lihat Disini', style: GoogleFonts.poppins(decoration: TextDecoration.underline, fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xffDF6100))),
+                        TextSpan(text: 'Lihat Disini', style: GoogleFonts.poppins(decoration: TextDecoration.underline, fontSize: 12, fontWeight: FontWeight.w600, color: const Color(0xffDF6100))),
                       ],
                     ),
                   ),

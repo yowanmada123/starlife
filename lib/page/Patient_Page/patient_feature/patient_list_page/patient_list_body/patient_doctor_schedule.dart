@@ -9,14 +9,14 @@ import 'package:starlife/widget/ext_text.dart';
 import 'package:dart_date/dart_date.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 
-class JadwalPraktek extends StatefulWidget {
-  const JadwalPraktek({super.key});
+class PatientDoctorSchedule extends StatefulWidget {
+  const PatientDoctorSchedule({super.key});
 
   @override
-  State<JadwalPraktek> createState() => _JadwalPraktekState();
+  State<PatientDoctorSchedule> createState() => _PatientDoctorScheduleState();
 }
 
-class _JadwalPraktekState extends State<JadwalPraktek> {
+class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
   final c = Get.put(GlobalController());
   List<DateTime> days = [];
   DateTime today = DateTime.now();
@@ -114,11 +114,11 @@ class _JadwalPraktekState extends State<JadwalPraktek> {
                                               days[itemIndex].toEEEE() == 'Senin' ? "Sen" : days[itemIndex].toEEEE() == 'Sabtu' ? 'Sab' : days[itemIndex].toEEEE() == 'Minggu' ? 'Min' :
                                                     days[itemIndex].toEEEE(),
                                               maxLines: 1,
-                                              style: TextStyle(height: 1.5),
+                                              style: const TextStyle(height: 1.5),
                                               textAlign: TextAlign.center,
                                             ).p12m().white()),
                                         Text(days[itemIndex].toTheDay(),
-                                              style: TextStyle(height: 1.3),).p12m().white(),
+                                              style: const TextStyle(height: 1.3),).p12m().white(),
                                       ],
                                     )
                              

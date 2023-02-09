@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/main.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_page.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_add_page/patient_add_page.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/showdialog_fill_button.dart';
 import 'package:starlife/widget/base/showdialog_two_button.dart';
-import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 import '../../../../Patient_Page/patient_feature/patient_oneway_add_page/patient_oneway_add_page.dart';
@@ -51,11 +49,11 @@ class _ScheduleDoctorBottomBarState extends State<ScheduleDoctorBottomBar> {
                 buttonRight: () {
                   Get.back();
                   filledShowDialog(
-                    barier: false,
+                    barier: true,
                       context: context,
                       title: "Masukkan No. Rekam Medis",
                       button: () {
-                        Get.to(PatientCheckPage());
+                        Get.to(const PatientCheckPage());
                       },
                       controller: controller,
                       hint: "Masukkan No. Rekam Medis Anda");

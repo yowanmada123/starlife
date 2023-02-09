@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/schedule_detail_page/schedule_detail_page.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/experienced_doctor_list_page.dart';
-import 'package:starlife/page/Home_Page/service_page/all_service_page.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -47,7 +46,7 @@ class _HomePageExperiencedDoctorState extends State<HomePageExperiencedDoctor> {
               const Text("Dokter Berpengalaman").p16b().black(),
               GestureDetector(
                   onTap: () {
-                    Get.to(ExperiencedDoctorListPage());
+                    Get.to(const ExperiencedDoctorListPage());
                   },
                   child: const Text("Lihat Semua!").p12m().primary()),
             ],
@@ -71,7 +70,7 @@ class _HomePageExperiencedDoctorState extends State<HomePageExperiencedDoctor> {
             children: List.generate(doctorsImage.length, (index) {
               return GestureDetector(
                 onTap: (){
-                  Get.to(const DetailJadwal());
+                  Get.to(const ScheduleDetailPage());
                 },
                 child: Container(
                   decoration: BoxDecoration(

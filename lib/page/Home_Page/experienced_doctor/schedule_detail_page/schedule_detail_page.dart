@@ -10,14 +10,14 @@ import 'schedule_detail_body/schedule_doctor.dart';
 import 'schedule_detail_body/schedule_practice_location.dart';
 import 'schedule_detail_body/schedule_available.dart';
 
-class DetailJadwal extends StatefulWidget {
-  const DetailJadwal({super.key});
+class ScheduleDetailPage extends StatefulWidget {
+  const ScheduleDetailPage({super.key});
 
   @override
-  State<DetailJadwal> createState() => _DetailJadwalState();
+  State<ScheduleDetailPage> createState() => _ScheduleDetailPageState();
 }
 
-class _DetailJadwalState extends State<DetailJadwal> {
+class _ScheduleDetailPageState extends State<ScheduleDetailPage> {
   final c = Get.put(GlobalController());
 
   @override
@@ -43,7 +43,7 @@ class _DetailJadwalState extends State<DetailJadwal> {
                 const SchedulePracticeLocation(),
                 Container(
                   height: 12,
-                  color: Color.fromARGB(255, 250, 249, 249),
+                  color: const Color.fromARGB(255, 250, 249, 249),
                 ),
                 const ScheduleDoctorBiography()
               ],

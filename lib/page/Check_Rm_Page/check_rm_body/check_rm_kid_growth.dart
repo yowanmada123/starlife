@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Profile_Page/profile_feature/profile_account_information_page/profile_data_form.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
@@ -29,7 +26,7 @@ class _CekPermkembanganPageState extends State<CekPermkembanganPage> {
             height: Get.height,
             color: Colors.white,
           ),
-          CustomTopBar(
+          const CustomTopBar(
             
           ),
           SingleChildScrollView(
@@ -39,11 +36,11 @@ class _CekPermkembanganPageState extends State<CekPermkembanganPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: c.sh*130,),
-                  Text("Berat anak berdasarkan usia").p14b().black(),
+                  const Text("Berat anak berdasarkan usia").p14b().black(),
                   SizedBox(height: c.sh*14,),
                   SvgPicture.asset("assets/icon/table1.svg"),
                   SizedBox(height: c.sh*20,),
-                  Text("Berat badan berdasarkan tinggi badan").p14b().black(),
+                  const Text("Berat badan berdasarkan tinggi badan").p14b().black(),
                   SizedBox(height: c.sh*14,),
                   SvgPicture.asset("assets/icon/table2.svg"),
                 ],

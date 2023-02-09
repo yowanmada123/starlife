@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Home_Page/navigationbar/navigationbar.dart';
-import 'package:starlife/page/Auth_Page/Login/login_page.dart';
 import 'package:starlife/utils/colors.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: splashtime), () async {
-      Get.to(BlankScreen(), transition: Transition.circularReveal, duration: Duration(seconds: 2));
+      Get.to(const BlankScreen(), transition: Transition.circularReveal, duration: const Duration(seconds: 2));
     });
 
     super.initState();

@@ -15,7 +15,7 @@ class ArticleDetailBrochure extends StatelessWidget {
       children: [
         Container(
           height: 420,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             // border: Border.all(color: Colors.red),
             borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(20),
@@ -29,7 +29,7 @@ class ArticleDetailBrochure extends StatelessWidget {
               ),
                 Positioned(
                 top: 0,
-                  child: Container(
+                  child: SizedBox(
                   width: Get.width,
                   height: 395,
                   child: FittedBox(
@@ -66,10 +66,10 @@ class ArticleDetailBrochure extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    ButtonBack(),
-                    SizedBox(height: 235,),
-                    Text("1 Minute Ago").p10r().white(),
-                    Text("Kenali 6 Kebiasaan yang Membahayakan Gigi").p20b().white()
+                    const ButtonBack(),
+                    const SizedBox(height: 235,),
+                    const Text("1 Minute Ago").p10r().white(),
+                    const Text("Kenali 6 Kebiasaan yang Membahayakan Gigi").p20b().white()
                   ],
                   ),
                 )

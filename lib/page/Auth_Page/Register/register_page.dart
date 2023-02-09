@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Auth_Page/Login/login_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
@@ -124,7 +123,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         SizedBox(
                           height: c.sh * 15,
                         ),
-                        Container(
+                        SizedBox(
                             width: 222,
                             height: 48,
                             child: const Text(
@@ -215,7 +214,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 child: Container(
                                   height: c.sh * 15,
                                   width: c.sw * 15,
-                                  decoration: BoxDecoration(color: _isSyarat ? OPrimaryColor : Color(0xffEAEAEA)),
+                                  decoration: BoxDecoration(color: _isSyarat ? OPrimaryColor : const Color(0xffEAEAEA)),
                                   child: _isSyarat
                                       ? const Icon(
                                           Icons.check,
@@ -242,7 +241,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               bool isEmail = c.isEmail(_emailController.text);
                               bool isPhone = c.isPhone(_nomorController.text);
                               if(_isSyarat){
-                                if (!_emailController.text.isEmpty && !_passwordController.text.isEmpty && !_emailController.text.isEmpty && !_nomorController.text.isEmpty && !_passwordController.text.isEmpty && !_konfirmasiPassword.text.isEmpty) {
+                                if (_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _emailController.text.isNotEmpty && _nomorController.text.isNotEmpty && _passwordController.text.isNotEmpty && _konfirmasiPassword.text.isNotEmpty) {
                                 if (isEmail) {
                                   if (isPhone) {
                                     if (_passwordController.text == _konfirmasiPassword.text) {

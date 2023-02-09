@@ -4,15 +4,15 @@ import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/ext_text.dart';
 
-class TopBar extends StatefulWidget {
+class PatientTopBar extends StatefulWidget {
   final bool buttonBack;
-  const TopBar({super.key, required this.buttonBack});
+  const PatientTopBar({super.key, required this.buttonBack});
 
   @override
-  State<TopBar> createState() => _TopBarState();
+  State<PatientTopBar> createState() => _PatientTopBarState();
 }
 
-class _TopBarState extends State<TopBar> {
+class _PatientTopBarState extends State<PatientTopBar> {
   final c = Get.put(GlobalController());
 
   @override

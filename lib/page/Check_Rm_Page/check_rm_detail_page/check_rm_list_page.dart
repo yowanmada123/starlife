@@ -38,13 +38,13 @@ class _CheckRmListPageState extends State<CheckRmListPage> {
             height: Get.height,
             color: Colors.white,
           ),
-          CheckRmTopBar(
+          const CheckRmTopBar(
           ),
           RoundedInside(
             child: SingleChildScrollView(
                 child: Column(
               children: [
-                Container(
+                SizedBox(
                   width: Get.width,
                   height: Get.height,
                   child: ListView.builder(

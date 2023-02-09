@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
@@ -27,13 +26,13 @@ class _SchedulePracticeLocationState extends State<SchedulePracticeLocation> {
               Icon(Icons.location_on, color: OPrimaryColor,size: 25,),
               SizedBox(width:c.sw*13),
               Expanded(
-                child: Container(
+                child: SizedBox(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text("Lokasi Praktek").p14m().black(),
-                      SizedBox(height: 5,),
+                      const SizedBox(height: 5,),
                       Container(
                         child: const Text("Jl. Nginden Semolo No.42, Nginden Jangkungan, Kec. Sukolilo, Kota SBY, Jawa Timur 60118").p10r().black()),
                     ],

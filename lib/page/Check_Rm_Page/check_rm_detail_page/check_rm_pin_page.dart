@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:numeric_keyboard/numeric_keyboard.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_list_page.dart';
 import 'package:starlife/page/global_controller.dart';
@@ -89,7 +88,6 @@ class _PinPageState extends State<PinPage> {
 
   @override
   Widget build(BuildContext context) {
-    const activeColor = Color(0xFF4E94D8);
     const inActiveColor = Color(0xFFC8CDD1);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -99,7 +97,7 @@ class _PinPageState extends State<PinPage> {
         elevation: 0,
         leading: GestureDetector(
             onTap: () => Get.back(),
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_ios_new,
               color: Colors.black,
               size: 20,
@@ -164,16 +162,16 @@ class _PinPageState extends State<PinPage> {
               SizedBox(
                 height: c.sh*20,
               ),
-              Text("Lupa pin ?").p12r().primary()
+              const Text("Lupa pin ?").p12r().primary()
             ],
           ),
         ),
-        CustomKeypad()
+        customKeypad()
       ]),
     );
   }
 
-  Widget CustomKeypad() {
+  Widget customKeypad() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -199,7 +197,7 @@ class _PinPageState extends State<PinPage> {
           padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
           child: Visibility(
             visible: visibleKeypad,
-            child: Container(
+            child: SizedBox(
               height: c.sh * 235,
               width: Get.width,
               child: Column(
@@ -222,7 +220,7 @@ class _PinPageState extends State<PinPage> {
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
                               child: Center(
-                                  child: Text(
+                                  child: const Text(
                                 "1",
                               ).p16m().black()),
                             ),
@@ -244,7 +242,7 @@ class _PinPageState extends State<PinPage> {
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
                               child: Center(
-                                  child: Text(
+                                  child: const Text(
                                 "2",
                               ).p16m().black()),
                             ),
@@ -266,7 +264,7 @@ class _PinPageState extends State<PinPage> {
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
                               child: Center(
-                                  child: Text(
+                                  child: const Text(
                                 "3",
                               ).p16m().black()),
                             ),
@@ -297,7 +295,7 @@ class _PinPageState extends State<PinPage> {
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
                               child: Center(
-                                  child: Text(
+                                  child: const Text(
                                 "4",
                               ).p16m().black()),
                             ),
@@ -319,7 +317,7 @@ class _PinPageState extends State<PinPage> {
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
                               child: Center(
-                                  child: Text(
+                                  child: const Text(
                                 "5",
                               ).p16m().black()),
                             ),
@@ -341,7 +339,7 @@ class _PinPageState extends State<PinPage> {
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
                               child: Center(
-                                  child: Text(
+                                  child: const Text(
                                 "6",
                               ).p16m().black()),
                             ),
@@ -372,7 +370,7 @@ class _PinPageState extends State<PinPage> {
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
                               child: Center(
-                                  child: Text(
+                                  child: const Text(
                                 "7",
                               ).p16m().black()),
                             ),
@@ -394,7 +392,7 @@ class _PinPageState extends State<PinPage> {
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
                               child: Center(
-                                  child: Text(
+                                  child: const Text(
                                 "8",
                               ).p16m().black()),
                             ),
@@ -416,7 +414,7 @@ class _PinPageState extends State<PinPage> {
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
                               child: Center(
-                                  child: Text(
+                                  child: const Text(
                                 "9",
                               ).p16m().black()),
                             ),
@@ -464,7 +462,7 @@ class _PinPageState extends State<PinPage> {
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
                               child: Center(
-                                  child: Text(
+                                  child: const Text(
                                 "0",
                               ).p16m().black()),
                             ),
@@ -483,7 +481,7 @@ class _PinPageState extends State<PinPage> {
                                 print(pin);
                               }
                             },
-                            child: Center(
+                            child: const Center(
                                 child: Icon(
                               Icons.backspace_rounded,
                               size: 30,

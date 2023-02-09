@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Profile_Page/profile_feature/profile_account_information_page/profile_data_form.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
@@ -27,7 +24,7 @@ class _RiwayatImunisasiAnakPageState extends State<RiwayatImunisasiAnakPage> {
             height: Get.height,
             color: Colors.white,
           ),
-          CustomTopBar(
+          const CustomTopBar(
           ),
           SingleChildScrollView(
             child: Column(
@@ -35,7 +32,7 @@ class _RiwayatImunisasiAnakPageState extends State<RiwayatImunisasiAnakPage> {
                 SizedBox(
                   height: c.sh * 109,
                 ),
-                Container(
+                SizedBox(
                   width: Get.width,
                   height: Get.height,
                   child: Padding(
@@ -75,7 +72,7 @@ class _RiwayatImunisasiAnakPageState extends State<RiwayatImunisasiAnakPage> {
                         SizedBox(
                           width: c.sw * 16,
                         ),
-                        Text("Riwayat Imunisasi Anak").p16b().white(),
+                        const Text("Riwayat Imunisasi Anak").p16b().white(),
                       ],
                     ),
                   ],
@@ -116,7 +113,8 @@ class _ItemListState extends State<ItemList> {
                         end: Alignment.centerRight,
                         colors: [
                           Color(0xff2EC1AD),
-                          Color(0xfff28C6F5),
+                          // ignore: use_full_hex_values_for_flutter_colors
+                          Color(0xfff28c6f5),
                         ],
                       ),
                     ),
@@ -134,8 +132,8 @@ class _ItemListState extends State<ItemList> {
                             Container(
                               height: c.sh * 20,
                               width: c.sw * 120,
-                              decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Color(0xff20B09C)), borderRadius: BorderRadius.circular(6)),
-                              child: Text(
+                              decoration: BoxDecoration(color: Colors.white, border: Border.all(color: const Color(0xff20B09C)), borderRadius: BorderRadius.circular(6)),
+                              child: const Text(
                                 "Sudah Imunisasi",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Color(0xff2EC1AD)),
@@ -143,7 +141,7 @@ class _ItemListState extends State<ItemList> {
                             )
                           ],
                         ),
-                        Text(
+                        const Text(
                           "Imunisasi BCG",
                           textAlign: TextAlign.center,
                         ).p20b().white(),
@@ -154,7 +152,7 @@ class _ItemListState extends State<ItemList> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Umur Anak",
                                       textAlign: TextAlign.center,
                                     ).p12r().white(),
@@ -165,7 +163,7 @@ class _ItemListState extends State<ItemList> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       ": Baru lahir - 1 Bulan",
                                       textAlign: TextAlign.center,
                                     ).p12m().white(),
@@ -180,7 +178,7 @@ class _ItemListState extends State<ItemList> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Tanggal Imunisasi",
                                       textAlign: TextAlign.center,
                                     ).p12r().white(),
@@ -191,7 +189,7 @@ class _ItemListState extends State<ItemList> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       ": 10 Januari 2023",
                                       textAlign: TextAlign.center,
                                     ).p12m().white(),
@@ -206,7 +204,7 @@ class _ItemListState extends State<ItemList> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "No. Rekam Medis",
                                       textAlign: TextAlign.center,
                                     ).p12r().white(),
@@ -217,7 +215,7 @@ class _ItemListState extends State<ItemList> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       ": RM1020",
                                       textAlign: TextAlign.center,
                                     ).p12m().white(),
@@ -231,7 +229,7 @@ class _ItemListState extends State<ItemList> {
                         Container(
                           width: Get.width,
                           height: 1,
-                          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.white))),
+                          decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.white))),
                         ),
                         SizedBox(
                           height: c.sh * 6,

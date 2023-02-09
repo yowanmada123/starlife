@@ -171,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                                     child: BaseButton(
                                       ontap: () {
                                         bool isEmail = c.isEmail(_emailController.text);
-                                        if (!_emailController.text.isEmpty && !_passwordController.text.isEmpty) {
+                                        if (_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty) {
                                           if (isEmail) {
                                             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                               content: Text('Login Success'),
@@ -223,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
                                                     )),
                                                     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
                                                     contentPadding: EdgeInsets.symmetric(horizontal: c.sw * 28.0, vertical: c.sh * 10),
-                                                    content: Container(
+                                                    content: SizedBox(
                                                       height: c.sh * 60,
                                                       child: Text("Kami telah mengirim email ke sarahcb@gmail.com yang berisi tautan untuk mengatur ulang kata sandi anda.", textAlign: TextAlign.center, style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600)),
                                                     ),
@@ -306,7 +306,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           SizedBox(
-                            height: c.sh * 75,
+                            height: c.sh * 50,
                           ),
                           const Text("© 2022 Starlife Clinic. All rights reserved.").p12r().grey(),
                           SizedBox(

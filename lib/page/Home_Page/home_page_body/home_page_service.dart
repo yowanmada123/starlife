@@ -33,12 +33,12 @@ class HomePageService extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Pelayanan!").p16b().black(),
+              const Text("Pelayanan!").p16b().black(),
               GestureDetector(
                   onTap: () {
-                    Get.to(AllServicePage());
+                    Get.to(const AllServicePage());
                   },
-                  child: Text("Lihat Semua!").p12m().primary()),
+                  child: const Text("Lihat Semua!").p12m().primary()),
             ],
           ),
         ),
@@ -84,7 +84,7 @@ class HomePageService extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(height: c.sh * 50, child: Center(child: Image.asset(categoryImage[itemIndex]))),
+                              SizedBox(height: c.sh * 50, child: Center(child: Image.asset(categoryImage[itemIndex]))),
                               SizedBox(
                                 height: c.sh * 5,
                               ),

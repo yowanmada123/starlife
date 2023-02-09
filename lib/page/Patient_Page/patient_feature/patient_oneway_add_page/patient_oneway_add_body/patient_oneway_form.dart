@@ -27,8 +27,8 @@ class _PatientOneWayFormState extends State<PatientOneWayForm> {
 
   String _dateTime = 'dd/mm/yyyy';
   final List<String> genderItems = [
-    'Male',
-    'Female',
+    'Laki-Laki',
+    'Perempuaun',
   ];
 
   @override
@@ -70,11 +70,6 @@ class _PatientOneWayFormState extends State<PatientOneWayForm> {
                 });
             },
           ),
-          // CustomForm(
-          //         controller: tanggalLahirController,
-          //         hintText: "dd/mm//yyyy",
-          //         title: "Tanggal Lahir (Opsional)",
-          //       ),
           CustomForm(
             controller: handphoneController,
             hintText: "Masukkan No. Handphone",

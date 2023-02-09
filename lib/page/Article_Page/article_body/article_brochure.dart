@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:starlife/page/Article_Page/article_detail_page/article_detail_page.dart';
@@ -100,7 +97,7 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
                 itemCount: articels.length,
                 allowImplicitScrolling: true,
                 pageSnapping: true,
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
@@ -141,7 +138,7 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
                               SizedBox(
                                 height: c.sh * 266,
                               ),
-                              Container(width: c.sw * 254, height: c.sh * 54, child: Text(articels[index].title).p18b().white()),
+                              SizedBox(width: c.sw * 254, height: c.sh * 54, child: Text(articels[index].title).p18b().white()),
                               SizedBox(
                                 height: c.sh * 10,
                               ),
@@ -168,9 +165,9 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
                                   SizedBox(
                                     width: c.sw * 6,
                                   ),
-                                  Text("Starlife Medical Center ").p10m().white(),
-                                  Text("• ").p10m().white(),
-                                  Text("1 Menit yang lalu ").p10m().white()
+                                  const Text("Starlife Medical Center ").p10m().white(),
+                                  const Text("• ").p10m().white(),
+                                  const Text("1 Menit yang lalu ").p10m().white()
                                 ],
                               ),
                               SizedBox(
@@ -199,7 +196,7 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
                       SmoothPageIndicator(
                         controller: controller,
                         count: 3,
-                        effect: ExpandingDotsEffect(activeDotColor: Colors.white, dotHeight: 8, spacing: 6),
+                        effect: const ExpandingDotsEffect(activeDotColor: Colors.white, dotHeight: 8, spacing: 6),
                       ),
                     ],
                   ),
@@ -226,6 +223,6 @@ class Artikel {
 
   @override
   String toString() {
-    return '{ ${this.title}, ${this.id} }';
+    return '{ $title, $id }';
   }
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Article_Page/article_detail_page/article_detail_page.dart';
@@ -36,7 +35,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: c.sh * 20),
-          child: Text("Rekomendasi Artikel").p16b().black(),
+          child: const Text("Rekomendasi Artikel").p16b().black(),
         ),
         Container(
           height: 22,
@@ -80,7 +79,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
         SizedBox(
           width: Get.width,
           child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: articels.length,
             padding: EdgeInsets.zero,
@@ -89,7 +88,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get.to(ArticleDetailPage());
+                          Get.to(const ArticleDetailPage());
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -98,7 +97,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                             children: [
                               ClipRRect(
                                 borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                child: Container(
+                                child: SizedBox(
                                   width: 80,
                                   height: 80,
                                   child: FittedBox(
@@ -111,15 +110,15 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                                 width: c.sw * 10,
                               ),
                               Expanded(
-                                child: Container(
+                                child: SizedBox(
                                   height: 80,
                                   child: Stack(
                                     children: [
-                                      Container(
+                                      SizedBox(
                                           width: c.sw * 258,
                                           child: Text(
                                             articels[itemIndex].title,
-                                            style: TextStyle(height: 1.5),
+                                            style: const TextStyle(height: 1.5),
                                           ).p14b().black()),
                                       Positioned(
                                         bottom: 0,
@@ -158,7 +157,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get.to(ArticleDetailPage());
+                          Get.to(const ArticleDetailPage());
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -167,7 +166,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                             children: [
                               ClipRRect(
                                 borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                child: Container(
+                                child: SizedBox(
                                   width: 80,
                                   height: 80,
                                   child: FittedBox(
@@ -180,15 +179,15 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                                 width: c.sw * 10,
                               ),
                               Expanded(
-                                child: Container(
+                                child: SizedBox(
                                   height: 80,
                                   child: Stack(
                                     children: [
-                                      Container(
+                                      SizedBox(
                                           width: c.sw * 258,
                                           child: Text(
                                             articels[itemIndex].title,
-                                            style: TextStyle(height: 1.5),
+                                            style: const TextStyle(height: 1.5),
                                           ).p14b().black()),
                                       Positioned(
                                         bottom: 0,
@@ -243,6 +242,6 @@ class Artikel {
 
   @override
   String toString() {
-    return '{ ${this.title}, ${this.id} }';
+    return '{ $title, $id }';
   }
 }

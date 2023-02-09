@@ -57,7 +57,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
             )),
         SizedBox(
           child: SingleChildScrollView(
-            physics: ScrollPhysics(),
+            physics: const ScrollPhysics(),
             child: Column(
               children: [
                 Padding(
@@ -71,11 +71,11 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                         ),
                         Row(
                           children: [
-                            ButtonBack(times: 1),
+                            const ButtonBack(times: 1),
                             SizedBox(
                               width: c.sw * 16,
                             ),
-                            Text("Ambil Antrian").p16b().white(),
+                            const Text("Ambil Antrian").p16b().white(),
                           ],
                         ),
                       ],
@@ -90,7 +90,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                         children: [
                           ClipRRect(
                             borderRadius: const BorderRadius.all(Radius.circular(20)),
-                            child: Container(
+                            child: SizedBox(
                               width: c.sw * 126,
                               height: c.sw * 126,
                               child: FittedBox(
@@ -118,7 +118,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                         Padding(
                           padding: EdgeInsets.only(left: c.sw * 23, right: c.sw * 23, top: c.sh * 23),
                           child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 11, vertical: 13),
+                            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 13),
                             height: c.sh * 255,
                             width: Get.width,
                             decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
@@ -126,7 +126,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Antrian Sedang Dilayani").p14b().black(),
+                                const Text("Antrian Sedang Dilayani").p14b().black(),
                                 AutoSizeText(
                                   "DM007",
                                   style: GoogleFonts.poppins(fontSize: 57, fontWeight: FontWeight.w800, color: OPrimaryColor),
@@ -142,21 +142,21 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                                     children: [
                                       Column(
                                         children: [
-                                          Text("Jumlah Antrian").p9r().black(),
-                                          Text("015").p18b().primary(),
+                                          const Text("Jumlah Antrian").p9r().black(),
+                                          const Text("015").p18b().primary(),
                                         ],
                                       ),
                                       Container(
                                         height: c.sh * 30,
                                         width: 0.5,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: Colors.grey,
                                         ),
                                       ),
                                       Column(
                                         children: [
-                                          Text("Tanggal Pemeriksaan").p9r().black(),
-                                          Text("24 / 11 / 2022").p18b().primary(),
+                                          const Text("Tanggal Pemeriksaan").p9r().black(),
+                                          const Text("24 / 11 / 2022").p18b().primary(),
                                         ],
                                       ),
                                     ],
@@ -174,9 +174,8 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                                 SizedBox(
                                   height: c.sh * 2,
                                 ),
-                                Text("Status Kedatangan Dokter").p9r().black(),
-                                Text("Sudah Datang").p18b().primary(),
-                                // Text("DM007").p80eb().primary(),
+                                const Text("Status Kedatangan Dokter").p9r().black(),
+                                const Text("Sudah Datang").p18b().primary(),
                               ],
                             ),
                           ),
@@ -203,7 +202,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Antrian Sedang Dilayani").p14b().black(),
+                                const Text("Antrian Sedang Dilayani").p14b().black(),
                                 AutoSizeText(
                                   "DM007",
                                   style: GoogleFonts.poppins(fontSize: 57, fontWeight: FontWeight.w800, color: OSecondaryColor),
@@ -211,7 +210,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                                Text("Status Kedatangan Dokter").p9r().black(),
+                                const Text("Status Kedatangan Dokter").p9r().black(),
                                 SizedBox(
                                   height: c.sh * 12,
                                 ),
@@ -245,12 +244,13 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Future<String?> CustomDialog(BuildContext context) {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: Center(
-            child: Container(
+            child: SizedBox(
           width: c.sw * 170,
           child: Text(
             "Berhasil Mengambil Nomor Antrian",
@@ -282,23 +282,22 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Future<Object?> MendapatNomerAntrian(BuildContext context) {
     return showAnimatedDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        var height = MediaQuery.of(context).size.height;
-        var width = MediaQuery.of(context).size.width;
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
           child: AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
             contentPadding: EdgeInsets.zero,
             insetPadding: EdgeInsets.zero,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             actions: [
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 5),
+                margin: const EdgeInsets.symmetric(horizontal: 5),
                 child: Column(
                   children: [
                     SizedBox(
@@ -306,7 +305,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                     ),
                     ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      child: Container(
+                      child: SizedBox(
                         width: c.sw * 126,
                         height: c.sw * 126,
                         child: FittedBox(
@@ -331,14 +330,14 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                         children: [
                           Column(
                             children: [
-                              Text("No. Rekam Medis").p9r().black(),
-                              Text("RM105").p18b().primary(),
+                              const Text("No. Rekam Medis").p9r().black(),
+                              const Text("RM105").p18b().primary(),
                             ],
                           ),
                           Column(
                             children: [
-                              Text("Tanggal Pemeriksaan").p9r().black(),
-                              Text("24 / 11 / 2022").p18b().primary(),
+                              const Text("Tanggal Pemeriksaan").p9r().black(),
+                              const Text("24 / 11 / 2022").p18b().primary(),
                             ],
                           ),
                         ],
@@ -347,22 +346,22 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                     SizedBox(
                       height: c.sh * 20,
                     ),
-                    Text("Nama Pasien").p9r().black(),
-                    Text(
+                    const Text("Nama Pasien").p9r().black(),
+                    const Text(
                       "Muhaammad Aulia Daffa",
                       textAlign: TextAlign.center,
                     ).p20b().primary(),
                     SizedBox(
                       height: c.sh * 20,
                     ),
-                    Text("No. Antrian Anda").p9r().black(),
-                    Text("DM007").p52eb().secondary(),
+                    const Text("No. Antrian Anda").p9r().black(),
+                    const Text("DM007").p52eb().secondary(),
                     SizedBox(
                       height: c.sh * 20,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Container(
+                      child: SizedBox(
                           width: c.sw * 334,
                           height: c.sh * 38,
                           child: BaseButton(

@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Article_Page/article_detail_page/article_detail_brochure.dart';
-// import 'package:starlife/page/Article_Page/article_detail/article_body/article_detail_brochure.dart';
-import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_topbar.dart';
-import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_list_page.dart';
-import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_pin_page.dart';
 import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/utils/colors.dart';
-import 'package:starlife/widget/base/button_back.dart';
-import 'package:starlife/widget/ext_text.dart';
 
 class ArticleDetailPage extends StatefulWidget {
   const ArticleDetailPage({super.key});
@@ -33,7 +26,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           SingleChildScrollView(
               child: Column(
             children: [
-              ArticleDetailBrochure(),
+              const ArticleDetailBrochure(),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: c.sw*16),
                 child: Text(text, textAlign: TextAlign.justify,),

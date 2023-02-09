@@ -29,15 +29,15 @@ class _PatientCheckPageState extends State<PatientCheckPage> {
           color: Colors.white,
            child: SingleChildScrollView(
             child: Column(
-              children: [
+              children: const [
                 PatientCheckData(),
-                const SizedBox(height: 50,)
+                SizedBox(height: 50,)
               ],
             ),
         ),
          ),
         const PatientCheckTopBar(),
-        PatientCheckBottomBar()
+        const PatientCheckBottomBar()
       ]),
     );
   }

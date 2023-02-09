@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
-import 'package:dart_date/dart_date.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 
 class ScheduleDoctor extends StatefulWidget {
@@ -115,7 +111,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: selectedIndex == itemIndex ? OPrimaryColor : Color(0xff9CA7BD),
+                                  color: selectedIndex == itemIndex ? OPrimaryColor : const Color(0xff9CA7BD),
                                   borderRadius: BorderRadius.circular(10),
                                   boxShadow: [
                                     BoxShadow(
@@ -140,11 +136,11 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
                                                   child: Text( days[itemIndex].toEEEE() == 'Senin' ? "Sen" : days[itemIndex].toEEEE() == 'Sabtu' ? 'Sab' :
                                                     days[itemIndex].toEEEE(),
                                                     maxLines: 1,
-                                                    style: TextStyle(height: 1.5),
+                                                    style: const TextStyle(height: 1.5),
                                                     textAlign: TextAlign.center,
                                                   ).p12m().white()),
                                               Text(days[itemIndex].toTheDay(),
-                                                    style: TextStyle(height: 1.3),).p12m().white(),
+                                                    style: const TextStyle(height: 1.3),).p12m().white(),
                                             ],
                                           )
                                    

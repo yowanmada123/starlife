@@ -28,8 +28,8 @@ class ScheduleDoctorExperience extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Nomor STR").p12r().white(),
-                    Text("2201522182382655").p12m().white(),
+                    const Text("Nomor STR").p12r().white(),
+                    const Text("2201522182382655").p12m().white(),
                   ],
                 ),
               ),
@@ -47,8 +47,8 @@ class ScheduleDoctorExperience extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Pengalaman Selama").p12r().white(),
-                    Text("7 tahun").p12m().white(),
+                    const Text("Pengalaman Selama").p12r().white(),
+                    const Text("7 tahun").p12m().white(),
                   ],
                 ),
               ),

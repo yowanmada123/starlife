@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_form_data.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_detail_topbar.dart';
 import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/rounded_inside.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -28,7 +26,7 @@ class _CheckRmDetailPageState extends State<CheckRmDetailPage> {
             height: Get.height,
             color: Colors.white,
           ),
-          CheckRmTopBar(),
+          const CheckRmTopBar(),
           RoundedInside(
             child: SingleChildScrollView(
                 child: Column(

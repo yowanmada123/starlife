@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Article_Page/article_body/article_background.dart';
 import 'package:starlife/page/Article_Page/article_body/article_recommendation.dart';
 import 'package:starlife/page/Article_Page/article_body/article_brochure.dart';
 import 'package:starlife/page/global_controller.dart';

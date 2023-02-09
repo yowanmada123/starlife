@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_topbar.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_kid_growth.dart';
-import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_list_page.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_pin_page.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_immunitation_history.dart';
 import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/rounded_inside.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -37,7 +35,7 @@ class _CheckRmPageState extends State<CheckRmPage> {
             child: SingleChildScrollView(
                 child: Column(
               children: [
-                Container(
+                SizedBox(
                   // padding: EdgeInsets.only(top: c.sh * 124),
                   width: Get.width,
                   height: Get.height,
@@ -125,7 +123,15 @@ class ItemList extends StatelessWidget {
                               maxLines: 1,
                             ).p16m().primary(),
                             SizedBox(
-                              height: c.sh * 6,
+                              height: c.sh * 3,
+                            ),
+                            Container(
+                              height: 1,
+                              width: Get.width,
+                              color: Color.fromARGB(255, 216, 216, 216),
+                            ),
+                            SizedBox(
+                              height: c.sh * 3,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -145,10 +151,10 @@ class ItemList extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           // if(role == 'Anda')...[]else()...[]
                                           color: (role == 'Anda')
-                                              ? Color(0xffEBD0FF)
+                                              ? const Color(0xffEBD0FF)
                                               : (role == 'Suami' || role == 'Istri')
-                                                  ? Color(0xffFFD0A1)
-                                                  : Color(0xffC3FFEC),
+                                                  ? const Color(0xffFFD0A1)
+                                                  : const Color(0xffC3FFEC),
                                           borderRadius: BorderRadius.circular(20),
                                         ),
                                         child: Padding(
@@ -156,16 +162,16 @@ class ItemList extends StatelessWidget {
                                             child: (role == 'Anda')
                                                 ? Text(
                                                     role,
-                                                    style: TextStyle(color: Color(0xff9B26F0)),
+                                                    style: const TextStyle(color: Color(0xff9B26F0)),
                                                   ).p7m()
                                                 : (role == 'Suami' || role == 'Istri')
                                                     ? Text(
                                                         role,
-                                                        style: TextStyle(color: Color(0xff8C4701)),
+                                                        style: const TextStyle(color: Color(0xff8C4701)),
                                                       ).p7m()
                                                     : Text(
                                                         role,
-                                                        style: TextStyle(color: Color(0xff21C994)),
+                                                        style: const TextStyle(color: Color(0xff21C994)),
                                                       ).p7m())),
                                   ] else ...[
                                     Column(
@@ -178,10 +184,10 @@ class ItemList extends StatelessWidget {
                                                 decoration: BoxDecoration(
                                                   // if(role == 'Anda')...[]else()...[]
                                                   color: (role == 'Anda')
-                                                      ? Color(0xffEBD0FF)
+                                                      ? const Color(0xffEBD0FF)
                                                       : (role == 'Suami' || role == 'Istri')
-                                                          ? Color(0xffFFD0A1)
-                                                          : Color(0xffC3FFEC),
+                                                          ? const Color(0xffFFD0A1)
+                                                          : const Color(0xffC3FFEC),
                                                   borderRadius: BorderRadius.circular(20),
                                                 ),
                                                 child: Padding(
@@ -189,16 +195,16 @@ class ItemList extends StatelessWidget {
                                                     child: (role == 'Anda')
                                                         ? Text(
                                                             role,
-                                                            style: TextStyle(color: Color(0xff9B26F0)),
+                                                            style: const TextStyle(color: Color(0xff9B26F0)),
                                                           ).p7m()
                                                         : (role == 'Suami' || role == 'Istri')
                                                             ? Text(
                                                                 role,
-                                                                style: TextStyle(color: Color(0xff8C4701)),
+                                                                style: const TextStyle(color: Color(0xff8C4701)),
                                                               ).p7m()
                                                             : Text(
                                                                 role,
-                                                                style: TextStyle(color: Color(0xff21C994)),
+                                                                style: const TextStyle(color: Color(0xff21C994)),
                                                               ).p7m())),
                                           ],
                                         ),
@@ -227,7 +233,7 @@ class ItemList extends StatelessWidget {
                                             ),
                                             BaseButton(
                                               ontap: () {
-                                                Get.to(RiwayatImunisasiAnakPage());
+                                                Get.to(const RiwayatImunisasiAnakPage());
                                               },
                                               text: "Riwayat Imunisasi",
                                               textColor: Colors.white,

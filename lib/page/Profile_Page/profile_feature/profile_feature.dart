@@ -4,7 +4,7 @@ import 'package:starlife/page/Profile_Page/profile_body/profile_item_list.dart' 
 import 'package:starlife/page/Profile_Page/profile_body/profile_logout_button.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_immunization_page/profile_immunization_page.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_patient_card/profile_pop_up_card.dart';
-import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient/profile_other_patient.dart';
+import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_other_patient.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_change_password_page/password_change_pass_page.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_new_pin_page/profile_pin_page.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_account_information_page/profile_account_information_page.dart';
@@ -63,7 +63,7 @@ class ProfileFeature extends StatelessWidget {
             Get.to(const ProfilePinPage());
           },
         ),
-        ProfileLogoutButton(c),
+        ProfileLogoutButton(c, context),
       ],
     );
   }
