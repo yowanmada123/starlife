@@ -168,33 +168,45 @@ class _ProfilePinPageState extends State<ProfilePinPage> {
                         context: context,
                         title: "Masukkan Email Anda",
                         button: () {
-                          showDialog<String>(
-                            context: context,
-                            builder: (BuildContext context) => AlertDialog(
-                              title: Column(
-                                  children:[
-                                    Icon(Icons.done_rounded, color: Colors.green, size: 50,),
-                                    SizedBox(height: c.sh*10,),
-                                    Container(
-                                        width: c.sw * 170,
-                                        child: Text(
-                                          "Mohon Cek Email Anda untuk mengubah PIN",
-                                          style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )
-                                  ]),
-                              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                            ),
-                          );
-                          Future.delayed(const Duration(milliseconds: 800), () {
-                            Get.close(3);
-                          });
+                          if (controller.text.isNotEmpty && c.isEmail(controller.text)) {
+                              showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: Column(children: [
+                                  const Icon(
+                                    Icons.done_rounded,
+                                    color: Colors.green,
+                                    size: 50,
+                                  ),
+                                  SizedBox(
+                                    height: c.sh * 10,
+                                  ),
+                                  SizedBox(
+                                    width: c.sw * 170,
+                                    child: Text(
+                                      "Mohon Cek Email Anda untuk mengubah PIN",
+                                      style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  )
+                                ]),
+                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                              ),
+                            );
+                            Future.delayed(const Duration(milliseconds: 1500), () {
+                              Get.close(3);
+                            });
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text('Please fill correct Email'),
+                              backgroundColor: Colors.red,
+                            ));
+                          }
                         },
                         controller: controller,
                         hint: "Masukkan Email Anda");
                   },
-                  child: Text("Lupa pin ?").p12r().primary())
+                  child: const Text("Lupa pin ?").p12r().primary())
             ],
           ),
         ),

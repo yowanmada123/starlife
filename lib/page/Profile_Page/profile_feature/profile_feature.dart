@@ -64,6 +64,9 @@ class ProfileFeature extends StatelessWidget {
           },
         ),
         ProfileLogoutButton(c, context),
+        SizedBox(
+          height: c.sh * 50,
+        ),
       ],
     );
   }

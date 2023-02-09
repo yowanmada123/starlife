@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_page.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_oneway_add_page/patient_oneway_add_body/patient_oneway_form.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_oneway_add_page/patient_oneway_add_body/patient_oneway_topbar.dart';
@@ -15,6 +16,8 @@ class PatientOneWayAddPage extends StatefulWidget {
 
 class _PatientOneWayAddPageState extends State<PatientOneWayAddPage> {
   TextEditingController namaController = TextEditingController(text: "");
+  final p = Get.put(PatientPageController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

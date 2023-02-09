@@ -29,7 +29,7 @@ class _ProfilePageState extends State<ProfilePage> {
           height: Get.height,
           color: Colors.white,
         ),
-        ProfileBackground(),
+        const ProfileBackground(),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: c.sw*16),
           child: SingleChildScrollView(

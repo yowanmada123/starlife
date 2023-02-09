@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -28,9 +27,15 @@ class GlobalController extends GetxController {
     return regExp.hasMatch(em);
   }
 
-  bool isPhone(String phone) {
+  bool isNumber(String number) {
     String p = r'^[0-9]+$';
     RegExp regExp = RegExp(p);
+    return regExp.hasMatch(number);
+  }
+
+  bool isPhone(String phone) {
+    String q = r'^(\+62)8[1-9][0-9]{6,10}$';
+    RegExp regExp = RegExp(q);
     return regExp.hasMatch(phone);
   }
 }

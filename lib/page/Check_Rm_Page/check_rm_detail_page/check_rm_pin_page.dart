@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_list_page.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
+import 'package:starlife/widget/base/showdialog_fill_button.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class PinPage extends StatefulWidget {
@@ -21,7 +23,7 @@ class _PinPageState extends State<PinPage> {
   bool visibleKeypad = false;
   List<String> pin = [];
   List<String> pinfix = ['2', '2', '2', '2', '2', '2'];
-
+  TextEditingController controller = TextEditingController(text: "");
   bool truePin = true;
   bool sixTimeTrue = false;
   int pinTrue = 0;
@@ -145,8 +147,7 @@ class _PinPageState extends State<PinPage> {
                     if (index.isEven)
                       // NOTE: Adding a dot placeholder
                       CircleAvatar(
-                        radius: (truePin == true)
-                                ? 10 : 12,
+                        radius: (truePin == true) ? 10 : 12,
                         // NOTE: This is the actual condition of setting the placeholder dot color
                         backgroundColor: index ~/ 2 < _otp.length
                             ? (truePin == true)
@@ -160,9 +161,54 @@ class _PinPageState extends State<PinPage> {
                 ],
               ),
               SizedBox(
-                height: c.sh*20,
+                height: c.sh * 20,
               ),
-              const Text("Lupa pin ?").p12r().primary()
+              GestureDetector(
+                  onTap: () {
+                    filledShowDialog(
+                        barier: true,
+                        context: context,
+                        title: "Masukkan Email Anda",
+                        button: () {
+                          if (controller.text.isNotEmpty && c.isEmail(controller.text)) {
+                              showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: Column(children: [
+                                  const Icon(
+                                    Icons.done_rounded,
+                                    color: Colors.green,
+                                    size: 50,
+                                  ),
+                                  SizedBox(
+                                    height: c.sh * 10,
+                                  ),
+                                  SizedBox(
+                                    width: c.sw * 170,
+                                    child: Text(
+                                      "Mohon Cek Email Anda untuk mengubah PIN",
+                                      style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  )
+                                ]),
+                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                              ),
+                            );
+                            Future.delayed(const Duration(milliseconds: 1500), () {
+                              Get.close(3);
+                            });
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text('Please fill correct Email'),
+                              backgroundColor: Colors.red,
+                            ));
+                          }
+                        },
+                        controller: controller,
+                        hint: "Masukkan Email Anda");
+                  },
+                  child: const Text("Lupa pin ?").p12r().primary())
             ],
           ),
         ),

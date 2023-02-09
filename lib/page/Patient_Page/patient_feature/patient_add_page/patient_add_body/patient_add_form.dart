@@ -1,8 +1,9 @@
 import 'package:age_calculator/age_calculator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Patient_Page/patient_page_controller.dart';
+import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
 import 'package:starlife/widget/base/custom_dropdown.dart';
+import 'package:starlife/widget/base/custom_phone_form.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 
 import '../../../../../widget/base/custom_fixed_form.dart';
@@ -39,6 +40,7 @@ class _PatientAddFormState extends State<PatientAddForm> {
   ];
   String date = "dd/mm/yy";
   String ageToString = "-";
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -68,14 +70,14 @@ class _PatientAddFormState extends State<PatientAddForm> {
                   title: "Tanggal Lahir",
                   isMust: true,
                   cornerIcon: Icons.calendar_month_outlined,
-                  content: p.tanggalLahirController.text,
+                  content: date,
                   backgroundColor: Colors.white,
                   ontap: () {
                     showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
                       firstDate: DateTime(1900),
-                      lastDate: DateTime(2099),
+                      lastDate: DateTime.now(),
                     ).then((data) {
                       //tambahkan setState dan panggil variabel _dateTime.
                       setState(() {
@@ -191,7 +193,7 @@ class _PatientAddFormState extends State<PatientAddForm> {
             hintText: "Masukkan No. Telepon",
             title: "No. Telepon (Rumah)",
           ),
-          CustomForm(
+          CustomPhoneForm(
             controller: p.handphoneController,
             hintText: "Masukkan No. Handphone",
             title: "No. Handphone",

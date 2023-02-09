@@ -135,36 +135,6 @@ class _ProfileImmunizationScheduleState extends State<ProfileImmunizationSchedul
                 ],
               ),
             ),
-            // Container(
-            // padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
-            //   height: c.sh * 70,
-            //   color: Colors.white,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     children: [
-            //       Text("Jadwal Imunisasi: ").p16b().black(),
-            //       // Container(
-            //       //   padding: EdgeInsets.symmetric(horizontal :c.sw*5),
-            //       //   height: c.sh*43,
-            //       //   width: c.sw*150,
-            //       //   decoration: BoxDecoration(
-            //       //     borderRadius: BorderRadius.circular(10),
-            //       //     border: Border.all(color: Colors.grey)
-            //       //   ),
-            //       //   child: Row(
-            //       //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       //     crossAxisAlignment: CrossAxisAlignment.center,
-            //       //     children: [
-
-            //       //       Text("Pilih salah satu").p14m().black(),
-            //       //       Icon(Icons.keyboard_arrow_up_sharp, color: OPrimaryColor, size: 18,)
-            //       //     ],
-            //       //   ),
-            //       // )
-            //       ],
-            //   ),
-            // ),
           ),
         ],
       )
@@ -221,7 +191,7 @@ class _ItemListState extends State<ItemList> {
                               width: c.sw * 120,
                               decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Color(0xffFEBACB)), borderRadius: BorderRadius.circular(6)),
                               child: Center(
-                                child: Text(
+                                child: const Text(
                                   "Belum Imunisasi",
                                   textAlign: TextAlign.center,
                                 ).p10r().red(),
@@ -229,7 +199,7 @@ class _ItemListState extends State<ItemList> {
                             )
                           ],
                         ),
-                        Text(
+                        const Text(
                           "Imunisasi BCG",
                           textAlign: TextAlign.center,
                         ).p20b().white(),
@@ -240,7 +210,7 @@ class _ItemListState extends State<ItemList> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Umur Anak",
                                       textAlign: TextAlign.center,
                                     ).p12r().white(),
@@ -251,7 +221,7 @@ class _ItemListState extends State<ItemList> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       ": Baru lahir - 1 Bulan",
                                       textAlign: TextAlign.center,
                                     ).p12m().white(),
@@ -259,7 +229,7 @@ class _ItemListState extends State<ItemList> {
                                 )),
                           ],
                         ),
-                        SizedBox(height: 2,),
+                        const SizedBox(height: 2,),
                         Row(
                           children: [
                             Expanded(
@@ -267,7 +237,7 @@ class _ItemListState extends State<ItemList> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Tanggal Imunisasi",
                                       textAlign: TextAlign.center,
                                     ).p12r().white(),
@@ -278,7 +248,7 @@ class _ItemListState extends State<ItemList> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       ": 10 Januari 2023",
                                       textAlign: TextAlign.center,
                                     ).p12m().white(),
@@ -294,7 +264,7 @@ class _ItemListState extends State<ItemList> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "No. Rekam Medis",
                                       textAlign: TextAlign.center,
                                     ).p12r().white(),
@@ -305,7 +275,7 @@ class _ItemListState extends State<ItemList> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       ": RM1020",
                                       textAlign: TextAlign.center,
                                     ).p12m().white(),
@@ -359,7 +329,7 @@ class _ItemListState extends State<ItemList> {
                                   Get.to(const PatientQueuePage(), transition: Transition.fadeIn);
                                 },
                                 text: "Ambil Antrian Imunisasi",
-                                color: Color(0xff2EC1AD),
+                                color: const Color(0xff2EC1AD),
                                 outlineRadius: 6,
                                 textColor: Colors.white,
                                 textSize: 10,

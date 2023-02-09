@@ -61,7 +61,7 @@ class _ProfileImmunizationPageState extends State<ProfileImmunizationPage> with 
                     ),
                     labelColor: OPrimaryColor,
                     unselectedLabelColor: Colors.grey,
-                    tabs: [
+                    tabs: const [
                       // first tab [you can add an icon using the icon property]
                       Tab(
                         text: 'Jadwal Imunisasi',

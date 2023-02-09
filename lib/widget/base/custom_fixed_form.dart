@@ -91,7 +91,7 @@ class _CustomFixedFormState extends State<CustomFixedForm> {
                   padding: EdgeInsets.symmetric(horizontal: c.sw * 15, vertical: 10),
                   width: Get.width,
                   // height: c.sh * 46,
-                  decoration: BoxDecoration(color: (widget.backgroundColor == null) ? Color(0xffD0F4FF) : widget.backgroundColor, borderRadius: BorderRadius.circular(10), border: Border.all(color: Color(0xff28C6F5))),
+                  decoration: BoxDecoration(color: (widget.backgroundColor == null) ? const Color(0xffD0F4FF) : widget.backgroundColor, borderRadius: BorderRadius.circular(10), border: Border.all(color: Color(0xff28C6F5))),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_page.dart';
-import 'package:starlife/page/Patient_Page/patient_page_controller.dart';
+import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -24,6 +24,8 @@ class _PatientAddBottomBarState extends State<PatientAddBottomBar> {
         bottom: 0,
         child: GestureDetector(
           onTap: () {
+            // bool isTrue = c.isPhone(p.handphoneController.text);
+            // print(isTrue);
             // print(p.emailController.text);
             // print(p.namaController.text);
             // print(p.tanggalLahirController.text);
@@ -36,8 +38,7 @@ class _PatientAddBottomBarState extends State<PatientAddBottomBar> {
             // print(p.handphoneController.text);
             // print(p.orangtuaController.text);
             // p.patientAdd(context);
-          Get.to(const PatientListPage());
-
+            Get.to(const PatientListPage());
           },
           child: Container(
             color: Colors.white,
