@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_add_page/patient_add_body/patient_add_topbar.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_add_page/patient_add_body/patient_add_form.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_add_page/patient_add_body/patient_add_bottombar.dart';
+import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_page.dart';
+import 'package:starlife/widget/base/custom_buttom_button.dart';
 
 class PatientAddPage extends StatefulWidget {
   const PatientAddPage({super.key});
@@ -35,7 +37,11 @@ class _PatientAddPageState extends State<PatientAddPage> {
         ),
          ),
         const PatientAddTopBar(),
-        const PatientAddBottomBar()
+        CustomButtomButton(ontap: () {
+            // Get.to(const PatientListPage());
+            Get.to(const PatientListPage());
+        }, text: "Simpan"),
+        // const PatientAddBottomBar()
       ]),
     );
   }

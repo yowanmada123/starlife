@@ -69,12 +69,11 @@ class PatientPageController extends GetxController {
   patientOneWayAdd(BuildContext context){
     if(
     namaController.text.isNotEmpty && 
-    tanggalLahirController.text.isNotEmpty && 
     jenisKelaminController.text.isNotEmpty ){
 
     }else{
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Please fill correct "No.Handphone"'),
+          content: Text('Please Fill in the blank'),
           backgroundColor: Colors.black87,
         ));
     }
