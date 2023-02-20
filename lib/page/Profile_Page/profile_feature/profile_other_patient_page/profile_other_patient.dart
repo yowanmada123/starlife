@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starlife/models/model_person.dart';
+import 'package:starlife/page/Profile_Page/profile_controller/profile_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_data/profile_patient_data_page.dart';
@@ -17,6 +19,15 @@ class _ProfileOtherPatientState extends State<ProfileOtherPatient> {
   final List<String> entrie = <String>['Sarah Celestia Bella', 'Darwaman Gunawangsa', 'Gunawan Ardiansyah', 'Muhammad Aulia Daffa', 'Darwaman Gunawangsa', 'Gunawan Ardiansyah', 'Muhammad Aulia Daffa'];
   final List<String> role = <String>['Anda', 'Suami', 'Anak ke-1', 'Anak ke-2', 'Anak ke-3', 'Anak ke-4', 'Anak ke-5'];
   final c = Get.put(GlobalController());
+  final p = Get.put(ProfileController());
+
+  @override
+  void initState() {
+    super.initState();
+    p.getPatients();
+    // print(p.patients.);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,37 +38,34 @@ class _ProfileOtherPatientState extends State<ProfileOtherPatient> {
             height: Get.height,
             color: Colors.white,
           ),
-          CustomTopBar(
-          ),
+          const CustomTopBar(),
           SingleChildScrollView(
             child: Column(
               children: [
                 Container(
-                padding: EdgeInsets.only(top: c.sh * 110),
-                width: Get.width,
-                height: Get.height,
-                child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    itemCount: entrie.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return (index + 1 == entrie.length)
-                          ? Column(
-                              children: [
-                                ItemList(
-                                  name: entrie[index],
-                                  role: role[index],
-                                ),
-                                SizedBox(
-                                  height: c.sh * 100,
-                                ),
-                              ],
-                            )
-                          : ItemList(
-                              name: entrie[index],
-                              role: role[index],
-                            );
-                    }),
-              ),
+                  padding: EdgeInsets.only(top: c.sh * 110),
+                  width: Get.width,
+                  height: Get.height,
+                  child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      itemCount: p.patients.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return (index + 1 == p.patients.length)
+                            ? Column(
+                                children: [
+                                  ItemList(
+                                    patient: p.patients[index],
+                                  ),
+                                  SizedBox(
+                                    height: c.sh * 100,
+                                  ),
+                                ],
+                              )
+                            : ItemList(
+                                patient: p.patients[index]
+                              );
+                      }),
+                ),
               ],
             ),
           ),
@@ -80,7 +88,7 @@ class _ProfileOtherPatientState extends State<ProfileOtherPatient> {
                         SizedBox(
                           width: c.sw * 16,
                         ),
-                        Text("Pasien Lain").p16b().white(),
+                        const Text("Pasien Lain").p16b().white(),
                       ],
                     ),
                   ],
@@ -93,15 +101,14 @@ class _ProfileOtherPatientState extends State<ProfileOtherPatient> {
 }
 
 class ItemList extends StatelessWidget {
-  const ItemList({super.key, required this.name, required this.role});
-  final String name;
-  final String role;
+  const ItemList({super.key, required this.patient, });
+  final Patient patient;
   @override
   Widget build(BuildContext context) {
     final c = Get.put(GlobalController());
     return GestureDetector(
       onTap: () {
-        Get.to(const ProfilePatientDataPage());
+        Get.to(ProfilePatientDataPage( patient: patient,));
       },
       child: Column(
         children: [
@@ -139,17 +146,25 @@ class ItemList extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              name,
+                              patient.fname,
                               maxLines: 1,
                             ).p16m().primary(),
-                            SizedBox(
-                              height: c.sh * 6,
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            Container(
+                              height: 1,
+                              width: Get.width,
+                              color: Color.fromARGB(255, 216, 216, 216),
+                            ),
+                            const SizedBox(
+                              height: 3,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const Text('No. Rekam Medis').p10r().black(),
-                                const Text('RM101085-101223/012').p10b().black(),
+                                Text(patient.rm).p10b().black(),
                               ],
                             ),
                           ],
@@ -159,29 +174,34 @@ class ItemList extends StatelessWidget {
                           child: Container(
                               decoration: BoxDecoration(
                                 // if(role == 'Anda')...[]else()...[]
-                                color: (role == 'Anda')
+                                color: (patient.status == '1')
                                     ? Color(0xffEBD0FF)
-                                    : (role == 'Suami' || role == 'Istri')
+                                    : (patient.status == '2' || patient.status == '3')
                                         ? Color(0xffFFD0A1)
                                         : Color(0xffC3FFEC),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 2),
-                                  child: (role == 'Anda')
-                                      ? Text(
-                                          role,
+                                  child: (patient.status == '1')
+                                      ? const Text(
+                                          "Anda",
                                           style: TextStyle(color: Color(0xff9B26F0)),
-                                        ).p7m()
-                                      : (role == 'Suami' || role == 'Istri')
-                                          ? Text(
-                                              role,
+                                        ).p10r()
+                                      : (patient.status == '2')
+                                          ? const Text(
+                                              "Suami",
                                               style: TextStyle(color: Color(0xff8C4701)),
-                                            ).p7m()
-                                          : Text(
-                                              role,
+                                            ).p10r()
+                                          : (patient.status == '3') ? 
+                                            const Text(
+                                              "Istri",
+                                              style: TextStyle(color: Color(0xff8C4701)),
+                                            ).p10r() : 
+                                            const Text(
+                                              "Anak ke-2",
                                               style: TextStyle(color: Color(0xff21C994)),
-                                            ).p7m())),
+                                            ).p10r())),
                         )
                       ]),
                     ),

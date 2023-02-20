@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starlife/models/model_doctor.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class SchedulePracticeLocation extends StatefulWidget {
-  const SchedulePracticeLocation({super.key});
-
+  const SchedulePracticeLocation({super.key, required this.doctor});
+  final Doctor doctor;
+  
   @override
   State<SchedulePracticeLocation> createState() => _SchedulePracticeLocationState();
 }
@@ -34,7 +36,7 @@ class _SchedulePracticeLocationState extends State<SchedulePracticeLocation> {
                       const Text("Lokasi Praktek").p14m().black(),
                       const SizedBox(height: 5,),
                       Container(
-                        child: const Text("Jl. Nginden Semolo No.42, Nginden Jangkungan, Kec. Sukolilo, Kota SBY, Jawa Timur 60118").p10r().black()),
+                        child: Text(widget.doctor.address).p10r().black()),
                     ],
                   ),
                 ),

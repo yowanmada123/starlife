@@ -1,19 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:starlife/models/model_post.dart';
 import 'package:starlife/page/Auth_Page/Login/login.dart';
+import 'package:starlife/page/Auth_Page/auth_controller/auth_controller.dart';
+import 'package:starlife/page/global_controller.dart';
 
-abstract class Services {
+class Services {
   // static Future<Person?> getById(int id) async {}
+  final Dio dio = Dio();
+  final c = Get.put(GlobalController());
+  var lc = Get.put(AuthController());
 
-  static Future<Login?> login(String username, String password) async {
-    try {
-      var response = await Dio().post('https://reqres.in/api/login', data: {'username': 'user'});
-
-      if (response.statusCode == 200) {
-        return Login(token: response.data['response']['token'], success: response.data['success']);
-      }
-      return null;
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
+  
 }

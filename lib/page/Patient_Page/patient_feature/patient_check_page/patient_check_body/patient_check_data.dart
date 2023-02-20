@@ -47,7 +47,7 @@ class _PatientCheckDataState extends State<PatientCheckData> {
           ),
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(10)),
-            child: Container(
+            child: SizedBox(
               width: 136,
               height: 136,
               child: FittedBox(
@@ -59,74 +59,68 @@ class _PatientCheckDataState extends State<PatientCheckData> {
           const CustomFixedForm(content: "RM/545148-1151/015", title: "No. Rekam Medis"),
           const CustomFixedForm(content: "Herlambang Ardianto", title: "Nama Lengkap", backgroundColor: Colors.white,isMust: true,),
           const CustomFixedForm(content: "ardiantoCelaluCeria@gmail.com", title: "Email", backgroundColor: Colors.white,isMust: true,),
-          CustomForm(
-            controller: namaController,
-            hintText: "Masukan Nama Lengkap",
-            title: "Nama Lengkap",
-            isMust: true,
-          ),
-          CustomForm(
-            controller: emailController,
-            hintText: "Masukan Email",
-            title: "Email",
-            isMust: true,
-          ),
           Row(
             children: [
-              Expanded(
+              const Expanded(
+                flex: 1,
                 child: 
                 CustomFixedForm(content: "19/02/1985", title: "Tanggal Lahir", backgroundColor: Colors.white,isMust: true,),
               ),
               SizedBox(
                 width: c.sw * 24,
               ),
-              Expanded(
+              const Expanded(
+                flex: 1,
                 child: 
                 CustomFixedForm(content: "42 Tahun", title: "Usia",isMust: true,),
                 // const CustomFixedForm(content: "42 Tahun", title: "Usia"),
               )
             ],
           ),
-         CustomFixedForm(content: "Istri", title: "Status Pasien Dalam Keluarga", backgroundColor: Colors.white,isMust: true,),          
+         const CustomFixedForm(content: "Istri", title: "Status Pasien Dalam Keluarga", backgroundColor: Colors.white,isMust: true,),          
           Row(
             children: [
-              Expanded(
+              const Expanded(
+                flex: 1,
                 child: 
                 CustomFixedForm(content: "Perempuan", title: "Jenis Kelamin", backgroundColor: Colors.white,isMust: true,),          
               ),
               SizedBox(
                 width: c.sw * 24,
               ),
-              Expanded(
+              const Expanded(
+                flex: 1,
                 child: 
                 CustomFixedForm(content: "Islam", title: "Agama", backgroundColor: Colors.white,isMust: true,),
               ),
             ],
           ),
-          CustomFixedForm(content: "Paracetamol", title: "Alergi Obat", backgroundColor: Colors.white,isMust: true,),
-          CustomFixedForm(content: "AB", title: "Golongan Darah", backgroundColor: Colors.white,isMust: true,),
-          CustomFixedForm(content: "Jl, Nginden Semolo No. 42, Nginden Jangkrungan, Kec. Sukolilo, Kota SBY, Jawa Timur 19002", title: "Alamat", backgroundColor: Colors.white,isMust: true, uboundedHeight: true,),
-          CustomFixedForm(content: "Surabaya", title: "Kota", backgroundColor: Colors.white,isMust: true,),
-          CustomFixedForm(content: "Kelurahan Sukolilo", title: "Kelurahan", backgroundColor: Colors.white,isMust: true,),
+          const CustomFixedForm(content: "Paracetamol", title: "Alergi Obat", backgroundColor: Colors.white,isMust: true,),
+          const CustomFixedForm(content: "AB", title: "Golongan Darah", backgroundColor: Colors.white,isMust: true,),
+          const CustomFixedForm(content: "Jl, Nginden Semolo No. 42, Nginden Jangkrungan, Kec. Sukolilo, Kota SBY, Jawa Timur 19002", title: "Alamat", backgroundColor: Colors.white,isMust: true, uboundedHeight: true,),
+          const CustomFixedForm(content: "Surabaya", title: "Kota", backgroundColor: Colors.white,isMust: true,),
+          const CustomFixedForm(content: "Kelurahan Sukolilo", title: "Kelurahan", backgroundColor: Colors.white,isMust: true,),
           Row(
             children: [
-              Expanded(
+              const Expanded(
+                flex: 1,
                 child: 
                   CustomFixedForm(content: "003", title: "RW", backgroundColor: Colors.white,isMust: true,),
               ),
               SizedBox(
                 width: c.sw * 24,
               ),
-              Expanded(
+              const Expanded(
+                flex: 1,
                 child: 
                   CustomFixedForm(content: "006", title: "RT", backgroundColor: Colors.white,isMust: true,),
               ),
             ],
           ),
-                  CustomFixedForm(content: "Kecamatan Sukolilo", title: "Kecamatan", backgroundColor: Colors.white,isMust: true,),
-                  CustomFixedForm(content: "-", title: "No. Telepon (Rumah)", backgroundColor: Colors.white,isMust: true,),
-                  CustomFixedForm(content: "0822265121515", title: "No. Handphone", backgroundColor: Colors.white,isMust: true,),
-                  CustomFixedForm(content: "Ari Ardianto", title: "Nama Orang Tua", backgroundColor: Colors.white,isMust: true,),
+                  const CustomFixedForm(content: "Kecamatan Sukolilo", title: "Kecamatan", backgroundColor: Colors.white,isMust: true,),
+                  const CustomFixedForm(content: "-", title: "No. Telepon (Rumah)", backgroundColor: Colors.white,isMust: true,),
+                  const CustomFixedForm(content: "0822265121515", title: "No. Handphone", backgroundColor: Colors.white,isMust: true,),
+                 const  CustomFixedForm(content: "Ari Ardianto", title: "Nama Orang Tua", backgroundColor: Colors.white,isMust: true,),
             SizedBox(height: c.sh*20)
         ],
       ),

@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:starlife/page/Auth_Page/Login/login_controller.dart';
+import 'package:starlife/page/Auth_Page/auth_controller/auth_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/page/Home_Page/navigationbar/navigationbar.dart';
 import 'package:starlife/utils/colors.dart';
@@ -20,7 +20,7 @@ class ProfileChangePasswordPage extends StatefulWidget {
 
 class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
   final c = Get.put(GlobalController());
-  final lc = Get.put(LoginController());
+  final lc = Get.put(AuthController());
   final _passwordLamaController = TextEditingController(text: '');
   final _passwordBaruController = TextEditingController(text: "");
   final _confirmPasswordBaruController = TextEditingController(text: "");

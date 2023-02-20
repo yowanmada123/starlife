@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/schedule_detail_page/schedule_detail_page.dart';
+import 'package:starlife/page/Home_Page/home_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -19,17 +20,14 @@ class ListDokter extends StatefulWidget {
 class _ListDokterState extends State<ListDokter> {
   var screenHeight = Get.height / 763;
   final c = Get.put(GlobalController());
-  List<Dokter> docters = [
-    Dokter(id: "01", name: "dr. Sugiarto Syamsudin", layanan: "Dokter Anak", jamPagi: "08:00 WIB - 12:00 WIB", jamMalam: "18:00 WIB - 20:00 WIB", image: "assets/images/img_doctor.png"),
-    Dokter(id: "02", name: "Muhammad Aulia Daffa", layanan: "Dokter Mata", jamPagi: "08:00 WIB - 12:00 WIB", jamMalam: "18:00 WIB - 20:00 WIB", image: "assets/images/img_doctor1.png"),
-    Dokter(id: "03", name: "Darmawan Gunawangsa", layanan: "Dokter Umum", jamPagi: "08:00 WIB - 12:00 WIB", jamMalam: "18:00 WIB - 20:00 WIB", image: "assets/images/img_doctor2.png"),
-    Dokter(id: "04", name: "Hendri Sulaiman", layanan: "Dokter Umum", jamPagi: "08:00 WIB - 12:00 WIB", jamMalam: "18:00 WIB - 20:00 WIB", image: "assets/images/img_doctor3.png"),
-    Dokter(id: "05", name: "dr. Sugiarto Syamsudin", layanan: "Dokter Anak", jamPagi: "08:00 WIB - 12:00 WIB", jamMalam: "18:00 WIB - 20:00 WIB", image: "assets/images/img_doctor.png"),
-    Dokter(id: "06", name: "Muhammad Aulia Daffa", layanan: "Dokter Mata", jamPagi: "08:00 WIB - 12:00 WIB", jamMalam: "18:00 WIB - 20:00 WIB", image: "assets/images/img_doctor1.png"),
-    Dokter(id: "07", name: "Darmawan Gunawangsa", layanan: "Dokter Umum", jamPagi: "08:00 WIB - 12:00 WIB", jamMalam: "18:00 WIB - 20:00 WIB", image: "assets/images/img_doctor2.png"),
-    Dokter(id: "08", name: "Hendri Sulaiman", layanan: "Dokter Umum", jamPagi: "08:00 WIB - 12:00 WIB", jamMalam: "18:00 WIB - 20:00 WIB", image: "assets/images/img_doctor3.png"),
-  ];
-  int selectedDoctorIndex = 0;
+
+  final h = Get.put(HomeController());
+  @override
+  void initState() {
+    super.initState();
+    h.getDataDoctors();
+    // loading.value = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +42,11 @@ class _ListDokterState extends State<ListDokter> {
               child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: docters.length,
+                  itemCount: h.listDoctors.length,
                   padding: EdgeInsets.zero,
                   itemBuilder: (BuildContext context, int index) => GestureDetector(
                         onTap: () {
-                          Get.to(const ScheduleDetailPage());
+                          Get.to(ScheduleDetailPage(doctor:h.listDoctors[index]));
                         },
                         child: Column(
                           children: [
@@ -56,7 +54,7 @@ class _ListDokterState extends State<ListDokter> {
                               height: c.sh * 10,
                             ),
                             Container(
-                                height: c.sh * 129,
+                                height: 125,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
@@ -71,12 +69,17 @@ class _ListDokterState extends State<ListDokter> {
                                     children: [
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(10.0),
-                                        child: Image.asset(
-                                          width: c.sw * 105,
+                                        child: 
+                                        Image.network(width: c.sw * 105,
                                           height: c.sw * 105,
-                                          docters[index].image,
-                                          fit: BoxFit.cover,
-                                        ),
+                                          h.listDoctors[index].picture,
+                                          fit: BoxFit.cover,)
+                                        // Image.asset(
+                                        //   width: c.sw * 105,
+                                        //   height: c.sw * 105,
+                                        //   h.listDoctors[index].picture,
+                                        //   fit: BoxFit.cover,
+                                        // ),
                                       ),
                                       SizedBox(
                                         width: c.sw * 13,
@@ -88,7 +91,7 @@ class _ListDokterState extends State<ListDokter> {
                                             mainAxisAlignment: MainAxisAlignment.start,
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              AutoSizeText(docters[index].name, maxLines: 1, style: GoogleFonts.poppins(fontSize: 14, color: OPrimaryColor, fontWeight: FontWeight.w700), minFontSize: 5),
+                                              AutoSizeText(h.listDoctors[index].namadokter, maxLines: 1, style: GoogleFonts.poppins(fontSize: 14, color: OPrimaryColor, fontWeight: FontWeight.w700), minFontSize: 5),
                                               SizedBox(
                                                 height: c.sh * 5,
                                               ),
@@ -103,10 +106,10 @@ class _ListDokterState extends State<ListDokter> {
                                                 height: c.sh * 5,
                                               ),
                                               Container(
-                                                child: Text(docters[index].layanan).p10r(),
+                                                child: Text(h.listDoctors[index].poli).p10r(),
                                               ),
-                                              SizedBox(
-                                                height: c.sh * 5,
+                                              const SizedBox(
+                                                height: 4,
                                               ),
                                               Row(
                                                 children: [
@@ -115,9 +118,11 @@ class _ListDokterState extends State<ListDokter> {
                                                     width: 14,
                                                     height: 14,
                                                   ),
-                                                  Text(docters[index].jamPagi).p12m().primary()
+                                                  const SizedBox(width: 8,),
+                                                  Text("08.00 -17.00").p12m().primary()
                                                 ],
                                               ),
+                                              const SizedBox(height: 3,),
                                               Row(
                                                 children: [
                                                   Image.asset(
@@ -125,7 +130,8 @@ class _ListDokterState extends State<ListDokter> {
                                                     width: 14,
                                                     height: 14,
                                                   ),
-                                                  Text(docters[index].jamMalam).p12m().primary()
+                                                  const SizedBox(width: 8,),
+                                                  Text("19.00 -21.00").p12m().primary()
                                                 ],
                                               ),
                                             ],

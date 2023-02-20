@@ -5,6 +5,8 @@ import 'package:starlife/page/Auth_Page/Login/login_page.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
+import 'package:starlife/widget/base/showdialog_fill_button.dart';
+import 'package:starlife/widget/base/showdialog_two_button.dart';
 
 Widget ProfileLogoutButton(GlobalController c, BuildContext context) {
   return Container(
@@ -27,13 +29,27 @@ Widget ProfileLogoutButton(GlobalController c, BuildContext context) {
       ),
       child: BaseButton(
         ontap: () {
-          c.tabHomeIndex.value = 0;
-          c.isLogin.value = false;
-          Get.offAll(HelloConvexAppBar());
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Logout Success'),
-            backgroundColor: Colors.black87,
-          ));
+          dialogBuilder(
+            context: context,
+            buttonLeft: () {
+              Get.back();
+              c.tabHomeIndex.value = 0;
+                c.isLogin.value = false;
+                c.pasienNumber = 0;
+                c.removeToken();
+                Get.offAll(HelloConvexAppBar());
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('Logout Success'),
+                  backgroundColor: Colors.black87,
+                ));
+            },
+            buttonRight: () {
+                Get.back();
+            },
+            title: "Anda Yakin ingin Logout ?",
+            leftTittle: 'Ya',
+            rightTitle: "Tidak",
+            barier: true);
         },
         color: OPrimaryColor,
         text: "Keluar",

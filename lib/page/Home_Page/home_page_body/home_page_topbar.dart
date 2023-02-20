@@ -21,51 +21,16 @@ class _HomePageTopBarState extends State<HomePageTopBar> {
     return Positioned(
         child: Container(
       color: OPrimaryColor,
-      height: c.sh * 112,
+      height: 100,
       width: Get.width,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
         child: Column(
           children: [
             const SizedBox(height: 50),
-            if (c.isLogin.value == false) ...[
-              Container(
-                // width: Get.width,
-                height: c.sh * 39,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.9),
-                      spreadRadius: 0.3,
-                      blurRadius: 5,
-                      offset: const Offset(0, 0.1), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: c.sw * 18),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Cari Nama Dokter dan Pelayanan").p10r().grey(),
-                      Container(
-                        width: c.sw * 22,
-                        height: c.sh * 22,
-                        decoration: BoxDecoration(color: OPrimaryColor, borderRadius: BorderRadius.circular(5)),
-                        child: const Icon(
-                          Icons.search,
-                          color: Colors.white,
-                          size: 14,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ] else ...[
-              Row(
+              Obx(()=>
+              (c.isLogin.value) ?
+                Row(
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -133,8 +98,42 @@ class _HomePageTopBarState extends State<HomePageTopBar> {
                   )
                   // Image.asset("assets/icon/ic_notification.png")
                 ],
-              ),
-            ]
+              ) : Container(
+                  // width: Get.width,
+                  height: c.sh * 39,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.9),
+                        spreadRadius: 0.3,
+                        blurRadius: 5,
+                        offset: const Offset(0, 0.1), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: c.sw * 18),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("Cari Nama Dokter dan Pelayanan").p10r().grey(),
+                        Container(
+                          width: c.sw * 22,
+                          height: c.sh * 22,
+                          decoration: BoxDecoration(color: OPrimaryColor, borderRadius: BorderRadius.circular(5)),
+                          child: const Icon(
+                            Icons.search,
+                            color: Colors.white,
+                            size: 14,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              )
           ],
         ),
       ),

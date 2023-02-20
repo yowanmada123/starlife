@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:starlife/model/patient_res.dart';
+import 'package:starlife/models/patient_res.dart';
 import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
@@ -69,7 +69,7 @@ class _PatientListState extends State<PatientList> {
                           height: c.sh * 10,
                         ),
                         Container(
-                            height: c.sh * 109.67,
+                            height: 109.67,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20),
@@ -145,16 +145,16 @@ class _PatientListState extends State<PatientList> {
                                                     ? Text(
                                                         _pasiens[index].role,
                                                         style: const TextStyle(color: Color(0xff9B26F0)),
-                                                      ).p7m()
+                                                      ).p10r()
                                                     : (_pasiens[index].role == 'Suami' || _pasiens[index].role == 'Istri')
                                                         ? Text(
                                                             _pasiens[index].role,
                                                             style: const TextStyle(color: Color(0xff8C4701)),
-                                                          ).p7m()
+                                                          ).p10r()
                                                         : Text(
                                                             _pasiens[index].role,
                                                             style: const TextStyle(color: Color(0xff21C994)),
-                                                          ).p7m())),
+                                                          ).p10r())),
                                       )
                                     ]),
                                   ),

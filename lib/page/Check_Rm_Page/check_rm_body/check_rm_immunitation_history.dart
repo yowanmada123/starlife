@@ -5,14 +5,14 @@ import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/ext_text.dart';
 
-class RiwayatImunisasiAnakPage extends StatefulWidget {
-  const RiwayatImunisasiAnakPage({super.key});
+class CheckRmImmunizationHistoryPage extends StatefulWidget {
+  const CheckRmImmunizationHistoryPage({super.key});
 
   @override
-  State<RiwayatImunisasiAnakPage> createState() => _RiwayatImunisasiAnakPageState();
+  State<CheckRmImmunizationHistoryPage> createState() => _CheckRmImmunizationHistoryPageState();
 }
 
-class _RiwayatImunisasiAnakPageState extends State<RiwayatImunisasiAnakPage> {
+class _CheckRmImmunizationHistoryPageState extends State<CheckRmImmunizationHistoryPage> {
   final c = Get.put(GlobalController());
   @override
   Widget build(BuildContext context) {
@@ -104,7 +104,7 @@ class _ItemListState extends State<ItemList> {
               children: [
                 Stack(children: [
                   Container(
-                    height: c.sh * 160,
+                    height: 140,
                     width: Get.width,
                     foregroundDecoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -133,11 +133,17 @@ class _ItemListState extends State<ItemList> {
                               height: c.sh * 20,
                               width: c.sw * 120,
                               decoration: BoxDecoration(color: Colors.white, border: Border.all(color: const Color(0xff20B09C)), borderRadius: BorderRadius.circular(6)),
-                              child: const Text(
-                                "Sudah Imunisasi",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Color(0xff2EC1AD)),
-                              ).p12r(),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "Sudah Imunisasi",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(color: Color(0xff2EC1AD)),
+                                  ).p10r(),
+                                ],
+                              ),
                             )
                           ],
                         ),

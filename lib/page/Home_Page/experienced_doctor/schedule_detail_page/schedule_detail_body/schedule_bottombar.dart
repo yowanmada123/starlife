@@ -64,10 +64,10 @@ class _ScheduleDoctorBottomBarState extends State<ScheduleDoctorBottomBar> {
           },
           child: Container(
             color: Colors.white,
-            height: c.sh * 63,
+            height: 63,
             width: Get.width,
             child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+              padding: EdgeInsets.symmetric(horizontal:c.sw*16, vertical: 12),
               child: Container(
                 height: c.sh * 47,
                 decoration: BoxDecoration(color: OPrimaryColor, borderRadius: BorderRadius.circular(10)),

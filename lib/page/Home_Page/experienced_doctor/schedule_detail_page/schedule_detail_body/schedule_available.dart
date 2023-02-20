@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:starlife/models/model_doctor.dart';
+import 'package:starlife/page/Home_Page/home_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class ScheduleAvailable extends StatefulWidget {
-  const ScheduleAvailable({super.key});
+  const ScheduleAvailable({super.key, required this.doctor});
+  final Doctor doctor;
 
   @override
   State<ScheduleAvailable> createState() => _ScheduleAvailableState();
@@ -14,14 +17,17 @@ class ScheduleAvailable extends StatefulWidget {
 
 class _ScheduleAvailableState extends State<ScheduleAvailable> {
   final c = Get.put(GlobalController());
+  final h = Get.put(HomeController());
   bool _isPagiVisible = false;
   bool _isMalamVisible = false;
-
+  String jadwal = "";
+  // String selectedSchedule = "";
   void showPagiVisible() {
     setState(() {
       _isPagiVisible = !_isPagiVisible;
     });
   }
+
   void showMalamVisible() {
     setState(() {
       _isMalamVisible = !_isMalamVisible;
@@ -41,14 +47,16 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.sunny, color: OPrimaryColor,size: 25,),
-                    SizedBox(width:c.sw*13),
+                    Icon(
+                      Icons.sunny,
+                      color: OPrimaryColor,
+                      size: 25,
+                    ),
+                    SizedBox(width: c.sw * 13),
                     const Text("Pagi").p14m().black(),
                   ],
                 ),
-                _isPagiVisible ?
-                SvgPicture.asset("assets/icon/ic_arrow_down_rounded.svg") :
-                SvgPicture.asset("assets/icon/ic_arrow_up_rounded.svg") 
+                _isPagiVisible ? SvgPicture.asset("assets/icon/ic_arrow_down_rounded.svg") : SvgPicture.asset("assets/icon/ic_arrow_up_rounded.svg")
               ],
             ),
           ),
@@ -57,21 +65,20 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
           visible: _isPagiVisible,
           child: Column(
             children: [
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
+                    Obx(() => Container(
                       height: 20,
-                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 2),
-                      decoration: BoxDecoration(
-                        color: OPrimaryColor,
-                        borderRadius: BorderRadius.circular(10)
-                      ),
-                      child: const Text("8.00 - 10.00").p12m().white(),
-                    ),
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                      decoration: BoxDecoration(color: OPrimaryColor, borderRadius: BorderRadius.circular(10)),
+                      child: Text(h.morningShcedule.toString()).p12m().white(),
+                    )),
                   ],
                 ),
               ),
@@ -88,14 +95,16 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.nights_stay_rounded, color: OPrimaryColor,size: 25,),
-                    SizedBox(width:c.sw*13),
+                    Icon(
+                      Icons.nights_stay_rounded,
+                      color: OPrimaryColor,
+                      size: 25,
+                    ),
+                    SizedBox(width: c.sw * 13),
                     const Text("Malam").p14m().black(),
                   ],
                 ),
-                _isMalamVisible ?
-                SvgPicture.asset("assets/icon/ic_arrow_down_rounded.svg") :
-                SvgPicture.asset("assets/icon/ic_arrow_up_rounded.svg") 
+                _isMalamVisible ? SvgPicture.asset("assets/icon/ic_arrow_down_rounded.svg") : SvgPicture.asset("assets/icon/ic_arrow_up_rounded.svg")
               ],
             ),
           ),
@@ -104,7 +113,9 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
           visible: _isMalamVisible,
           child: Column(
             children: [
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Row(
@@ -112,12 +123,9 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
                   children: [
                     Container(
                       height: 20,
-                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 2),
-                      decoration: BoxDecoration(
-                        color: OPrimaryColor,
-                        borderRadius: BorderRadius.circular(10)
-                      ),
-                      child: const Text("18.00 - 20.00").p12m().white(),
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                      decoration: BoxDecoration(color: OPrimaryColor, borderRadius: BorderRadius.circular(10)),
+                      child: Text(h.nightSchedule.toString()).p12m().white(),
                     ),
                   ],
                 ),

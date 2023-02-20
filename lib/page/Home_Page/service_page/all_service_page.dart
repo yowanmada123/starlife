@@ -50,7 +50,7 @@ class _AllServicePageState extends State<AllServicePage> {
           ),
           const CustomTopBar(),
           SingleChildScrollView(
-            physics: ScrollPhysics(),
+            physics: const ScrollPhysics(),
             child: Column(
               children: [
                 SizedBox(
@@ -101,13 +101,16 @@ class _AllServicePageState extends State<AllServicePage> {
                                         SizedBox(
                                           height: c.sh * 5,
                                         ),
-                                        Center(
-                                          child: AutoSizeText(
-                                            category[index],
-                                            textAlign: TextAlign.center,
-                                            style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.black),
-                                            maxLines: 2,
-                                            minFontSize: 9,
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal:3.0),
+                                          child: Center(
+                                            child: AutoSizeText(
+                                              category[index],
+                                              textAlign: TextAlign.center,
+                                              style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.black, height: 1.3),
+                                              maxLines: 2,
+                                              minFontSize: 9,
+                                            ),
                                           ),
                                         ),
                                       ],

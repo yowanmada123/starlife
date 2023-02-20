@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Article_Page/article_detail_page/article_detail_page.dart';
+import 'package:starlife/page/Home_Page/home_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -26,6 +27,15 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
     Artikel(id: "03", title: "Kenali Tanda-Tanda Mata Kamu Sedang Bermasalah", image: "assets/images/img_artikel3.png"),
   ];
   int selectedIndex = 0;
+  final loading = false.obs;
+
+  final h = Get.put(HomeController());
+
+  @override
+  void initState() {
+    super.initState();
+    h.getDataNews();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -48,7 +58,8 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
             child: ListView.builder(
               itemCount: category.length,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (BuildContext context, int itemIndex) => Row(
+              itemBuilder: (BuildContext context, int itemIndex) => 
+              Row(
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -79,81 +90,84 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
       SizedBox(
         height: c.sh * 10,
       ),
-      ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: articels.length,
-        padding: EdgeInsets.zero,
-        itemBuilder: (BuildContext context, int index) => GestureDetector(
-          onTap: () {
-            Get.to(const ArticleDetailPage());
-          },
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      Obx(() =>
+      (h.loadingNewsData.value) ?
+       ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: h.listNews.length,
+              padding: EdgeInsets.zero,
+              itemBuilder: (BuildContext context, int index) => GestureDetector(
+                onTap: () {
+                  Get.to(ArticleDetailPage(news: h.listNews[index],));
+                },
+                child: Column(
                   children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      child: SizedBox(
-                        width: 80,
-                        height: 80,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Image.asset(articels[index].image),
-                        ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.all(Radius.circular(10)),
+                            child: SizedBox(
+                              width: 80,
+                              height: 80,
+                              child: FittedBox(
+                                fit: BoxFit.cover,
+                                child: Image.asset(articels[1].image),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: c.sw * 10,
+                          ),
+                          Expanded(
+                            child: SizedBox(
+                              height: 80,
+                              child: Stack(
+                                children: [
+                                  SizedBox(
+                                      width: c.sw * 258,
+                                      child: Text(
+                                        h.listNews[index].title,
+                                        style: const TextStyle(height: 1.5),
+                                      ).p14b().black()),
+                                  Positioned(
+                                    bottom: 0,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        const Icon(
+                                          Icons.timelapse_rounded,
+                                          color: Colors.grey,
+                                          size: 10,
+                                        ),
+                                        SizedBox(
+                                          width: c.sw * 10,
+                                        ),
+                                        const Text(
+                                          "1 minutes ago • Admin",
+                                          style: TextStyle(height: 1.5),
+                                        ).p10r().grey(),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                     SizedBox(
-                      width: c.sw * 10,
+                      height: c.sh * 10,
                     ),
-                    Expanded(
-                      child: SizedBox(
-                        height: 80,
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                                width: c.sw * 258,
-                                child: Text(
-                                  articels[index].title,
-                                  style: const TextStyle(height: 1.5),
-                                ).p14b().black()),
-                            Positioned(
-                              bottom: 0,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Icon(
-                                    Icons.timelapse_rounded,
-                                    color: Colors.grey,
-                                    size: 10,
-                                  ),
-                                  SizedBox(
-                                    width: c.sw * 10,
-                                  ),
-                                  const Text(
-                                    "1 minutes ago • Admin",
-                                    style: TextStyle(height: 1.5),
-                                  ).p10r().grey(),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),
-              SizedBox(
-                height: c.sh * 10,
-              ),
-            ],
-          ),
-        ),
-      ),
+            ) : CircularProgressIndicator()
+            ),
       SizedBox(
         height: c.sh * 30,
       ),

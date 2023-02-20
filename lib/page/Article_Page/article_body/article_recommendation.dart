@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Article_Page/article_detail_page/article_detail_page.dart';
+import 'package:starlife/page/Home_Page/home_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -27,6 +28,15 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
     Artikel(id: "03", title: "Kenali Tanda-Tanda Mata Kamu Sedang Bermasalah", image: "assets/images/img_artikel3.png"),
   ];
   int selectedIndex = 0;
+
+  final h = Get.put(HomeController());
+
+  @override
+  void initState() {
+    super.initState();
+    h.getDataNews();
+    // loading.value = false;
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -81,14 +91,14 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
           child: ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: articels.length,
+            itemCount: h.listNews.length,
             padding: EdgeInsets.zero,
             itemBuilder: (BuildContext context, int itemIndex) => itemIndex == 2
                 ? Column(
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get.to(const ArticleDetailPage());
+                          Get.to(ArticleDetailPage(news:h.listNews[itemIndex]));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -102,7 +112,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                                   height: 80,
                                   child: FittedBox(
                                     fit: BoxFit.cover,
-                                    child: Image.asset(articels[itemIndex].image),
+                                    child: Image.asset(articels[0].image),
                                   ),
                                 ),
                               ),
@@ -117,7 +127,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                                       SizedBox(
                                           width: c.sw * 258,
                                           child: Text(
-                                            articels[itemIndex].title,
+                                            h.listNews[itemIndex].title,
                                             style: const TextStyle(height: 1.5),
                                           ).p14b().black()),
                                       Positioned(
@@ -157,7 +167,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get.to(const ArticleDetailPage());
+                          Get.to(ArticleDetailPage(news:h.listNews[itemIndex]));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -171,7 +181,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                                   height: 80,
                                   child: FittedBox(
                                     fit: BoxFit.cover,
-                                    child: Image.asset(articels[itemIndex].image),
+                                    child: Image.asset(articels[0].image),
                                   ),
                                 ),
                               ),
@@ -186,7 +196,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                                       SizedBox(
                                           width: c.sw * 258,
                                           child: Text(
-                                            articels[itemIndex].title,
+                                            h.listNews[itemIndex].title,
                                             style: const TextStyle(height: 1.5),
                                           ).p14b().black()),
                                       Positioned(

@@ -17,11 +17,11 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
                     child: Stack(
                       children: [
                       Container(
-                        height: c.sh * 194,
+                        height: 194,
                         width: Get.width,
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -40,8 +40,8 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                         ),
                         child: Column(
                           children: [
-                            SizedBox(
-                              height: c.sh * 23,
+                            const SizedBox(
+                              height: 17,
                             ),
                             const Text(
                               "Kartu Pasien Klinik Starlife",
@@ -52,15 +52,15 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                               "Kartu pasien ini diberikan kepada :",
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Color(0xff15577A)),
-                            ).p8r(),
-                            SizedBox(
-                              height: c.sh * 13,
+                            ).p10r(),
+                            const SizedBox(
+                              height: 13,
                             ),
                             Stack(children: [
                               Center(
                                 child: Container(
                                   width: c.sw * 250,
-                                  height: c.sh * 60,
+                                  height: 60,
                                   foregroundDecoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     gradient: LinearGradient(
@@ -80,8 +80,8 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                                   "SARAH CELESTIA BELLA",
                                   textAlign: TextAlign.center,
                                 ).p12m().white(),
-                                SizedBox(
-                                  height: c.sh * 4,
+                                const SizedBox(
+                                  height: 4,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: c.sw * 50),
@@ -94,8 +94,8 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                                     ))),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: c.sh * 4,
+                                const SizedBox(
+                                  height: 4,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: c.sw * 55),
@@ -109,11 +109,11 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                                           const Text(
                                             "No. RM",
                                             textAlign: TextAlign.center,
-                                          ).p6m().white(),
+                                          ).p10r().white(),
                                           const Text(
                                             "RM21285-101223/50015",
                                             textAlign: TextAlign.center,
-                                          ).p8m().white(),
+                                          ).p10r().white(),
                                         ],
                                       ),
                                       Column(
@@ -123,17 +123,17 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                                           const Text(
                                             "Tanggal Lahir",
                                             textAlign: TextAlign.center,
-                                          ).p6m().white(),
+                                          ).p10r().white(),
                                           const Text(
                                             "02/12/1985",
                                             textAlign: TextAlign.center,
-                                          ).p8m().white(),
+                                          ).p10r().white(),
                                         ],
                                       )
                                     ],
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 12,
                                 ),
                                 Row(
@@ -147,14 +147,14 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                                         const Text(
                                           "Alamat",
                                           style: TextStyle(color: Color(0xff15577A)),
-                                        ).p6m(),
-                                        Container(
-                                          width: c.sw * 160,
+                                        ).p8r(),
+                                        SizedBox(
+                                          width: 140,
                                           child: const Text(
                                             "Ruko City Pride (Palacio) B23 Lt. 1Jl. Nginden Semolo 42 Surabaya",
                                             textAlign: TextAlign.left,
                                             style: TextStyle(color: Color(0xff15577A)),
-                                          ).p8m(),
+                                          ).p8r(),
                                         ),
                                       ],
                                     ),
@@ -168,12 +168,12 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                                         const Text(
                                           "No. Telp",
                                           style: TextStyle(color: Color(0xff15577A)),
-                                        ).p6m(),
+                                        ).p8r(),
                                         const Text(
                                           "0895522091349",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(color: Color(0xff15577A)),
-                                        ).p8m(),
+                                        ).p8r(),
                                       ],
                                     ),
                                     SizedBox(
@@ -186,12 +186,12 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                                         const Text(
                                           "Terdaftar Sejak",
                                           style: TextStyle(color: Color(0xff15577A)),
-                                        ).p6m(),
+                                        ).p8r(),
                                         const Text(
                                           "10/12/2022",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(color: Color(0xff15577A)),
-                                        ).p8m(),
+                                        ).p8r(),
                                       ],
                                     )
                                   ],

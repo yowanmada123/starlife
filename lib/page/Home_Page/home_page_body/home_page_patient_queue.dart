@@ -23,7 +23,7 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
-            height: c.sh*372,
+            height:340,
             width: Get.width,
             child: PageView.builder(
               controller: controller,
@@ -62,19 +62,19 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
                                 children: [
                                   Column(
                                     children: [
-                                      const Text("No. Rekam Medis").p9r().black(),
+                                      const Text("No. Rekam Medis").p10r().black(),
                                       const Text("RM105").p18b().primary(),
                                     ],
                                   ),
                                   Column(
                                     children: [
-                                      const Text("Antrian Dilayani").p9r().black(),
+                                      const Text("Antrian Dilayani").p10r().black(),
                                       const Text("DM016").p18b().secondary(),
                                     ],
                                   ),
                                   Column(
                                     children: [
-                                      const Text("Tanggal Pemeriksaan").p9r().black(),
+                                      const Text("Tanggal Pemeriksaan").p10r().black(),
                                       const Text("24 / 11 / 2022").p18b().primary(),
                                     ],
                                   ),
@@ -96,7 +96,7 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
                             SizedBox(
                               height: c.sh * 10,
                             ),
-                            const Text("Status Kedatangan Dokter : ").p9r().black(),
+                            const Text("Status Kedatangan Dokter : ").p10r().black(),
                             const Text("Sudah Datang").p18b().primary(),
                             SizedBox(
                               height: c.sh * 20,

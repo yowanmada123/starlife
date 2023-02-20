@@ -53,6 +53,7 @@ dependencies:
   fl_chart: ^0.60.0
   flutter_lints: ^2.0.1
   age_calculator: ^1.0.0
+  jiffy: ^5.0.0
 
 dev_dependencies:
   flutter_test:

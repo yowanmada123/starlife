@@ -13,8 +13,10 @@ import 'package:starlife/utils/colors.dart';
 import '../../Article_Page/article_healthy_page.dart';
 
 class HelloConvexAppBar extends StatelessWidget {
-  final c = Get.put(GlobalController());
 
+  final c = Get.put(GlobalController());
+  // String? token = c.getToken();
+  
   final List<Widget> _children = [
     const HomePage(),
     const CheckRmPage(),
@@ -23,11 +25,21 @@ class HelloConvexAppBar extends StatelessWidget {
     const ProfilePage(),
   ];
 
-  HelloConvexAppBar({super.key});
-
-  void onTabTapped(int index) {
-    if (index == 1 || index == 2 || index == 4) {
-      if (c.isLogin.value == false) {
+  void onTabTapped(int index) async {
+    String? token = await c.getToken();
+    // if (index == 1 || index == 2 || index == 4) {
+    //   if (c.isLogin.value == false) {
+    //     c.tabHomeIndex.value = 0;
+    //     Get.offAll(HelloConvexAppBar());
+    //     Get.to(const LoginPage());
+    //   } else {
+    //     c.tabHomeIndex.value = index;
+    //   }
+    // } else {
+    //   c.tabHomeIndex.value = index;
+    // } 
+     if (index == 1 || index == 2 || index == 4) {
+      if (token == null) {
         c.tabHomeIndex.value = 0;
         Get.offAll(HelloConvexAppBar());
         Get.to(const LoginPage());
@@ -38,7 +50,7 @@ class HelloConvexAppBar extends StatelessWidget {
       c.tabHomeIndex.value = index;
     }
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

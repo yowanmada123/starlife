@@ -12,6 +12,8 @@ import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/custom_buttom_button.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+import 'patient_controller/patient_page_controller.dart';
+
 class PatientListMainPage extends StatefulWidget {
   const PatientListMainPage({super.key});
 
@@ -21,6 +23,7 @@ class PatientListMainPage extends StatefulWidget {
 
 class _PatientListMainPageState extends State<PatientListMainPage> {
   final c = Get.put(GlobalController());
+  final p = Get.put(PatientPageController());
   TextEditingController controller = TextEditingController(text: "");
 
   @override
@@ -51,6 +54,14 @@ class _PatientListMainPageState extends State<PatientListMainPage> {
                               iconColor: Colors.white,
                               outlineRadius: 20,
                             )),
+                        // Obx(() => Visibility(
+                        //     visible: p.selectedPasien.isEmpty ? false : true,
+                        //     child: Column(
+                        //       children: [
+                          
+                        //       ],
+                        //     ),
+                        //   )),
                         const PatientDoctorSchedule(),
                         const PatientDoctorList(),
                         CustomButtomButton(

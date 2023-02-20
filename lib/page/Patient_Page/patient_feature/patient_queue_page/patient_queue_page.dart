@@ -99,10 +99,13 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: c.sh * 12,
+                          const SizedBox(
+                            height: 12,
                           ),
                           const Text("dr. Ana Sulastri").p18m().white(),
+                          const SizedBox(
+                            height: 12,
+                          ),
                         ],
                       ),
                     ],
@@ -111,7 +114,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
                   child: Container(
-                    height: c.sh * 540,
+                    height: 500,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xffDEF6FD)),
                     child: Column(
                       children: [
@@ -119,7 +122,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                           padding: EdgeInsets.only(left: c.sw * 23, right: c.sw * 23, top: c.sh * 23),
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 13),
-                            height: c.sh * 255,
+                            height: 240,
                             width: Get.width,
                             decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
                             child: Column(
@@ -142,7 +145,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                                     children: [
                                       Column(
                                         children: [
-                                          const Text("Jumlah Antrian").p9r().black(),
+                                          const Text("Jumlah Antrian").p10r().black(),
                                           const Text("015").p18b().primary(),
                                         ],
                                       ),
@@ -155,15 +158,15 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                                       ),
                                       Column(
                                         children: [
-                                          const Text("Tanggal Pemeriksaan").p9r().black(),
+                                          const Text("Tanggal Pemeriksaan").p10r().black(),
                                           const Text("24 / 11 / 2022").p18b().primary(),
                                         ],
                                       ),
                                     ],
                                   ),
                                 ),
-                                SizedBox(
-                                  height: c.sh * 2,
+                                const SizedBox(
+                                  height: 10,
                                 ),
                                 Container(
                                   // margin: EdgeInsets.symmetric(horizontal: c.sw*24),
@@ -171,10 +174,10 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                                   height: 0.5,
                                   decoration: BoxDecoration(color: OPrimaryColor),
                                 ),
-                                SizedBox(
-                                  height: c.sh * 2,
+                                const SizedBox(
+                                  height: 10,
                                 ),
-                                const Text("Status Kedatangan Dokter").p9r().black(),
+                                const Text("Status Kedatangan Dokter").p10r().black(),
                                 const Text("Sudah Datang").p18b().primary(),
                               ],
                             ),
@@ -195,7 +198,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: c.sw * 23),
                           child: Container(
-                            height: c.sh * 195.47,
+                            height: 180,
                             width: Get.width,
                             decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
                             child: Column(
@@ -210,7 +213,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                                const Text("Status Kedatangan Dokter").p9r().black(),
+                                const Text("Praktek Dokter Mata").p10r().black(),
                                 SizedBox(
                                   height: c.sh * 12,
                                 ),
@@ -235,7 +238,10 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                       ],
                     ),
                   ),
-                )
+                ),
+                const SizedBox(
+                    height: 20,
+                  ),
               ],
             ),
           ),
@@ -330,13 +336,13 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                         children: [
                           Column(
                             children: [
-                              const Text("No. Rekam Medis").p9r().black(),
+                              const Text("No. Rekam Medis").p10r().black(),
                               const Text("RM105").p18b().primary(),
                             ],
                           ),
                           Column(
                             children: [
-                              const Text("Tanggal Pemeriksaan").p9r().black(),
+                              const Text("Tanggal Pemeriksaan").p10r().black(),
                               const Text("24 / 11 / 2022").p18b().primary(),
                             ],
                           ),
@@ -346,7 +352,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                     SizedBox(
                       height: c.sh * 20,
                     ),
-                    const Text("Nama Pasien").p9r().black(),
+                    const Text("Nama Pasien").p10r().black(),
                     const Text(
                       "Muhaammad Aulia Daffa",
                       textAlign: TextAlign.center,
@@ -354,7 +360,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
                     SizedBox(
                       height: c.sh * 20,
                     ),
-                    const Text("No. Antrian Anda").p9r().black(),
+                    const Text("No. Antrian Anda").p10r().black(),
                     const Text("DM007").p52eb().secondary(),
                     SizedBox(
                       height: c.sh * 20,

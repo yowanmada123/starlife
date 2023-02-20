@@ -38,6 +38,7 @@ class _ProfileNotificationPagetState extends State<ProfileNotificationPage> {
                 height: Get.height,
                 child: ListView.builder(
                     itemCount: time.length,
+                    padding: const EdgeInsets.symmetric(vertical: 20),
                     itemBuilder: (BuildContext context, int index) {
                       return (index + 1 == time.length)
                           ? Column(
@@ -104,8 +105,8 @@ class ItemList extends StatelessWidget {
       children: [
         Column(
           children: [
-            SizedBox(
-              height: c.sh * 5,
+            const SizedBox(
+              height: 5,
             ),
             Container(
                 width: 8,

@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 class BaseForm extends StatefulWidget {
   final TextEditingController controller;
   final String title;
+  final String? hintText;
   final bool? passwordMode;
 
-  const BaseForm({super.key, required this.controller, required this.title, this.passwordMode});
+  const BaseForm({super.key, required this.controller, required this.title, this.passwordMode, this.hintText});
 
   @override
   State<BaseForm> createState() => _BaseFormState();
@@ -22,6 +23,8 @@ class _BaseFormState extends State<BaseForm> {
       controller: widget.controller,
       decoration: InputDecoration(
         labelText: widget.title,
+        hintText: widget.hintText ?? "",
+        hintStyle: const TextStyle(color: Colors.grey),
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
         ),

@@ -27,12 +27,7 @@ extension TextExtension on Text {
   Text p10r() => copyWith(style: GoogleFonts.poppins(fontSize: 10, fontWeight: FontWeight.w400));
   Text p10b() => copyWith(style: GoogleFonts.poppins(fontSize: 10, fontWeight: FontWeight.w700));
   Text p9r() => copyWith(style: GoogleFonts.poppins(fontSize: 9, fontWeight: FontWeight.w400));
-  Text p9m() => copyWith(style: GoogleFonts.poppins(fontSize: 9, fontWeight: FontWeight.w600));
   Text p8r() => copyWith(style: GoogleFonts.poppins(fontSize: 8, fontWeight: FontWeight.w400));
-  Text p8m() => copyWith(style: GoogleFonts.poppins(fontSize: 8, fontWeight: FontWeight.w600));
-  Text p7r() => copyWith(style: GoogleFonts.poppins(fontSize: 7, fontWeight: FontWeight.w400));
-  Text p7m() => copyWith(style: GoogleFonts.poppins(fontSize: 7, fontWeight: FontWeight.w600));
-  Text p6m() => copyWith(style: GoogleFonts.poppins(fontSize: 6, fontWeight: FontWeight.w600));
 
   Text primary() => copyWith(style: TextStyle(color: OPrimaryColor));
   Text secondary() => copyWith(style: TextStyle(color: OSecondaryColor));

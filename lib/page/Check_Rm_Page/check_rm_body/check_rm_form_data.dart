@@ -91,59 +91,31 @@ class _FormDataRmState extends State<FormDataRm> {
             height: c.sh * 16,
           ),
           const CustomFixedForm(content: "RM/545148-1151/015", title: "No. Rekam Medis"),
-          CustomForm(
-            controller: namaController,
-            hintText: "Masukan Nama Lengkap",
-            title: "Nama Lengkap",
-            // isMust: true,
-          ),
-          CustomForm(
-            controller: emailController,
-            hintText: "42 Tahun",
-            title: "Umur",
-            // isMust: true,
-          ),
+          const CustomFixedForm(content: "Herlambang Ardianto", title: "Nama Lengkap", backgroundColor: Colors.white,isMust: false,),
+          CustomFixedForm(content: "42 Tahun", title: "Usia", backgroundColor: Colors.white),
           Row(
             children: [
-              Expanded(
-                child: CustomForm(
-                  controller: jenisKelaminController,
-                  hintText: "52 Kg",
-                  title: "Berat Badan",
-                  // isMust: true,
-                ),
+              const Expanded(
+                child:  CustomFixedForm(content: "52 Kg", title: "Berat Badan", backgroundColor: Colors.white,isMust: false,),
               ),
               SizedBox(
                 width: c.sw * 24,
               ),
-              Expanded(
-                child: CustomForm(
-                  controller: agamaController,
-                  hintText: "90/70 mmHg",
-                  title: "Tekanan Darah",
-                ),
+              const Expanded(
+                child: CustomFixedForm(content: "90/70 mmHg", title: "Tekanan Darah", backgroundColor: Colors.white,isMust: false,),
               ),
             ],
           ),
           Row(
             children: [
-              Expanded(
-                child: CustomForm(
-                  controller: jenisKelaminController,
-                  hintText: "24 November 2022",
-                  title: "Tanggal Periksa",
-                  // isMust: true,
-                ),
+               const Expanded(
+                child: CustomFixedForm(content: "24 November 2023", title: "Tanggal Periksa", backgroundColor: Colors.white,isMust: false,),
               ),
               SizedBox(
                 width: c.sw * 24,
               ),
-              Expanded(
-                child: CustomForm(
-                  controller: agamaController,
-                  hintText: "10:40 WIB",
-                  title: "Jam Periksa",
-                ),
+              const Expanded(
+                child: CustomFixedForm(content: "10:40 WIB", title: "Jam Periksa", backgroundColor: Colors.white,isMust: false,),
               ),
             ],
           ),
@@ -151,18 +123,8 @@ class _FormDataRmState extends State<FormDataRm> {
             content: entrie,
             title: 'Keluhan',
           ),
-          CustomForm(
-            controller: statusController,
-            hintText: "Demam Berdarah",
-            title: "Diagnosis",
-            // isMust: true,
-          ),
-          CustomForm(
-            controller: statusController,
-            hintText: "Suntik Vaksin CYD-TDV (dengvaxia)",
-            title: "Tindakan",
-            // isMust: true,
-          ),
+          const CustomFixedForm(content: "Demam Berdarah", title: "Diagnosis", backgroundColor: Colors.white,isMust: false,),
+          const CustomFixedForm(content: "Suntik Vaksin CYD-TDV (dengvaxia)", title: "Tindakan", backgroundColor: Colors.white,isMust: false,),
           CustomListOfMap(content: resep, title: "Resep Dokter",)
         ],
       ),

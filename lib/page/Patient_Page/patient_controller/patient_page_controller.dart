@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
-import 'package:starlife/model/patient_res.dart';
+import 'package:starlife/models/patient_res.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_page.dart';
 import 'package:starlife/page/global_controller.dart';
 

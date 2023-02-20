@@ -4,6 +4,7 @@ import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_topbar.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_kid_growth.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_pin_page.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_immunitation_history.dart';
+import 'package:starlife/page/dio/dioController.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/rounded_inside.dart';
@@ -20,6 +21,19 @@ class _CheckRmPageState extends State<CheckRmPage> {
   final List<String> entrie = <String>['Sarah Celestia Bella', 'Darwaman Gunawangsa', 'Gunawan Ardiansyah', 'Muhammad Aulia Daffa', 'Darwaman Gunawangsa', 'Gunawan Ardiansyah', 'Muhammad Aulia Daffa'];
   final List<String> role = <String>['Anda', 'Suami', 'Anak ke-1', 'Anak ke-2', 'Anak ke-3', 'Anak ke-4', 'Anak ke-5'];
   final c = Get.put(GlobalController());
+  
+  final dC = Get.put(DioController());
+  final loading = true.obs;
+  // Future<Post>? post;
+  // Future<List<Post>>? posts;
+  // final listPost = <Post>[].obs;
+  
+  @override
+  void initState() {
+    super.initState();
+    dC.getData();
+    loading.value = false;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +103,7 @@ class ItemList extends StatelessWidget {
             height: c.sh * 10,
           ),
           Container(
-              height: c.sh * 125,
+              height: 125,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -103,11 +117,12 @@ class ItemList extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10.0),
-                      child: Image.asset(
-                        "assets/images/img_avatar_2.png",
-                        fit: BoxFit.cover,
+                        child: Image.asset(
+                          "assets/images/img_avatar_2.png",
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
                     SizedBox(
                       width: c.sw * 13,
                     ),
@@ -158,21 +173,21 @@ class ItemList extends StatelessWidget {
                                           borderRadius: BorderRadius.circular(20),
                                         ),
                                         child: Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 2),
+                                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                                             child: (role == 'Anda')
                                                 ? Text(
                                                     role,
                                                     style: const TextStyle(color: Color(0xff9B26F0)),
-                                                  ).p7m()
+                                                  ).p10r()
                                                 : (role == 'Suami' || role == 'Istri')
                                                     ? Text(
                                                         role,
                                                         style: const TextStyle(color: Color(0xff8C4701)),
-                                                      ).p7m()
+                                                      ).p10r()
                                                     : Text(
                                                         role,
                                                         style: const TextStyle(color: Color(0xff21C994)),
-                                                      ).p7m())),
+                                                      ).p10r())),
                                   ] else ...[
                                     Column(
                                       children: [
@@ -191,29 +206,28 @@ class ItemList extends StatelessWidget {
                                                   borderRadius: BorderRadius.circular(20),
                                                 ),
                                                 child: Padding(
-                                                    padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 2),
+                                                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                                                     child: (role == 'Anda')
                                                         ? Text(
                                                             role,
                                                             style: const TextStyle(color: Color(0xff9B26F0)),
-                                                          ).p7m()
+                                                          ).p10r()
                                                         : (role == 'Suami' || role == 'Istri')
                                                             ? Text(
                                                                 role,
                                                                 style: const TextStyle(color: Color(0xff8C4701)),
-                                                              ).p7m()
+                                                              ).p10r()
                                                             : Text(
                                                                 role,
                                                                 style: const TextStyle(color: Color(0xff21C994)),
-                                                              ).p7m())),
+                                                              ).p10r())),
                                           ],
                                         ),
                                         SizedBox(
-                                          height: c.sh * 8,
+                                          height: c.sh * 10,
                                         ),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             BaseButton(
                                               ontap: () {
@@ -233,7 +247,7 @@ class ItemList extends StatelessWidget {
                                             ),
                                             BaseButton(
                                               ontap: () {
-                                                Get.to(const RiwayatImunisasiAnakPage());
+                                                Get.to(const CheckRmImmunizationHistoryPage());
                                               },
                                               text: "Riwayat Imunisasi",
                                               textColor: Colors.white,

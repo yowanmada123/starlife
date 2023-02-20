@@ -52,7 +52,7 @@ class _PatientListPageState extends State<PatientListPage> {
                     )),
                 const PatientDoctorSchedule(),
                 const PatientDoctorList(),
-                const SizedBox(height: 50,)
+                const SizedBox(height: 100,)
               ],
             ),
           ),

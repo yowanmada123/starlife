@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starlife/models/model_doctor.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class ScheduleTopBar extends StatefulWidget {
-  const ScheduleTopBar({super.key});
+  const ScheduleTopBar({super.key, required this.doctor});
+  final Doctor doctor;
 
   @override
   State<ScheduleTopBar> createState() => _ScheduleTopBarState();
@@ -67,15 +69,16 @@ class _ScheduleTopBarState extends State<ScheduleTopBar> {
                       height: c.sw * 176,
                       child: FittedBox(
                         fit: BoxFit.cover,
-                        child: Image.asset("assets/icon/ic_doctor.png"),
+                        child: Image.network(widget.doctor.picture) 
+                        // Image.asset("assets/icon/ic_doctor.png"),
                       ),
                     ),
                   ),
                   SizedBox(
                     height: c.sh * 12,
                   ),
-                  const Text("dr. Ana Sulastri").p18m().white(),
-                  const Text("Dokter Spesialis Anak").p10r().white(),
+                  Text(widget.doctor.namadokter).p18m().white(),
+                  Text(widget.doctor.poli).p10r().white(),
                   SizedBox(
                     height: c.sh * 10,
                   ),

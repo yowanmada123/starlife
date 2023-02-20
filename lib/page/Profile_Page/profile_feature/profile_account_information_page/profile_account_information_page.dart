@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:starlife/page/Profile_Page/profile_controller/profile_controller.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_account_information_page/profile_data_form.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
@@ -19,6 +20,7 @@ class ProfileAccountInformation extends StatefulWidget {
 
 class _ProfileAccountInformationState extends State<ProfileAccountInformation> {
   final c = Get.put(GlobalController());
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +60,7 @@ class _ProfileAccountInformationState extends State<ProfileAccountInformation> {
                     SizedBox(
                       width: c.sw * 16,
                     ),
-                    Text("Informasi Akun").p16b().white(),
+                    const Text("Informasi Akun").p16b().white(),
                   ],
                 ),
               ],

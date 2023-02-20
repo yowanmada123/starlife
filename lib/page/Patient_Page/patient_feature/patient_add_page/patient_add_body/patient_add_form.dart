@@ -27,8 +27,19 @@ class _PatientAddFormState extends State<PatientAddForm> {
   late DateDuration duration;
 
   final List<String> genderItems = [
-    'Laki -laki',
+    'Laki - laki',
     'Perempuan',
+  ];
+
+  final List<String> goldarItem = [
+    'A+',
+    'A-',
+    'B+',
+    'B-',
+    'AB+',
+    'AB-',
+    'O+',
+    'O-',
   ];
 
   final List<String> religions = [
@@ -40,7 +51,7 @@ class _PatientAddFormState extends State<PatientAddForm> {
   ];
   String date = "dd/mm/yy";
   String ageToString = "-";
-  
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -81,11 +92,13 @@ class _PatientAddFormState extends State<PatientAddForm> {
                     ).then((data) {
                       //tambahkan setState dan panggil variabel _dateTime.
                       setState(() {
-                        p.tanggalLahirController.text = data!.toSlashDate();
+                        date = data!.toSlashDate();
+                        p.tanggalLahirController.text = data.toSlashDate();
                         birthday = data;
-                        duration = AgeCalculator.age(birthday, today: DateTime.now());
-                        print(duration.years);
-                        ageToString = duration.years.toString();
+                        // duration = c.yourAge(birthday);
+                        //  AgeCalculator.age(birthday, today: DateTime.now());
+                        // print(duration.years);
+                        ageToString = c.yourAge(birthday).toString();
                         p.usiaController.text = ageToString;
                       });
                     });
@@ -97,7 +110,7 @@ class _PatientAddFormState extends State<PatientAddForm> {
               ),
               Expanded(
                 child: CustomFixedForm(
-                  content: "${ageToString} Tahun",
+                  content: "$ageToString Tahun",
                   title: "Usia",
                   isMust: true,
                 ),
@@ -139,11 +152,13 @@ class _PatientAddFormState extends State<PatientAddForm> {
             title: "Alergi Obat",
             isMust: true,
           ),
-          CustomForm(
-            controller: p.goldarController,
-            hintText: "cth: AB",
-            title: "Golongan Darah",
-          ),
+          CustomDropDown(
+                title: "Golongan Darah",
+                items: goldarItem,
+                firstItem: 'Pilih Salah Satu',
+                controller: p.jenisKelaminController,
+                isMust: true,
+              ),
           CustomForm(
             controller: p.alamatController,
             hintText: "Masukkan Alamat",

@@ -6,6 +6,7 @@ import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_detail
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_back.dart';
+import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/base/rounded_inside.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -38,7 +39,7 @@ class _CheckRmListPageState extends State<CheckRmListPage> {
             height: Get.height,
             color: Colors.white,
           ),
-          const CheckRmTopBar(
+          const CustomTopBar(
           ),
           RoundedInside(
             child: SingleChildScrollView(

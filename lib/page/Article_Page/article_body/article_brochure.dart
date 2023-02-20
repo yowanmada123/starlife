@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:starlife/page/Article_Page/article_detail_page/article_detail_page.dart';
+import 'package:starlife/page/Home_Page/home_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -21,6 +22,16 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
     Artikel(id: "02", title: "Koreksi Gangguan Penglihatan dengan Lensa Kontak", image: "assets/images/img_artikel2.png"),
     Artikel(id: "03", title: "Kenali Tanda-Tanda Mata Kamu Sedang Bermasalah", image: "assets/images/img_artikel3.png"),
   ];
+
+  final h = Get.put(HomeController());
+
+  @override
+  void initState() {
+    super.initState();
+    h.getDataNews();
+    // loading.value = false;
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -94,14 +105,14 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
               width: Get.width,
               child: PageView.builder(
                 controller: controller,
-                itemCount: articels.length,
-                allowImplicitScrolling: true,
-                pageSnapping: true,
+                itemCount: h.listNews.length,
+                // allowImplicitScrolling: true,
+                // pageSnapping: true,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      Get.to(const ArticleDetailPage());
+                      Get.to(ArticleDetailPage(news:h.listNews[index]));
                     },
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: c.sw * 16.0),
@@ -138,7 +149,7 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
                               SizedBox(
                                 height: c.sh * 266,
                               ),
-                              SizedBox(width: c.sw * 254, height: c.sh * 54, child: Text(articels[index].title).p18b().white()),
+                              SizedBox(width: c.sw * 254, height: c.sh * 54, child: Text(h.listNews[index].title).p18b().white()),
                               SizedBox(
                                 height: c.sh * 10,
                               ),

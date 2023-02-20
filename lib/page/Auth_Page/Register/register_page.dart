@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Auth_Page/Login/login_controller.dart';
+import 'package:starlife/page/Auth_Page/auth_controller/auth_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/base_form.dart';
@@ -18,14 +18,16 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final c = Get.put(GlobalController());
-  final lc = Get.put(LoginController());
+  final lc = Get.put(AuthController());
   final _namaController = TextEditingController(text: '');
   final _emailController = TextEditingController(text: '');
   final _nomorController = TextEditingController(text: '');
+  final _pinRmController = TextEditingController(text: "");
   final _passwordController = TextEditingController(text: "");
   final _konfirmasiPassword = TextEditingController(text: "");
   bool _isObscure = true;
   bool _isPasswordObscure = true;
+  bool _isPinRmObscure = true;
   bool _isSyarat = false;
 
   // final bool isValid = EmailValidator.validate(email);
@@ -105,7 +107,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   padding: EdgeInsets.symmetric(horizontal: c.sw * 34.0),
                   child: Container(
                     width: c.sw * 322,
-                    height: c.sh * 544,
+                    height: c.sh * 590,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
@@ -140,7 +142,39 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: c.sw * 26),
-                          child: BaseForm(controller: _nomorController, title: "Nomor HP"),
+                          child: BaseForm(
+                            controller: _nomorController,
+                            title: "Nomor HP",
+                            hintText: "ex : +62822315326445",
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: c.sw * 26),
+                          child: TextField(
+                            maxLength: 6,
+                            style: const TextStyle(color: Colors.black, fontSize: 14),
+                            controller: _pinRmController,
+                            obscureText: _isPinRmObscure,
+                            decoration: InputDecoration(
+                              counter: const Offstage(),
+                              labelText: 'Pin RM',
+                              labelStyle: const TextStyle(color: Colors.grey),
+                              enabledBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
+                              focusedBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
+                              border: InputBorder.none,
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _isPinRmObscure = !_isPinRmObscure;
+                                    });
+                                  },
+                                  icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off)),
+                            ),
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: c.sw * 26),
@@ -228,11 +262,18 @@ class _RegisterPageState extends State<RegisterPage> {
                             SizedBox(
                               width: c.sw * 9,
                             ),
-                            const Text("Menyetujui syarat dan persetujuan").p10r().primary(),
+                            GestureDetector(
+                              onTap: () {
+                                  setState(() {
+                                    _isSyarat = !_isSyarat;
+                                  });
+                                  log(_isSyarat.toString());
+                                },
+                              child: const Text("Menyetujui syarat dan persetujuan").p10r().primary()),
                           ],
                         ),
                         SizedBox(
-                          height: c.sh * 50,
+                          height: c.sh * 30,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: c.sw * 26),
@@ -240,27 +281,48 @@ class _RegisterPageState extends State<RegisterPage> {
                             ontap: () {
                               bool isEmail = c.isEmail(_emailController.text);
                               bool isPhone = c.isPhone(_nomorController.text);
-                              if(_isSyarat){
-                                if (_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _emailController.text.isNotEmpty && _nomorController.text.isNotEmpty && _passwordController.text.isNotEmpty && _konfirmasiPassword.text.isNotEmpty) {
+                              bool isNum = c.isNumber(_pinRmController.text);
+                              if (_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _emailController.text.isNotEmpty && _nomorController.text.isNotEmpty && _passwordController.text.isNotEmpty && _konfirmasiPassword.text.isNotEmpty) {
                                 if (isEmail) {
                                   if (isPhone) {
-                                    if (_passwordController.text == _konfirmasiPassword.text) {
-                                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                        content: Text('AKUN SUKSES DIBUAT'),
-                                        backgroundColor: Colors.black87,
-                                      ));
-                                      // lc.email = _emailController.text;
-                                      // lc.password = _passwordController.text;
-                                      // lc.login();
+                                    if (isNum) {
+                                      if(_pinRmController.text.length == 6){
+                                          if (_passwordController.text == _konfirmasiPassword.text) {
+                                          if (_isSyarat) {
+                                            lc.name = _namaController.text;
+                                            lc.email = _emailController.text;
+                                            lc.phone = _nomorController.text;
+                                            lc.pinrm = _pinRmController.text;
+                                            lc.password = _passwordController.text;
+                                            lc.register(context);
+                                          } else {
+                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                              content: Text('Please agree with the terms and conditions'),
+                                              backgroundColor: Colors.black87,
+                                            ));
+                                          }
+                                        } else {
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                            content: Text('Password & Konfirmasi Password is not same'),
+                                            backgroundColor: Colors.black87,
+                                          ));
+                                        }
+                                      } else {
+                                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                          content: Text('The PIN must consist of 6 digits'),
+                                          backgroundColor: Colors.black87,
+                                        ));
+                                      }
+                                      
                                     } else {
                                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                        content: Text('Password & Konfirmasi Password is not same'),
+                                        content: Text('Please fill the PIN only with numeric'),
                                         backgroundColor: Colors.black87,
                                       ));
                                     }
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                      content: Text('Please fill the phone just with Numeric'),
+                                      content: Text('Please fill in the cellphone number column with the prefix +628...'),
                                       backgroundColor: Colors.black87,
                                     ));
                                   }
@@ -276,12 +338,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                   backgroundColor: Colors.black87,
                                 ));
                               }
-                              }else{
-                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                        content: Text('Please agree with the terms and conditions'),
-                                        backgroundColor: Colors.black87,
-                                      ));
-                              }
                             },
                             text: "Daftar",
                             outlineRadius: 100,
@@ -292,7 +348,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 SizedBox(
-                  height: c.sh * 75,
+                  height: c.sh * 50,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

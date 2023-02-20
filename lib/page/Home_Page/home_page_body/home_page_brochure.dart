@@ -34,7 +34,6 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
     if (time > 18) {
       now = "assets/images/malam.png";
     }
-    print("==========================================");
     print(now);
   }
 

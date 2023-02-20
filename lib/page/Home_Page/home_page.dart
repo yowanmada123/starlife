@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starlife/page/Home_Page/home_controller.dart';
 import 'package:starlife/page/Home_Page/home_page_body/home_page_patient_queue.dart';
 import 'package:starlife/page/Home_Page/home_page_body/home_page_health_article.dart';
 import 'package:starlife/page/Home_Page/home_page_body/home_page_brochure.dart';
@@ -18,6 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final c = Get.put(GlobalController());
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

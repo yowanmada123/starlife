@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starlife/models/model_person.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_data/profile_patient_data_form.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
@@ -8,7 +9,8 @@ import 'package:starlife/widget/base/custom_buttom_button.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class ProfilePatientDataPage extends StatefulWidget {
-  const ProfilePatientDataPage({super.key});
+  const ProfilePatientDataPage({super.key, required this.patient});
+  final Patient patient;
 
   @override
   State<ProfilePatientDataPage> createState() => _ProfilePatientDataPageState();
@@ -27,8 +29,8 @@ class _ProfilePatientDataPageState extends State<ProfilePatientDataPage> {
             height: Get.height,
             color: Colors.white,
           ),
-          const CustomTopBar(),  
-          const ProfilePatientDataform(),
+          const CustomTopBar(),
+          ProfilePatientDataform(patient: widget.patient,),
           Container(
             color: Colors.transparent,
             height: c.sh * 128,
@@ -48,7 +50,7 @@ class _ProfilePatientDataPageState extends State<ProfilePatientDataPage> {
                         SizedBox(
                           width: c.sw * 16,
                         ),
-                        Text("Edit Profile").p16b().white(),
+                        const Text("Edit Profile").p16b().white(),
                       ],
                     ),
                   ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starlife/models/model_doctor.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/schedule_detail_page/schedule_detail_body/schedule_doctor_detail.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/schedule_detail_page/schedule_detail_body/schedule_topbar.dart';
 import 'package:starlife/page/global_controller.dart';
@@ -11,8 +12,8 @@ import 'schedule_detail_body/schedule_practice_location.dart';
 import 'schedule_detail_body/schedule_available.dart';
 
 class ScheduleDetailPage extends StatefulWidget {
-  const ScheduleDetailPage({super.key});
-
+  const ScheduleDetailPage({super.key, required this.doctor});
+  final Doctor doctor;
   @override
   State<ScheduleDetailPage> createState() => _ScheduleDetailPageState();
 }
@@ -38,9 +39,9 @@ class _ScheduleDetailPageState extends State<ScheduleDetailPage> {
                 child: Column(
               children: [
                 ScheduleDoctorExperience(),
-                const ScheduleDoctor(),
-                const ScheduleAvailable(),
-                const SchedulePracticeLocation(),
+                ScheduleDoctor(doctor: widget.doctor,),
+                ScheduleAvailable(doctor: widget.doctor,),
+                SchedulePracticeLocation(doctor: widget.doctor,),
                 Container(
                   height: 12,
                   color: const Color.fromARGB(255, 250, 249, 249),
@@ -49,11 +50,10 @@ class _ScheduleDetailPageState extends State<ScheduleDetailPage> {
               ],
             )),
           ),
-          const ScheduleTopBar(),
-          if(c.isLogin.value)...[
+          ScheduleTopBar(doctor: widget.doctor,),
+          if (c.token != null || c.token != '') ...[
             const ScheduleDoctorBottomBar(),
           ]
-          
         ],
       ),
     );

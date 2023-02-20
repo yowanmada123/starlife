@@ -23,7 +23,7 @@ class _PatientTopBarState extends State<PatientTopBar> {
         child: Container(
           color: Colors.white,
           width: Get.width,
-          height: c.sw * 110,
+          height: 100,
           child: Padding(
             padding: EdgeInsets.only(left: c.sw * 16, top: c.sh * 53),
             child: Row(

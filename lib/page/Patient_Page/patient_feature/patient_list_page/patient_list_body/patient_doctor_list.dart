@@ -125,9 +125,9 @@ class _PatientDoctorListState extends State<PatientDoctorList> {
                             Row(
                               children: [
                                 Image.asset("assets/icon/ic_icon_pagi.png", width: 14, height: 14,),
-                                // SizedBox(
-                                //   width: c.sw *10,
-                                // ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
                                 Text(docters[index].jam).p12m().primary()
                               ],
                             )
