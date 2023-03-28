@@ -56,7 +56,7 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
                     const Text("Pagi").p14m().black(),
                   ],
                 ),
-                _isPagiVisible ? SvgPicture.asset("assets/icon/ic_arrow_down_rounded.svg") : SvgPicture.asset("assets/icon/ic_arrow_up_rounded.svg")
+                _isPagiVisible ? SvgPicture.asset("assets/icon/ic_arrow_up_rounded.svg") : SvgPicture.asset("assets/icon/ic_arrow_down_rounded.svg")
               ],
             ),
           ),
@@ -104,7 +104,7 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
                     const Text("Malam").p14m().black(),
                   ],
                 ),
-                _isMalamVisible ? SvgPicture.asset("assets/icon/ic_arrow_down_rounded.svg") : SvgPicture.asset("assets/icon/ic_arrow_up_rounded.svg")
+                _isMalamVisible ? SvgPicture.asset("assets/icon/ic_arrow_up_rounded.svg") : SvgPicture.asset("assets/icon/ic_arrow_down_rounded.svg")
               ],
             ),
           ),

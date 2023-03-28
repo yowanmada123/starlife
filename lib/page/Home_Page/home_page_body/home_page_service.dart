@@ -45,7 +45,7 @@ class HomePageService extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: c.sw * 16.0),
           child: SizedBox(
-              height: c.sh * 130,
+              height:    130,
               child: MediaQuery.removePadding(
                 context: context,
                 removeTop: true,
@@ -78,15 +78,15 @@ class HomePageService extends StatelessWidget {
                               ),
                             ],
                           ),
-                          height: c.sh * 100,
+                          height:    100,
                           width: c.sw * 81,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              SizedBox(height: c.sh * 50, child: Center(child: Image.asset(categoryImage[itemIndex]))),
+                              SizedBox(height:    50, child: Center(child: Image.asset(categoryImage[itemIndex]))),
                               SizedBox(
-                                height: c.sh * 5,
+                                height:    5,
                               ),
                               Center(
                                   child: Text(

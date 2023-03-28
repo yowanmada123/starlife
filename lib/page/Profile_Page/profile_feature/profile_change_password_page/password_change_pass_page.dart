@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:starlife/page/Auth_Page/auth_controller/auth_controller.dart';
+import 'package:starlife/controllers/auth_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/page/Home_Page/navigationbar/navigationbar.dart';
 import 'package:starlife/utils/colors.dart';
@@ -35,16 +35,16 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
         child: Stack(
           children: [
             Container(
-            width: Get.width,
-            height: Get.height,
-            color: Colors.white,
-          ),
+              width: Get.width,
+              height: Get.height,
+              color: Colors.white,
+            ),
             Positioned(
               top: -300,
               left: -200,
               child: Container(
                 width: c.sw * 844,
-                height: c.sh * 844,
+                height: 844,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(1000), color: OPrimaryColor),
               ),
             ),
@@ -75,26 +75,26 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(top: c.sh * 60.0),
+                            padding: EdgeInsets.only(top: 60.0),
                             child: Image.asset(
                               width: c.sw * 143,
-                              height: c.sh * 173,
+                              height: 173,
                               'assets/icon/ic_logo.png',
                             ),
                           ),
                           SizedBox(
-                            height: c.sh * 15,
+                            height: 15,
                           ),
                           const Text("Anda Lupa Password ?").p20b().white(),
                           const Text("Ubah sekarang").p12r().white(),
                           SizedBox(
-                            height: c.sh * 14,
+                            height: 14,
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: c.sw * 34.0),
                             child: Container(
                               width: c.sw * 322,
-                              height: c.sh * 340,
+                              height: 340,
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
@@ -110,7 +110,7 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                               child: Column(
                                 children: [
                                   SizedBox(
-                                    height: c.sh * 15,
+                                    height: 15,
                                   ),
                                   const Text("Ubah password").p16b().black(),
                                   Padding(
@@ -195,7 +195,7 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: c.sh * 20,
+                                    height: 20,
                                   ),
                                   Padding(
                                     padding: EdgeInsets.symmetric(horizontal: c.sw * 26),
@@ -226,17 +226,17 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                                         //   ));
                                         // }
                                       },
-                                      text: "Masuk",
+                                      text: "Simpan",
                                       outlineRadius: 100,
                                     ),
                                   ),
                                   SizedBox(
-                                    height: c.sh * 20,
+                                    height: 20,
                                   ),
                                   GestureDetector(
                                       onTap: () {
                                         filledShowDialog(
-                                          barier: false,
+                                            barier: false,
                                             context: context,
                                             title: 'Masukan Email',
                                             button: () {
@@ -253,9 +253,9 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                                                       style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),
                                                     )),
                                                     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                                                    contentPadding: EdgeInsets.symmetric(horizontal: c.sw * 28.0, vertical: c.sh * 10),
+                                                    contentPadding: EdgeInsets.symmetric(horizontal: c.sw * 28.0, vertical: 10),
                                                     content: Container(
-                                                      height: c.sh * 60,
+                                                      height: 60,
                                                       child: Text("Kami telah mengirim email ke sarahcb@gmail.com yang berisi tautan untuk mengatur ulang kata sandi anda.", textAlign: TextAlign.center, style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600)),
                                                     ),
                                                     actions: <Widget>[
@@ -269,12 +269,12 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                                                             text: "Oke",
                                                             outlineRadius: 10,
                                                             textSize: 14,
-                                                            height: c.sh * 39,
+                                                            height: 39,
                                                           ),
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        height: c.sh * 10,
+                                                        height: 10,
                                                       ),
                                                     ],
                                                   ),
@@ -295,11 +295,11 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                             ),
                           ),
                           SizedBox(
-                            height: c.sh * 75,
+                            height: 75,
                           ),
                           const Text("© 2022 Starlife Clinic. All rights reserved.").p12r().grey(),
                           SizedBox(
-                            height: c.sh * 20,
+                            height: 20,
                           ),
                         ],
                       ),

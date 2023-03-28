@@ -22,7 +22,7 @@ class _TopBarState extends State<TopBar> {
         children:[
           Container(
             color: OPrimaryColor,
-            height: c.sh * 128,
+            height:  115,
             width: Get.width,
             child: Padding(
             padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
@@ -32,7 +32,7 @@ class _TopBarState extends State<TopBar> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: c.sh * 53,
+                  height:    53,
                 ),
                 const Text("Rekam Medis").p20b().white(),
               ],
@@ -42,7 +42,7 @@ class _TopBarState extends State<TopBar> {
         Positioned(
           bottom: 0,
           child: Container(
-            height: c.sh*19,
+            height: 19,
             width: Get.width,
             decoration: const BoxDecoration(
               color: Colors.white,

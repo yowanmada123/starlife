@@ -40,15 +40,15 @@ class _ProfileImmunizationPageState extends State<ProfileImmunizationPage> with 
             height: Get.height,
             color: Colors.white,
           ),
-          CustomTopBar(),
+          CustomTopBar(height: 115),
            Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
             child: Column(
               children: [
-                SizedBox(height: c.sh*120,),
+                const SizedBox(height: 95,),
                 // give the tab bar a height [can change hheight to preferred height]
-                Container(
-                  height: 20,
+                SizedBox(
+                  height: 40,
                   child: TabBar(
                     controller: _tabController,
                     // give the indicator a decoration (color and border radius)
@@ -92,7 +92,7 @@ class _ProfileImmunizationPageState extends State<ProfileImmunizationPage> with 
           ),
           Container(
             color: Colors.transparent,
-            height: c.sh * 128,
+            height:    128,
             width: Get.width,
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
@@ -101,7 +101,7 @@ class _ProfileImmunizationPageState extends State<ProfileImmunizationPage> with 
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: c.sh * 53,
+                      height:    53,
                     ),
                     Row(
                       children: [

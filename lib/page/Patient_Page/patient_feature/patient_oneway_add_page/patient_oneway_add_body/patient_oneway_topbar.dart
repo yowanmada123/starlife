@@ -24,7 +24,7 @@ class _PatientOneWayTopBarState extends State<PatientOneWayTopBar> {
           width: Get.width,
           height: c.sw*100,
           child: Padding(
-            padding: EdgeInsets.only(left: c.sw * 16, top: c.sh*53),
+            padding: EdgeInsets.only(left: c.sw * 16, top: 45),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,

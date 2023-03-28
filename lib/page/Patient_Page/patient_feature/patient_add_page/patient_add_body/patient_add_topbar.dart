@@ -24,7 +24,7 @@ class _PatientAddTopBarState extends State<PatientAddTopBar> {
           width: Get.width,
           height: c.sw*100,
           child: Padding(
-            padding: EdgeInsets.only(left: c.sw * 16, top: c.sh*53),
+            padding: EdgeInsets.only(left: c.sw * 16, top: 40),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -41,12 +41,12 @@ class _PatientAddTopBarState extends State<PatientAddTopBar> {
         
       //   Container(
       // color: Colors.white,
-      // height: c.sh * 100,
+      // height:    100,
       // width: Get.width,
       // child: Row(
       //   children: [
       //   Padding(
-      //       padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: c.sh * 53),
+      //       padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical:    53),
       //       child: GestureDetector(
       //         onTap: ()=> Get.back(),
       //         child: ClipOval(
@@ -74,7 +74,7 @@ class _PatientAddTopBarState extends State<PatientAddTopBar> {
       // Stack(
       //   children: [
       //   Padding(
-      //     padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: c.sh * 53),
+      //     padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical:    53),
       //     child: Column(
       //       crossAxisAlignment: CrossAxisAlignment.start,
       //       mainAxisAlignment: MainAxisAlignment.start,
@@ -104,7 +104,7 @@ class _PatientAddTopBarState extends State<PatientAddTopBar> {
       //     ),
       //   ),
       //   Padding(
-      //     padding: EdgeInsets.only(top: c.sh * 53),
+      //     padding: EdgeInsets.only(top:    53),
       //     child: Row(
       //       mainAxisAlignment: MainAxisAlignment.center,
       //       crossAxisAlignment: CrossAxisAlignment.center,
@@ -123,12 +123,12 @@ class _PatientAddTopBarState extends State<PatientAddTopBar> {
       //               ),
       //             ),
       //             SizedBox(
-      //               height: c.sh * 12,
+      //               height:    12,
       //             ),
       //             const Text("dr. Ana Sulastri").p18m().white(),
       //             const Text("Dokter Spesialis Anak").p10r().white(),
       //             SizedBox(
-      //               height: c.sh * 10,
+      //               height:    10,
       //             ),
       //           ],
       //         ),

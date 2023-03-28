@@ -35,7 +35,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
           Container(
             color: Colors.white,
             width: Get.width,
-            height: c.sh * 30,
+            height:    30,
             child: RichText(
               text: TextSpan(
                 text: widget.title,
@@ -96,7 +96,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
             ),
             // dropdownElevation: 5,
             iconSize: 15,
-            buttonHeight: c.sh * 46,
+            buttonHeight:    46,
             buttonPadding: const EdgeInsets.only(right: 10),
             dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: OPrimaryColor)),
             items: widget.items
@@ -115,14 +115,19 @@ class _CustomDropDownState extends State<CustomDropDown> {
             },
             onChanged: (value) {
               //Do something when changing the item if you want.
+              selectedValue = value.toString();
+              // widget.controller.value = selectedValue as TextEditingValue;
+              widget.controller.text = selectedValue!;
+              print(widget.controller.text);
             },
             onSaved: (value) {
               selectedValue = value.toString();
               widget.controller.value = selectedValue as TextEditingValue;
+              widget.controller.text = selectedValue!;
             },
           ),
           SizedBox(
-            height: c.sh * 16,
+            height:    16,
           )
           // const SizedBox(height: 30),
           // TextButton(

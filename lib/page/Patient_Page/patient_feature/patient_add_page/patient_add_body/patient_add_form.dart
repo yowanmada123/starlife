@@ -59,7 +59,7 @@ class _PatientAddFormState extends State<PatientAddForm> {
       child: Column(
         children: [
           SizedBox(
-            height: c.sh * 115,
+            height:    115,
           ),
           const CustomFixedForm(content: "RM/545148-1151/015", title: "No. Rekam Medis"),
           CustomForm(
@@ -93,7 +93,8 @@ class _PatientAddFormState extends State<PatientAddForm> {
                       //tambahkan setState dan panggil variabel _dateTime.
                       setState(() {
                         date = data!.toSlashDate();
-                        p.tanggalLahirController.text = data.toSlashDate();
+                        p.tanggalLahirController.text = data.toyyyyMMdd();
+                        print(p.tanggalLahirController.text);
                         birthday = data;
                         // duration = c.yourAge(birthday);
                         //  AgeCalculator.age(birthday, today: DateTime.now());
@@ -153,12 +154,12 @@ class _PatientAddFormState extends State<PatientAddForm> {
             isMust: true,
           ),
           CustomDropDown(
-                title: "Golongan Darah",
-                items: goldarItem,
-                firstItem: 'Pilih Salah Satu',
-                controller: p.jenisKelaminController,
-                isMust: true,
-              ),
+            title: "Golongan Darah",
+            items: goldarItem,
+            firstItem: 'Pilih Salah Satu',
+            controller: p.jenisKelaminController,
+            isMust: true,
+          ),
           CustomForm(
             controller: p.alamatController,
             hintText: "Masukkan Alamat",
@@ -179,7 +180,7 @@ class _PatientAddFormState extends State<PatientAddForm> {
             children: [
               Expanded(
                 child: CustomForm(
-                  controller: p.jenisKelaminController,
+                  controller: p.rwController,
                   hintText: "Masukkan RW",
                   title: "RW",
                   isMust: false,
@@ -190,7 +191,7 @@ class _PatientAddFormState extends State<PatientAddForm> {
               ),
               Expanded(
                 child: CustomForm(
-                  controller: p.agamaController,
+                  controller: p.rtController,
                   hintText: "Masukkan RT",
                   title: "RT",
                   isMust: false,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Profile_Page/profile_controller/profile_controller.dart';
+import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_account_information_page/profile_data_form.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
@@ -31,8 +31,9 @@ class _ProfileAccountInformationState extends State<ProfileAccountInformation> {
           height: Get.height,
           color: Colors.white,
         ),
-        const CustomTopBar(),  
+        const CustomTopBar(height: 115),  
         RoundedInside(
+          height: 97,
           child: SingleChildScrollView(
             child: Column(
               children: const [
@@ -43,7 +44,7 @@ class _ProfileAccountInformationState extends State<ProfileAccountInformation> {
         ),
         Container(
         color: Colors.transparent,
-        height: c.sh * 128,
+        height:    128,
         width: Get.width,
         child: Padding(
             padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
@@ -52,7 +53,7 @@ class _ProfileAccountInformationState extends State<ProfileAccountInformation> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: c.sh * 53,
+                  height:    53,
                 ),
                 Row(
                   children: [

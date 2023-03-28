@@ -53,7 +53,7 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
           left: -210,
           child: Container(
             width: c.sw * 844,
-            height: c.sh * 844,
+            height:    844,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(1000), color: OPrimaryColor),
           ),
         ),
@@ -77,7 +77,7 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: c.sh * 53,
+            height:    53,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: c.sw * 16.0),
@@ -91,7 +91,7 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
                   children: [
                     const Text("Artikel Kesehatan").p16b().white(),
                     SizedBox(
-                      height: c.sh * 21,
+                      height:    21,
                     ),
                   ],
                 ),
@@ -101,7 +101,7 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
           Stack(
             children: [
             SizedBox(
-              height: c.sh * 400,
+              height:    400,
               width: Get.width,
               child: PageView.builder(
                 controller: controller,
@@ -133,7 +133,7 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
                               ),
                             ),
                             width: Get.width - c.sw * 32,
-                            height: c.sh * 400,
+                            height:    400,
                             child: FittedBox(
                               fit: BoxFit.cover,
                               child: Image.asset("assets/images/img_artikel1.png"),
@@ -147,11 +147,11 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                height: c.sh * 266,
+                                height:    266,
                               ),
-                              SizedBox(width: c.sw * 254, height: c.sh * 54, child: Text(h.listNews[index].title).p18b().white()),
+                              SizedBox(width: c.sw * 254, height:    54, child: Text(h.listNews[index].title).p18b().white()),
                               SizedBox(
-                                height: c.sh * 10,
+                                height:    10,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -182,7 +182,7 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
                                 ],
                               ),
                               SizedBox(
-                                height: c.sh * 10,
+                                height:    10,
                               ),
                             ],
                           ),
@@ -196,11 +196,11 @@ class _ArticleBrochureState extends State<ArticleBrochure> {
             Column(
               children: [
                 SizedBox(
-                  height: c.sh * 350,
+                  height:    350,
                 ),
                 SizedBox(
                   width: Get.width,
-                  height: c.sh * 50,
+                  height:    50,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

@@ -20,13 +20,13 @@ class _CheckRmTopBarState extends State<CheckRmTopBar> {
         child: Stack(children: [
       Container(
         color: OPrimaryColor,
-        height: c.sh * 128,
+        height:    128,
         width: Get.width,
       ),
       Positioned(
         bottom: 0,
         child: Container(
-          height: c.sh * 19,
+          height:    19,
           width: Get.width,
           decoration: const BoxDecoration(
               color: Colors.white,

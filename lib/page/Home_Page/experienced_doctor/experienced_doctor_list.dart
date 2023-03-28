@@ -8,16 +8,16 @@ import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
-class ListDokter extends StatefulWidget {
+class ListDoctor extends StatefulWidget {
   final bool? passwordMode;
 
-  const ListDokter({super.key, this.passwordMode});
+  const ListDoctor({super.key, this.passwordMode});
 
   @override
-  State<ListDokter> createState() => _ListDokterState();
+  State<ListDoctor> createState() => _ListDoctorState();
 }
 
-class _ListDokterState extends State<ListDokter> {
+class _ListDoctorState extends State<ListDoctor> {
   var screenHeight = Get.height / 763;
   final c = Get.put(GlobalController());
 
@@ -31,27 +31,31 @@ class _ListDokterState extends State<ListDokter> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children:[
-         SingleChildScrollView(
-          physics: const ScrollPhysics(),
-           child: Column(
-                   children: [
+    return Stack(children: [
+      SingleChildScrollView(
+        physics: const ScrollPhysics(),
+        child: Column(
+          children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal:16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: h.listDoctors.length,
+                  itemCount:
+                      // 10,
+                      h.listDoctors.length,
                   padding: EdgeInsets.zero,
                   itemBuilder: (BuildContext context, int index) => GestureDetector(
                         onTap: () {
-                          Get.to(ScheduleDetailPage(doctor:h.listDoctors[index]));
+                          Get.to(ScheduleDetailPage(
+                              doctor:
+                                  // h.listDoctors[0],
+                                  h.listDoctors[index]));
                         },
                         child: Column(
                           children: [
-                            SizedBox(
-                              height: c.sh * 10,
+                            const SizedBox(
+                              height: 10,
                             ),
                             Container(
                                 height: 125,
@@ -68,19 +72,21 @@ class _ListDokterState extends State<ListDokter> {
                                   child: Row(
                                     children: [
                                       ClipRRect(
-                                        borderRadius: BorderRadius.circular(10.0),
-                                        child: 
-                                        Image.network(width: c.sw * 105,
-                                          height: c.sw * 105,
-                                          h.listDoctors[index].picture,
-                                          fit: BoxFit.cover,)
-                                        // Image.asset(
-                                        //   width: c.sw * 105,
-                                        //   height: c.sw * 105,
-                                        //   h.listDoctors[index].picture,
-                                        //   fit: BoxFit.cover,
-                                        // ),
-                                      ),
+                                          borderRadius: BorderRadius.circular(10.0),
+                                          child: Image.network(
+                                            width: c.sw * 105,
+                                            height: c.sw * 105,
+                                            // h.listDoctors[0].picture,
+                                            h.listDoctors[index].picture,
+                                            fit: BoxFit.cover,
+                                          )
+                                          // Image.asset(
+                                          //   width: c.sw * 105,
+                                          //   height: c.sw * 105,
+                                          //   h.listDoctors[index].picture,
+                                          //   fit: BoxFit.cover,
+                                          // ),
+                                          ),
                                       SizedBox(
                                         width: c.sw * 13,
                                       ),
@@ -91,9 +97,14 @@ class _ListDokterState extends State<ListDokter> {
                                             mainAxisAlignment: MainAxisAlignment.start,
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              AutoSizeText(h.listDoctors[index].namadokter, maxLines: 1, style: GoogleFonts.poppins(fontSize: 14, color: OPrimaryColor, fontWeight: FontWeight.w700), minFontSize: 5),
-                                              SizedBox(
-                                                height: c.sh * 5,
+                                              AutoSizeText(
+                                                  // h.listDoctors[0].namadokter,
+                                                  h.listDoctors[index].namadokter,
+                                                  maxLines: 1,
+                                                  style: GoogleFonts.poppins(fontSize: 14, color: OPrimaryColor, fontWeight: FontWeight.w700),
+                                                  minFontSize: 5),
+                                              const SizedBox(
+                                                height: 5,
                                               ),
                                               Container(
                                                 decoration: const BoxDecoration(
@@ -102,11 +113,14 @@ class _ListDokterState extends State<ListDokter> {
                                                   color: Color.fromARGB(255, 234, 234, 234),
                                                 ))),
                                               ),
-                                              SizedBox(
-                                                height: c.sh * 5,
+                                              const SizedBox(
+                                                height: 5,
                                               ),
                                               Container(
-                                                child: Text(h.listDoctors[index].poli).p10r(),
+                                                child: Text(
+                                                    // h.listDoctors[0].poli
+                                                    // ).p10r(),
+                                                    h.listDoctors[index].poli).p10r(),
                                               ),
                                               const SizedBox(
                                                 height: 4,
@@ -118,11 +132,19 @@ class _ListDokterState extends State<ListDokter> {
                                                     width: 14,
                                                     height: 14,
                                                   ),
-                                                  const SizedBox(width: 8,),
-                                                  Text("08.00 -17.00").p12m().primary()
+                                                  const SizedBox(
+                                                    width: 8,
+                                                  ),
+                                                  Text(h.listDoctors[index].jadwalPagi.senin
+                                                          // "08.00 -17.00"
+                                                          )
+                                                      .p12m()
+                                                      .primary()
                                                 ],
                                               ),
-                                              const SizedBox(height: 3,),
+                                              const SizedBox(
+                                                height: 3,
+                                              ),
                                               Row(
                                                 children: [
                                                   Image.asset(
@@ -130,8 +152,12 @@ class _ListDokterState extends State<ListDokter> {
                                                     width: 14,
                                                     height: 14,
                                                   ),
-                                                  const SizedBox(width: 8,),
-                                                  Text("19.00 -21.00").p12m().primary()
+                                                  const SizedBox(
+                                                    width: 8,
+                                                  ),
+                                                  Text(
+                                                      // "19.00 -21.00"
+                                                      h.listDoctors[index].jadwalMalam.minggu).p12m().primary()
                                                 ],
                                               ),
                                             ],
@@ -144,19 +170,17 @@ class _ListDokterState extends State<ListDokter> {
                                     ],
                                   ),
                                 )),
-                            SizedBox(
-                              height: c.sh * 5,
+                            const SizedBox(
+                              height: 5,
                             )
                           ],
                         ),
                       )),
             ),
-                    
-                   ],
-                 ),
-         ),
-      ]
-    );
+          ],
+        ),
+      ),
+    ]);
   }
 }
 

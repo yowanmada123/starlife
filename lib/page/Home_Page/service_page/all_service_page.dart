@@ -37,7 +37,7 @@ class _AllServicePageState extends State<AllServicePage> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height - kToolbarHeight - c.sh * 300) / 2;
+    final double itemHeight = (size.height - kToolbarHeight -    300) / 2;
     final double itemWidth = size.width / 2;
 
     return Scaffold(
@@ -48,13 +48,13 @@ class _AllServicePageState extends State<AllServicePage> {
             height: Get.height,
             color: Colors.white,
           ),
-          const CustomTopBar(),
+          const CustomTopBar(height: 115),
           SingleChildScrollView(
             physics: const ScrollPhysics(),
             child: Column(
               children: [
                 SizedBox(
-                  height: c.sh * 130,
+                  height:    120,
                 ),
                 // Pelayanan(),
                 Column(
@@ -65,7 +65,7 @@ class _AllServicePageState extends State<AllServicePage> {
                           padding: EdgeInsets.zero,
                           crossAxisCount: 4,
                           childAspectRatio: (itemWidth / itemHeight),
-                          crossAxisSpacing: c.sh * 10,
+                          crossAxisSpacing:    10,
                           mainAxisSpacing: c.sw * 10,
                           controller: ScrollController(keepScrollOffset: false),
                           shrinkWrap: true,
@@ -91,16 +91,16 @@ class _AllServicePageState extends State<AllServicePage> {
                                         ),
                                       ],
                                     ),
-                                    // height: c.sh * 100,
+                                    // height:    100,
                                     width: c.sw * 80,
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        SizedBox(height: c.sh * 50, child: Center(child: Image.asset(categoryImage[index]))),
-                                        SizedBox(
-                                          height: c.sh * 5,
-                                        ),
+                                        SizedBox(height: 50, child: Center(child: Image.asset(categoryImage[index]))),
+                                        // SizedBox(
+                                        //   height:    ,
+                                        // ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal:3.0),
                                           child: Center(
@@ -128,7 +128,7 @@ class _AllServicePageState extends State<AllServicePage> {
           ),
           Container(
             color: Colors.transparent,
-            height: c.sh * 128,
+            height:    128,
             width: Get.width,
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
@@ -137,7 +137,7 @@ class _AllServicePageState extends State<AllServicePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: c.sh * 53,
+                      height:    53,
                     ),
                     Row(
                       children: [

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:starlife/models/model_medical_record.dart';
+import 'package:starlife/controllers/check_rm_controller.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_detail_page.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_detail_topbar.dart';
 import 'package:starlife/page/global_controller.dart';
@@ -9,6 +12,7 @@ import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/base/rounded_inside.dart';
 import 'package:starlife/widget/ext_text.dart';
+import 'package:starlife/widget/extention/ext_date.dart';
 
 class CheckRmListPage extends StatefulWidget {
   const CheckRmListPage({super.key, required this.name});
@@ -29,6 +33,20 @@ class _CheckRmListPageState extends State<CheckRmListPage> {
     'assets/images/img_doctor2.png',
   ];
   final c = Get.put(GlobalController());
+  final cr = Get.put(CheckRmController());
+  @override
+  void initState() {
+    super.initState();
+    // print("AAAAAAAAAAAAAAAAAAa");
+    SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
+      await cr.getDataMedicalRecords(context);
+    });
+    // SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
+    //   await cr.getDataMedicalRecords;
+    // });
+    // print("BBBBBBBBBBBBBBBBBBBB");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,46 +57,70 @@ class _CheckRmListPageState extends State<CheckRmListPage> {
             height: Get.height,
             color: Colors.white,
           ),
-          const CustomTopBar(
-          ),
+          const CustomTopBar(height: 115),
           RoundedInside(
+            height: 98,
             child: SingleChildScrollView(
                 child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: Get.width,
-                  height: Get.height,
-                  child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: entrie.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return index == entrie.length - 1
-                            ?Column(
-                                children: [
-                                  ItemList(
-                                    name: entrie[index],
-                                    image: doctorsImage[index],
-                                  ),
-                                  SizedBox(
-                                    height: c.sh * 120,
-                                  )
-                                ],
-                              )
-                            : ItemList(
-                                name: entrie[index],
-                                image: doctorsImage[index],
-                              );
-                      }),
-                ),
-                SizedBox(
-                  height: c.sh * 500,
+                Obx(() => (cr.loadingDataMedicalRecord.value)
+                    ? SizedBox(
+                        width: Get.width,
+                        height: Get.height,
+                        child: ListView.builder(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            itemCount: cr.medicalRecords.length,
+                            // entrie.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return index == cr.medicalRecords.length - 1
+                                  ? Column(
+                                      children: [
+                                        ItemList(
+                                          medicalRecord: cr.medicalRecords[index],
+                                        ),
+                                        const SizedBox(
+                                          height: 120,
+                                        )
+                                      ],
+                                    )
+                                  : ItemList(
+                                      medicalRecord: cr.medicalRecords[index],
+                                    );
+                            }),
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: const [
+                              Text(
+                                "Belum Ada Rekam Medis",
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                        ],
+                      )),
+                const SizedBox(
+                  height: 500,
                 )
               ],
             )),
           ),
           Container(
             color: Colors.transparent,
-            height: c.sh * 128,
+            height: 110,
             width: Get.width,
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
@@ -86,8 +128,8 @@ class _CheckRmListPageState extends State<CheckRmListPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: c.sh * 53,
+                    const SizedBox(
+                      height: 45,
                     ),
                     Row(
                       children: [
@@ -95,7 +137,14 @@ class _CheckRmListPageState extends State<CheckRmListPage> {
                         SizedBox(
                           width: c.sw * 16,
                         ),
-                        Text(widget.name).p16b().white(),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text("Rekam Medis").p12b().white(),
+                            Text(widget.name).p16b().white(),
+                          ],
+                        ),
                       ],
                     ),
                   ],
@@ -108,23 +157,27 @@ class _CheckRmListPageState extends State<CheckRmListPage> {
 }
 
 class ItemList extends StatelessWidget {
-  const ItemList({super.key, required this.name, required this.image});
-  final String name;
-  final String image;
+  const ItemList({super.key, required this.medicalRecord});
+  // final MedicalRecord medicalRecord;
+  final MedicalRecord medicalRecord;
+  // final String name;
+  // final String image;
   @override
   Widget build(BuildContext context) {
+    final cr = Get.put(CheckRmController());
     final c = Get.put(GlobalController());
     return GestureDetector(
       onTap: () {
-        Get.to(CheckRmDetailPage(name: name));
+        cr.idMedicalRecord.value = medicalRecord.id;
+        Get.to(CheckRmDetailPage(medicalRecord: medicalRecord));
       },
       child: Column(
         children: [
-          SizedBox(
-            height: c.sh * 10,
+          const SizedBox(
+            height: 8,
           ),
           Container(
-              height: c.sh * 109.67,
+              height: 105,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -139,7 +192,7 @@ class ItemList extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10.0),
                       child: Image.asset(
-                        image,
+                        "assets/images/img_doctor.png",
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -156,20 +209,20 @@ class ItemList extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  name,
+                                  medicalRecord.dokter,
                                   maxLines: 1,
                                 ).p16m().primary(),
-                                SizedBox(
-                                  height: c.sh * 2,
+                                const SizedBox(
+                                  height: 2,
                                 ),
                                 Container(
                                   height: 1,
                                   color: Colors.grey[200],
                                 ),
-                                SizedBox(
-                                  height: c.sh * 2,
+                                const SizedBox(
+                                  height: 2,
                                 ),
-                                const Text('Dokter Umum').p10r().black(),
+                                Text(medicalRecord.poli).p10r().black(),
                               ],
                             ),
                           ],
@@ -184,7 +237,7 @@ class ItemList extends StatelessWidget {
                                   SizedBox(
                                     width: c.sw * 4,
                                   ),
-                                  const Text('24 November 2022').p10m().primary(),
+                                  Text(DateTime.parse(medicalRecord.tanggalTime).toDateHuman()).p10m().primary(),
                                 ],
                               ),
                               Row(
@@ -197,7 +250,7 @@ class ItemList extends StatelessWidget {
                                   SizedBox(
                                     width: c.sw * 4,
                                   ),
-                                  const Text('10:40 WIB').p10m().primary(),
+                                  Text(DateTime.parse(medicalRecord.tanggalTime).toTimeDate()).p10m().primary(),
                                 ],
                               ),
                             ],
@@ -208,8 +261,8 @@ class ItemList extends StatelessWidget {
                   ],
                 ),
               )),
-          SizedBox(
-            height: c.sh * 10,
+          const SizedBox(
+            height: 10,
           )
         ],
       ),

@@ -24,13 +24,13 @@ class _CheckRmImmunizationHistoryPageState extends State<CheckRmImmunizationHist
             height: Get.height,
             color: Colors.white,
           ),
-          const CustomTopBar(
+          const CustomTopBar(height: 115
           ),
           SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
-                  height: c.sh * 109,
+                const SizedBox(
+                  height: 97,
                 ),
                 SizedBox(
                   width: Get.width,
@@ -44,7 +44,7 @@ class _CheckRmImmunizationHistoryPageState extends State<CheckRmImmunizationHist
                               ? Column(
                                   children: [
                                     const ItemList(),
-                                    SizedBox(height: c.sh*120,)
+                                    SizedBox(height: 120,)
                                   ],
                                 )
                               : const ItemList();
@@ -55,7 +55,7 @@ class _CheckRmImmunizationHistoryPageState extends State<CheckRmImmunizationHist
             ),
           ),Container(
             color: Colors.transparent,
-            height: c.sh * 128,
+            height:    128,
             width: Get.width,
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
@@ -64,7 +64,7 @@ class _CheckRmImmunizationHistoryPageState extends State<CheckRmImmunizationHist
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: c.sh * 53,
+                      height:    53,
                     ),
                     Row(
                       children: [
@@ -130,7 +130,7 @@ class _ItemListState extends State<ItemList> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
-                              height: c.sh * 20,
+                              height:    20,
                               width: c.sw * 120,
                               decoration: BoxDecoration(color: Colors.white, border: Border.all(color: const Color(0xff20B09C)), borderRadius: BorderRadius.circular(6)),
                               child: Column(
@@ -230,7 +230,7 @@ class _ItemListState extends State<ItemList> {
                           ],
                         ),
                         SizedBox(
-                          height: c.sh * 6,
+                          height:    6,
                         ),
                         Container(
                           width: Get.width,
@@ -238,7 +238,7 @@ class _ItemListState extends State<ItemList> {
                           decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.white))),
                         ),
                         SizedBox(
-                          height: c.sh * 6,
+                          height:    6,
                         ),
                       ],
                     ),
@@ -251,7 +251,7 @@ class _ItemListState extends State<ItemList> {
         ],
       ),
       SizedBox(
-        height: c.sh * 20,
+        height:    20,
       )
     ]);
   }

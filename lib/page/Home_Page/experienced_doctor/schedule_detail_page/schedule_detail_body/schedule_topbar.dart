@@ -21,11 +21,11 @@ class _ScheduleTopBarState extends State<ScheduleTopBar> {
     return Positioned(
         child: Container(
       color: OPrimaryColor,
-      height: c.sh * 304,
+      height:    304,
       width: Get.width,
       child: Stack(children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: c.sh * 53),
+          padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical:    53),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -55,7 +55,7 @@ class _ScheduleTopBarState extends State<ScheduleTopBar> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: c.sh * 53),
+          padding: EdgeInsets.only(top:    53),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,12 +75,12 @@ class _ScheduleTopBarState extends State<ScheduleTopBar> {
                     ),
                   ),
                   SizedBox(
-                    height: c.sh * 12,
+                    height:    12,
                   ),
                   Text(widget.doctor.namadokter).p18m().white(),
                   Text(widget.doctor.poli).p10r().white(),
                   SizedBox(
-                    height: c.sh * 10,
+                    height:    10,
                   ),
                 ],
               ),

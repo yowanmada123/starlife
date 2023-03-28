@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Patient_Page/patient_add_alert.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_body/patient_list.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_queue_page/patient_queue_page.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_body/patient_doctor_schedule.dart';
-import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_body/patient_doctor_list.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_body/patient_topbar.dart';
 import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
 import 'package:starlife/page/global_controller.dart';
@@ -24,6 +24,16 @@ class _PatientListPageState extends State<PatientListPage> {
   TextEditingController controller = TextEditingController(text: "");
 
   @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.scheduleFrameCallback((timeStamp) {
+      p.selectedPatientRm.value = "";
+      p.selectedDoctor.value = "";
+      p.selectedSchedule.value = "";
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
@@ -36,14 +46,14 @@ class _PatientListPageState extends State<PatientListPage> {
               children: [
                 const PatientList(),
                 Container(
-                    height: 50,
+                    height: 55,
                     width: Get.width,
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                     color: Colors.white,
                     child: BaseButton(
                       height: 40,
                       ontap: () {
-                        showAlert(context, controller);
+                        showAlert(context, controller, p);
                       },
                       text: "Tambah Pasien",
                       icon: Icons.add,
@@ -51,27 +61,53 @@ class _PatientListPageState extends State<PatientListPage> {
                       outlineRadius: 20,
                     )),
                 const PatientDoctorSchedule(),
-                const PatientDoctorList(),
-                const SizedBox(height: 100,)
+                // const PatientDoctorList(),
+                const SizedBox(
+                  height: 60,
+                )
               ],
             ),
           ),
         ),
         const PatientTopBar(buttonBack: false),
         CustomButtomButton(
-            ontap: () {
-                print(p.emailController.text);
-                print(p.namaController.text);
-                print(p.tanggalLahirController.text);
-                print(p.usiaController.text);
-                print(p.statusController.text);
-                print(p.jenisKelaminController.text);
-                print(p.agamaController.text);
-                print(p.alergiObatController.text);
-                print(p.alamatController.text);
-                print(p.handphoneController.text);
-                print(p.orangtuaController.text);
-              Get.to(const PatientQueuePage(), transition: Transition.rightToLeft);
+            ontap: () async {
+              if (p.selectedPatientRm.value != null && p.selectedPatientRm.value != '') {
+                if (p.selectedDoctor.value != null && p.selectedDoctor.value != '') {
+                  if (p.selectedSchedule.value != null && p.selectedDoctor.value != '') {
+                    // print(p.selectedPatientRm.value);
+                    // print(p.selectedDoctor.value);
+                    // print(p.selectedDoctor.value);
+                    print(p.selectedSchedule.value);
+                    await p.cekDataAppointment(context, false);
+                    if (p.loadingAppoinment.value) {
+                      Get.to(const PatientQueuePage(), transition: Transition.rightToLeft);
+                      // print(p.selectedPatientRm.value);
+                      // print(p.selectedDoctor.value);
+                      // print(p.selectedDoctor.value);
+                      // print(p.selectedSchedule.value);
+                      // p.selectedPatientRm.value = '';
+                      // p.selectedDoctor.value = '';
+                      // p.selectedSchedule.value = '';
+                    }
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("Please Choose Schedule First"),
+                      backgroundColor: Colors.black87,
+                    ));
+                  }
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Please Choose Patient First"),
+                    backgroundColor: Colors.black87,
+                  ));
+                }
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("Please Choose Doctor First"),
+                  backgroundColor: Colors.black87,
+                ));
+              }
             },
             text: "Lihat Antrian")
       ]),

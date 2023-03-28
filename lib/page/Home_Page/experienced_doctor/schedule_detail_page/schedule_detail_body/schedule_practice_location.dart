@@ -43,8 +43,8 @@ class _SchedulePracticeLocationState extends State<SchedulePracticeLocation> {
               ),
             ],
           ),
-          SizedBox(
-            height: c.sh*12,
+          const SizedBox(
+            height: 12,
           ),
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -52,8 +52,8 @@ class _SchedulePracticeLocationState extends State<SchedulePracticeLocation> {
               child: Image.asset("assets/images/img_map.png"),
             ),
           ),
-          SizedBox(
-            height: c.sh*16,
+          const SizedBox(
+            height: 16,
           ),
           
         ],

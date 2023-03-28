@@ -1,17 +1,22 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
-import 'package:starlife/widget/base/button_base.dart';
+import 'package:starlife/widget/base/custom_dropdown.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../../../widget/base/custom_fixed_form.dart';
 import '../../../../../../widget/base/custom_form.dart';
 
 class ProfilePatientEditForm extends StatefulWidget {
-  final bool? passwordMode;
-
-  const ProfilePatientEditForm({super.key, this.passwordMode});
+  const ProfilePatientEditForm({super.key, required this.patient});
+  // final bool? passwordMode;
+  final patient;
 
   @override
   State<ProfilePatientEditForm> createState() => _ProfilePatientEditFormState();
@@ -19,53 +24,99 @@ class ProfilePatientEditForm extends StatefulWidget {
 
 class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
   final c = Get.put(GlobalController());
+  final p = Get.put(ProfileController());
+
   bool visible = false;
-  String password = "abcedef";
-  bool editIcon = false;
-  bool editButton = true;
-  String _dateTime = "10/10/1985";
-  TextEditingController rmController = TextEditingController(text: "");
-  TextEditingController namaController = TextEditingController(text: "");
-  TextEditingController emailController = TextEditingController(text: "");
-  TextEditingController tanggalLahirController = TextEditingController(text: "");
-  TextEditingController statusController = TextEditingController(text: "");
-  TextEditingController jenisKelaminController = TextEditingController(text: "");
-  TextEditingController agamaController = TextEditingController(text: "");
-  TextEditingController alergiObatController = TextEditingController(text: "");
-  TextEditingController goldarController = TextEditingController(text: "");
-  TextEditingController alamatController = TextEditingController(text: "");
-  TextEditingController kotaController = TextEditingController(text: "");
-  TextEditingController kelurahanController = TextEditingController(text: "");
-  TextEditingController rtController = TextEditingController(text: "");
-  TextEditingController rwController = TextEditingController(text: "");
-  TextEditingController kecamatanController = TextEditingController(text: "");
-  TextEditingController teleponController = TextEditingController(text: "");
-  TextEditingController handphoneController = TextEditingController(text: "");
-  TextEditingController orangtuaController = TextEditingController(text: "");
+  DateTime dateOfbirth = DateTime.now();
+  String myDate = '';
+  String age = '';
+  File? filePhoto;
+  final ImagePicker _picker = ImagePicker();
+  final List<String> genderItems = [
+    'Laki-Laki',
+    'Perempuan',
+  ];
+  final List<String> religionItems = [
+    'Islam',
+    'Kristen',
+    'Konghucu',
+    'Hindu',
+    'Budha',
+    'Katolik',
+  ];
+  final List<String> bloodGroupItems = [
+    'A+',
+    'A-',
+    'B+',
+    'B-',
+    'AB-',
+    'AB-',
+    'O+',
+    'O-',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    // print(widget.patient.picture);
+    dateOfbirth = DateTime.parse(widget.patient.dateOfBirth);
+    myDate = dateOfbirth.toSlashDate();
+    age = c.yourAge(DateTime.parse(widget.patient.dateOfBirth));
+    print(widget.patient.pincode);
+    p.namaController.text = widget.patient.fname;
+    p.emailController.text = widget.patient.email;
+    p.pincode.value = widget.patient.pincode;
+    p.tanggalLahirController.text = widget.patient.dateOfBirth;
+    p.statusController.text = widget.patient.statusPasien;
+    p.jenisKelaminController.text = widget.patient.sex;
+    p.agamaController.text = widget.patient.agama;
+    p.alergiObatController.text = widget.patient.alergi;
+    p.goldarController.text = widget.patient.bloodGroup;
+    p.kotaController.text = widget.patient.kota;
+    p.kelurahanController.text = widget.patient.kelurahan;
+    p.rwController.text = widget.patient.rw;
+    p.rtController.text = widget.patient.rt;
+    p.kecamatanController.text = widget.patient.kecamatan;
+    p.teleponController.text = widget.patient.phone;
+    p.handphoneController.text = widget.patient.mobile;
+    p.orangtuaController.text = widget.patient.namaOrangtua;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: c.sh * 109, right: 16, left: 16),
+      padding: const EdgeInsets.only(top: 98, right: 16, left: 16),
       width: Get.width,
       height: Get.height,
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: c.sh * 30,
+            const SizedBox(
+              height: 30,
             ),
             Stack(children: [
               Column(
                 children: [
                   ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    child: Container(
+                    borderRadius: const BorderRadius.all(Radius.circular(1000)),
+                    child: SizedBox(
                       width: 136,
                       height: 136,
                       child: FittedBox(
                         fit: BoxFit.cover,
-                        child: Image.asset("assets/images/img_avatar.png"),
+                        child: (filePhoto == null)
+                            ? FadeInImage(
+                                image: NetworkImage(widget.patient.picture),
+                                placeholder: const AssetImage("assets/images/img_avatar.png"),
+                                imageErrorBuilder: (context, error, stackTrace) {
+                                  return Image.asset('assets/images/img_avatar.png', fit: BoxFit.fitWidth);
+                                },
+                                fit: BoxFit.cover,
+                              )
+                            : Image.file(
+                                File(filePhoto!.path),
+                                fit: BoxFit.fitWidth,
+                              ),
                       ),
                     ),
                   ),
@@ -75,10 +126,62 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                 bottom: 2,
                 right: 0,
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () async {
+                    showDialog(
+                      barrierDismissible: true,
+                      context: context,
+                      builder: (c) => AlertDialog(
+                        // title: Container(),
+                        content: Container(
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                          height: 58,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  Navigator.pop(context);
+                                  // File? file = await Get.to(() => const CameraOverlay('identitas'));
+                                  final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+                                  if (image != null) {
+                                    setState(() {
+                                      filePhoto = File(image.path);
+                                      p.filePhoto = File(image.path);
+                                      // filePhoto = image as File?;
+                                    });
+                                  }
+                                },
+                                child: const Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                                  child: Text(
+                                    "Kamera",
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  Navigator.pop(context);
+                                  final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+                                  if (image != null) {
+                                    setState(() {
+                                      filePhoto = File(image.path);
+                                      p.filePhoto = File(image.path);
+                                    });
+                                  }
+                                },
+                                child: const Text("Galeri"),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                   child: Container(
                     width: c.sw * 39,
-                    height: c.sh * 39,
+                    height: 39,
                     decoration: BoxDecoration(
                         color: OPrimaryColor,
                         borderRadius: BorderRadius.circular(1000),
@@ -86,7 +189,7 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                           BoxShadow(color: Color.fromARGB(83, 46, 46, 46), spreadRadius: 1, blurRadius: 1, offset: Offset(0.0, 1.0)),
                         ],
                         border: Border.all(color: Colors.white, width: 2)),
-                    child: Icon(
+                    child: const Icon(
                       Icons.camera_alt_rounded,
                       color: Colors.white,
                       size: 17,
@@ -95,23 +198,25 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                 ),
               )
             ]),
-            const CustomFixedForm(
-              content: "RM/545148-1151/015",
+            CustomFixedForm(
+              content: (widget.patient.rm == null || widget.patient.rm == '') ? "RM/545148-1151/015" : widget.patient.rm,
               title: "No. Rekam Medis",
             ),
             CustomForm(
-              controller: namaController,
-              hintText: "Herlambang Ardianto",
+              controller: p.namaController,
+              // hintText: "",
+              hintText: widget.patient.fname,
               title: "Nama Lengkap",
               isMust: true,
             ),
             CustomForm(
-              controller: emailController,
-              hintText: "ardiantoCelaluCeria@gmail.com",
+              controller: p.emailController,
+              hintText: widget.patient.email,
               title: "Email",
               isMust: true,
             ),
             CustomFixedForm(
+              isMust: true,
               title: "Pin RM",
               cornerIcon: (visible) ? Icons.visibility : Icons.visibility_off,
               ontapIcon: () {
@@ -119,7 +224,8 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                   visible = !visible;
                 });
               },
-              content: (visible) ? password : password.replaceAll(RegExp(r"."), "*"),
+              content: (visible) ? p.pincode.value : p.pincode.value.replaceAll(RegExp(r"."), "*"),
+              // content: (visible) ? widget.patient.pincode : widget.patient.pincode.replaceAll(RegExp(r"."), "*"),
               backgroundColor: Colors.white,
               ontap: () {},
             ),
@@ -127,9 +233,10 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
               children: [
                 Expanded(
                   child: CustomFixedForm(
+                    isMust: true,
                     title: "Tanggal Lahir",
                     cornerIcon: Icons.calendar_month_outlined,
-                    content: _dateTime,
+                    content: myDate,
                     backgroundColor: Colors.white,
                     ontap: () {
                       showDatePicker(
@@ -140,7 +247,10 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                       ).then((date) {
                         //tambahkan setState dan panggil variabel _dateTime.
                         setState(() {
-                          _dateTime = date!.toSlashDate();
+                          myDate = date!.toSlashDate();
+                          p.tanggalLahirController.text = date.toyyyyMMdd();
+                          // print(p.tanggalLahirController.text);
+                          age = c.yourAge(date);
                         });
                       });
                     },
@@ -150,23 +260,32 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                   width: c.sw * 24,
                 ),
                 Expanded(
-                  child: const CustomFixedForm(content: "42 Tahun", title: "Usia"),
+                  child: CustomFixedForm(content: "$age Tahun", title: "Usia"),
                 )
               ],
             ),
             CustomForm(
-              controller: statusController,
-              hintText: "Istri",
+              controller: p.statusController,
+              hintText: widget.patient.statusPasien,
               title: "Status Pasien Dalam Keluarga",
               isMust: true,
             ),
             Row(
               children: [
+                // Expanded(
+                //   child: CustomForm(
+                //     controller: p.jenisKelaminController,
+                //     hintText: (widget.patient.sex == "male") ? "Laki - Laki" : "Perempuan",
+                //     title: "Jenis Kelamin",
+                //     isMust: true,
+                //   ),
+                // ),
                 Expanded(
-                  child: CustomForm(
-                    controller: jenisKelaminController,
-                    hintText: "Perempuan",
+                  child: CustomDropDown(
                     title: "Jenis Kelamin",
+                    items: genderItems,
+                    firstItem: p.jenisKelaminController.text == "male" ? "Laki - Laki" : "Perempuan",
+                    controller: p.jenisKelaminController,
                     isMust: true,
                   ),
                 ),
@@ -174,47 +293,51 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                   width: c.sw * 24,
                 ),
                 Expanded(
-                  child: CustomForm(
-                    controller: agamaController,
-                    hintText: "Islam",
+                  child: CustomDropDown(
                     title: "Agama",
+                    items: religionItems,
+                    firstItem: p.agamaController.text,
+                    controller: p.agamaController,
+                    isMust: true,
                   ),
                 ),
               ],
             ),
             CustomForm(
-              controller: alergiObatController,
-              hintText: "Paracetamol",
+              controller: p.alergiObatController,
+              hintText: widget.patient.alergi,
               title: "Alergi Obat",
               isMust: true,
             ),
-            CustomForm(
-              controller: goldarController,
-              hintText: "O",
+            CustomDropDown(
               title: "Golongan Darah",
+              items: bloodGroupItems,
+              firstItem: p.goldarController.text,
+              controller: p.goldarController,
+              isMust: true,
             ),
             CustomForm(
-              controller: alamatController,
-              hintText: "Jl, Nginden Semolo No. 42, Nginden Jangkrungan, Kec. Sukolilo, Kota SBY, Jawa Timur 19002",
+              controller: p.alamatController,
+              hintText: widget.patient.address,
               title: "Alamat",
               isMust: true,
             ),
             CustomForm(
-              controller: kotaController,
-              hintText: "Surabaya",
+              controller: p.kotaController,
+              hintText: widget.patient.kota,
               title: "Kota",
             ),
             CustomForm(
-              controller: kelurahanController,
-              hintText: "Kelurahan Sukolilo",
+              controller: p.kelurahanController,
+              hintText: widget.patient.kelurahan,
               title: "Kelurahan",
             ),
             Row(
               children: [
                 Expanded(
                   child: CustomForm(
-                    controller: rwController,
-                    hintText: "003",
+                    controller: p.rwController,
+                    hintText: widget.patient.rw,
                     title: "RW",
                   ),
                 ),
@@ -223,35 +346,36 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                 ),
                 Expanded(
                   child: CustomForm(
-                    controller: rtController,
-                    hintText: "006",
+                    controller: p.rtController,
+                    hintText: widget.patient.rt,
                     title: "RT",
                   ),
                 ),
               ],
             ),
             CustomForm(
-              controller: kecamatanController,
-              hintText: "Kecamatan",
-              title: "Kecamatan Sukolilo",
+              controller: p.kecamatanController,
+              hintText: widget.patient.kecamatan,
+              title: "Kecamatan",
             ),
             CustomForm(
-              controller: teleponController,
-              hintText: "-",
+              controller: p.teleponController,
+              hintText: widget.patient.phone,
               title: "No. Telepon (Rumah)",
             ),
             CustomForm(
-              controller: handphoneController,
-              hintText: "0822265121515",
+              controller: p.handphoneController,
+              hintText: "",
               title: "No. Handphone",
+              isMust: true,
             ),
             CustomForm(
-              controller: orangtuaController,
-              hintText: "Ari Ardianto",
+              controller: p.orangtuaController,
+              hintText: widget.patient.namaOrangtua,
               title: "Nama Orang Tua",
             ),
-            SizedBox(
-              height: c.sh * 80,
+            const SizedBox(
+              height: 80,
             )
           ],
         ),

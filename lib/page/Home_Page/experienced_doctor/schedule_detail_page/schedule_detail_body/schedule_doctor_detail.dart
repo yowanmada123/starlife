@@ -12,7 +12,7 @@ class ScheduleDoctorExperience extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(height: c.sh*318,color: Colors.white),
+        Container(height: 318,color: Colors.white),
         Padding(
           padding:  EdgeInsets.symmetric(horizontal: c.sw*16),
           child: Row(
@@ -55,8 +55,8 @@ class ScheduleDoctorExperience extends StatelessWidget {
             ),
           ],),
         ),
-        SizedBox(
-              height: c.sh*16,
+        const SizedBox(
+              height: 16,
             ),
       ],
     );

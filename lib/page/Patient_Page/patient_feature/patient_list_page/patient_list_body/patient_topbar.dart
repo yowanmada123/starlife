@@ -23,9 +23,9 @@ class _PatientTopBarState extends State<PatientTopBar> {
         child: Container(
           color: Colors.white,
           width: Get.width,
-          height: 100,
+          height: 92,
           child: Padding(
-            padding: EdgeInsets.only(left: c.sw * 16, top: c.sh * 53),
+            padding: EdgeInsets.only(left: c.sw * 16, top: 48),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -45,7 +45,7 @@ class _PatientTopBarState extends State<PatientTopBar> {
                   children: [
                     const Text("Daftar Pasien").p14b(),
                     SizedBox(
-                      height: c.sh * 2,
+                      height: 2,
                     ),
                     const Text("Pilih Pasien").p12m(),
                   ],

@@ -4,9 +4,8 @@ import 'package:get/get.dart' hide Response, FormData, MultipartFile;
 import 'package:starlife/page/Auth_Page/Login/login_page.dart';
 import 'package:starlife/page/Home_Page/navigationbar/navigationbar.dart';
 import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/page/dio/dio_client.dart';
 
-import '../Login/login.dart';
+import '../page/Auth_Page/Login/login.dart';
 
 class AuthController extends GetxController {
   var c = Get.put(GlobalController());
@@ -40,6 +39,7 @@ class AuthController extends GetxController {
       if (ok == "ok" && ok != null) {
         print(response.data["response"]);
         c.setToken(response.data['response']['data']['token']);
+        c.setLogin();
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Login Success'),

@@ -27,7 +27,7 @@ class _CustomFormState extends State<CustomForm> {
         Container(
           color: Colors.white,
           width: Get.width,
-          height: c.sh * 30,
+          height:    30,
           child: RichText(
             text: TextSpan(
               text: widget.title,
@@ -42,7 +42,7 @@ class _CustomFormState extends State<CustomForm> {
           ),
         ),
         Container(
-          height: c.sh * 46,
+          height:    46,
           alignment: Alignment.center,
           child: TextField(
             enabled: (widget.editable == null) ? true : widget.editable,
@@ -67,7 +67,7 @@ class _CustomFormState extends State<CustomForm> {
           ),
         ),
         SizedBox(
-          height: c.sh * 16,
+          height:    16,
         )
       ],
     );

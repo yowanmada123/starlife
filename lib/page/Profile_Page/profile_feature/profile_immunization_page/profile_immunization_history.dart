@@ -73,7 +73,7 @@ class _ItemListState extends State<ItemList> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
-                              height: c.sh * 20,
+                              height:    20,
                               width: c.sw * 120,
                               decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Color(0xff20B09C)), borderRadius: BorderRadius.circular(6)),
                               child: Center(
@@ -173,7 +173,7 @@ class _ItemListState extends State<ItemList> {
                           ],
                         ),
                         SizedBox(
-                          height: c.sh * 8,
+                          height:    8,
                         ),
                         Container(
                           width: Get.width,
@@ -181,7 +181,7 @@ class _ItemListState extends State<ItemList> {
                           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.white))),
                         ),
                         SizedBox(
-                          height: c.sh * 8,
+                          height:    8,
                         ),
                         
                       ],
@@ -195,7 +195,7 @@ class _ItemListState extends State<ItemList> {
         ],
       ),
       SizedBox(
-        height: c.sh * 20,
+        height:    20,
       )
     ]);
   }

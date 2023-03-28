@@ -47,7 +47,7 @@ class _CustomListformState extends State<CustomListform> {
         Container(
             padding: EdgeInsets.only(left: c.sw * 15, top: 14, bottom: 14),
             width: Get.width,
-            // height: c.sh * 46,
+            // height:    46,
             decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Color(0xff28C6F5))),
             child: ListView.builder(
                 shrinkWrap: true,
@@ -72,7 +72,7 @@ class _CustomListformState extends State<CustomListform> {
                   );
                 })),
         SizedBox(
-          height: c.sh * 16,
+          height:    16,
         ),
       ],
     );

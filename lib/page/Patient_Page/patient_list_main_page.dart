@@ -5,7 +5,6 @@ import 'package:starlife/page/Patient_Page/patient_add_alert.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_body/patient_list.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_queue_page/patient_queue_page.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_body/patient_doctor_schedule.dart';
-import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_body/patient_doctor_list.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_body/patient_topbar.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_base.dart';
@@ -29,86 +28,117 @@ class _PatientListMainPageState extends State<PatientListMainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: c.pasienNumber != 0
-            ? Stack(children: [
-                Container(height: Get.height, width: Get.width, color: Colors.white),
-                Container(
+        body:
+            // c.pasienNumber != 0
+            //     ?
+            Stack(children: [
+      Container(height: Get.height, width: Get.width, color: Colors.white),
+      Container(
+        color: Colors.white,
+        child: SingleChildScrollView(
+          physics: const ScrollPhysics(),
+          child: Column(
+            children: [
+              const PatientList(),
+              Container(
+                  height: 60,
+                  width: Get.width,
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   color: Colors.white,
-                  child: SingleChildScrollView(
-                    physics: const ScrollPhysics(),
-                    child: Column(
-                      children: [
-                        const PatientList(),
-                        Container(
-                            height: 60,
-                            width: Get.width,
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                            color: Colors.white,
-                            child: BaseButton(
-                              height: 40,
-                              ontap: () {
-                                showAlert(context, controller);
-                              },
-                              text: "Tambah Pasien",
-                              icon: Icons.add,
-                              iconColor: Colors.white,
-                              outlineRadius: 20,
-                            )),
-                        // Obx(() => Visibility(
-                        //     visible: p.selectedPasien.isEmpty ? false : true,
-                        //     child: Column(
-                        //       children: [
-                          
-                        //       ],
-                        //     ),
-                        //   )),
-                        const PatientDoctorSchedule(),
-                        const PatientDoctorList(),
-                        CustomButtomButton(
-                            ontap: () {
-                              Get.to(const PatientQueuePage(), transition: Transition.rightToLeft);
-                            },
-                            text: "Lihat Antrian"),
-                        SizedBox(
-                          height: c.sh * 30,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                const PatientTopBar(buttonBack: false),
-              ])
-            : Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset("assets/icon/ic_emphty_pasien.svg"),
-                  ],
-                ),
-                const Text("Masih Belum ada pasien terdaftar disini").p12b(),
-                SizedBox(
-                  height: c.sh * 30,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
                   child: BaseButton(
+                    height: 40,
                     ontap: () {
-                      showAlert(context, controller);
+                      showAlert(context, controller, p);
                     },
                     text: "Tambah Pasien",
-                    textSize: 12,
-                    textColor: Colors.white,
                     icon: Icons.add,
                     iconColor: Colors.white,
                     outlineRadius: 20,
-                    height: c.sh * 40,
-                  ),
-                ),
-              ],
-            ));
-  }
+                  )),
+              // Obx(() => Visibility(
+              //     visible: p.selectedPasien.isEmpty ? false : true,
+              //     child: Column(
+              //       children: [
 
+              //       ],
+              //     ),
+              //   )),
+              const PatientDoctorSchedule(),
+              // const PatientDoctorList(),
+              CustomButtomButton(
+                  ontap: () async {
+                    if (p.selectedPatientRm.value != null && p.selectedPatientRm.value != '') {
+                      if (p.selectedDoctor.value != null && p.selectedDoctor.value != '') {
+                        if (p.selectedSchedule.value != null && p.selectedDoctor.value != '') {
+                          print("========================");
+                          print(p.selectedSchedule.value);
+                          print("========================");
+                          await p.cekDataAppointment(context, false);
+                          if (p.loadingAppoinment.value) {
+                            Get.to(const PatientQueuePage(), transition: Transition.rightToLeft);
+                          }
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text("Please Choose Schedule First"),
+                            backgroundColor: Colors.black87,
+                          ));
+                        }
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("Please Choose Patient First"),
+                          backgroundColor: Colors.black87,
+                        ));
+                      }
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Please Choose Doctor First"),
+                        backgroundColor: Colors.black87,
+                      ));
+                    }
+                    // Get.to(const PatientQueuePage(), transition: Transition.rightToLeft);
+                  },
+                  text: "Lihat Antrian"),
+              SizedBox(
+                height: 30,
+              )
+            ],
+          ),
+        ),
+      ),
+      const PatientTopBar(buttonBack: false),
+    ])
+        // :
+        // Column(
+        //   crossAxisAlignment: CrossAxisAlignment.center,
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     Row(
+        //       mainAxisAlignment: MainAxisAlignment.center,
+        //       children: [
+        //         SvgPicture.asset("assets/icon/ic_emphty_pasien.svg"),
+        //       ],
+        //     ),
+        //     const Text("Masih Belum ada pasien terdaftar disini").p12b(),
+        //     SizedBox(
+        //       height:    30,
+        //     ),
+        //     Padding(
+        //       padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+        //       child: BaseButton(
+        //         ontap: () {
+        //           showAlert(context, controller, p);
+        //         },
+        //         text: "Tambah Pasien",
+        //         textSize: 12,
+        //         textColor: Colors.white,
+        //         icon: Icons.add,
+        //         iconColor: Colors.white,
+        //         outlineRadius: 20,
+        //         height:    40,
+        //       ),
+        //     ),
+        //   ],
+        // )
+        );
+  }
 }

@@ -18,8 +18,8 @@ class _ScheduleDoctorBiographyState extends State<ScheduleDoctorBiography> {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          SizedBox(
-              height: c.sh*14,
+          const SizedBox(
+              height:14,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -28,15 +28,15 @@ class _ScheduleDoctorBiographyState extends State<ScheduleDoctorBiography> {
                 const Text("Biografi Dokter").p14m().black(),
               ],
             ),
-            SizedBox(
-              height: c.sh*6,
+            const SizedBox(
+              height: 6,
             ),
             Container(
               child: const Text("dr. Ana Sulastri mempunyai pengalaman 7 tahun sebagai dokter spesialis anak dengan bidang keahlian nafsu makan, DBD dan penyakit tropis, pencernaan anak, bayi lahir kecil dan prematur, perkembangan anak dan kesehatan remaja.", textAlign: TextAlign.justify,).p12l().black(),
             ),
             const Divider(),
-            SizedBox(
-              height: c.sh*60,
+            const SizedBox(
+              height: 60,
             ),
           
         ],

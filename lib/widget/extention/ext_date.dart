@@ -14,6 +14,11 @@ extension DatetimeExt on DateTime {
         this.day == other.day;
   }
 
+  String toTimeDate() {
+    DateTime res = checkUtc();
+    return res.format('HH:mm');
+  }
+
   String toDateHuman() {
     DateTime res = checkUtc();
     return res.format('dd MMMM y');

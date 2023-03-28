@@ -24,7 +24,7 @@ class _ProfileItemListState extends State<ProfileItemList> {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: c.sw * 10),
             width: Get.width,
-            height: c.sh * 38,
+            height:    38,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -66,7 +66,7 @@ class _ProfileItemListState extends State<ProfileItemList> {
           ),
         ),
         SizedBox(
-          height: c.sh * 16,
+          height:    16,
         )
       ],
     );

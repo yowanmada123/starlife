@@ -20,27 +20,33 @@ class _ProfilePageState extends State<ProfilePage> {
   final c = Get.put(GlobalController());
 
   @override
+  void initState() {
+    super.initState();
+    print(c.getToken());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
           Container(
-          width: Get.width,
-          height: Get.height,
-          color: Colors.white,
-        ),
-        const ProfileBackground(),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: c.sw*16),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const ProfilePatient(),
-                ProfileFeature(),
-              ],
-            ),
+            width: Get.width,
+            height: Get.height,
+            color: Colors.white,
           ),
-        )
+          const ProfileBackground(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const ProfilePatient(),
+                  ProfileFeature(),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );

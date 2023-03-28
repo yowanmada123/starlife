@@ -29,11 +29,11 @@ class _ProfilePatientDataPageState extends State<ProfilePatientDataPage> {
             height: Get.height,
             color: Colors.white,
           ),
-          const CustomTopBar(),
+          const CustomTopBar(height: 115),
           ProfilePatientDataform(patient: widget.patient,),
           Container(
             color: Colors.transparent,
-            height: c.sh * 128,
+            height:    128,
             width: Get.width,
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
@@ -42,7 +42,7 @@ class _ProfilePatientDataPageState extends State<ProfilePatientDataPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: c.sh * 53,
+                      height:    53,
                     ),
                     Row(
                       children: [

@@ -49,7 +49,7 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
         ),
       ),
       SizedBox(
-        height: c.sh * 16,
+        height:    16,
       ),
       Padding(
         padding: const EdgeInsets.only(left: 16.0),
@@ -88,7 +88,7 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
             )),
       ),
       SizedBox(
-        height: c.sh * 10,
+        height:    10,
       ),
       Obx(() =>
       (h.loadingNewsData.value) ?
@@ -161,7 +161,7 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
                       ),
                     ),
                     SizedBox(
-                      height: c.sh * 10,
+                      height:    10,
                     ),
                   ],
                 ),
@@ -169,7 +169,7 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
             ) : CircularProgressIndicator()
             ),
       SizedBox(
-        height: c.sh * 30,
+        height:    30,
       ),
     ]);
   }

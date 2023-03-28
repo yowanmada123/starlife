@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_list_page.dart';
+import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_new_pin_page/profile_new_pin_page.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
@@ -10,22 +12,43 @@ import 'package:starlife/widget/base/showdialog_fill_button.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class ProfilePinPage extends StatefulWidget {
-  const ProfilePinPage({super.key});
+  const ProfilePinPage({super.key,
+  // required this.patient
+  });
+  // final Patient patient;
 
   @override
   State<ProfilePinPage> createState() => _ProfilePinPageState();
 }
 
 class _ProfilePinPageState extends State<ProfilePinPage> {
+  
   final c = Get.put(GlobalController());
+  final p = Get.put(ProfileController());
+
   String _otp = '';
   String text = '';
   List<String> pin = [];
-  List<String> pinfix = ['2', '2', '2', '2', '2', '2'];
+  List<String> pinfix = [];
+  // List<String> pinfix = ['2', '2', '2', '2', '2', '2'];
   TextEditingController controller = TextEditingController();
   bool truePin = true;
   bool sixTimeTrue = false;
   int pinTrue = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async{
+      p.loadingPersonal.value = false;
+      await p.getDataPersonal();
+      pinfix = p.person!.pincode.split('');
+      print(p.person!.pincode);
+    });
+    // h.getDataNews();
+    // loading.value = false;
+  }
+
   addNumber() {
     setState(() {
       if (_otp.length < 6) {
@@ -101,7 +124,7 @@ class _ProfilePinPageState extends State<ProfilePinPage> {
         elevation: 0,
         leading: GestureDetector(
             onTap: () => Get.back(),
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_ios_new,
               color: Colors.black,
               size: 20,
@@ -113,8 +136,8 @@ class _ProfilePinPageState extends State<ProfilePinPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text("Masukkan PIN").p16b().black(),
-              SizedBox(
-                height: c.sh * 10,
+              const SizedBox(
+                height:    10,
               ),
               if (truePin == true) ...[
                 const Text("Mohon Masukkan PIN Anda Saat Ini").p12r().black(),
@@ -133,8 +156,8 @@ class _ProfilePinPageState extends State<ProfilePinPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               // TextButton(onPressed: clearText, child: Text("data")),
-              SizedBox(
-                height: c.sh * 250,
+              const SizedBox(
+                height: 200,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -158,8 +181,8 @@ class _ProfilePinPageState extends State<ProfilePinPage> {
                       const SizedBox(width: 24),
                 ],
               ),
-              SizedBox(
-                height: c.sh * 20,
+              const SizedBox(
+                height:    20,
               ),
               GestureDetector(
                   onTap: () {
@@ -178,8 +201,8 @@ class _ProfilePinPageState extends State<ProfilePinPage> {
                                     color: Colors.green,
                                     size: 50,
                                   ),
-                                  SizedBox(
-                                    height: c.sh * 10,
+                                  const SizedBox(
+                                    height:    10,
                                   ),
                                   SizedBox(
                                     width: c.sw * 170,
@@ -220,9 +243,9 @@ class _ProfilePinPageState extends State<ProfilePinPage> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Container(
-          height: c.sh * 86,
+          height:    86,
           width: Get.width,
-          padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: c.sh * 20),
+          padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical:    20),
           child: BaseButton(
             ontap: () {
               print(pin.length);
@@ -238,7 +261,7 @@ class _ProfilePinPageState extends State<ProfilePinPage> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
           child: Container(
-            height: c.sh * 235,
+            height:    235,
             width: Get.width,
             child: Column(
               children: [
@@ -314,7 +337,7 @@ class _ProfilePinPageState extends State<ProfilePinPage> {
                   ),
                 ),
                 SizedBox(
-                  height: c.sh * 15,
+                  height:    15,
                 ),
                 Expanded(
                   flex: 1,
@@ -389,7 +412,7 @@ class _ProfilePinPageState extends State<ProfilePinPage> {
                   ),
                 ),
                 SizedBox(
-                  height: c.sh * 15,
+                  height:    15,
                 ),
                 Expanded(
                   flex: 1,
@@ -464,7 +487,7 @@ class _ProfilePinPageState extends State<ProfilePinPage> {
                   ),
                 ),
                 SizedBox(
-                  height: c.sh * 15,
+                  height:    15,
                 ),
                 Expanded(
                   flex: 1,
@@ -532,7 +555,7 @@ class _ProfilePinPageState extends State<ProfilePinPage> {
                   ),
                 ),
                 SizedBox(
-                  height: c.sh * 15,
+                  height:    15,
                 ),
               ],
             ),

@@ -3,9 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:starlife/page/Auth_Page/auth_controller/auth_controller.dart';
+import 'package:starlife/controllers/auth_controller.dart';
 import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/page/Home_Page/navigationbar/navigationbar.dart';
 import 'package:starlife/services/services.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
@@ -46,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
             left: -230,
             child: Container(
               width: c.sw * 844,
-              height: c.sh * 844,
+              height:    844,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(1000), color: OPrimaryColor),
             ),
           ),
@@ -77,26 +76,26 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(top: c.sh * 60.0),
+                          padding: EdgeInsets.only(top:    60.0),
                           child: Image.asset(
                             width: c.sw * 143,
-                            height: c.sh * 173,
+                            height:    173,
                             'assets/icon/ic_logo.png',
                           ),
                         ),
-                        SizedBox(
-                          height: c.sh * 15,
+                        const SizedBox(
+                          height:    15,
                         ),
                         const Text("Selamat Datang !").p20b().white(),
                         const Text("Masuk untuk lanjut").p12r().white(),
-                        SizedBox(
-                          height: c.sh * 14,
+                        const SizedBox(
+                          height:    14,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: c.sw * 34.0),
                           child: Container(
                             width: c.sw * 322,
-                            height: c.sh * 340,
+                            height:    340,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20),
@@ -111,8 +110,8 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             child: Column(
                               children: [
-                                SizedBox(
-                                  height: c.sh * 15,
+                                const SizedBox(
+                                  height:    15,
                                 ),
                                 const Text("Masuk Akun").p16b().black(),
                                 Padding(
@@ -134,8 +133,8 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: c.sh * 15,
+                                const SizedBox(
+                                  height:    15,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: c.sw * 26),
@@ -164,8 +163,8 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: c.sh * 50,
+                                const SizedBox(
+                                  height:    50,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: c.sw * 26),
@@ -204,8 +203,8 @@ class _LoginPageState extends State<LoginPage> {
                                     outlineRadius: 100,
                                   ),
                                 ),
-                                SizedBox(
-                                  height: c.sh * 20,
+                                const SizedBox(
+                                  height:    20,
                                 ),
                                 GestureDetector(
                                     onTap: () {
@@ -227,9 +226,9 @@ class _LoginPageState extends State<LoginPage> {
                                                     style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),
                                                   )),
                                                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                                                  contentPadding: EdgeInsets.symmetric(horizontal: c.sw * 28.0, vertical: c.sh * 10),
+                                                  contentPadding: EdgeInsets.symmetric(horizontal: c.sw * 28.0, vertical:    10),
                                                   content: SizedBox(
-                                                    height: c.sh * 60,
+                                                    height:    60,
                                                     child: Text("Kami telah mengirim email ke sarahcb@gmail.com yang berisi tautan untuk mengatur ulang kata sandi anda.", textAlign: TextAlign.center, style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600)),
                                                   ),
                                                   actions: <Widget>[
@@ -243,12 +242,12 @@ class _LoginPageState extends State<LoginPage> {
                                                           text: "Oke",
                                                           outlineRadius: 10,
                                                           textSize: 14,
-                                                          height: c.sh * 39,
+                                                          height:    39,
                                                         ),
                                                       ),
                                                     ),
-                                                    SizedBox(
-                                                      height: c.sh * 10,
+                                                    const SizedBox(
+                                                      height:    10,
                                                     ),
                                                   ],
                                                 ),
@@ -268,14 +267,14 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: c.sh * 15,
+                        const SizedBox(
+                          height:    15,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: c.sw * 34.0),
                           child: Container(
                             width: c.sw * 322,
-                            height: c.sh * 52,
+                            height:    52,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20),
@@ -310,12 +309,12 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: c.sh * 50,
+                        const SizedBox(
+                          height:    50,
                         ),
                         const Text("© 2022 Starlife Clinic. All rights reserved.").p12r().grey(),
-                        SizedBox(
-                          height: c.sh * 20,
+                        const SizedBox(
+                          height:    20,
                         ),
                       ],
                     ),

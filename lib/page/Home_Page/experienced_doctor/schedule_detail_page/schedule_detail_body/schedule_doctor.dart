@@ -96,7 +96,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(left: c.sw * 16, right: c.sw * 16, bottom: c.sh * 5),
+          padding: EdgeInsets.only(left: c.sw * 16, right: c.sw * 16, bottom: c.sw * 5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -118,7 +118,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
               ),
             ),
             Container(
-              height: c.sh * 36,
+              height:    36,
               decoration: const BoxDecoration(
                   border: Border(
                       left: BorderSide(
@@ -132,7 +132,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
                   left: 16.0,
                 ),
                 child: SizedBox(
-                    height: 52,
+                    height: 49,
                     child: MediaQuery.removePadding(
                       context: context,
                       removeTop: true,
@@ -173,7 +173,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
                                         ),
                                       ],
                                     ),
-                                    height: c.sh * 52,
+                                    height:    52,
                                     width: c.sw * 50,
                                     child: Center(
                                         child: itemIndex == 0
@@ -216,7 +216,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
           ],
         ),
         SizedBox(
-          height: c.sh * 13,
+          height:    13,
         ),
         const Divider(),
       ],

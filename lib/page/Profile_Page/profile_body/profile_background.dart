@@ -19,16 +19,16 @@ class _ProfileBackgroundState extends State<ProfileBackground> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: c.sh*500,
+    return SizedBox(
+      height: 500,
       child: Stack(
         children: [
           Positioned(
               top: -470,
               left: -210,
               child: Container(
-                width: c.sw * 844,
-                height: c.sh * 844,
+                width: 744,
+                height: 744,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(1000), color: OPrimaryColor),
               ),
             ),
@@ -40,8 +40,8 @@ class _ProfileBackgroundState extends State<ProfileBackground> {
                   child: FittedBox(
                     fit: BoxFit.cover,
                     child: Image.asset(
-                      width: c.sw * 600,
-                      height: c.sw * 600,
+                      width: 560,
+                      height: 530,
                       'assets/icon/ic_logo_crop.png',
                       // color: Colors.white.withOpacity(0.15),
                       colorBlendMode: BlendMode.modulate,

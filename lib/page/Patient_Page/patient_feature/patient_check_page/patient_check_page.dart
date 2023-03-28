@@ -1,43 +1,69 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_body/patient_check_bottombar.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_body/patient_check_topbar.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_body/patient_check_data.dart';
 
 class PatientCheckPage extends StatefulWidget {
-  const PatientCheckPage({super.key});
+  const PatientCheckPage({super.key, required this.rm});
+  final String rm;
 
   @override
   State<PatientCheckPage> createState() => _PatientCheckPageState();
 }
 
 class _PatientCheckPageState extends State<PatientCheckPage> {
-  TextEditingController namaController = TextEditingController(text: "");
+  final p = Get.put(PatientPageController());
+  @override
+  void initState() {
+    super.initState();
+    print("=====================");
+    print(widget.rm);
+    print("=====================");
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
+      body: Stack(children: [
+        Container(height: Get.height, width: Get.width, color: Colors.white),
         Container(
-              height: Get.height,
-              width: Get.width,
-              color: Colors.white
-            ),
-        // CustomTopBar(),  
-         Container(
           color: Colors.white,
-           child: SingleChildScrollView(
+          child: SingleChildScrollView(
             child: Column(
-              children: const [
-                PatientCheckData(),
-                SizedBox(height: 50,)
+              children: [
+                PatientCheckData(
+                  rm: widget.rm,
+                ),
+                const SizedBox(
+                  height: 50,
+                )
               ],
             ),
+          ),
         ),
-         ),
+        // Container(
+        //   color: Colors.white,
+        //   child: SingleChildScrollView(
+        //     child: Obx(() =>
+        //     (widget.loadingDataPersonal.value) ?
+        //     Column(
+        //       children: const [
+        //         PatientCheckData(),
+        //         SizedBox(
+        //           height: 50,
+        //         )
+        //       ],
+        //     ) :
+        //     Container()
+        //     ),
+        //   ),
+        // ),
         const PatientCheckTopBar(),
-        const PatientCheckBottomBar()
+        PatientCheckBottomBar(
+          rm: widget.rm,
+        )
       ]),
     );
   }

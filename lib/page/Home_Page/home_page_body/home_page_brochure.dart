@@ -34,7 +34,7 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
     if (time > 18) {
       now = "assets/images/malam.png";
     }
-    print(now);
+    // print(now);
   }
 
   @override
@@ -50,7 +50,7 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
       child: Column(
         children: [
           Container(
-            height: c.sh * 290,
+            height:    290,
             width: Get.width,
             decoration: BoxDecoration(
               color: OPrimaryColor,
@@ -62,13 +62,13 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
             ),
             child: Column(
               children: [
-                SizedBox(
-                  height: c.sh * 130,
+                const SizedBox(
+                  height: 130,
                 ),
                 Row(
                   children: [
                     SizedBox(
-                      width: c.sw * 11,
+                      width: c.sw * 3,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -84,25 +84,51 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
                       ),
                     ),
                     // SvgPicture.asset("assets/icon/ic_doctor.svg"),
-                    SvgPicture.asset(
-                      "assets/icon/ic_doctor.svg",
-                      width: c.sw * 198,
-                      height: c.sh * 160,
-                    )
+                    ClipRRect(
+                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10)),
+                        child: SvgPicture.asset(
+                            "assets/icon/ic_doctor.svg",
+                            width: c.sw * 198,
+                            height:    160,
+                          ),
+                        ),
+                        
+                    // ClipRRect(
+                    //   borderRadius: BorderRadius.only(
+                    //         bottomLeft: const Radius.circular(10)
+                    //   ),
+                    //   child: Container(
+                    //     decoration: BoxDecoration(
+                    //       borderRadius: BorderRadius.only(
+                    //         bottomLeft: const Radius.circular(10)
+                    //       )
+                    //     ),
+                    //     width: c.sw * 230,
+                    //       height:    160,
+                    //     child: FittedBox(
+                    //       fit: BoxFit.cover,
+                    //       child: SvgPicture.asset(
+                    //         "assets/icon/ic_doctor.svg",
+                    //         width: c.sw * 198,
+                    //         height:    160,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 ),
               ],
             ),
           ),
           SizedBox(
-            height: c.sh * 12,
+            height:    12,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
             child: Image.asset(now),
           ),
           SizedBox(
-            height: c.sh * 12,
+            height:    12,
           ),
           SizedBox(
             height: 130,
@@ -128,7 +154,7 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: c.sh * 1,
+                      height:    1,
                     ),
                     Container(
                       height: 120,
@@ -147,7 +173,7 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
                       ),
                     ),
                     SizedBox(
-                      height: c.sh * 1,
+                      height:    1,
                     ),
                   ],
                 ),
@@ -155,12 +181,12 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
             ),
           ),
           SizedBox(
-            height: c.sh * 15,
+            height:    15,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Container(
-              height: c.sh * 42,
+              height:    42,
               width: Get.width,
               decoration: BoxDecoration(color: const Color(0xffFFEBDB), borderRadius: BorderRadius.circular(15), border: Border.all(color: const Color(0xffFFA35C))),
               child: Center(
@@ -182,7 +208,7 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
             ),
           ),
           SizedBox(
-            height: c.sh * 15,
+            height:    15,
           ),
         ],
       ),

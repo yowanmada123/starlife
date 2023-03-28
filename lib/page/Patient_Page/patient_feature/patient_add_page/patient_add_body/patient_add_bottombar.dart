@@ -42,12 +42,12 @@ class _PatientAddBottomBarState extends State<PatientAddBottomBar> {
           },
           child: Container(
             color: Colors.white,
-            height: c.sh * 63,
+            height:    63,
             width: Get.width,
             child: Padding(
               padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
               child: Container(
-                height: c.sh * 47,
+                height:    47,
                 decoration: BoxDecoration(color: OPrimaryColor, borderRadius: BorderRadius.circular(10)),
                 child: Center(child: const Text("Simpan").p14m().white()),
               ),

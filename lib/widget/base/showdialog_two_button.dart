@@ -55,7 +55,7 @@ required Function() buttonLeft, required Function() buttonRight, required String
             ],
           ),
           SizedBox(
-            height: c.sh * 14,
+            height:    14,
           ),
         ],
       );

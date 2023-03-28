@@ -13,74 +13,70 @@ import 'package:starlife/utils/colors.dart';
 import '../../Article_Page/article_healthy_page.dart';
 
 class HelloConvexAppBar extends StatelessWidget {
-
   final c = Get.put(GlobalController());
   // String? token = c.getToken();
   
-  final List<Widget> _children = [
-    const HomePage(),
-    const CheckRmPage(),
-    const PatientListMainPage(),
-    const HealthyArticlePage(),
-    const ProfilePage(),
-  ];
-
-  void onTabTapped(int index) async {
-    String? token = await c.getToken();
-    // if (index == 1 || index == 2 || index == 4) {
-    //   if (c.isLogin.value == false) {
-    //     c.tabHomeIndex.value = 0;
-    //     Get.offAll(HelloConvexAppBar());
-    //     Get.to(const LoginPage());
-    //   } else {
-    //     c.tabHomeIndex.value = index;
-    //   }
-    // } else {
-    //   c.tabHomeIndex.value = index;
-    // } 
-     if (index == 1 || index == 2 || index == 4) {
-      if (token == null) {
-        c.tabHomeIndex.value = 0;
-        Get.offAll(HelloConvexAppBar());
-        Get.to(const LoginPage());
-      } else {
-        c.tabHomeIndex.value = index;
-      }
-    } else {
-      c.tabHomeIndex.value = index;
-    }
-  }
   
+  
+
+  // void onTabTapped(int index) async {
+  //   String? token = await c.getToken();
+  //   // if (index == 1 || index == 2 || index == 4) {
+  //   //   if (c.isLogin.value == false) {
+  //   //     c.tabHomeIndex.value = 0;
+  //   //     Get.offAll(HelloConvexAppBar());
+  //   //     Get.to(const LoginPage());
+  //   //   } else {
+  //   //     c.tabHomeIndex.value = index;
+  //   //   }
+  //   // } else {
+  //   //   c.tabHomeIndex.value = index;
+  //   // }
+    
+  //   if (index == 1 || index == 2 || index == 4) {
+  //     if (token == null) {
+  //       c.tabHomeIndex.value = 0;
+  //       Get.offAll(HelloConvexAppBar());
+  //       Get.to(const LoginPage());
+  //     } else {
+  //       c.isLogin.value = true;
+  //       c.tabHomeIndex.value = index;
+  //     }
+  //   } else {
+  //     c.tabHomeIndex.value = index;
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() => _children[c.tabHomeIndex.toInt()]),
+      body: Obx(() => c.children[c.tabHomeIndex.toInt()]),
       bottomNavigationBar: StyleProvider(
         style: Style(),
-        child: ConvexAppBar(
-            style: TabStyle.fixedCircle,
-            curveSize: 80,
-            height: 62,
-            cornerRadius: 20,
-            items: [
-              TabItem(icon: SvgPicture.asset("assets/icon/ic_home_inactive.svg"), activeIcon: SvgPicture.asset("assets/icon/ic_home_active.svg"), title: "Home"),
-              TabItem(icon: SvgPicture.asset("assets/icon/ic_rm_inactive.svg"), activeIcon: SvgPicture.asset("assets/icon/ic_rm_active.svg"), title: "Cek RM"),
-              TabItem(
-                icon: SvgPicture.asset("assets/icon/ic_inactive_middle.svg"),
-                activeIcon: SvgPicture.asset("assets/icon/ic_active_middle.svg"),
-              ),
-              TabItem(icon: SvgPicture.asset("assets/icon/ic_artikel_inactive.svg"), activeIcon: SvgPicture.asset("assets/icon/ic_artikel_active.svg"), title: "Artikel"),
-              TabItem(icon: SvgPicture.asset("assets/icon/ic_profil.svg"), activeIcon: SvgPicture.asset("assets/icon/ic_profil_active.svg"), title: "Profil"),
-            ],
-            activeColor: OPrimaryColor,
-            color: const Color.fromARGB(255, 212, 211, 211),
-            backgroundColor: Colors.white,
-            initialActiveIndex: c.tabHomeIndex.value,
-            disableDefaultTabController: true,
-            onTap: (int i) {
-              print('click index=$i');
-              onTabTapped(i);
-            }),
+        child: Obx(() => ConvexAppBar(
+                    style: TabStyle.fixedCircle,
+                    curveSize: 80,
+                    height: 62,
+                    cornerRadius: 20,
+                    items: [
+                      TabItem(icon: SvgPicture.asset("assets/icon/ic_home_inactive.svg"), activeIcon: SvgPicture.asset("assets/icon/ic_home_active.svg"), title: "Home"),
+                      TabItem(icon: SvgPicture.asset("assets/icon/ic_rm_inactive.svg"), activeIcon: SvgPicture.asset("assets/icon/ic_rm_active.svg"), title: "Cek RM"),
+                      TabItem(
+                        icon: SvgPicture.asset("assets/icon/ic_inactive_middle.svg"),
+                        activeIcon: SvgPicture.asset("assets/icon/ic_active_middle.svg"),
+                      ),
+                      TabItem(icon: SvgPicture.asset("assets/icon/ic_artikel_inactive.svg"), activeIcon: SvgPicture.asset("assets/icon/ic_artikel_active.svg"), title: "Artikel"),
+                      TabItem(icon: SvgPicture.asset("assets/icon/ic_profil.svg"), activeIcon: SvgPicture.asset("assets/icon/ic_profil_active.svg"), title: "Profil"),
+                    ],
+                    activeColor: OPrimaryColor,
+                    color: const Color.fromARGB(255, 212, 211, 211),
+                    backgroundColor: Colors.white,
+                    initialActiveIndex: c.tabHomeIndex.value,
+                    disableDefaultTabController: true,
+                    onTap: (int i) {
+                      print('click index=');
+                      c.onTabTapped(i);
+                    })),
       ),
     );
   }

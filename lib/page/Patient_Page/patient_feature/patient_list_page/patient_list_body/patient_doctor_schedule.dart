@@ -1,12 +1,13 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:starlife/models/model_doctor.dart';
+import 'package:starlife/page/Home_Page/home_controller.dart';
+import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
-import 'package:dart_date/dart_date.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 
 class PatientDoctorSchedule extends StatefulWidget {
@@ -18,13 +19,38 @@ class PatientDoctorSchedule extends StatefulWidget {
 
 class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
   final c = Get.put(GlobalController());
-  List<DateTime> days = [];
+  final h = Get.put(HomeController());
+  final p = Get.put(PatientPageController());
   DateTime today = DateTime.now();
+  List<DateTime> days = [];
+  var screenHeight = Get.height / 763;
   int selectedIndex = 0;
-  int selectedCategory= 0;
-  List<String> category = [
+  int selectedCategory = 0;
+  int selectedDoctorIndex = -1;
+  var category = [
+    // {
+    //   "id" : "310",
+    //   "nama" : "IGD",
+    // },
+    // {
+    //   "id" : "310",
+    //   "nama" : "Dokter Gigi",
+    // },
+    // {
+    //   "id" : "310",
+    //   "nama" : "Dokter Anak",
+    // },
+    // {
+    //   "id" : "310",
+    //   "nama" : "Dokter Kandungan",
+    // },
+    // {
+    //   "id" : "310",
+    //   "nama" : "Dokter Bedah",
+    // },
     'IGD',
     'Dokter Mata',
+    'Dokter Anak',
     'Dokter Gigi',
     'Dokter Kandungan',
     'Dokter Bedah',
@@ -46,6 +72,18 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
   void initState() {
     super.initState();
     init();
+    h.selectedDate.value = DateTime.now().toString();
+    p.selectedSchedule.value = DateTime.now().toString();
+    h.selectedDepartment.value = "310";
+    // print("HAHAHAHAHAHAHAHAHAHA");
+    h.getDataDoctors();
+    // print("HAHA");
+  }
+
+  getData() async {
+    h.loadingDoctorData.value = false;
+    h.getDataScheduleDoctors();
+    print("HEHE");
   }
 
   @override
@@ -63,10 +101,10 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
         ),
         Padding(
           padding: EdgeInsets.only(
-            left: c.sw*16.0,
+            left: c.sw * 16.0,
           ),
           child: SizedBox(
-              height: c.sh*54,
+              height: 54,
               child: MediaQuery.removePadding(
                 context: context,
                 removeTop: true,
@@ -80,11 +118,16 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                         width: c.sw * 2,
                       ),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          h.selectedDate.value = days[itemIndex].toyyyyMMdd();
+                          print(h.selectedDate.value);
+                          await getData();
                           setState(() {
                             selectedIndex = itemIndex;
                           });
-                          print(days[itemIndex]);
+                          p.selectedSchedule.value = days[itemIndex].toyyyyMMdd();
+                          // print(days[itemIndex]);
+                          // print(p.selectedSchedule.value);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -99,11 +142,14 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                               ),
                             ],
                           ),
-                          height: c.sh * 52,
-                          width: c.sw * 52,
+                          height: 52,
+                          width: 50,
                           child: Center(
                               child: itemIndex == 0
-                                  ? const Text("Hari ini").p12m().white()
+                                  ? const Text(
+                                      "Hari ini",
+                                      maxLines: 2,
+                                    ).p12m().white()
                                   : Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,18 +157,25 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                                         SizedBox(
                                             width: 31,
                                             child: Text(
-                                              days[itemIndex].toEEEE() == 'Senin' ? "Sen" : days[itemIndex].toEEEE() == 'Sabtu' ? 'Sab' : days[itemIndex].toEEEE() == 'Minggu' ? 'Min' :
-                                                    days[itemIndex].toEEEE(),
+                                              days[itemIndex].toEEEE() == 'Senin'
+                                                  ? "Sen"
+                                                  : days[itemIndex].toEEEE() == 'Sabtu'
+                                                      ? 'Sab'
+                                                      : days[itemIndex].toEEEE() == 'Minggu'
+                                                          ? 'Min'
+                                                          : days[itemIndex].toEEEE() == 'Selasa'
+                                                              ? 'Sel'
+                                                              : days[itemIndex].toEEEE(),
                                               maxLines: 1,
                                               style: const TextStyle(height: 1.5),
                                               textAlign: TextAlign.center,
                                             ).p12m().white()),
-                                        Text(days[itemIndex].toTheDay(),
-                                              style: const TextStyle(height: 1.3),).p12m().white(),
+                                        Text(
+                                          days[itemIndex].toTheDay(),
+                                          style: const TextStyle(height: 1.3),
+                                        ).p12m().white(),
                                       ],
-                                    )
-                             
-                              ),
+                                    )),
                         ),
                       ),
                       SizedBox(
@@ -134,48 +187,201 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
               )),
         ),
         SizedBox(
-          height: c.sh * 15,
+          height: 15,
         ),
         Padding(
-        padding: const EdgeInsets.only(left: 16.0),
-        child: SizedBox(
-            height: c.sh*23,
-            child: ListView.builder(
-              itemCount: category.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (BuildContext context, int itemIndex) => Row(
-                children: [
-                  GestureDetector(
-                    onTap: (){
-                      setState(() {
-                        selectedCategory = itemIndex;
-                      });
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: selectedCategory == itemIndex ? OPrimaryColor : Colors.white, 
-                        borderRadius: BorderRadius.circular(10), border: Border.all(color: OPrimaryColor)),
-                      // width: c.sw * 81,
-                      child: Center(
-                          child: Text(
-                        category[itemIndex],
-                        style: TextStyle(color:  selectedCategory == itemIndex ? Colors.white : OPrimaryColor, ),
-                      ).p12r()),
+          padding: const EdgeInsets.only(left: 16.0),
+          child: SizedBox(
+              height: 23,
+              child: ListView.builder(
+                itemCount: category.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int itemIndex) => Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        h.selectedDepartment.value = "310";
+                        print(h.selectedDepartment.value);
+
+                        getData();
+                        setState(() {
+                          selectedCategory = itemIndex;
+                          // h.selectedDepartment.value = "310";
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        decoration: BoxDecoration(color: selectedCategory == itemIndex ? OPrimaryColor : Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: OPrimaryColor)),
+                        // width: c.sw * 81,
+                        child: Center(
+                            child: Text(
+                          category[itemIndex],
+                          style: TextStyle(
+                            color: selectedCategory == itemIndex ? Colors.white : OPrimaryColor,
+                          ),
+                        ).p12r()),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: c.sw * 10,
-                  ),
-                  
+                    SizedBox(
+                      width: c.sw * 10,
+                    ),
+                  ],
+                ),
+              )),
+        ),
+        SizedBox(
+          height: 8,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: [
+              Obx(() => (h.loadingDoctorData.value)
+                  ? ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: h.listDoctors.length,
+                      padding: EdgeInsets.zero,
+                      itemBuilder: (BuildContext context, int index) => index == h.listDoctors.length - 1
+                          ? Column(
+                              children: [
+                                ItemList(h.listDoctors[index], index),
+                                const SizedBox(
+                                  height: 10,
+                                )
+                              ],
+                            )
+                          : ItemList(h.listDoctors[index], index),
+                    )
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text("Tidak ada jadwal dokter"),
+                        SizedBox(
+                          height: 50,
+                        ),
+                      ],
+                    )),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  // ignore: non_constant_identifier_names
+  Widget ItemList(Doctor doctor, int index) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedDoctorIndex = index;
+          p.selectedDoctor.value = doctor.userId;
+          // print(p.selectedDoctor.value);
+        });
+        // print(doctor.fname);
+      },
+      child: Column(
+        children: [
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+              height: 129,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: const Color.fromRGBO(225, 225, 225, 1)),
+                boxShadow: const [
+                  BoxShadow(color: Color(0x54000000), spreadRadius: 0.1, blurRadius: 0.5, offset: Offset(0.0, 0.1)),
                 ],
               ),
-            )),
-      ),SizedBox(
-          height: c.sh * 8,
-        ),
-      
-      ],
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Image.asset(
+                        width: c.sw * 105,
+                        height: c.sw * 105,
+                        "assets/images/img_avatar_2.png",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(
+                      width: c.sw * 13,
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Stack(children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AutoSizeText(doctor.fname, maxLines: 1, style: GoogleFonts.poppins(fontSize: 14, color: OPrimaryColor, fontWeight: FontWeight.w700), minFontSize: 5),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              decoration: const BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                color: Color.fromARGB(255, 234, 234, 234),
+                              ))),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              child: Text(doctor.poli).p10r(),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                Image.asset(
+                                  "assets/icon/ic_icon_pagi.png",
+                                  width: 14,
+                                  height: 14,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(doctor.jadwalPagi.jumat).p12m().primary()
+                              ],
+                            )
+                          ],
+                        ),
+                      ]),
+                    ),
+                    SizedBox(
+                      width: c.sw * 15,
+                    ),
+                    Container(
+                        width: 24,
+                        height: 24,
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(200), border: Border.all(color: selectedDoctorIndex == index ? OPrimaryColor : Color.fromARGB(255, 204, 203, 203)), color: selectedDoctorIndex == index ? OPrimaryColor : Colors.white),
+                        child: selectedDoctorIndex == index
+                            ? const Center(
+                                child: Icon(
+                                Icons.done_outlined,
+                                color: Colors.white,
+                                size: 15,
+                              ))
+                            : Container())
+                  ],
+                ),
+              )),
+          SizedBox(
+            height: 5,
+          )
+        ],
+      ),
     );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:starlife/page/Profile_Page/profile_controller/profile_controller.dart';
+import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/ext_text.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
@@ -27,18 +28,21 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
   @override
   void initState() {
     super.initState();
-    p.getDataPersonal();
+    SchedulerBinding.instance.scheduleFrameCallback((timeStamp) {
+      p.getDataPersonal();
+    });
+    // p.getDataPersonal();
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Obx(() => (p.loading.value)
+        child: Obx(() => (p.loadingPersonal.value)
             ? Column(
                 children: [
-                  SizedBox(
-                    height: c.sh * 20,
+                  const SizedBox(
+                    height: 20,
                   ),
                   ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(1000)),
@@ -46,27 +50,25 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                       width: 136,
                       height: 136,
                       child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: p.person.picture == '' || p.person.picture == null 
-                        ? Image.asset("assets/images/img_avatar.png")
-                        : Image.network(p.person.picture)
-                        // Image.asset("assets/images/img_avatar.png"),
-                      ),
+                          fit: BoxFit.cover,
+                          child: Image.network(p.person!.picture, errorBuilder: (context, error, stackTrace) {
+                            return Image.asset("assets/images/img_avatar.png");
+                          })),
                     ),
                   ),
-                  const CustomFixedForm(
-                    content: "RM/545148-1151/015",
+                  CustomFixedForm(
+                    content: p.person!.rm,
                     title: "No. Rekam Medis",
                     isMust: true,
                   ),
                   CustomFixedForm(
-                    content: p.person.fname,
+                    content: p.person!.fname,
                     title: "Nama Lengkap",
                     backgroundColor: Colors.white,
                     isMust: true,
                   ),
                   CustomFixedForm(
-                    content: p.person.email,
+                    content: p.person!.email,
                     title: "Email",
                     backgroundColor: Colors.white,
                     isMust: true,
@@ -79,7 +81,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                         visible = !visible;
                       });
                     },
-                    content: (visible) ? p.person.pin : p.person.pin.replaceAll(RegExp(r"."), "*"),
+                    content: (visible) ? p.person!.pin : p.person!.pin.replaceAll(RegExp(r"."), "*"),
                     backgroundColor: Colors.white,
                     ontap: () {},
                   ),
@@ -108,7 +110,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                     ],
                   ),
                   CustomFixedForm(
-                    content: p.person.status,
+                    content: p.person!.status,
                     title: "Status Pasien Dalam Keluarga",
                     backgroundColor: Colors.white,
                     isMust: true,
@@ -117,7 +119,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                     children: [
                       Expanded(
                         child: CustomFixedForm(
-                          content: p.person.sex,
+                          content: p.person!.sex,
                           title: "Jenis Kelamin",
                           backgroundColor: Colors.white,
                           isMust: true,
@@ -128,7 +130,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                       ),
                       Expanded(
                         child: CustomFixedForm(
-                          content: p.person.agama,
+                          content: p.person!.agama,
                           title: "Agama",
                           backgroundColor: Colors.white,
                           isMust: true,
@@ -137,32 +139,32 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                     ],
                   ),
                   CustomFixedForm(
-                    content: p.person.alergi,
+                    content: p.person!.alergi,
                     title: "Alergi Obat",
                     backgroundColor: Colors.white,
                     isMust: true,
                   ),
                   CustomFixedForm(
-                    content: p.person.bloodGroup,
+                    content: p.person!.bloodGroup,
                     title: "Golongan Darah",
                     backgroundColor: Colors.white,
                     isMust: true,
                   ),
                   CustomFixedForm(
-                    content: p.person.address,
+                    content: p.person!.address,
                     title: "Alamat",
                     backgroundColor: Colors.white,
                     isMust: true,
                     uboundedHeight: true,
                   ),
                   CustomFixedForm(
-                    content: p.person.kota,
+                    content: p.person!.kota,
                     title: "Kota",
                     backgroundColor: Colors.white,
                     isMust: true,
                   ),
                   CustomFixedForm(
-                    content: p.person.kelurahan,
+                    content: p.person!.kelurahan,
                     title: "Kelurahan",
                     backgroundColor: Colors.white,
                     isMust: true,
@@ -171,7 +173,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                     children: [
                       Expanded(
                         child: CustomFixedForm(
-                          content: p.person.rw,
+                          content: p.person!.rw,
                           title: "RW",
                           backgroundColor: Colors.white,
                           isMust: true,
@@ -182,7 +184,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                       ),
                       Expanded(
                         child: CustomFixedForm(
-                          content: p.person.rt,
+                          content: p.person!.rt,
                           title: "RT",
                           backgroundColor: Colors.white,
                           isMust: true,
@@ -191,34 +193,33 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                     ],
                   ),
                   CustomFixedForm(
-                    content: p.person.kecamatan,
+                    content: p.person!.kecamatan,
                     title: "Kecamatan",
                     backgroundColor: Colors.white,
                     isMust: true,
                   ),
                   CustomFixedForm(
-                    content: p.person.phone,
+                    content: p.person!.phone,
                     title: "Phone",
                     backgroundColor: Colors.white,
                     isMust: true,
                   ),
                   CustomFixedForm(
-                    content: p.person.mobile,
+                    content: p.person!.mobile,
                     title: "No. Handphone",
                     backgroundColor: Colors.white,
                     isMust: true,
                   ),
                   CustomFixedForm(
-                    content: p.person.namaOrangtua,
+                    content: p.person!.namaOrangtua,
                     title: "Nama Orang Tua",
                     backgroundColor: Colors.white,
                     isMust: true,
                   ),
                 ],
               )
-            : const Center(child: 
-                  SizedBox(height: 50, width: 50, child: CircularProgressIndicator()),
-              
-            )));
+            : const Center(
+                child: SizedBox(height: 50, width: 50, child: CircularProgressIndicator()),
+              )));
   }
 }

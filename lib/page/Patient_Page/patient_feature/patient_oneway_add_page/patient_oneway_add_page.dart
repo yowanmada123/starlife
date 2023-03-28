@@ -21,28 +21,27 @@ class _PatientOneWayAddPageState extends State<PatientOneWayAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
+      body: Stack(children: [
+        Container(height: Get.height, width: Get.width, color: Colors.white),
         Container(
-              height: Get.height,
-              width: Get.width,
-              color: Colors.white
-            ),
-         Container(
           color: Colors.white,
-           child: SingleChildScrollView(
+          child: SingleChildScrollView(
             child: Column(
-              children: const[
+              children: const [
                 PatientOneWayForm(),
-                SizedBox(height: 50,)
+                SizedBox(
+                  height: 50,
+                )
               ],
             ),
+          ),
         ),
-         ),
         const PatientOneWayTopBar(),
-        CustomButtomButton(ontap: () {
-            Get.to(const PatientListPage());
-        }, text: "Simpan")
+        CustomButtomButton(
+            ontap: () {
+              p.patientOneWayAdd(context);
+            },
+            text: "Simpan")
       ]),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
+import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_patient_card/profile_flip_card_animation.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_base.dart';
@@ -8,6 +9,8 @@ import 'package:starlife/widget/ext_text.dart';
 
 Future<Object?> ProfilePopUpCard(BuildContext context) {
   final c = Get.put(GlobalController());
+  final p = Get.put(ProfileController());
+
   return showAnimatedDialog(
     context: context,
     barrierDismissible: true,
@@ -21,23 +24,26 @@ Future<Object?> ProfilePopUpCard(BuildContext context) {
           actions: [
             Column(
               children: [
-                ProfileFlipCardAnimation(),
-                SizedBox(
-                  height: c.sh * 8,
+                const ProfileFlipCardAnimation(),
+                const SizedBox(
+                  height: 8,
                 ),
                 const Text(
                   "Tekan kartu pasien untuk memunculkan QR Code",
                   textAlign: TextAlign.left,
                   style: TextStyle(color: Colors.grey),
                 ).p10m(),
-                SizedBox(
-                  height: c.sh * 8,
+                const SizedBox(
+                  height: 8,
                 ),
                 SizedBox(
                   width: Get.width,
-                  height: c.sh * 34,
+                  height: 34,
                   child: BaseButton(
-                    ontap: () {},
+                    ontap: () {
+                      p.getPDF();
+                      // p.tryToDownload();
+                    },
                     text: "Download Kartu Pasien",
                     textColor: Colors.white,
                     outlineRadius: 10,

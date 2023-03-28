@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Home_Page/experienced_doctor/experienced_doctor.dart';
+import 'package:starlife/page/Home_Page/experienced_doctor/experienced_doctor_list.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
@@ -21,7 +20,7 @@ class _ExperiencedDoctorListPageState extends State<ExperiencedDoctorListPage> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height - kToolbarHeight - c.sh * 300) / 2;
+    final double itemHeight = (size.height - kToolbarHeight - 300) / 2;
     final double itemWidth = size.width / 2;
 
     return Scaffold(
@@ -32,20 +31,24 @@ class _ExperiencedDoctorListPageState extends State<ExperiencedDoctorListPage> {
             height: Get.height,
             color: Colors.white,
           ),
-          const CustomTopBar(),
+          const CustomTopBar(height: 115),
           RoundedInside(
+            height: 98,
             child: SingleChildScrollView(
               physics: const ScrollPhysics(),
               child: Column(
                 children: const [
-                  ListDokter(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ListDoctor(),
                 ],
               ),
             ),
           ),
           Container(
             color: Colors.transparent,
-            height: c.sh * 128,
+            height: 128,
             width: Get.width,
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
@@ -54,7 +57,7 @@ class _ExperiencedDoctorListPageState extends State<ExperiencedDoctorListPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: c.sh * 53,
+                      height: 53,
                     ),
                     Row(
                       children: [

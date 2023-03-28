@@ -20,10 +20,10 @@ required Function() button, required TextEditingController controller, required 
         style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),
       )),
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
-      contentPadding: EdgeInsets.symmetric(horizontal: c.sw * 28.0, vertical: c.sh * 8),
+      contentPadding: EdgeInsets.symmetric(horizontal: c.sw * 28.0, vertical:    8),
       content: Container(
-        height: c.sh * 50,
-        padding: EdgeInsets.only(left: c.sw * 10, bottom: c.sh * 10),
+        height:    50,
+        padding: EdgeInsets.only(left: c.sw * 10, bottom:    10),
         decoration: BoxDecoration(color: const Color(0xffEEEEEE), borderRadius: BorderRadius.circular(10)),
         child: TextField(
           controller: controller,
@@ -45,12 +45,12 @@ required Function() button, required TextEditingController controller, required 
               text: "Submit",
               outlineRadius: 10,
               textSize: 14,
-              height: c.sh * 39,
+              height:    39,
             ),
           ),
         ),
         SizedBox(
-          height: c.sh * 10,
+          height:    10,
         ),
       ],
     ),

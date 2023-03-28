@@ -26,17 +26,17 @@ class _CustomButtomButtonState extends State<CustomButtomButton> {
         GestureDetector(
           onTap: widget.ontap,
           child: Container(
-            height: c.sh * 65,
+            height:    65,
             width: Get.width,
             color: Colors.white,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal:16, vertical: 10),
               child: Container(
                 color: Colors.white,
-                height: c.sh * 47,
+                height:    47,
                 width: Get.width,
                 child: Container(
-                  height: c.sh * 47,
+                  height:    47,
                   decoration: BoxDecoration(color: OPrimaryColor, borderRadius: BorderRadius.circular(10)),
                   child: Center(child: Text(widget.text).p14m().white()),
                 ),

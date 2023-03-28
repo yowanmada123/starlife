@@ -27,7 +27,7 @@ class _CekPermkembanganPageState extends State<CekPermkembanganPage> {
             color: Colors.white,
           ),
           const CustomTopBar(
-            
+            height: 115
           ),
           SingleChildScrollView(
             child: Padding(
@@ -35,13 +35,13 @@ class _CekPermkembanganPageState extends State<CekPermkembanganPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: c.sh*130,),
-                  const Text("Berat anak berdasarkan usia").p14b().black(),
-                  SizedBox(height: c.sh*14,),
+                  const SizedBox(height: 130,),
+                  const  Text("Berat anak berdasarkan usia").p14b().black(),
+                  const SizedBox(height: 14,),
                   SvgPicture.asset("assets/icon/table1.svg"),
-                  SizedBox(height: c.sh*20,),
+                  const SizedBox(height:20,),
                   const Text("Berat badan berdasarkan tinggi badan").p14b().black(),
-                  SizedBox(height: c.sh*14,),
+                  const SizedBox(height:14,),
                   SvgPicture.asset("assets/icon/table2.svg"),
                 ],
               ),
@@ -49,7 +49,7 @@ class _CekPermkembanganPageState extends State<CekPermkembanganPage> {
           ),
           Container(
             color: Colors.transparent,
-            height: c.sh * 128,
+            height:    128,
             width: Get.width,
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
@@ -58,7 +58,7 @@ class _CekPermkembanganPageState extends State<CekPermkembanganPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: c.sh * 53,
+                      height:    53,
                     ),
                     Row(
                       children: [

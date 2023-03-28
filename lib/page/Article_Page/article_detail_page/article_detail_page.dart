@@ -38,7 +38,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                 ),
               ),
               SizedBox(
-                height: c.sh * 50,
+                height:    50,
               )
             ],
           )),

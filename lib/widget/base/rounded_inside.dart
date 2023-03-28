@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:starlife/page/global_controller.dart';
 
 class RoundedInside extends StatefulWidget {
-  const RoundedInside({super.key, required this.child});
+  const RoundedInside({super.key, required this.child, required this.height});
   final Widget child;
+  final double height;
 
   @override
   State<RoundedInside> createState() => _RoundedInsideState();
@@ -15,10 +16,8 @@ class _RoundedInsideState extends State<RoundedInside> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: c.sh*109),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))
-        ),
+      padding: EdgeInsets.only(top: widget.height),
+      decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))),
       child: widget.child,
     );
   }

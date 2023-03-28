@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
+import 'package:starlife/models/model_person.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_topbar.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_kid_growth.dart';
+import 'package:starlife/controllers/check_rm_controller.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_pin_page.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_immunitation_history.dart';
+import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/dio/dioController.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_base.dart';
@@ -18,22 +22,26 @@ class CheckRmPage extends StatefulWidget {
 }
 
 class _CheckRmPageState extends State<CheckRmPage> {
-  final List<String> entrie = <String>['Sarah Celestia Bella', 'Darwaman Gunawangsa', 'Gunawan Ardiansyah', 'Muhammad Aulia Daffa', 'Darwaman Gunawangsa', 'Gunawan Ardiansyah', 'Muhammad Aulia Daffa'];
-  final List<String> role = <String>['Anda', 'Suami', 'Anak ke-1', 'Anak ke-2', 'Anak ke-3', 'Anak ke-4', 'Anak ke-5'];
+  // final List<String> entrie = <String>['Sarah Celestia Bella', 'Darwaman Gunawangsa', 'Gunawan Ardiansyah', 'Muhammad Aulia Daffa', 'Darwaman Gunawangsa', 'Gunawan Ardiansyah', 'Muhammad Aulia Daffa'];
+  // final List<String> role = <String>['Anda', 'Suami', 'Anak ke-1', 'Anak ke-2', 'Anak ke-3', 'Anak ke-4', 'Anak ke-5'];
   final c = Get.put(GlobalController());
-  
+  final p = Get.put(ProfileController());
+
   final dC = Get.put(DioController());
   final loading = true.obs;
-  // Future<Post>? post;
-  // Future<List<Post>>? posts;
-  // final listPost = <Post>[].obs;
-  
   @override
   void initState() {
     super.initState();
-    dC.getData();
-    loading.value = false;
+    // print(p.person.rm);
+    SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
+      p.getPatients();
+      p.getDataPersonal();
+      // print("======================");
+      // print(h.listPatientQueue[0].doctorId);
+      // print("======================");
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,34 +54,33 @@ class _CheckRmPageState extends State<CheckRmPage> {
           ),
           const TopBar(),
           RoundedInside(
+            height: 97,
             child: SingleChildScrollView(
                 child: Column(
               children: [
-                SizedBox(
-                  // padding: EdgeInsets.only(top: c.sh * 124),
-                  width: Get.width,
-                  height: Get.height,
-                  child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: entrie.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return (index + 1 == entrie.length)
-                            ? Column(
-                                children: [
-                                  ItemList(
-                                    name: entrie[index],
-                                    role: role[index],
-                                  ),
-                                  SizedBox(
-                                    height: c.sh * 220,
-                                  ),
-                                ],
-                              )
-                            : ItemList(
-                                name: entrie[index],
-                                role: role[index],
-                              );
-                      }),
+                Obx(
+                  () => (p.loadingPatientsData.value && p.loadingPersonal.value)
+                      ? SizedBox(
+                          // padding: EdgeInsets.only(top:    124),
+                          width: Get.width,
+                          height: Get.height,
+                          child: ListView.builder(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              itemCount: p.patients.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return (index + 1 == p.patients.length)
+                                    ? Column(
+                                        children: [
+                                          ItemList(patient: p.patients[index], rm: p.person!.rm),
+                                          const SizedBox(
+                                            height: 220,
+                                          ),
+                                        ],
+                                      )
+                                    : ItemList(patient: p.patients[index], rm: p.person!.rm);
+                              }),
+                        )
+                      : const Center(child: CircularProgressIndicator()),
                 ),
               ],
             )),
@@ -85,22 +92,31 @@ class _CheckRmPageState extends State<CheckRmPage> {
 }
 
 class ItemList extends StatelessWidget {
-  const ItemList({super.key, required this.name, required this.role});
-  final String name;
-  final String role;
+  const ItemList({
+    super.key,
+    required this.patient,
+    required this.rm,
+  });
+
+  final Patient patient;
+  final String rm;
+
   @override
   Widget build(BuildContext context) {
     final c = Get.put(GlobalController());
+    final cr = Get.put(CheckRmController());
     return GestureDetector(
       onTap: () {
+        cr.patientRm.value = patient.rm;
+        print(cr.patientRm.value);
         Get.to(PinPage(
-          name: name,
+          patient: patient,
         ));
       },
       child: Column(
         children: [
-          SizedBox(
-            height: c.sh * 10,
+          const SizedBox(
+            height: 10,
           ),
           Container(
               height: 125,
@@ -115,14 +131,32 @@ class ItemList extends StatelessWidget {
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                        child: Image.asset(
-                          "assets/images/img_avatar_2.png",
-                          height: 100,
+                    SizedBox(
+                      width: 100,
+                      height: 100,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        child: FadeInImage(
+                          image: NetworkImage(patient.picture),
+                          placeholder: const AssetImage("assets/images/img_avatar.png"),
                           fit: BoxFit.cover,
+                          imageErrorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/images/img_avatar.png',
+                            );
+                          },
+                          // fit: BoxFit.fitWidth,
                         ),
                       ),
+                    ),
+                    // ClipRRect(
+                    //   borderRadius: BorderRadius.circular(10.0),
+                    //     child: Image.asset(
+                    //       "assets/images/img_avatar_2.png",
+                    //       height: 100,
+                    //       fit: BoxFit.cover,
+                    //     ),
+                    //   ),
                     SizedBox(
                       width: c.sw * 13,
                     ),
@@ -134,25 +168,25 @@ class ItemList extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              name,
+                              patient.fname,
                               maxLines: 1,
                             ).p16m().primary(),
-                            SizedBox(
-                              height: c.sh * 3,
+                            const SizedBox(
+                              height: 3,
                             ),
                             Container(
                               height: 1,
                               width: Get.width,
-                              color: Color.fromARGB(255, 216, 216, 216),
+                              color: const Color.fromARGB(255, 216, 216, 216),
                             ),
-                            SizedBox(
-                              height: c.sh * 3,
+                            const SizedBox(
+                              height: 3,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const Text('No. Rekam Medis').p10r().black(),
-                                const Text('RM101085-101223/012').p10b().black(),
+                                Text(patient.rm).p10b().black(),
                               ],
                             ),
                             Expanded(
@@ -161,31 +195,31 @@ class ItemList extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  if (role == 'Suami' || role == 'Istri' || role == 'Anda') ...[
+                                  if (patient.statusPasien == 'Suami' || patient.statusPasien == 'Istri' || patient.statusPasien == 'Ayah' || patient.statusPasien == 'Ibu' || patient.statusPasien == 'Bunda' || patient.statusPasien == 'Mami' || patient.statusPasien == 'Papi' || patient.statusPasien == 'Papa' || patient.statusPasien == 'Abi' || patient.statusPasien == 'Umi' || patient.rm == rm) ...[
                                     Container(
                                         decoration: BoxDecoration(
                                           // if(role == 'Anda')...[]else()...[]
-                                          color: (role == 'Anda')
+                                          color: (patient.rm == rm)
                                               ? const Color(0xffEBD0FF)
-                                              : (role == 'Suami' || role == 'Istri')
+                                              : (patient.statusPasien == 'Suami' || patient.statusPasien == 'Istri' || patient.statusPasien == 'Ayah' || patient.statusPasien == 'Ibu' || patient.statusPasien == 'Bunda' || patient.statusPasien == 'Mami' || patient.statusPasien == 'Papi' || patient.statusPasien == 'Papa' || patient.statusPasien == 'Abi' || patient.statusPasien == 'Umi')
                                                   ? const Color(0xffFFD0A1)
                                                   : const Color(0xffC3FFEC),
                                           borderRadius: BorderRadius.circular(20),
                                         ),
                                         child: Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                                            child: (role == 'Anda')
-                                                ? Text(
-                                                    role,
-                                                    style: const TextStyle(color: Color(0xff9B26F0)),
+                                            child: (patient.rm == rm)
+                                                ? const Text(
+                                                    "Anda",
+                                                    style: TextStyle(color: Color(0xff9B26F0)),
                                                   ).p10r()
-                                                : (role == 'Suami' || role == 'Istri')
+                                                : (patient.statusPasien == 'Suami' || patient.statusPasien == 'Istri' || patient.statusPasien == 'Ayah' || patient.statusPasien == 'Ibu' || patient.statusPasien == 'Bunda' || patient.statusPasien == 'Mami' || patient.statusPasien == 'Papi' || patient.statusPasien == 'Papa' || patient.statusPasien == 'Abi' || patient.statusPasien == 'Umi')
                                                     ? Text(
-                                                        role,
+                                                        patient.statusPasien,
                                                         style: const TextStyle(color: Color(0xff8C4701)),
                                                       ).p10r()
                                                     : Text(
-                                                        role,
+                                                        patient.statusPasien,
                                                         style: const TextStyle(color: Color(0xff21C994)),
                                                       ).p10r())),
                                   ] else ...[
@@ -198,33 +232,33 @@ class ItemList extends StatelessWidget {
                                             Container(
                                                 decoration: BoxDecoration(
                                                   // if(role == 'Anda')...[]else()...[]
-                                                  color: (role == 'Anda')
+                                                  color: (patient.rm == rm)
                                                       ? const Color(0xffEBD0FF)
-                                                      : (role == 'Suami' || role == 'Istri')
+                                                      : (patient.statusPasien == 'Suami' || patient.statusPasien == 'Istri' || patient.statusPasien == 'Ayah' || patient.statusPasien == 'Ibu' || patient.statusPasien == 'Bunda' || patient.statusPasien == 'Mami' || patient.statusPasien == 'Papi' || patient.statusPasien == 'Papa' || patient.statusPasien == 'Abi' || patient.statusPasien == 'Umi')
                                                           ? const Color(0xffFFD0A1)
                                                           : const Color(0xffC3FFEC),
                                                   borderRadius: BorderRadius.circular(20),
                                                 ),
                                                 child: Padding(
                                                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                                                    child: (role == 'Anda')
+                                                    child: (patient.rm == rm)
                                                         ? Text(
-                                                            role,
+                                                            patient.statusPasien,
                                                             style: const TextStyle(color: Color(0xff9B26F0)),
                                                           ).p10r()
-                                                        : (role == 'Suami' || role == 'Istri')
+                                                        : (patient.statusPasien == 'Suami' || patient.statusPasien == 'Istri' || patient.statusPasien == 'Ayah' || patient.statusPasien == 'Ibu' || patient.statusPasien == 'Bunda' || patient.statusPasien == 'Mami' || patient.statusPasien == 'Papi' || patient.statusPasien == 'Papa' || patient.statusPasien == 'Abi' || patient.statusPasien == 'Umi')
                                                             ? Text(
-                                                                role,
+                                                                patient.statusPasien,
                                                                 style: const TextStyle(color: Color(0xff8C4701)),
                                                               ).p10r()
                                                             : Text(
-                                                                role,
+                                                                patient.statusPasien,
                                                                 style: const TextStyle(color: Color(0xff21C994)),
                                                               ).p10r())),
                                           ],
                                         ),
                                         SizedBox(
-                                          height: c.sh * 10,
+                                          height: 10,
                                         ),
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -232,14 +266,14 @@ class ItemList extends StatelessWidget {
                                             BaseButton(
                                               ontap: () {
                                                 Get.to(CekPermkembanganPage(
-                                                  name: name,
+                                                  name: patient.fname,
                                                 ));
                                               },
                                               text: "Cek Perkembangan",
                                               textColor: Colors.white,
                                               outlineRadius: 20,
                                               width: c.sw * 98,
-                                              height: c.sh * 20,
+                                              height: 20,
                                               textSize: 8,
                                             ),
                                             SizedBox(
@@ -253,7 +287,7 @@ class ItemList extends StatelessWidget {
                                               textColor: Colors.white,
                                               outlineRadius: 20,
                                               width: c.sw * 98,
-                                              height: c.sh * 20,
+                                              height: 20,
                                               textSize: 8,
                                             ),
                                           ],
@@ -271,8 +305,8 @@ class ItemList extends StatelessWidget {
                   ],
                 ),
               )),
-          SizedBox(
-            height: c.sh * 10,
+          const SizedBox(
+            height: 9,
           )
         ],
       ),

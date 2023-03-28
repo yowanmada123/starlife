@@ -47,7 +47,7 @@ class _ProfileImmunizationScheduleState extends State<ProfileImmunizationSchedul
                       children: [
                         const ItemList(),
                         SizedBox(
-                          height: c.sh * 80,
+                          height:    80,
                         ),
                       ],
                     )
@@ -60,7 +60,7 @@ class _ProfileImmunizationScheduleState extends State<ProfileImmunizationSchedul
         children: [
           Container(
             width: Get.width,
-            height: c.sh * 70,
+            height:    70,
             color: Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
@@ -104,7 +104,7 @@ class _ProfileImmunizationScheduleState extends State<ProfileImmunizationSchedul
                         ),
                         // dropdownElevation: 5,
                         iconSize: 15,
-                        buttonHeight: c.sh * 43,
+                        buttonHeight:    43,
                         // buttonWidth: c.sw*150,
                         buttonPadding: const EdgeInsets.only(right: 10),
                         dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey)),
@@ -187,7 +187,7 @@ class _ItemListState extends State<ItemList> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
-                              height: c.sh * 20,
+                              height:    20,
                               width: c.sw * 120,
                               decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Color(0xffFEBACB)), borderRadius: BorderRadius.circular(6)),
                               child: Center(
@@ -284,7 +284,7 @@ class _ItemListState extends State<ItemList> {
                           ],
                         ),
                         SizedBox(
-                          height: c.sh * 8,
+                          height:    8,
                         ),
                         Container(
                           width: Get.width,
@@ -292,7 +292,7 @@ class _ItemListState extends State<ItemList> {
                           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.white))),
                         ),
                         SizedBox(
-                          height: c.sh * 8,
+                          height:    8,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
@@ -350,7 +350,7 @@ class _ItemListState extends State<ItemList> {
         ],
       ),
       SizedBox(
-        height: c.sh * 12,
+        height:    12,
       )
     ]);
   }

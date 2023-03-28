@@ -4,8 +4,11 @@ import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 
 class CustomTopBar extends StatefulWidget {
-  const CustomTopBar({super.key,});
-  
+  const CustomTopBar({
+    super.key, required this.height,
+  });
+  final double height;
+
   @override
   State<CustomTopBar> createState() => _CustomTopBarState();
 }
@@ -19,28 +22,40 @@ class _CustomTopBarState extends State<CustomTopBar> {
         child: Stack(children: [
       Container(
         // color: OPrimaryColor,
-        height: 115,
+        height: widget.height,
         width: Get.width,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        OPrimaryColor,
-                        OPrimaryColor,
-                        OPrimaryColor,
-                        OPrimaryColor,
-                        OPrimaryColor,
-                        OPrimaryColor,
-                        OPrimaryColor,
-                        OPrimaryColor,
-                        OPrimaryColor,
-                        OPrimaryColor,
-                        OPrimaryColor,
-                        Colors.white
-                      ],
-                    )
-        ),
+            gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            OPrimaryColor,
+            Colors.white,
+            Colors.white,
+          ],
+        )),
       ),
       Positioned(
         bottom: -3,

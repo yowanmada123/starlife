@@ -28,12 +28,12 @@ class _ProfileNotificationPagetState extends State<ProfileNotificationPage> {
             height: Get.height,
             color: Colors.white,
           ),
-          const CustomTopBar(),
+          const CustomTopBar(height: 115),
           SingleChildScrollView(
             child: Column(
               children: [
                 Container(
-                padding: EdgeInsets.only(top: c.sh * 109, left: c.sw*16, right: c.sw*16),
+                padding: EdgeInsets.only(top: 97, left: c.sw*16, right: c.sw*16),
                 width: Get.width,
                 height: Get.height,
                 child: ListView.builder(
@@ -48,7 +48,7 @@ class _ProfileNotificationPagetState extends State<ProfileNotificationPage> {
                                   time: time[index],
                                 ),
                                 SizedBox(
-                                  height: c.sh * 1000,
+                                  height:    1000,
                                 ),
                               ],
                             )
@@ -63,7 +63,7 @@ class _ProfileNotificationPagetState extends State<ProfileNotificationPage> {
           ),
           Container(
             color: Colors.transparent,
-            height: c.sh * 128,
+            height:    128,
             width: Get.width,
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
@@ -72,7 +72,7 @@ class _ProfileNotificationPagetState extends State<ProfileNotificationPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: c.sh * 53,
+                      height:    53,
                     ),
                     Row(
                       children: [

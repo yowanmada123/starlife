@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Auth_Page/auth_controller/auth_controller.dart';
+import 'package:starlife/controllers/auth_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/base_form.dart';
@@ -44,7 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
             left: -230,
             child: Container(
               width: c.sw * 844,
-              height: c.sh * 844,
+              height:    844,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(1000), color: OPrimaryColor),
             ),
           ),
@@ -92,7 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 SizedBox(
-                  height: c.sh * 15,
+                  height:    15,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -101,13 +101,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
                 SizedBox(
-                  height: c.sh * 14,
+                  height:    14,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: c.sw * 34.0),
                   child: Container(
                     width: c.sw * 322,
-                    height: c.sh * 590,
+                    height:    590,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
@@ -123,7 +123,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: c.sh * 15,
+                          height:    15,
                         ),
                         SizedBox(
                             width: 222,
@@ -203,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                         SizedBox(
-                          height: c.sh * 15,
+                          height:    15,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: c.sw * 26),
@@ -232,7 +232,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                         SizedBox(
-                          height: c.sh * 10,
+                          height:    10,
                         ),
                         Row(
                           children: [
@@ -246,7 +246,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   log(_isSyarat.toString());
                                 },
                                 child: Container(
-                                  height: c.sh * 15,
+                                  height:    15,
                                   width: c.sw * 15,
                                   decoration: BoxDecoration(color: _isSyarat ? OPrimaryColor : const Color(0xffEAEAEA)),
                                   child: _isSyarat
@@ -273,7 +273,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ],
                         ),
                         SizedBox(
-                          height: c.sh * 30,
+                          height:    30,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: c.sw * 26),
@@ -348,7 +348,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 SizedBox(
-                  height: c.sh * 50,
+                  height:    50,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -357,7 +357,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
                 SizedBox(
-                  height: c.sh * 20,
+                  height:    20,
                 ),
               ]),
             ),

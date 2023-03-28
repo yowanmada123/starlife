@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:starlife/models/model_person.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_list_page.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
@@ -9,22 +10,36 @@ import 'package:starlife/widget/base/showdialog_fill_button.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class PinPage extends StatefulWidget {
-  const PinPage({super.key, required this.name});
-  final String name;
+  const PinPage({
+    super.key,
+    required this.patient,
+    // required this.name
+  });
+  // final String name;
+  final Patient patient;
 
   @override
   State<PinPage> createState() => _PinPageState();
 }
 
 class _PinPageState extends State<PinPage> {
+  void initState() {
+    super.initState();
+    pinfix = widget.patient.pincode.split('');
+    print(widget.patient.pincode);
+    // print(pinfix);
+    // print(p.person.rm);
+  }
+
   final c = Get.put(GlobalController());
   String _otp = '';
   String text = '';
   bool visibleKeypad = false;
   List<String> pin = [];
-  List<String> pinfix = ['2', '2', '2', '2', '2', '2'];
+  // List<String> pinfix = ['2', '2', '2', '2', '2', '2'];
+  List<String> pinfix = [];
   TextEditingController controller = TextEditingController(text: "");
-  bool truePin = true;
+  var truePin = true.obs;
   bool sixTimeTrue = false;
   int pinTrue = 0;
   addNumber() {
@@ -47,20 +62,35 @@ class _PinPageState extends State<PinPage> {
     _otp = '';
   }
 
+  clearPin() {
+    pin.clear();
+  }
+
   cekPin() {
     if (pin.length == 6) {
       for (int i = 0; i < pin.length; i++) {
         if (pinfix[i] != pin[i]) {
           setState(() {
             print("pin salah");
-            truePin = false;
+            truePin.value = false;
           });
           print("PIN SALAH");
           pinTrue = 0;
+          clearNumber();
+          clearPin();
+          Future.delayed(Duration(seconds: 1), () {
+            setState(() {
+              truePin.value = true;
+              // print(truePin);
+            });
+            // print("Executed after 1 minute 4 seconds");
+          });
+          // truePin = true;
         } else {
           print("PIN CHECKED");
           setState(() {
             pinTrue++;
+            // clearNumber();
           });
         }
       }
@@ -68,7 +98,7 @@ class _PinPageState extends State<PinPage> {
         setState(() {
           print("pin benar");
           pinTrue++;
-          truePin = true;
+          truePin.value = true;
           pin.clear();
           clearNumber();
           sixTimeTrue = true;
@@ -77,12 +107,13 @@ class _PinPageState extends State<PinPage> {
       if (sixTimeTrue == true) {
         pinTrue = 0;
         Get.to(CheckRmListPage(
-          name: widget.name,
+          name: widget.patient.fname,
         ));
       }
-      print(pinTrue);
-      print("PIN NOT TRUE");
+      // print(pinTrue);
+      // print("PIN NOT TRUE");
     } else {
+      // clearNumber();
       print("PIN NOT IN DIGIT");
       print("Inputkan PIN sebanyak 6 digit");
     }
@@ -112,13 +143,9 @@ class _PinPageState extends State<PinPage> {
             children: [
               const Text("Masukkan PIN").p16b().black(),
               SizedBox(
-                height: c.sh * 10,
+                height: 10,
               ),
-              if (truePin == true) ...[
-                const Text("Mohon Masukkan PIN Anda").p12r().black(),
-              ] else ...[
-                const Text("PIN tidak sesuai. Silahkan coba lagi").p14r().red(),
-              ]
+              Obx(() => (truePin.value) ? const Text("Mohon Masukkan PIN Anda").p12r().black() : const Text("PIN tidak sesuai. Silahkan coba lagi").p14r().red())
             ],
           ),
         ]),
@@ -136,7 +163,7 @@ class _PinPageState extends State<PinPage> {
             children: [
               // TextButton(onPressed: clearText, child: Text("data")),
               SizedBox(
-                height: c.sh * 250,
+                height: 250,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -146,22 +173,23 @@ class _PinPageState extends State<PinPage> {
                   for (int index = 0; index < 2 * 6 - 1; index++)
                     if (index.isEven)
                       // NOTE: Adding a dot placeholder
-                      CircleAvatar(
-                        radius: (truePin == true) ? 10 : 12,
-                        // NOTE: This is the actual condition of setting the placeholder dot color
-                        backgroundColor: index ~/ 2 < _otp.length
-                            ? (truePin == true)
-                                ? OPrimaryColor
-                                : Colors.red
-                            : inActiveColor,
-                      )
+                      Obx(() => CircleAvatar(
+                          radius: (truePin.value) ? 10 : 12,
+                          // NOTE: This is the actual condition of setting the placeholder dot color
+                          backgroundColor: index ~/ 2 < _otp.length
+                              ? (truePin.value)
+                                  ? OPrimaryColor
+                                  : Colors.red
+                              : (truePin.value)
+                                  ? inActiveColor
+                                  : Colors.red))
                     else
                       // NOTE: Adding a space
                       const SizedBox(width: 24),
                 ],
               ),
               SizedBox(
-                height: c.sh * 20,
+                height: 20,
               ),
               GestureDetector(
                   onTap: () {
@@ -171,7 +199,7 @@ class _PinPageState extends State<PinPage> {
                         title: "Masukkan Email Anda",
                         button: () {
                           if (controller.text.isNotEmpty && c.isEmail(controller.text)) {
-                              showDialog<String>(
+                            showDialog<String>(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
                                 title: Column(children: [
@@ -180,8 +208,8 @@ class _PinPageState extends State<PinPage> {
                                     color: Colors.green,
                                     size: 50,
                                   ),
-                                  SizedBox(
-                                    height: c.sh * 10,
+                                  const SizedBox(
+                                    height: 10,
                                   ),
                                   SizedBox(
                                     width: c.sw * 170,
@@ -224,9 +252,9 @@ class _PinPageState extends State<PinPage> {
         Visibility(
           visible: (pin.length == 6) ? true : false,
           child: Container(
-            height: c.sh * 86,
+            height: 86,
             width: Get.width,
-            padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: c.sh * 20),
+            padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: 20),
             child: BaseButton(
               ontap: () {
                 print(pin.length);
@@ -244,7 +272,7 @@ class _PinPageState extends State<PinPage> {
           child: Visibility(
             visible: visibleKeypad,
             child: SizedBox(
-              height: c.sh * 235,
+              height: 235,
               width: Get.width,
               child: Column(
                 children: [
@@ -320,7 +348,7 @@ class _PinPageState extends State<PinPage> {
                     ),
                   ),
                   SizedBox(
-                    height: c.sh * 15,
+                    height: 15,
                   ),
                   Expanded(
                     flex: 1,
@@ -395,7 +423,7 @@ class _PinPageState extends State<PinPage> {
                     ),
                   ),
                   SizedBox(
-                    height: c.sh * 15,
+                    height: 15,
                   ),
                   Expanded(
                     flex: 1,
@@ -470,7 +498,7 @@ class _PinPageState extends State<PinPage> {
                     ),
                   ),
                   SizedBox(
-                    height: c.sh * 15,
+                    height: 15,
                   ),
                   Expanded(
                     flex: 1,
@@ -538,7 +566,7 @@ class _PinPageState extends State<PinPage> {
                     ),
                   ),
                   SizedBox(
-                    height: c.sh * 15,
+                    height: 15,
                   ),
                 ],
               ),

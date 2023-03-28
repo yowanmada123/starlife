@@ -53,16 +53,14 @@ class ArticleDetailBrochure extends StatelessWidget {
                 width: Get.width,
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 50.0, left: c.sh * 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const ButtonBack(),
-                  const SizedBox(
-                    height: 235,
-                  ),
+            Container(
+             height: 395,
+             width: Get.width,
+             padding: EdgeInsets.only(left: c.sw*16, right: c.sw*16, bottom: c.sh*16),
+             child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                   const Text("1 Minute Ago").p10r().white(),
                   AutoSizeText(
                     style: GoogleFonts.poppins(fontWeight: FontWeight.w700, color: Colors.white),
@@ -70,14 +68,38 @@ class ArticleDetailBrochure extends StatelessWidget {
                     minFontSize: 18,
                     maxFontSize: 20,
                   )
-                  // Text(news.judul).p20b().white()
-                ],
-              ),
-            )
+              ],
+             ), 
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 50.0, left:    16),
+              child: const ButtonBack(),
+            ),
+            // Padding(
+            //   padding: EdgeInsets.only(top: 50.0, left:    16),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     children: [
+            //       const ButtonBack(),
+            //       const SizedBox(
+            //         height: 235,
+            //       ),
+            //       const Text("1 Minute Ago").p10r().white(),
+            //       AutoSizeText(
+            //         style: GoogleFonts.poppins(fontWeight: FontWeight.w700, color: Colors.white),
+            //         news.judul,
+            //         minFontSize: 18,
+            //         maxFontSize: 20,
+            //       )
+            //       // Text(news.judul).p20b().white()
+            //     ],
+            //   ),
+            // )
           ]),
         ),
         SizedBox(
-          height: c.sh * 20,
+          height:    20,
         ),
       ],
     );

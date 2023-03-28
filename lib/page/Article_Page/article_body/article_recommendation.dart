@@ -44,7 +44,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: c.sh * 20),
+          padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical:    20),
           child: const Text("Rekomendasi Artikel").p16b().black(),
         ),
         Container(
@@ -84,7 +84,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
           ),
         ),
         SizedBox(
-          height: c.sh * 20,
+          height:    20,
         ),
         SizedBox(
           width: Get.width,
@@ -93,7 +93,9 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
             shrinkWrap: true,
             itemCount: h.listNews.length,
             padding: EdgeInsets.zero,
-            itemBuilder: (BuildContext context, int itemIndex) => itemIndex == 2
+            itemBuilder: (BuildContext context, int itemIndex) => 
+            // itemIndex == 2
+             (itemIndex + 1 == h.listNews.length)
                 ? Column(
                     children: [
                       GestureDetector(
@@ -158,8 +160,8 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: c.sh * 50,
+                      const SizedBox(
+                        height: 50,
                       ),
                     ],
                   )
@@ -227,8 +229,8 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: c.sh * 10,
+                      const SizedBox(
+                        height: 15,
                       ),
                     ],
                   ),

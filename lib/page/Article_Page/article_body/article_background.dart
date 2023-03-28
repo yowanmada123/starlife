@@ -18,7 +18,7 @@ class _ArticleBackgroundState extends State<ArticleBackground> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: c.sh*500,
+      height: 500,
       child: Stack(
         children: [
           Positioned(
@@ -26,7 +26,7 @@ class _ArticleBackgroundState extends State<ArticleBackground> {
               left: -210,
               child: Container(
                 width: c.sw * 844,
-                height: c.sh * 844,
+                height: 844,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(1000), color: OPrimaryColor),
               ),
             ),

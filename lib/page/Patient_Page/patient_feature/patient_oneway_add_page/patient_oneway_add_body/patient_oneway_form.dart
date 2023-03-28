@@ -21,16 +21,11 @@ class _PatientOneWayFormState extends State<PatientOneWayForm> {
   var screenHeight = Get.height / 763;
   final c = Get.put(GlobalController());
   final p = Get.put(PatientPageController());
-  TextEditingController namaController = TextEditingController(text: "");
-  TextEditingController tanggalLahirController = TextEditingController(text: "");
-  TextEditingController jenisKelaminController = TextEditingController(text: "");
-  TextEditingController alamatController = TextEditingController(text: "");
-  TextEditingController handphoneController = TextEditingController(text: "");
 
   String _dateTime = 'dd/mm/yyyy';
   final List<String> genderItems = [
     'Laki-Laki',
-    'Perempuaun',
+    'Perempuan',
   ];
 
   @override
@@ -40,7 +35,7 @@ class _PatientOneWayFormState extends State<PatientOneWayForm> {
       child: Column(
         children: [
           SizedBox(
-            height: c.sh * 115,
+            height:    115,
           ),
           CustomForm(
             controller: p.namaController,
@@ -52,7 +47,7 @@ class _PatientOneWayFormState extends State<PatientOneWayForm> {
             title: "Jenis Kelamin",
             items: genderItems,
             firstItem: 'Pilih Jenis Kelamin',
-            controller: jenisKelaminController,
+            controller: p.jenisKelaminController,
             isMust: true,
           ),
           CustomForm(
@@ -75,7 +70,7 @@ class _PatientOneWayFormState extends State<PatientOneWayForm> {
                 //tambahkan setState dan panggil variabel _dateTime.
                 setState(() {
                   _dateTime = date!.toDateHuman();
-                  p.tanggalLahirController.text = date.toDateHuman();
+                  p.tanggalLahirController.text = date.toyyyyMMdd();
                   print(p.tanggalLahirController.text);
                 });
               });

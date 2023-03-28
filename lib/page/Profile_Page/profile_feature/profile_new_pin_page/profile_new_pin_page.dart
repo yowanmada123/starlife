@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_list_page.dart';
+import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
@@ -18,10 +19,11 @@ class ProfileNewPinPage extends StatefulWidget {
 
 class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
   final c = Get.put(GlobalController());
+  final p = Get.put(ProfileController());
   String _otp = '';
   String text = '';
   List<String> pin = [];
-  List<String> pinfix = ['2', '2', '2', '2', '2', '2'];
+  // List<String> pinfix = ['2', '2', '2', '2', '2', '2'];
 
   bool truePin = true;
   bool sixTimeTrue = false;
@@ -48,11 +50,11 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
 
   cekPin() {
     if (pin.length == 6) {
+      p.changePIN();
       CustomDialog(context);
       Timer(Duration(seconds: 1), () {
         Get.close(3);
       });
-      
     } else {
       setState(() {
         truePin = false;
@@ -64,19 +66,24 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Column(
-            children:[
-              Icon(Icons.done_rounded, color: Colors.green, size: 80,),
-              SizedBox(height: c.sh*10,),
-               Container(
-                  width: c.sw * 170,
-                  child: Text(
-                    "Berhasil Mengubah Mengubah PIN",
-                    style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
-                  ),
-                )
-            ]),
+        title: Column(children: [
+          const Icon(
+            Icons.done_rounded,
+            color: Colors.green,
+            size: 80,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          SizedBox(
+            width: c.sw * 170,
+            child: Text(
+              "Berhasil Mengubah Mengubah PIN",
+              style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),
+              textAlign: TextAlign.center,
+            ),
+          )
+        ]),
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
       ),
     );
@@ -94,7 +101,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
         elevation: 0,
         leading: GestureDetector(
             onTap: () => Get.back(),
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_ios_new,
               color: Colors.black,
               size: 20,
@@ -107,12 +114,12 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
             children: [
               const Text("Masukkan PIN").p16b().black(),
               SizedBox(
-                height: c.sh * 10,
+                height: 10,
               ),
               if (truePin == true) ...[
                 const Text("Buat Baru PIN Anda").p12r().black(),
               ] else ...[
-                const Text("PIN tidak sesuai. Silahkan coba lagi").p14r().red(),
+                const Text("Mohon Isi PIN Dengan Tepat").p14r().red(),
               ]
             ],
           ),
@@ -127,7 +134,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
             children: [
               // TextButton(onPressed: clearText, child: Text("data")),
               SizedBox(
-                height: c.sh * 250,
+                height: 250,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -152,7 +159,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                 ],
               ),
               SizedBox(
-                height: c.sh * 20,
+                height: 20,
               ),
             ],
           ),
@@ -167,9 +174,9 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Container(
-          height: c.sh * 86,
+          height: 86,
           width: Get.width,
-          padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: c.sh * 20),
+          padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: 20),
           child: BaseButton(
             ontap: () {
               print(pin.length);
@@ -185,7 +192,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
           child: Container(
-            height: c.sh * 235,
+            height: 235,
             width: Get.width,
             child: Column(
               children: [
@@ -261,7 +268,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                   ),
                 ),
                 SizedBox(
-                  height: c.sh * 15,
+                  height: 15,
                 ),
                 Expanded(
                   flex: 1,
@@ -336,7 +343,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                   ),
                 ),
                 SizedBox(
-                  height: c.sh * 15,
+                  height: 15,
                 ),
                 Expanded(
                   flex: 1,
@@ -411,7 +418,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                   ),
                 ),
                 SizedBox(
-                  height: c.sh * 15,
+                  height: 15,
                 ),
                 Expanded(
                   flex: 1,
@@ -479,7 +486,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                   ),
                 ),
                 SizedBox(
-                  height: c.sh * 15,
+                  height: 15,
                 ),
               ],
             ),

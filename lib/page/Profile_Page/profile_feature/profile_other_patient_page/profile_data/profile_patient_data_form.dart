@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/models/model_person.dart';
+import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_edit/profile_patient_edit_data_page.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_base.dart';
@@ -18,10 +19,8 @@ class ProfilePatientDataform extends StatefulWidget {
 
 class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
   final c = Get.put(GlobalController());
+  final p = Get.put(ProfileController());
   bool visible = false;
-  String password = "abcedef";
-  bool editIcon = false;
-  bool editButton = true;
   DateTime dateOfbirth = DateTime.now();
   String date = '';
   String age = '';
@@ -29,29 +28,51 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
   @override
   void initState() {
     super.initState();
+    print(widget.patient.picture);
     dateOfbirth = DateTime.parse(widget.patient.dateOfBirth);
     date = dateOfbirth.toSlashDate();
     age = c.yourAge(DateTime.parse(widget.patient.dateOfBirth));
+    p.namaController.text = widget.patient.fname;
+    p.emailController.text = widget.patient.email;
+    p.pincode.value = widget.patient.pincode;
+    p.tanggalLahirController.text = widget.patient.dateOfBirth;
+    p.statusController.text = widget.patient.statusPasien;
+    p.jenisKelaminController.text = widget.patient.sex;
+    p.agamaController.text = widget.patient.agama;
+    p.alergiObatController.text = widget.patient.alergi;
+    p.goldarController.text = widget.patient.bloodGroup;
+    p.kotaController.text = widget.patient.kota;
+    p.kelurahanController.text = widget.patient.kelurahan;
+    p.rwController.text = widget.patient.rw;
+    p.rtController.text = widget.patient.rt;
+    p.kecamatanController.text = widget.patient.kecamatan;
+    p.teleponController.text = widget.patient.phone;
+    p.handphoneController.text = widget.patient.mobile;
+    p.orangtuaController.text = widget.patient.namaOrangtua;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: c.sh * 109, right: 16, left: 16),
+      padding: EdgeInsets.only(top: 98, right: 16, left: 16),
       width: Get.width,
       height: Get.height,
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: c.sh * 30),
+            SizedBox(height: 30),
             Column(
               children: [
                 ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  child: Container(
+                  borderRadius: const BorderRadius.all(Radius.circular(1000)),
+                  child: SizedBox(
                     width: 136,
                     height: 136,
-                    child: FittedBox(fit: BoxFit.cover, child: widget.patient.picture == '' || widget.patient.picture == null ? Image.asset("assets/images/img_avatar.png") : Image.network(widget.patient.picture)),
+                    child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: Image.network(widget.patient.picture, errorBuilder: (context, error, stackTrace) {
+                          return Image.asset("assets/images/img_avatar.png");
+                        })),
                   ),
                 ),
               ],
@@ -59,20 +80,22 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
             Column(
               children: [
                 SizedBox(
-                  height: c.sh * 20,
+                  height: 20,
                 ),
                 Container(
                     width: c.sw * 128,
-                    height: c.sh * 26,
+                    height: 26,
                     child: BaseButton(
                       ontap: () {
-                        Get.to(const ProfileEditDataPage());
+                        Get.to(ProfileEditDataPage(
+                          patient: widget.patient,
+                        ));
                       },
                       text: "Edit Profile",
                       textSize: 12,
                     )),
                 SizedBox(
-                  height: c.sh * 20,
+                  height: 20,
                 ),
               ],
             ),
@@ -88,7 +111,7 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
               isMust: true,
             ),
             CustomFixedForm(
-              content: widget.patient.email,
+              content: widget.patient.email == '' || widget.patient.email == null ? '' : widget.patient.email,
               title: "Email",
               backgroundColor: Colors.white,
               isMust: true,
@@ -101,7 +124,7 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
                   visible = !visible;
                 });
               },
-              content: (visible) ? widget.patient.pin : widget.patient.pin.replaceAll(RegExp(r"."), "*"),
+              content: (visible) ? widget.patient.pincode : widget.patient.pincode.replaceAll(RegExp(r"."), "*"),
               backgroundColor: Colors.white,
               ontap: () {},
             ),
@@ -138,7 +161,7 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
               children: [
                 Expanded(
                   child: CustomFixedForm(
-                    content: widget.patient.sex,
+                    content: widget.patient.sex == "male" ? "Laki - Laki" : "Perempuan",
                     title: "Jenis Kelamin",
                     backgroundColor: Colors.white,
                     isMust: true,
@@ -235,7 +258,7 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
               backgroundColor: Colors.white,
               isMust: true,
             ),
-            SizedBox(height: c.sh * 80)
+            SizedBox(height: 80)
           ],
         ),
       ),

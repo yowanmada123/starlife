@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
+import 'package:starlife/controllers/check_rm_controller.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_form_data.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_detail_topbar.dart';
 import 'package:starlife/page/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/rounded_inside.dart';
+import 'package:starlife/models/model_medical_record.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class CheckRmDetailPage extends StatefulWidget {
-  const CheckRmDetailPage({super.key, required this.name});
-  final String name;
+  const CheckRmDetailPage({super.key, required this.medicalRecord});
+  final MedicalRecord medicalRecord;
   @override
   State<CheckRmDetailPage> createState() => _CheckRmDetailPageState();
 }
 
 class _CheckRmDetailPageState extends State<CheckRmDetailPage> {
   final c = Get.put(GlobalController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,16 +32,19 @@ class _CheckRmDetailPageState extends State<CheckRmDetailPage> {
           ),
           const CheckRmTopBar(),
           RoundedInside(
+            height: 110,
             child: SingleChildScrollView(
                 child: Column(
               children: [
-                FormDataRm(title: widget.name,)
+                FormDataRm(
+                  medicalRecord: widget.medicalRecord,
+                )
               ],
             )),
           ),
           Container(
             color: Colors.transparent,
-            height: c.sh * 128,
+            height: 128,
             width: Get.width,
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
@@ -45,8 +52,8 @@ class _CheckRmDetailPageState extends State<CheckRmDetailPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: c.sh * 53,
+                    const SizedBox(
+                      height: 50,
                     ),
                     Row(
                       children: [
@@ -54,7 +61,7 @@ class _CheckRmDetailPageState extends State<CheckRmDetailPage> {
                         SizedBox(
                           width: c.sw * 16,
                         ),
-                        Text(widget.name).p16b().white(),
+                        Text(widget.medicalRecord.nama).p16b().white(),
                       ],
                     ),
                   ],
