@@ -6,7 +6,7 @@ import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_edit/profile_patient_edit_data_page.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 import 'profile_data/profile_patient.dart';
@@ -75,7 +75,7 @@ class _ProfileOtherPatientState extends State<ProfileOtherPatient> {
             height: 128,
             width: Get.width,
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +87,7 @@ class _ProfileOtherPatientState extends State<ProfileOtherPatient> {
                       children: [
                         const ButtonBack(),
                         SizedBox(
-                          width: c.sw * 16,
+                          width: 16,
                         ),
                         const Text("Pasien Lain").p16b().white(),
                       ],
@@ -170,7 +170,7 @@ class _ItemListState extends State<ItemList> {
                     //       return Image.asset("assets/images/img_avatar.png");
                     //     })),
                     SizedBox(
-                      width: c.sw * 13,
+                      width: 13,
                     ),
                     Expanded(
                       flex: 1,
@@ -197,8 +197,8 @@ class _ItemListState extends State<ItemList> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text('No. Rekam Medis').p10r().black(),
-                                Text(widget.patient.rm).p10b().black(),
+                                const Text('No. Rekam Medis').p8r().black(),
+                                Text(widget.patient.rm).p9b().black(),
                               ],
                             ),
                           ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -25,26 +25,27 @@ class _PatientTopBarState extends State<PatientTopBar> {
           width: Get.width,
           height: 92,
           child: Padding(
-            padding: EdgeInsets.only(left: c.sw * 16, top: 48),
+            padding: EdgeInsets.only(left: 16, top: 48),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                widget.buttonBack == true ?
-                Row(
-                  children: [
-                    const ButtonBack(),
-                    SizedBox(
-                  width: c.sw * 16,
-                ),
-                  ],
-                ) : Container(),
+                widget.buttonBack == true
+                    ? Row(
+                        children: [
+                          const ButtonBack(),
+                          SizedBox(
+                            width: 16,
+                          ),
+                        ],
+                      )
+                    : Container(),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text("Daftar Pasien").p14b(),
-                    SizedBox(
+                    const SizedBox(
                       height: 2,
                     ),
                     const Text("Pilih Pasien").p12m(),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_page.dart';
-import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/patient_page_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 

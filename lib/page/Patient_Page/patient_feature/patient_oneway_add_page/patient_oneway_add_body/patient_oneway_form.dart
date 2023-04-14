@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/patient_page_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/custom_dropdown.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 
@@ -34,8 +34,8 @@ class _PatientOneWayFormState extends State<PatientOneWayForm> {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          SizedBox(
-            height:    115,
+          const SizedBox(
+            height: 115,
           ),
           CustomForm(
             controller: p.namaController,
@@ -43,12 +43,19 @@ class _PatientOneWayFormState extends State<PatientOneWayForm> {
             title: "Nama Lengkap",
             isMust: true,
           ),
-          CustomDropDown(
-            title: "Jenis Kelamin",
-            items: genderItems,
-            firstItem: 'Pilih Jenis Kelamin',
-            controller: p.jenisKelaminController,
-            isMust: true,
+          Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: CustomDropDown(
+                  title: "Jenis Kelamin",
+                  items: genderItems,
+                  firstItem: 'Pilih Jenis Kelamin',
+                  controller: p.jenisKelaminController,
+                  isMust: true,
+                ),
+              ),
+            ],
           ),
           CustomForm(
             controller: p.alamatController,
@@ -71,7 +78,7 @@ class _PatientOneWayFormState extends State<PatientOneWayForm> {
                 setState(() {
                   _dateTime = date!.toDateHuman();
                   p.tanggalLahirController.text = date.toyyyyMMdd();
-                  print(p.tanggalLahirController.text);
+                  // print(p.tanggalLahirController.text);
                 });
               });
             },

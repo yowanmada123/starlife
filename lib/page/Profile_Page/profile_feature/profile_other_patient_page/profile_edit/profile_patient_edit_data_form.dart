@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/controllers/profile_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/custom_dropdown.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
@@ -149,6 +149,7 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                                     setState(() {
                                       filePhoto = File(image.path);
                                       p.filePhoto = File(image.path);
+
                                       // filePhoto = image as File?;
                                     });
                                   }
@@ -168,6 +169,7 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                                     setState(() {
                                       filePhoto = File(image.path);
                                       p.filePhoto = File(image.path);
+                                      // print(p.filePhoto.toString());
                                     });
                                   }
                                 },
@@ -180,7 +182,7 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                     );
                   },
                   child: Container(
-                    width: c.sw * 39,
+                    width: 39,
                     height: 39,
                     decoration: BoxDecoration(
                         color: OPrimaryColor,
@@ -232,6 +234,7 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
             Row(
               children: [
                 Expanded(
+                  flex: 1,
                   child: CustomFixedForm(
                     isMust: true,
                     title: "Tanggal Lahir",
@@ -257,9 +260,10 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                   ),
                 ),
                 SizedBox(
-                  width: c.sw * 24,
+                  width: 24,
                 ),
                 Expanded(
+                  flex: 1,
                   child: CustomFixedForm(content: "$age Tahun", title: "Usia"),
                 )
               ],
@@ -281,6 +285,7 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                 //   ),
                 // ),
                 Expanded(
+                  flex: 1,
                   child: CustomDropDown(
                     title: "Jenis Kelamin",
                     items: genderItems,
@@ -290,9 +295,10 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                   ),
                 ),
                 SizedBox(
-                  width: c.sw * 24,
+                  width: 24,
                 ),
                 Expanded(
+                  flex: 1,
                   child: CustomDropDown(
                     title: "Agama",
                     items: religionItems,
@@ -335,6 +341,7 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
             Row(
               children: [
                 Expanded(
+                  flex: 1,
                   child: CustomForm(
                     controller: p.rwController,
                     hintText: widget.patient.rw,
@@ -342,9 +349,10 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
                   ),
                 ),
                 SizedBox(
-                  width: c.sw * 24,
+                  width: 24,
                 ),
                 Expanded(
+                  flex: 1,
                   child: CustomForm(
                     controller: p.rtController,
                     hintText: widget.patient.rt,
@@ -359,13 +367,13 @@ class _ProfilePatientEditFormState extends State<ProfilePatientEditForm> {
               title: "Kecamatan",
             ),
             CustomForm(
-              controller: p.teleponController,
-              hintText: widget.patient.phone,
+              controller: p.handphoneController,
+              hintText: widget.patient.mobile,
               title: "No. Telepon (Rumah)",
             ),
             CustomForm(
-              controller: p.handphoneController,
-              hintText: "",
+              controller: p.teleponController,
+              hintText: widget.patient.phone,
               title: "No. Handphone",
               isMust: true,
             ),

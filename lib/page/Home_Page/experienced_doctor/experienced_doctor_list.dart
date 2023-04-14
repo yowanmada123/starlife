@@ -1,17 +1,19 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:starlife/models/model_poli.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/schedule_detail_page/schedule_detail_page.dart';
-import 'package:starlife/page/Home_Page/home_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/home_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class ListDoctor extends StatefulWidget {
-  final bool? passwordMode;
+  final Poli? poli;
 
-  const ListDoctor({super.key, this.passwordMode});
+  const ListDoctor({super.key, this.poli});
 
   @override
   State<ListDoctor> createState() => _ListDoctorState();
@@ -25,8 +27,14 @@ class _ListDoctorState extends State<ListDoctor> {
   @override
   void initState() {
     super.initState();
-    h.getDataDoctors();
-    // loading.value = false;
+    if (widget.poli != null) {
+      SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
+        h.selectedDepartment.value = widget.poli!.dprtId;
+        h.getListDoctorByPoli();
+      });
+    }else{
+
+    }
   }
 
   @override
@@ -39,7 +47,7 @@ class _ListDoctorState extends State<ListDoctor> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
+                  // physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount:
                       // 10,
@@ -74,21 +82,21 @@ class _ListDoctorState extends State<ListDoctor> {
                                       ClipRRect(
                                           borderRadius: BorderRadius.circular(10.0),
                                           child: Image.network(
-                                            width: c.sw * 105,
-                                            height: c.sw * 105,
+                                            width: 105,
+                                            height: 105,
                                             // h.listDoctors[0].picture,
                                             h.listDoctors[index].picture,
                                             fit: BoxFit.cover,
                                           )
                                           // Image.asset(
-                                          //   width: c.sw * 105,
-                                          //   height: c.sw * 105,
+                                          //   width:   105,
+                                          //   height:   105,
                                           //   h.listDoctors[index].picture,
                                           //   fit: BoxFit.cover,
                                           // ),
                                           ),
                                       SizedBox(
-                                        width: c.sw * 13,
+                                        width: 13,
                                       ),
                                       Expanded(
                                         flex: 1,
@@ -165,7 +173,7 @@ class _ListDoctorState extends State<ListDoctor> {
                                         ]),
                                       ),
                                       SizedBox(
-                                        width: c.sw * 15,
+                                        width: 15,
                                       ),
                                     ],
                                   ),

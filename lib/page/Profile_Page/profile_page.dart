@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Profile_Page/profile_body/profile_background.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_feature.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 import 'profile_body/profile_patient.dart';
@@ -37,7 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           const ProfileBackground(),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+            padding: EdgeInsets.symmetric(horizontal: 16),
             child: SingleChildScrollView(
               child: Column(
                 children: [

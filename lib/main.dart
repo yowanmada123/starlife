@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Auth_Page/splashscreen.dart';
-import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_edit/image_picker.dart';
-import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_edit/image_picker2.dart';
-import 'package:starlife/page/dio/TryDio.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -21,9 +17,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: HomePage(),
-      home: SplashScreen(),
-      // 
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => const SplashScreen()),
+      ],
+      home: const SplashScreen(),
+      //
     );
   }
 }

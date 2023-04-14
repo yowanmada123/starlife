@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/models/model_news.dart';
 import 'package:starlife/page/Article_Page/article_detail_page/article_detail_brochure.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 
 class ArticleDetailPage extends StatefulWidget {
   const ArticleDetailPage({super.key, required this.news});
@@ -29,16 +29,18 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           SingleChildScrollView(
               child: Column(
             children: [
-              ArticleDetailBrochure(news: widget.news,),
+              ArticleDetailBrochure(
+                news: widget.news,
+              ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: 0),
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 child: Text(
                   widget.news.content,
                   textAlign: TextAlign.justify,
                 ),
               ),
-              SizedBox(
-                height:    50,
+              const SizedBox(
+                height: 50,
               )
             ],
           )),

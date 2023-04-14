@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:starlife/models/model_person.dart';
 import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_edit/profile_patient_edit_data_page.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 
@@ -79,11 +79,11 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
             ),
             Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Container(
-                    width: c.sw * 128,
+                SizedBox(
+                    width: 128,
                     height: 26,
                     child: BaseButton(
                       ontap: () {
@@ -94,7 +94,7 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
                       text: "Edit Profile",
                       textSize: 12,
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
               ],
@@ -131,6 +131,7 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
             Row(
               children: [
                 Expanded(
+                  flex: 1,
                   child: CustomFixedForm(
                     content: date,
                     title: "Tanggal Lahir",
@@ -139,9 +140,10 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
                   ),
                 ),
                 SizedBox(
-                  width: c.sw * 24,
+                  width: 24,
                 ),
                 Expanded(
+                  flex: 1,
                   child: CustomFixedForm(
                     content: "$age Tahun",
                     title: "Usia",
@@ -160,6 +162,7 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
             Row(
               children: [
                 Expanded(
+                  flex: 1,
                   child: CustomFixedForm(
                     content: widget.patient.sex == "male" ? "Laki - Laki" : "Perempuan",
                     title: "Jenis Kelamin",
@@ -168,9 +171,10 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
                   ),
                 ),
                 SizedBox(
-                  width: c.sw * 24,
+                  width: 24,
                 ),
                 Expanded(
+                  flex: 1,
                   child: CustomFixedForm(
                     content: widget.patient.agama,
                     title: "Agama",
@@ -214,6 +218,7 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
             Row(
               children: [
                 Expanded(
+                  flex: 1,
                   child: CustomFixedForm(
                     content: widget.patient.rw,
                     title: "RW",
@@ -222,9 +227,10 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
                   ),
                 ),
                 SizedBox(
-                  width: c.sw * 24,
+                  width: 24,
                 ),
                 Expanded(
+                  flex: 1,
                   child: CustomFixedForm(
                     content: widget.patient.rt,
                     title: "RT",
@@ -241,13 +247,13 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
               isMust: true,
             ),
             CustomFixedForm(
-              content: widget.patient.phone,
+              content: widget.patient.mobile,
               title: "No. Telepon (Rumah)",
               backgroundColor: Colors.white,
               isMust: true,
             ),
             CustomFixedForm(
-              content: widget.patient.mobile,
+              content: widget.patient.phone,
               title: "No. Handphone",
               backgroundColor: Colors.white,
               isMust: true,

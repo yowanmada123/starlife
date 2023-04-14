@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/models/model_person.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_list_page.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/showdialog_fill_button.dart';
@@ -23,10 +23,11 @@ class PinPage extends StatefulWidget {
 }
 
 class _PinPageState extends State<PinPage> {
+  @override
   void initState() {
     super.initState();
     pinfix = widget.patient.pincode.split('');
-    print(widget.patient.pincode);
+    // print(widget.patient.pincode);
     // print(pinfix);
     // print(p.person.rm);
   }
@@ -71,14 +72,14 @@ class _PinPageState extends State<PinPage> {
       for (int i = 0; i < pin.length; i++) {
         if (pinfix[i] != pin[i]) {
           setState(() {
-            print("pin salah");
+            // print("pin salah");
             truePin.value = false;
           });
-          print("PIN SALAH");
+          // print("PIN SALAH");
           pinTrue = 0;
           clearNumber();
           clearPin();
-          Future.delayed(Duration(seconds: 1), () {
+          Future.delayed(const Duration(seconds: 1), () {
             setState(() {
               truePin.value = true;
               // print(truePin);
@@ -87,7 +88,7 @@ class _PinPageState extends State<PinPage> {
           });
           // truePin = true;
         } else {
-          print("PIN CHECKED");
+          // print("PIN CHECKED");
           setState(() {
             pinTrue++;
             // clearNumber();
@@ -96,7 +97,7 @@ class _PinPageState extends State<PinPage> {
       }
       if (pinTrue == 6) {
         setState(() {
-          print("pin benar");
+          // print("pin benar");
           pinTrue++;
           truePin.value = true;
           pin.clear();
@@ -106,7 +107,7 @@ class _PinPageState extends State<PinPage> {
       }
       if (sixTimeTrue == true) {
         pinTrue = 0;
-        Get.to(CheckRmListPage(
+        Get.off(CheckRmListPage(
           name: widget.patient.fname,
         ));
       }
@@ -114,8 +115,8 @@ class _PinPageState extends State<PinPage> {
       // print("PIN NOT TRUE");
     } else {
       // clearNumber();
-      print("PIN NOT IN DIGIT");
-      print("Inputkan PIN sebanyak 6 digit");
+      // print("PIN NOT IN DIGIT");
+      // print("Inputkan PIN sebanyak 6 digit");
     }
   }
 
@@ -142,7 +143,7 @@ class _PinPageState extends State<PinPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text("Masukkan PIN").p16b().black(),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Obx(() => (truePin.value) ? const Text("Mohon Masukkan PIN Anda").p12r().black() : const Text("PIN tidak sesuai. Silahkan coba lagi").p14r().red())
@@ -162,7 +163,7 @@ class _PinPageState extends State<PinPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               // TextButton(onPressed: clearText, child: Text("data")),
-              SizedBox(
+              const SizedBox(
                 height: 250,
               ),
               Row(
@@ -188,7 +189,7 @@ class _PinPageState extends State<PinPage> {
                       const SizedBox(width: 24),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               GestureDetector(
@@ -212,7 +213,7 @@ class _PinPageState extends State<PinPage> {
                                     height: 10,
                                   ),
                                   SizedBox(
-                                    width: c.sw * 170,
+                                    width: 170,
                                     child: Text(
                                       "Mohon Cek Email Anda untuk mengubah PIN",
                                       style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),
@@ -254,10 +255,10 @@ class _PinPageState extends State<PinPage> {
           child: Container(
             height: 86,
             width: Get.width,
-            padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: 20),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
             child: BaseButton(
               ontap: () {
-                print(pin.length);
+                // print(pin.length);
                 cekPin();
               },
               color: OPrimaryColor,
@@ -268,7 +269,7 @@ class _PinPageState extends State<PinPage> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: Visibility(
             visible: visibleKeypad,
             child: SizedBox(
@@ -289,7 +290,7 @@ class _PinPageState extends State<PinPage> {
                                 pin.add("1");
                                 addNumber();
                               }
-                              print(pin);
+                              // print(pin);
                             },
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
@@ -301,7 +302,7 @@ class _PinPageState extends State<PinPage> {
                           ),
                         ),
                         SizedBox(
-                          width: c.sw * 15,
+                          width: 15,
                         ),
                         Expanded(
                           flex: 1,
@@ -311,7 +312,7 @@ class _PinPageState extends State<PinPage> {
                                 pin.add("2");
                                 addNumber();
                               }
-                              print(pin);
+                              // print(pin);
                             },
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
@@ -323,7 +324,7 @@ class _PinPageState extends State<PinPage> {
                           ),
                         ),
                         SizedBox(
-                          width: c.sw * 15,
+                          width: 15,
                         ),
                         Expanded(
                           flex: 1,
@@ -333,7 +334,7 @@ class _PinPageState extends State<PinPage> {
                                 pin.add("3");
                                 addNumber();
                               }
-                              print(pin);
+                              // print(pin);
                             },
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
@@ -347,7 +348,7 @@ class _PinPageState extends State<PinPage> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Expanded(
@@ -363,8 +364,8 @@ class _PinPageState extends State<PinPage> {
                                 pin.add("4");
                                 addNumber();
                               }
-                              print(pin);
-                              print(pin.length);
+                              // print(pin);
+                              // print(pin.length);
                             },
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
@@ -376,7 +377,7 @@ class _PinPageState extends State<PinPage> {
                           ),
                         ),
                         SizedBox(
-                          width: c.sw * 15,
+                          width: 15,
                         ),
                         Expanded(
                           flex: 1,
@@ -386,7 +387,7 @@ class _PinPageState extends State<PinPage> {
                                 pin.add("5");
                                 addNumber();
                               }
-                              print(pin);
+                              // print(pin);
                             },
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
@@ -398,7 +399,7 @@ class _PinPageState extends State<PinPage> {
                           ),
                         ),
                         SizedBox(
-                          width: c.sw * 15,
+                          width: 15,
                         ),
                         Expanded(
                           flex: 1,
@@ -408,7 +409,7 @@ class _PinPageState extends State<PinPage> {
                                 pin.add("6");
                                 addNumber();
                               }
-                              print(pin);
+                              // print(pin);
                             },
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
@@ -422,7 +423,7 @@ class _PinPageState extends State<PinPage> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Expanded(
@@ -438,8 +439,8 @@ class _PinPageState extends State<PinPage> {
                                 pin.add("7");
                                 addNumber();
                               }
-                              print(pin);
-                              print(pin.length);
+                              // print(pin);
+                              // print(pin.length);
                             },
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
@@ -451,7 +452,7 @@ class _PinPageState extends State<PinPage> {
                           ),
                         ),
                         SizedBox(
-                          width: c.sw * 15,
+                          width: 15,
                         ),
                         Expanded(
                           flex: 1,
@@ -461,7 +462,7 @@ class _PinPageState extends State<PinPage> {
                                 pin.add("8");
                                 addNumber();
                               }
-                              print(pin);
+                              // print(pin);
                             },
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
@@ -473,7 +474,7 @@ class _PinPageState extends State<PinPage> {
                           ),
                         ),
                         SizedBox(
-                          width: c.sw * 15,
+                          width: 15,
                         ),
                         Expanded(
                           flex: 1,
@@ -483,7 +484,7 @@ class _PinPageState extends State<PinPage> {
                                 pin.add("9");
                                 addNumber();
                               }
-                              print(pin);
+                              // print(pin);
                             },
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
@@ -497,7 +498,7 @@ class _PinPageState extends State<PinPage> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Expanded(
@@ -521,7 +522,7 @@ class _PinPageState extends State<PinPage> {
                           ),
                         ),
                         SizedBox(
-                          width: c.sw * 15,
+                          width: 15,
                         ),
                         Expanded(
                           flex: 1,
@@ -531,7 +532,7 @@ class _PinPageState extends State<PinPage> {
                                 pin.add("0");
                                 addNumber();
                               }
-                              print(pin);
+                              // print(pin);
                             },
                             child: Container(
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.grey)),
@@ -543,16 +544,16 @@ class _PinPageState extends State<PinPage> {
                           ),
                         ),
                         SizedBox(
-                          width: c.sw * 15,
+                          width: 15,
                         ),
                         Expanded(
                           flex: 1,
                           child: GestureDetector(
                             onTap: () {
-                              if (pin.length > 0) {
+                              if (pin.isNotEmpty) {
                                 removeNumber();
                                 pin.removeLast();
-                                print(pin);
+                                // print(pin);
                               }
                             },
                             child: const Center(
@@ -565,7 +566,7 @@ class _PinPageState extends State<PinPage> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                 ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/models/model_doctor.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -21,17 +21,17 @@ class _ScheduleTopBarState extends State<ScheduleTopBar> {
     return Positioned(
         child: Container(
       color: OPrimaryColor,
-      height:    304,
+      height: 304,
       width: Get.width,
       child: Stack(children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical:    53),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 53),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: ()=> Get.back(),
+                onTap: () => Get.back(),
                 child: ClipOval(
                   child: Material(
                     color: Colors.white,
@@ -55,7 +55,7 @@ class _ScheduleTopBarState extends State<ScheduleTopBar> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top:    53),
+          padding: EdgeInsets.only(top: 53),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,22 +65,20 @@ class _ScheduleTopBarState extends State<ScheduleTopBar> {
                   ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                     child: SizedBox(
-                      width: c.sw * 176,
-                      height: c.sw * 176,
-                      child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: Image.network(widget.doctor.picture) 
-                        // Image.asset("assets/icon/ic_doctor.png"),
-                      ),
+                      width: 176,
+                      height: 176,
+                      child: FittedBox(fit: BoxFit.cover, child: Image.network(widget.doctor.picture)
+                          // Image.asset("assets/icon/ic_doctor.png"),
+                          ),
                     ),
                   ),
                   SizedBox(
-                    height:    12,
+                    height: 12,
                   ),
                   Text(widget.doctor.namadokter).p18m().white(),
                   Text(widget.doctor.poli).p10r().white(),
                   SizedBox(
-                    height:    10,
+                    height: 10,
                   ),
                 ],
               ),

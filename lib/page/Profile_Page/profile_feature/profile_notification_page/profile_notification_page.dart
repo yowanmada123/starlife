@@ -4,7 +4,7 @@ import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_data/profile_patient_data_page.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class ProfileNotificationPage extends StatefulWidget {
@@ -33,52 +33,52 @@ class _ProfileNotificationPagetState extends State<ProfileNotificationPage> {
             child: Column(
               children: [
                 Container(
-                padding: EdgeInsets.only(top: 97, left: c.sw*16, right: c.sw*16),
-                width: Get.width,
-                height: Get.height,
-                child: ListView.builder(
-                    itemCount: time.length,
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    itemBuilder: (BuildContext context, int index) {
-                      return (index + 1 == time.length)
-                          ? Column(
-                              children: [
-                                ItemList(
-                                  name: entrie,
-                                  time: time[index],
-                                ),
-                                SizedBox(
-                                  height:    1000,
-                                ),
-                              ],
-                            )
-                          : ItemList(
-                              name: entrie,
-                              time: time[index],
-                            );
-                    }),
-              ),
+                  padding: EdgeInsets.only(top: 97, left: 16, right: 16),
+                  width: Get.width,
+                  height: Get.height,
+                  child: ListView.builder(
+                      itemCount: time.length,
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      itemBuilder: (BuildContext context, int index) {
+                        return (index + 1 == time.length)
+                            ? Column(
+                                children: [
+                                  ItemList(
+                                    name: entrie,
+                                    time: time[index],
+                                  ),
+                                  SizedBox(
+                                    height: 1000,
+                                  ),
+                                ],
+                              )
+                            : ItemList(
+                                name: entrie,
+                                time: time[index],
+                              );
+                      }),
+                ),
               ],
             ),
           ),
           Container(
             color: Colors.transparent,
-            height:    128,
+            height: 128,
             width: Get.width,
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height:    53,
+                      height: 53,
                     ),
                     Row(
                       children: [
                         const ButtonBack(),
                         SizedBox(
-                          width: c.sw * 16,
+                          width: 16,
                         ),
                         const Text("Notifikasi").p16b().white(),
                       ],
@@ -101,7 +101,7 @@ class ItemList extends StatelessWidget {
     final c = Get.put(GlobalController());
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Column(
           children: [
@@ -109,24 +109,21 @@ class ItemList extends StatelessWidget {
               height: 5,
             ),
             Container(
-                width: 8,
-                height: 8,
-                decoration: BoxDecoration(
-                color: OPrimaryColor,
-                borderRadius: BorderRadius.circular(10)
-                ),
-              ),
+              width: 8,
+              height: 8,
+              decoration: BoxDecoration(color: OPrimaryColor, borderRadius: BorderRadius.circular(10)),
+            ),
           ],
         ),
         SizedBox(
-          width: c.sw * 13,
+          width: 13,
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: c.sw*335,
+              width: 335,
               height: 35,
               child: Text(
                 name,

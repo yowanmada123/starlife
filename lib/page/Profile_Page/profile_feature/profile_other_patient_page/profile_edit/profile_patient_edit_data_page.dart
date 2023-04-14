@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:starlife/models/model_person.dart';
 import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_edit/profile_patient_edit_data_form.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/base/custom_buttom_button.dart';
@@ -38,7 +38,7 @@ class _ProfileEditDataPageState extends State<ProfileEditDataPage> {
             height: 128,
             width: Get.width,
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +50,7 @@ class _ProfileEditDataPageState extends State<ProfileEditDataPage> {
                       children: [
                         const ButtonBack(),
                         SizedBox(
-                          width: c.sw * 16,
+                          width: 16,
                         ),
                         const Text("Edit Profile").p16b().white(),
                       ],

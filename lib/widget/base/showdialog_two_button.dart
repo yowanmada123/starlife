@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 import '../../utils/colors.dart';
 
-dialogBuilder({required bool barier, required BuildContext context, required String title,
-required Function() buttonLeft, required Function() buttonRight, required String leftTittle, required String rightTitle, }) 
-
-
-{
+dialogBuilder({
+  required bool barier,
+  required BuildContext context,
+  required String title,
+  required Function() buttonLeft,
+  required Function() buttonRight,
+  required String leftTittle,
+  required String rightTitle,
+}) {
   final c = Get.put(GlobalController());
   return showDialog<void>(
     context: context,
@@ -31,7 +35,7 @@ required Function() buttonLeft, required Function() buttonRight, required String
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                  width: c.sw * 110,
+                  width: 110,
                   child: BaseButton(
                     ontap: buttonLeft,
                     text: leftTittle,
@@ -41,21 +45,21 @@ required Function() buttonLeft, required Function() buttonRight, required String
                     outlineColor: OPrimaryColor,
                   )),
               SizedBox(
-                width: c.sw * 23,
+                width: 23,
               ),
               Container(
-                  width: c.sw * 110,
+                  width: 110,
                   child: BaseButton(
                     ontap: buttonRight,
                     text: rightTitle,
                     textSize: 14,
                     textColor: Colors.white,
-                    width: c.sw * 110,
+                    width: 110,
                   ))
             ],
           ),
           SizedBox(
-            height:    14,
+            height: 14,
           ),
         ],
       );

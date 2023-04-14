@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
-import '../../page/global_controller.dart';
+import '../../controllers/global_controller.dart';
 
 class CustomFixedForm extends StatefulWidget {
   const CustomFixedForm({
@@ -16,7 +16,8 @@ class CustomFixedForm extends StatefulWidget {
     this.backgroundColor,
     this.cornerIcon,
     this.ontapIcon,
-    this.isMust, this.uboundedHeight,
+    this.isMust,
+    this.uboundedHeight,
   });
   final String content;
   final String title;
@@ -58,9 +59,9 @@ class _CustomFixedFormState extends State<CustomFixedForm> {
           ),
           (widget.uboundedHeight == false)
               ? Container(
-                  padding: EdgeInsets.symmetric(horizontal: c.sw * 15),
+                  padding: EdgeInsets.symmetric(horizontal: 15),
                   width: Get.width,
-                  height:    46,
+                  height: 46,
                   decoration: BoxDecoration(color: (widget.backgroundColor == null) ? Color(0xffD0F4FF) : widget.backgroundColor, borderRadius: BorderRadius.circular(10), border: Border.all(color: Color(0xff28C6F5))),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +89,7 @@ class _CustomFixedFormState extends State<CustomFixedForm> {
                   ),
                 )
               : Container(
-                  padding: EdgeInsets.symmetric(horizontal: c.sw * 15, vertical: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   width: Get.width,
                   // height:    46,
                   decoration: BoxDecoration(color: (widget.backgroundColor == null) ? const Color(0xffD0F4FF) : widget.backgroundColor, borderRadius: BorderRadius.circular(10), border: Border.all(color: Color(0xff28C6F5))),
@@ -118,7 +119,7 @@ class _CustomFixedFormState extends State<CustomFixedForm> {
                   ),
                 ),
           SizedBox(
-            height:    16,
+            height: 16,
           ),
         ],
       ),

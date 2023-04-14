@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
+import 'package:starlife/controllers/patient_page_controller.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_body/patient_check_bottombar.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_body/patient_check_topbar.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_body/patient_check_data.dart';
@@ -15,13 +15,13 @@ class PatientCheckPage extends StatefulWidget {
 
 class _PatientCheckPageState extends State<PatientCheckPage> {
   final p = Get.put(PatientPageController());
-  @override
-  void initState() {
-    super.initState();
-    print("=====================");
-    print(widget.rm);
-    print("=====================");
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   print("=====================");
+  //   print(widget.rm);
+  //   print("=====================");
+  // }
 
   @override
   Widget build(BuildContext context) {

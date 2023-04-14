@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Home_Page/navigationbar/navigationbar.dart';
-import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/page/Home_Page/home_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
+import 'package:starlife/controllers/home_controller.dart';
 
 import 'package:starlife/utils/colors.dart';
 
@@ -21,16 +21,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: splashtime), () async {
-      Get.to(const BlankScreen(), transition: Transition.circularReveal, duration: const Duration(seconds: 2));
+      Get.offAll(const BlankScreen(), transition: Transition.circularReveal, duration: const Duration(seconds: 2));
     });
     // getToken();
     super.initState();
   }
-
-  // getToken() async {
-  //   c.token = (await c.getToken())!;
-  //   print(c.token);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -53,29 +48,18 @@ class BlankScreen extends StatefulWidget {
 class _BlankScreenState extends State<BlankScreen> {
   final h = Get.put(HomeController());
 
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  // }
-
   int time = 1;
   @override
   void initState() {
     SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
-      // print("=============/* =========");
-      // print(c.getToken());
-      // print("============= */=========");
       await h.getDataPatientQueue();
-      // print("======================");
-      // print(h.listPatientQueue[0].doctorId);
-      // print("======================");
     });
     Future.delayed(Duration(seconds: time), () async {
-      Get.offAll(HelloConvexAppBar());
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return HelloConvexAppBar();
-      }));
+      // Get.off(HelloConvexAppBar());
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const HelloConvexAppBar()));
+      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+      //   return HelloConvexAppBar();
+      // }));
       // Get.to(const LoginPage());
     });
 

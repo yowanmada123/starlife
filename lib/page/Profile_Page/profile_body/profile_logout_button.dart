@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starlife/controllers/home_controller.dart';
 import 'package:starlife/page/Home_Page/navigationbar/navigationbar.dart';
 import 'package:starlife/page/Auth_Page/Login/login_page.dart';
 import 'package:starlife/controllers/profile_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/showdialog_fill_button.dart';
 import 'package:starlife/widget/base/showdialog_two_button.dart';
 
-Widget ProfileLogoutButton(ProfileController p, GlobalController c, BuildContext context) {
+Widget ProfileLogoutButton(HomeController h, ProfileController p, GlobalController c, BuildContext context) {
   return Container(
       width: Get.width,
-      height:    38,
+      height: 38,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -32,14 +33,15 @@ Widget ProfileLogoutButton(ProfileController p, GlobalController c, BuildContext
         ontap: () {
           dialogBuilder(
               context: context,
-              buttonLeft: () {
+              buttonLeft: () async {
                 Get.back();
                 c.tabHomeIndex.value = 0;
                 c.isLogin.value = false;
                 c.pasienNumber = 0;
+                await c.removeToken();
                 p.loadingPersonal.value = false;
                 p.loadingPatientsData.value = false;
-                c.removeToken();
+                h.listPatientQueue.clear();
                 Get.offAll(HelloConvexAppBar());
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Logout Success'),
@@ -59,7 +61,7 @@ Widget ProfileLogoutButton(ProfileController p, GlobalController c, BuildContext
         textWeight: FontWeight.w600,
         textSize: 12,
         iconColor: Color(0xffD9532E),
-        height:    38,
+        height: 38,
         width: Get.width,
         icon: Icons.logout,
       ));

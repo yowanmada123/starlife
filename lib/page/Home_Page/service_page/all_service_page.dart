@@ -1,9 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:starlife/controllers/home_controller.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/experienced_doctor_list_page.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -17,27 +19,19 @@ class AllServicePage extends StatefulWidget {
 
 class _AllServicePageState extends State<AllServicePage> {
   final c = Get.put(GlobalController());
-  List<String> categoryImage = [
-    'assets/icon/ic_igd.png',
-    'assets/icon/ic_gigi.png',
-    'assets/icon/ic_spesialis.png',
-    'assets/icon/ic_farmasi.png',
-    'assets/icon/ic_gizi.png',
-    'assets/icon/ic_imunisasi.png',
-  ];
-  List<String> category = [
-    'IGD',
-    'Dokter Gigi',
-    'Spesialis',
-    'Instalasi Farmasi',
-    'Pelayanan Gizi',
-    'Imunisasi',
-  ];
+  final h = Get.put(HomeController());
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
+      await h.getPoli();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height - kToolbarHeight -    300) / 2;
+    final double itemHeight = (size.height - kToolbarHeight - 300) / 2;
     final double itemWidth = size.width / 2;
 
     return Scaffold(
@@ -53,74 +47,83 @@ class _AllServicePageState extends State<AllServicePage> {
             physics: const ScrollPhysics(),
             child: Column(
               children: [
-                SizedBox(
-                  height:    120,
+                const SizedBox(
+                  height: 120,
                 ),
                 // Pelayanan(),
                 Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: c.sw * 16.0),
-                      child: GridView.count(
-                          padding: EdgeInsets.zero,
-                          crossAxisCount: 4,
-                          childAspectRatio: (itemWidth / itemHeight),
-                          crossAxisSpacing:    10,
-                          mainAxisSpacing: c.sw * 10,
-                          controller: ScrollController(keepScrollOffset: false),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          children: List.generate(
-                            category.length,
-                            (index) => Row(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.to(ExperiencedDoctorListPage(title: category[index],));
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.9),
-                                          spreadRadius: 0.1,
-                                          blurRadius: 1,
-                                          offset: const Offset(0, 0.1), // changes position of shadow
-                                        ),
-                                      ],
-                                    ),
-                                    // height:    100,
-                                    width: c.sw * 80,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        SizedBox(height: 50, child: Center(child: Image.asset(categoryImage[index]))),
-                                        // SizedBox(
-                                        //   height:    ,
-                                        // ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal:3.0),
-                                          child: Center(
-                                            child: AutoSizeText(
-                                              category[index],
-                                              textAlign: TextAlign.center,
-                                              style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.black, height: 1.3),
-                                              maxLines: 2,
-                                              minFontSize: 9,
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Obx(() => (h.loadingPoliData.value)
+                            ? GridView.count(
+                                padding: EdgeInsets.zero,
+                                crossAxisCount: 4,
+                                childAspectRatio: (itemWidth / itemHeight),
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
+                                controller: ScrollController(keepScrollOffset: false),
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                children: List.generate(
+                                  h.listPoli.length,
+                                  (index) => GestureDetector(
+                                    onTap: () async {
+                                      h.selectedPoli.value = await h.listPoli[index].dprtId;
+                                      Get.to(ExperiencedDoctorListPage(
+                                        poli: h.listPoli[index],
+                                      ));
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.9),
+                                            spreadRadius: 0.1,
+                                            blurRadius: 1,
+                                            offset: const Offset(0, 0.1), // changes position of shadow
+                                          ),
+                                        ],
+                                      ),
+                                      // height:    100,
+                                      width: 74,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                              height: 50,
+                                              child: Center(
+                                                  child: Center(
+                                                      child: FittedBox(
+                                                fit: BoxFit.cover,
+                                                child: Image.network(h.listPoli[index].image, errorBuilder: (context, error, stackTrace) {
+                                                  return Image.asset("assets/icon/ic_gigi.png");
+                                                }),
+                                              )))),
+                                          // SizedBox(
+                                          //   height:    ,
+                                          // ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                                            child: Center(
+                                              child: AutoSizeText(
+                                                h.listPoli[index].name,
+                                                textAlign: TextAlign.center,
+                                                style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.black, height: 1.3),
+                                                maxLines: 2,
+                                                minFontSize: 9,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          )),
-                    ),
+                                ))
+                            : CircularProgressIndicator())),
                   ],
                 ),
               ],
@@ -128,22 +131,22 @@ class _AllServicePageState extends State<AllServicePage> {
           ),
           Container(
             color: Colors.transparent,
-            height:    128,
+            height: 128,
             width: Get.width,
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height:    53,
+                    const SizedBox(
+                      height: 53,
                     ),
                     Row(
                       children: [
                         const ButtonBack(),
                         SizedBox(
-                          width: c.sw * 16,
+                          width: 16,
                         ),
                         const Text("Semua Pelayanan").p16b().white(),
                       ],

@@ -1,9 +1,12 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/controllers/auth_controller.dart';
+import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/page/Home_Page/navigationbar/navigationbar.dart';
 import 'package:starlife/utils/colors.dart';
@@ -11,21 +14,37 @@ import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/showdialog_fill_button.dart';
 import 'package:starlife/widget/ext_text.dart';
 
-class ProfileChangePasswordPage extends StatefulWidget {
-  const ProfileChangePasswordPage({super.key});
+class ProfileChangePinPage extends StatefulWidget {
+  const ProfileChangePinPage({super.key});
 
   @override
-  State<ProfileChangePasswordPage> createState() => _ProfileChangePasswordPageState();
+  State<ProfileChangePinPage> createState() => _ProfileChangePinPageState();
 }
 
-class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
+class _ProfileChangePinPageState extends State<ProfileChangePinPage> {
   final c = Get.put(GlobalController());
   final lc = Get.put(AuthController());
-  final _passwordLamaController = TextEditingController(text: '');
-  final _passwordBaruController = TextEditingController(text: "");
-  final _confirmPasswordBaruController = TextEditingController(text: "");
+  final p = Get.put(ProfileController());
+
+  final _oldPinController = TextEditingController(text: '');
+  final _newPinController = TextEditingController(text: "");
+  final _confirmNewPinController = TextEditingController(text: "");
   final _forgotPasswordMail = TextEditingController(text: "");
   bool _isObscure = true;
+  var oldPin = '';
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
+      p.loadingPersonal.value = false;
+      await p.getDataPersonal();
+      // pinfix = p.person!.pincode.split('');
+      print(p.person!.pincode);
+      oldPin = p.person!.pincode;
+    });
+    // h.getDataNews();
+    // loading.value = false;
+  }
 
   // final bool isValid = EmailValidator.validate(email);
   @override
@@ -85,7 +104,7 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                           const SizedBox(
                             height: 15,
                           ),
-                          const Text("Anda Ingin Mengubah Password?").p16b().white(),
+                          const Text("Anda Ingin Mengubah PIN?").p16b().white(),
                           const Text("Ubah sekarang!").p12r().white(),
                           const SizedBox(
                             height: 14,
@@ -112,16 +131,18 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                                   const SizedBox(
                                     height: 15,
                                   ),
-                                  const Text("Ubah password").p16b().black(),
+                                  const Text("Ubah PIN RM").p16b().black(),
                                   Padding(
                                     padding: EdgeInsets.symmetric(horizontal: 26),
                                     child: TextField(
+                                      maxLength: 6,
                                       style: const TextStyle(color: Colors.black, fontSize: 14),
-                                      controller: _passwordLamaController,
+                                      controller: _oldPinController,
                                       obscureText: _isObscure,
                                       decoration: InputDecoration(
+                                        counter: const Offstage(),
                                         isDense: true,
-                                        labelText: 'Masukkan Password Lama',
+                                        labelText: 'Masukkan PIN Lama',
                                         labelStyle: const TextStyle(color: Colors.grey, fontSize: 12),
                                         enabledBorder: const UnderlineInputBorder(
                                           borderSide: BorderSide(color: Colors.grey),
@@ -143,12 +164,14 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                                   Padding(
                                     padding: EdgeInsets.symmetric(horizontal: 26),
                                     child: TextField(
+                                      maxLength: 6,
                                       style: const TextStyle(color: Colors.black, fontSize: 14),
-                                      controller: _passwordBaruController,
+                                      controller: _newPinController,
                                       obscureText: _isObscure,
                                       decoration: InputDecoration(
+                                        counter: const Offstage(),
                                         isDense: true,
-                                        labelText: 'Masukkan Password Baru',
+                                        labelText: 'Masukkan PIN Baru',
                                         labelStyle: const TextStyle(color: Colors.grey, fontSize: 12),
                                         enabledBorder: const UnderlineInputBorder(
                                           borderSide: BorderSide(color: Colors.grey),
@@ -170,12 +193,14 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                                   Padding(
                                     padding: EdgeInsets.symmetric(horizontal: 26),
                                     child: TextField(
+                                      maxLength: 6,
                                       style: const TextStyle(color: Colors.black, fontSize: 14),
-                                      controller: _confirmPasswordBaruController,
+                                      controller: _confirmNewPinController,
                                       obscureText: _isObscure,
                                       decoration: InputDecoration(
+                                        counter: const Offstage(),
                                         isDense: true,
-                                        labelText: 'Masukkan Ulang Password Baru',
+                                        labelText: 'Masukkan Ulang PIN Baru',
                                         labelStyle: const TextStyle(color: Colors.grey, fontSize: 12),
                                         enabledBorder: const UnderlineInputBorder(
                                           borderSide: BorderSide(color: Colors.grey),
@@ -200,8 +225,72 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                                   Padding(
                                     padding: EdgeInsets.symmetric(horizontal: 26),
                                     child: BaseButton(
-                                      ontap: () {
-                                        Get.back();
+                                      ontap: () async {
+                                        // Get.back();
+                                        if (_oldPinController.text != oldPin) {
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                            content: Text("Mohon Periksa Kembali PIN Lama Anda"),
+                                            backgroundColor: Colors.black87,
+                                          ));
+                                        }
+                                        // print(_oldPinController.text);
+                                        // print(oldPin);
+
+                                        if (_oldPinController.text.isNotEmpty && _newPinController.text.isNotEmpty && _confirmNewPinController.text.isNotEmpty) {
+                                          if (_oldPinController.text == oldPin) {
+                                            if (_newPinController.text == _confirmNewPinController.text) {
+                                              if (_confirmNewPinController.text.length == 6) {
+                                                var isTrue = c.isNumber(_confirmNewPinController.text);
+                                                if (isTrue) {
+                                                  if (_oldPinController.text != _confirmNewPinController.text) {
+                                                    // String passwordBaru = confirmPin.join();
+                                                    p.pinBaruController.text = _confirmNewPinController.text;
+                                                    p.pinLamaController.text = _oldPinController.text;
+                                                    var respon = await p.changePIN();
+                                                    if (respon == "ok") {
+                                                      // ignore: use_build_context_synchronously
+                                                      CustomDialog(context);
+                                                      Timer(const Duration(seconds: 1), () {
+                                                        Get.close(2);
+                                                      });
+                                                    }
+                                                  } else {
+                                                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                                      content: Text("PIN Baru Tidak Boleh Sama Dengan PIN Lama"),
+                                                      backgroundColor: Colors.black87,
+                                                    ));
+                                                  }
+                                                } else {
+                                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                                    content: Text('Mohon Isi PIN Hanya Dengan Angka'),
+                                                    backgroundColor: Colors.black87,
+                                                  ));
+                                                }
+                                              } else {
+                                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                                  content: Text("PIN Harus Terdiri Dari 6 Digit"),
+                                                  backgroundColor: Colors.black87,
+                                                ));
+                                              }
+                                            } else {
+                                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                                content: Text("Mohon Isi Konfirmasi PIN Dengan Tepat"),
+                                                backgroundColor: Colors.black87,
+                                              ));
+                                            }
+                                          } else {
+                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                              content: Text("Mohon Periksa Kembali PIN Lama Anda"),
+                                              backgroundColor: Colors.black87,
+                                            ));
+                                          }
+                                        } else {
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                            content: Text("Please Fill In The Blank"),
+                                            backgroundColor: Colors.black87,
+                                          ));
+                                        }
+
                                         // bool isEmail = c.isEmail(_emailController.text);
                                         // if (!_emailController.text.isEmpty && !_passwordController.text.isEmpty) {
                                         //   if (isEmail) {
@@ -289,7 +378,7 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
                                             controller: _forgotPasswordMail,
                                             hint: "Inputkan email anda");
                                       },
-                                      child: const Text("Lupa Password ?").p10m().primary()),
+                                      child: const Text("Lupa PIN ?").p10m().primary()),
                                 ],
                               ),
                             ),
@@ -313,4 +402,32 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
       ),
     );
   }
+}
+
+Future<String?> CustomDialog(BuildContext context) {
+  final c = Get.put(GlobalController());
+  return showDialog<String>(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      title: Column(children: [
+        const Icon(
+          Icons.done_rounded,
+          color: Colors.green,
+          size: 80,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        SizedBox(
+          width: 170,
+          child: Text(
+            "Berhasil Mengubah Mengubah PIN",
+            style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),
+            textAlign: TextAlign.center,
+          ),
+        )
+      ]),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
+    ),
+  );
 }

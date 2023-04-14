@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_queue_page/patient_queue_page.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -38,21 +38,24 @@ class _ProfileImmunizationScheduleState extends State<ProfileImmunizationSchedul
         color: Colors.white,
       ),
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
-        child: ListView.builder(
-            itemCount: 8,
-            itemBuilder: ((context, index) {
-              return index == 7
-                  ? Column(
-                      children: [
-                        const ItemList(),
-                        SizedBox(
-                          height:    80,
-                        ),
-                      ],
-                    )
-                  : const ItemList();
-            })),
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Container(
+          width: Get.width,
+          child: ListView.builder(
+              itemCount: 8,
+              itemBuilder: ((context, index) {
+                return index == 7
+                    ? Column(
+                        children: const [
+                          ItemList(),
+                          SizedBox(
+                            height: 80,
+                          ),
+                        ],
+                      )
+                    : const ItemList();
+              })),
+        ),
       ),
       Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -60,7 +63,7 @@ class _ProfileImmunizationScheduleState extends State<ProfileImmunizationSchedul
         children: [
           Container(
             width: Get.width,
-            height:    70,
+            height: 40,
             color: Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
@@ -68,70 +71,162 @@ class _ProfileImmunizationScheduleState extends State<ProfileImmunizationSchedul
                 children: [
                   Expanded(flex: 1, child: Text("Jadwal Imunisasi: ").p14b().black()),
                   Expanded(
-                    flex: 1,
-                    child: Form(
-                      key: _formKey,
-                      child: DropdownButtonFormField2(
-                        isDense: false,
-                        decoration: InputDecoration(
-                            //Add isDense true and zero Paddi
-
-                            //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
-                            isDense: true,
-                            contentPadding: EdgeInsets.zero,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              // borderSide: BorderSide(
-                              //   color: Colors.yellow,
-                              // ),
-                            ),
-                            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Colors.grey))
-                            //Add more decoration as you want here
-                            //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
-                            ),
-                        isExpanded: true,
-                        hint: Text(
-                          "Pilih salah satu",
-                          style: GoogleFonts.poppins(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w600),
-                        ),
-                        icon: Icon(
-                          Icons.keyboard_arrow_up_rounded,
-                          color: OPrimaryColor,
-                        ),
-                        iconOnClick: Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                          color: OPrimaryColor,
-                        ),
-                        // dropdownElevation: 5,
-                        iconSize: 15,
-                        buttonHeight:    43,
-                        // buttonWidth: c.sw*150,
-                        buttonPadding: const EdgeInsets.only(right: 10),
-                        dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey)),
-                        items: rangeItem
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: GoogleFonts.poppins(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w600),
+                      flex: 1,
+                      child: Form(
+                        key: _formKey,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 80),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextFormField(
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                    vertical: 20,
                                   ),
-                                ))
-                            .toList(),
-                        validator: (value) {
-                          if (value == null) {
-                            return 'Please select range.';
-                          }
-                        },
-                        onChanged: (value) {
-                          //Do something when changing the item if you want.
-                        },
-                        onSaved: (value) {
-                          selectedValue = value.toString();
-                          rangeController.value = selectedValue as TextEditingValue;
-                        },
+                                  hintText: 'Enter Your Full Name.',
+                                  hintStyle: const TextStyle(fontSize: 14),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 30),
+                              DropdownButtonFormField2(
+                                decoration: InputDecoration(
+                                  //Add isDense true and zero Padding.
+                                  //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
+                                  isDense: true,
+                                  contentPadding: EdgeInsets.zero,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  //Add more decoration as you want here
+                                  //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
+                                ),
+                                isExpanded: true,
+                                hint: const Text(
+                                  'Select Your Gender',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                items: rangeItem
+                                    .map((item) => DropdownMenuItem<String>(
+                                          value: item,
+                                          child: Text(
+                                            item,
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ))
+                                    .toList(),
+                                validator: (value) {
+                                  if (value == null) {
+                                    return 'Please select gender.';
+                                  }
+                                  return null;
+                                },
+                                onChanged: (value) {
+                                  //Do something when changing the item if you want.
+                                },
+                                onSaved: (value) {
+                                  selectedValue = value.toString();
+                                },
+                                buttonStyleData: const ButtonStyleData(
+                                  height: 60,
+                                  padding: EdgeInsets.only(left: 20, right: 10),
+                                ),
+                                iconStyleData: const IconStyleData(
+                                  icon: Icon(
+                                    Icons.arrow_drop_down,
+                                    color: Colors.black45,
+                                  ),
+                                  iconSize: 30,
+                                ),
+                                dropdownStyleData: DropdownStyleData(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 30),
+                              TextButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    _formKey.currentState!.save();
+                                  }
+                                },
+                                child: const Text('Submit Button'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                      // Form(
+                      //   key: _formKey,
+                      //   child: DropdownButtonFormField2(
+                      //     isDense: false,
+                      //     decoration: InputDecoration(
+                      //         //Add isDense true and zero Paddi
+
+                      //         //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
+                      //         isDense: true,
+                      //         contentPadding: EdgeInsets.zero,
+                      //         border: OutlineInputBorder(
+                      //           borderRadius: BorderRadius.circular(10),
+                      //           // borderSide: BorderSide(
+                      //           //   color: Colors.yellow,
+                      //           // ),
+                      //         ),
+                      //         enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Colors.grey))
+                      //         //Add more decoration as you want here
+                      //         //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
+                      //         ),
+                      //     isExpanded: true,
+                      //     hint: Text(
+                      //       "Pilih salah satu",
+                      //       style: GoogleFonts.poppins(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w600),
+                      //     ),
+                      //     customButton: Icon(
+                      //       Icons.keyboard_arrow_up_rounded,
+                      //       color: OPrimaryColor,
+                      //     ),
+
+                      //     iconOnClick: Icon(
+                      //       Icons.keyboard_arrow_down_rounded,
+                      //       color: OPrimaryColor,
+                      //     ),
+                      //     // dropdownElevation: 5,
+                      //     iconSize: 15,
+                      //     buttonHeight: 43,
+                      //     // buttonWidth:  150,
+                      //     buttonPadding: const EdgeInsets.only(right: 10),
+                      //     dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey)),
+                      //     items: rangeItem
+                      //         .map((item) => DropdownMenuItem<String>(
+                      //               value: item,
+                      //               child: Text(
+                      //                 item,
+                      //                 style: GoogleFonts.poppins(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w600),
+                      //               ),
+                      //             ))
+                      //         .toList(),
+                      //     validator: (value) {
+                      //       if (value == null) {
+                      //         return 'Please select range.';
+                      //       }
+                      //     },
+                      //     onChanged: (value) {
+                      //       //Do something when changing the item if you want.
+                      //     },
+                      //     onSaved: (value) {
+                      //       selectedValue = value.toString();
+                      //       rangeController.value = selectedValue as TextEditingValue;
+                      //     },
+                      //   ),
+                      // ),
                       ),
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -162,7 +257,7 @@ class _ItemListState extends State<ItemList> {
               children: [
                 Stack(children: [
                   Container(
-                    height: 175,
+                    height: 185,
                     width: Get.width,
                     foregroundDecoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -187,8 +282,8 @@ class _ItemListState extends State<ItemList> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
-                              height:    20,
-                              width: c.sw * 120,
+                              height: 20,
+                              width: 120,
                               decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Color(0xffFEBACB)), borderRadius: BorderRadius.circular(6)),
                               child: Center(
                                 child: const Text(
@@ -229,7 +324,9 @@ class _ItemListState extends State<ItemList> {
                                 )),
                           ],
                         ),
-                        const SizedBox(height: 2,),
+                        const SizedBox(
+                          height: 2,
+                        ),
                         Row(
                           children: [
                             Expanded(
@@ -256,7 +353,9 @@ class _ItemListState extends State<ItemList> {
                                 )),
                           ],
                         ),
-                        SizedBox(height: 2,),
+                        const SizedBox(
+                          height: 2,
+                        ),
                         Row(
                           children: [
                             Expanded(
@@ -283,59 +382,62 @@ class _ItemListState extends State<ItemList> {
                                 )),
                           ],
                         ),
-                        SizedBox(
-                          height:    8,
+                        const SizedBox(
+                          height: 8,
                         ),
                         Container(
                           width: Get.width,
                           height: 1,
                           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.white))),
                         ),
-                        SizedBox(
-                          height:    8,
+                        const SizedBox(
+                          height: 8,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child: Row(
                             children: [
                               Expanded(
+                                  flex: 1,
                                   child: BaseButton(
-                                ontap: () {
-                                  showDatePicker(
-                                    context: context,
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime.now(),
-                                    lastDate: DateTime(2099),
-                                  ).then((date) {  //tambahkan setState dan panggil variabel _dateTime.
-                                    setState(() {
-                                      // dateTime = date!.toDateHuman();
-                                    });
-                                  });
-                                },
-                                text: "Ubah Tanggal Imunisasi",
-                                color: Colors.white,
-                                outlineRadius: 6,
-                                textColor: OPrimaryColor,
-                                textSize: 10,
-                                textWeight: FontWeight.w600,
-                                height: 27,
-                              )),
+                                    ontap: () {
+                                      showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime.now(),
+                                        lastDate: DateTime(2099),
+                                      ).then((date) {
+                                        //tambahkan setState dan panggil variabel _dateTime.
+                                        setState(() {
+                                          // dateTime = date!.toDateHuman();
+                                        });
+                                      });
+                                    },
+                                    text: "Ubah Tanggal Imunisasi",
+                                    color: Colors.white,
+                                    outlineRadius: 6,
+                                    textColor: OPrimaryColor,
+                                    textSize: 10,
+                                    textWeight: FontWeight.w600,
+                                    height: 27,
+                                  )),
                               SizedBox(
-                                width: c.sw * 10,
+                                width: 10,
                               ),
                               Expanded(
+                                  flex: 1,
                                   child: BaseButton(
-                                ontap: () {
-                                  Get.to(const PatientQueuePage(), transition: Transition.fadeIn);
-                                },
-                                text: "Ambil Antrian Imunisasi",
-                                color: const Color(0xff2EC1AD),
-                                outlineRadius: 6,
-                                textColor: Colors.white,
-                                textSize: 10,
-                                textWeight: FontWeight.w600,
-                                height: 27,
-                              )),
+                                    ontap: () {
+                                      Get.to(const PatientQueuePage(), transition: Transition.fadeIn);
+                                    },
+                                    text: "Ambil Antrian Imunisasi",
+                                    color: const Color(0xff2EC1AD),
+                                    outlineRadius: 6,
+                                    textColor: Colors.white,
+                                    textSize: 10,
+                                    textWeight: FontWeight.w600,
+                                    height: 27,
+                                  )),
                             ],
                           ),
                         )
@@ -349,8 +451,8 @@ class _ItemListState extends State<ItemList> {
           ),
         ],
       ),
-      SizedBox(
-        height:    12,
+      const SizedBox(
+        height: 12,
       )
     ]);
   }

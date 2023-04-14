@@ -8,7 +8,7 @@ import 'package:starlife/models/model_person.dart';
 import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_edit/image_picker2.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_other_patient_page/profile_edit/profile_patient_edit_data_page.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -30,7 +30,6 @@ class _ProfilePatientState extends State<ProfilePatient> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.scheduleFrameCallback((timeStamp) {
-      p.loadingPersonal.value = false;
       p.getDataPersonal();
     });
   }
@@ -65,7 +64,7 @@ class _ProfilePatientState extends State<ProfilePatient> {
                 ))
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Container(

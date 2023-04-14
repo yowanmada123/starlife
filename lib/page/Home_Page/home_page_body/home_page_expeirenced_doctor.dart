@@ -7,8 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/models/model_doctor.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/schedule_detail_page/schedule_detail_page.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/experienced_doctor_list_page.dart';
-import 'package:starlife/page/Home_Page/home_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/home_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -27,27 +27,15 @@ class _HomePageExperiencedDoctorState extends State<HomePageExperiencedDoctor> {
   @override
   void initState() {
     h.getDataDoctors();
-    // timer = Timer.periodic(
-    //     const Duration(seconds: 10),
-    //     (Timer t) => setState(() {
-    //           h.getDataDoctors();
-    //           print("refreshed");
-    //         }));
     super.initState();
   }
-
-  // @override
-  // void dispose() {
-  //   timer.cancel();
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -63,59 +51,161 @@ class _HomePageExperiencedDoctorState extends State<HomePageExperiencedDoctor> {
         const SizedBox(
           height: 16,
         ),
-        Container(
-            height: 270,
-            width: Get.width,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Obx(() => (h.loadingDoctorData.value)
-                ? Column(
-                    children: [
-                      Row(
+        Obx(
+          () => (h.loadingDoctorData.value)
+              ? (h.listDoctors.length < 6)
+                  ? (h.listDoctors.length == 4)
+                      ? Container(
+                          height: 270,
+                          width: Get.width,
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(flex: 1, child: ItemDoctor(h.listDoctors[0], false)),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(flex: 1, child: ItemDoctor(h.listDoctors[1], false)),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(flex: 1, child: ItemDoctor(h.listDoctors[2], false)),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(flex: 1, child: ItemDoctor(h.listDoctors[3], false)),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(flex: 2, child: Container())
+                                ],
+                              ),
+                            ],
+                          ))
+                      : (h.listDoctors.length == 5)
+                          ? Container(
+                              height: 270,
+                              width: Get.width,
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(flex: 1, child: ItemDoctor(h.listDoctors[0], false)),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(flex: 1, child: ItemDoctor(h.listDoctors[1], false)),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(flex: 1, child: ItemDoctor(h.listDoctors[2], false)),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(flex: 1, child: ItemDoctor(h.listDoctors[3], false)),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(flex: 1, child: ItemDoctor(h.listDoctors[4], false)),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(flex: 1, child: Container())
+                                    ],
+                                  ),
+                                ],
+                              ))
+                          : Container(
+                              height: 135,
+                              width: Get.width,
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Row(
+                                children: [
+                                  Expanded(flex: 1, child: ItemDoctor(h.listDoctors[1], false)),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(flex: 1, child: ItemDoctor(h.listDoctors[0], false)),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(flex: 1, child: ItemDoctor(h.listDoctors[1], true)),
+                                ],
+                              ),
+                            )
+                  : Container(
+                      height: 270,
+                      width: Get.width,
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
                         children: [
-                          Expanded(flex: 1, child: ItemDoctor(h.listDoctors[0])),
-                          SizedBox(
-                            width: c.sw * 10,
+                          Row(
+                            children: [
+                              Expanded(flex: 1, child: ItemDoctor(h.listDoctors[0], false)),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(flex: 1, child: ItemDoctor(h.listDoctors[1], false)),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(flex: 1, child: ItemDoctor(h.listDoctors[2], false)),
+                            ],
                           ),
-                          Expanded(flex: 1, child: ItemDoctor(h.listDoctors[1])),
-                          SizedBox(
-                            width: c.sw * 10,
+                          const SizedBox(
+                            height: 10,
                           ),
-                          Expanded(flex: 1, child: ItemDoctor(h.listDoctors[0])),
+                          Row(
+                            children: [
+                              Expanded(flex: 1, child: ItemDoctor(h.listDoctors[3], false)),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(flex: 1, child: ItemDoctor(h.listDoctors[4], false)),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(flex: 1, child: ItemDoctor(h.listDoctors[5], false)),
+                            ],
+                          ),
                         ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(flex: 1, child: ItemDoctor(h.listDoctors[1])),
-                          SizedBox(
-                            width: c.sw * 10,
-                          ),
-                          Expanded(flex: 1, child: ItemDoctor(h.listDoctors[0])),
-                          SizedBox(
-                            width: c.sw * 10,
-                          ),
-                          Expanded(flex: 1, child: ItemDoctor(h.listDoctors[1])),
-                        ],
-                      ),
-                    ],
-                  )
-                : SizedBox(width: 50, height: 50, child: Container()))),
+                      ))
+              : SizedBox(width: 50, height: 50, child: Container()),
+        ),
         const SizedBox(
-          height:  20,
+          height: 20,
         ),
       ],
     );
   }
 
   // ignore: non_constant_identifier_names
-  Widget ItemDoctor(Doctor doctor) {
+  Widget ItemDoctor(Doctor doctor, bool isDoc) {
     return GestureDetector(
       onTap: () {
-        Get.to(ScheduleDetailPage(
-          doctor: doctor,
-        ));
+        if (isDoc) {
+          Get.to(const ExperiencedDoctorListPage());
+        } else {
+          Get.to(ScheduleDetailPage(
+            doctor: doctor,
+          ));
+        }
+        // (isDoc)
+        //     ? Get.to(const ExperiencedDoctorListPage())
+        //     : Get.to(ScheduleDetailPage(
+        //         doctor: doctor,
+        //       ));
       },
       child: Container(
         height: 130,
@@ -139,26 +229,63 @@ class _HomePageExperiencedDoctorState extends State<HomePageExperiencedDoctor> {
                 child: SizedBox(
                   width: Get.width,
                   height: 70,
-                  child: FittedBox(fit: BoxFit.cover, child: Image.network(doctor.picture)
-                      // Image.asset(image),
-                      ),
+                  child: FittedBox(
+                    fit: BoxFit.cover,
+                    child: FadeInImage(
+                      image: NetworkImage(doctor.picture),
+                      placeholder: const AssetImage("assets/images/img_avatar.png"),
+                      fit: BoxFit.cover,
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          'assets/images/default_profile.png',
+                        );
+                      },
+                      // fit: BoxFit.fitWidth,
+                    ),
+                    // Image.asset(image),
+                  ),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2.0),
-              child: AutoSizeText(
-                doctor.namadokter,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: OPrimaryColor),
-                maxLines: 1,
+            if (!isDoc) ...[
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                    child: AutoSizeText(
+                      doctor.namadokter,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: OPrimaryColor),
+                      maxLines: 1,
+                    ),
+                  ),
+                  Center(
+                      child: Text(
+                    doctor.poli,
+                    textAlign: TextAlign.center,
+                  ).p10r().primary()),
+                ],
+              )
+            ] else ...[
+              Expanded(
+                flex: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      child: AutoSizeText(
+                        "Semua Dokter",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(fontSize: 10, fontWeight: FontWeight.w400, color: OPrimaryColor),
+                        maxLines: 1,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Center(
-                child: Text(
-              doctor.poli,
-              textAlign: TextAlign.center,
-            ).p10r().primary()),
+            ]
           ],
         ),
       ),

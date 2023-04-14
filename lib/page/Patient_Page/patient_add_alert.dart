@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
+import 'package:starlife/controllers/patient_page_controller.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_page.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_oneway_add_page/patient_oneway_add_page.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_add_page/patient_add_page.dart';

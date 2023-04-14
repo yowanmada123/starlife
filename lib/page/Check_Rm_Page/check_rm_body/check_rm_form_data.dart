@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:starlife/controllers/check_rm_controller.dart';
-import 'package:starlife/models/model_medical_record.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/custom_list_form.dart';
-import 'package:starlife/widget/base/custom_list_map.dart';
 import 'package:starlife/widget/ext_text.dart';
+import 'package:starlife/widget/extention/ext_date.dart';
 
 import '../../../../widget/base/custom_fixed_form.dart';
 
 class FormDataRm extends StatefulWidget {
-  const FormDataRm({super.key, required this.medicalRecord});
-  final MedicalRecord medicalRecord;
+  const FormDataRm({
+    super.key,
+  });
+  // final DetailMedicalRecord record;
   @override
   State<FormDataRm> createState() => _FormDataRmState();
 }
@@ -21,42 +23,22 @@ class _FormDataRmState extends State<FormDataRm> {
   var screenHeight = Get.height / 763;
   final c = Get.put(GlobalController());
   final cr = Get.put(CheckRmController());
-
-  TextEditingController rmController = TextEditingController(text: "");
-  TextEditingController namaController = TextEditingController(text: "");
-  TextEditingController emailController = TextEditingController(text: "");
-  TextEditingController tanggalLahirController = TextEditingController(text: "");
-  TextEditingController statusController = TextEditingController(text: "");
-  TextEditingController jenisKelaminController = TextEditingController(text: "");
-  TextEditingController agamaController = TextEditingController(text: "");
-  TextEditingController alergiObatController = TextEditingController(text: "");
-  TextEditingController goldarController = TextEditingController(text: "");
-  TextEditingController alamatController = TextEditingController(text: "");
-  TextEditingController kotaController = TextEditingController(text: "");
-  TextEditingController kelurahanController = TextEditingController(text: "");
-  TextEditingController rtController = TextEditingController(text: "");
-  TextEditingController rwController = TextEditingController(text: "");
-  TextEditingController kecamatanController = TextEditingController(text: "");
-  TextEditingController teleponController = TextEditingController(text: "");
-  TextEditingController handphoneController = TextEditingController(text: "");
-  TextEditingController orangtuaController = TextEditingController(text: "");
-  final List<String> entrie = <String>[
-    'Sakit Kepala',
-    'Mual',
-    'Muntah',
-    'Nyeri otot, sendi, dan tulang',
-    'Nyeri di bagian belakang mata',
-  ];
-  final List<Map<String, dynamic>> resep = [
-    {'obat': '500mg Paracetamol', 'aturan': 'Sehari 3 kali 1 tablet'},
-    {'obat': '10mg Domperidone', 'aturan': '3 - 4 kali sehari'},
-    {'obat': '10mg Domperidone', 'aturan': '3 - 4 kali sehari'},
-  ];
+  DateTime dateOfbirth = DateTime.now();
+  DateTime appoinmentDate = DateTime.now();
+  String date = '';
+  String age = '';
+  String formattedTime = '';
   @override
   void initState() {
     super.initState();
     SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
       await cr.getDetailDataMedicalRecord(context);
+      dateOfbirth = DateTime.parse(cr.detailMedicalRecord!.datapasien.dateOfBirth);
+      appoinmentDate = DateTime.parse(cr.detailMedicalRecord!.tanggalTime);
+      // appoinmentDate = DateTime.parse(cr.detailMedicalRecord!.appointmentData.createDate);
+      formattedTime = DateFormat.Hm().format(appoinmentDate);
+      date = appoinmentDate.toDateHuman();
+      age = c.yourAge(DateTime.parse(cr.detailMedicalRecord!.datapasien.dateOfBirth));
     });
   }
 
@@ -70,22 +52,6 @@ class _FormDataRmState extends State<FormDataRm> {
                   const SizedBox(
                     height: 20,
                   ),
-                  // ClipRRect(
-                  //         borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  //         child: SizedBox(
-                  //           width: 136,
-                  //           height: 136,
-                  //           child: FittedBox(
-                  //             fit: BoxFit.cover,
-                  //             child: Image.network(
-                  //               widget.medicalRecord.picture,
-                  //               errorBuilder: (context, error, stackTrace) {
-                  //                 return Image.asset("assets/images/img_avatar.png");
-                  //               }
-                  //             )
-                  //           ),
-                  //         ),
-                  //       ),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     child: SizedBox(
@@ -100,21 +66,22 @@ class _FormDataRmState extends State<FormDataRm> {
                   const SizedBox(
                     height: 12,
                   ),
-                  Text(widget.medicalRecord.dokter
+                  Text(cr.detailMedicalRecord!.dokter
+                          // widget.record.dokter
                           // "dr. Hendri Sulaiman"
                           )
                       .p18b()
                       .primary(),
-                  Text("Praktek ${widget.medicalRecord.poli}").p12r().primary(),
+                  Text("Praktek ${cr.detailMedicalRecord!.poli}").p12r().primary(),
                   const SizedBox(
                     height: 16,
                   ),
                   CustomFixedForm(
-                      content: widget.medicalRecord.rm,
+                      content: cr.detailMedicalRecord!.rm,
                       // "RM/545148-1151/015",
                       title: "No. Rekam Medis"),
                   CustomFixedForm(
-                    content: widget.medicalRecord.nama,
+                    content: cr.detailMedicalRecord!.nama,
                     // "Herlambang Ardianto",
                     title: "Nama Lengkap",
                     backgroundColor: Colors.white,
@@ -123,27 +90,29 @@ class _FormDataRmState extends State<FormDataRm> {
                   CustomFixedForm(
                       content:
                           // widget.medicalRecord.age
-                          "42 Tahun",
+                          "$age Tahun",
                       title: "Usia",
                       backgroundColor: Colors.white),
                   Row(
                     children: [
                       Expanded(
+                        flex: 1,
                         child: CustomFixedForm(
                           content:
                               // widget.medicalRecord.kg,
-                              "52 Kg",
+                              "${cr.detailMedicalRecord!.weight} Kg",
                           title: "Berat Badan",
                           backgroundColor: Colors.white,
                           isMust: false,
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 24,
+                        width: 24,
                       ),
                       Expanded(
+                        flex: 1,
                         child: CustomFixedForm(
-                          content: "${widget.medicalRecord.bloodPressure} widget.medicalRecord.",
+                          content: "${cr.detailMedicalRecord!.bloodPressure} mmHg",
                           // "90/70 mmHg",
                           title: "Tekanan Darah",
                           backgroundColor: Colors.white,
@@ -154,24 +123,28 @@ class _FormDataRmState extends State<FormDataRm> {
                   ),
                   Row(
                     children: [
-                      const Expanded(
+                      Expanded(
+                        flex: 1,
                         child: CustomFixedForm(
                           content:
                               // widget.medicalRecord.
-                              "24 November 2023",
+                              date,
+                          // cr.detailMedicalRecord!.tanggalTime,
+                          // "24 November 2023",
                           title: "Tanggal Periksa",
                           backgroundColor: Colors.white,
                           isMust: false,
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 24,
+                        width: 24,
                       ),
-                      const Expanded(
+                      Expanded(
+                        flex: 1,
                         child: CustomFixedForm(
                           content:
                               // widget.medicalRecord.
-                              "10:40 WIB",
+                              "$formattedTime WIB",
                           title: "Jam Periksa",
                           backgroundColor: Colors.white,
                           isMust: false,
@@ -180,35 +153,59 @@ class _FormDataRmState extends State<FormDataRm> {
                     ],
                   ),
                   CustomListform(
-                    content: entrie,
+                    content: cr.detailMedicalRecord!.keluhan,
                     title:
                         // widget.medicalRecord.
                         'Keluhan',
                   ),
-                  const CustomFixedForm(
-                    content:
+                  CustomListform(
+                    content: cr.detailMedicalRecord!.diagnosis,
+                    title:
                         // widget.medicalRecord.
-                        "Demam Berdarah",
-                    title: "Diagnosis",
-                    backgroundColor: Colors.white,
-                    isMust: false,
+                        'Diagnosis',
                   ),
-                  const CustomFixedForm(
-                    content:
-                        // widget.medicalRecord.
-                        "Suntik Vaksin CYD-TDV (dengvaxia)",
+                  // CustomListform(
+                  //   content: cr.detailMedicalRecord!.tindakan,
+                  //   title:
+                  //       // widget.medicalRecord.
+                  //       'Tindakan',
+                  // ),
+                  CustomFixedForm(
+                    content: cr.detailMedicalRecord!.tindakan,
+                    // "Suntik Vaksin CYD-TDV (dengvaxia)",
                     title: "Tindakan",
                     backgroundColor: Colors.white,
                     isMust: false,
                   ),
-                  CustomListOfMap(
-                    content:
+                  CustomListform(
+                    content: cr.detailMedicalRecord!.obat,
+                    title:
                         // widget.medicalRecord.
-                        resep,
-                    title: "Resep Dokter",
-                  )
+                        'Resep Dokter',
+                  ),
+                  // CustomListOfMap(
+                  //   content:
+                  //       // widget.medicalRecord.
+                  //       resep,
+                  //   title: "Resep Dokter",
+                  // )
                 ],
               )
-            : const CircularProgressIndicator()));
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      CircularProgressIndicator(),
+                    ],
+                  ),
+                ],
+              )));
   }
 }

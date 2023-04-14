@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:starlife/controllers/profile_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class ProfileFrontCard extends StatefulWidget {
@@ -72,7 +72,7 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            width: c.sw * 250,
+                            width: 250,
                             height: 60,
                             foregroundDecoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
@@ -102,7 +102,7 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                             height: 4,
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: c.sw * 50),
+                            padding: EdgeInsets.symmetric(horizontal: 50),
                             child: Container(
                               height: 1,
                               decoration: const BoxDecoration(
@@ -117,7 +117,7 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                           ),
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 10),
-                            width: c.sw * 250,
+                            width: 250,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -164,7 +164,7 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                       //   height: 4,
                       // ),
                       // Padding(
-                      //   padding: EdgeInsets.symmetric(horizontal: c.sw * 50),
+                      //   padding: EdgeInsets.symmetric(horizontal:   50),
                       //   child: Container(
                       //     height: 1,
                       //     decoration: const BoxDecoration(
@@ -178,7 +178,7 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                       //   height: 4,
                       // ),
                       // Padding(
-                      //   padding: EdgeInsets.symmetric(horizontal: c.sw * 55),
+                      //   padding: EdgeInsets.symmetric(horizontal:   55),
                       //   child: Row(
                       //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //     children: [
@@ -240,7 +240,7 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                             ],
                           ),
                           SizedBox(
-                            width: c.sw * 3,
+                            width: 3,
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -259,7 +259,7 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                             ],
                           ),
                           SizedBox(
-                            width: c.sw * 5,
+                            width: 5,
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -289,7 +289,7 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
             right: 0,
             child: Image.asset(
               "assets/icon/ic_logo.png",
-              width: c.sw * 38,
+              width: 38,
               height: 38,
             )),
         Positioned(bottom: 0, right: 0, child: ClipRRect(borderRadius: const BorderRadius.all(Radius.circular(10)), child: Image.asset("assets/images/bg_bottomRight.png"))),
@@ -300,7 +300,7 @@ class _ProfileFrontCardState extends State<ProfileFrontCard> {
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 child: Image.asset(
                   "assets/images/bg_topLeft.png",
-                  width: c.sw * 70,
+                  width: 70,
                   height: 100,
                 )))
       ]),

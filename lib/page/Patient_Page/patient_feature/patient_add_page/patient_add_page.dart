@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
+import 'package:starlife/controllers/patient_page_controller.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_add_page/patient_add_body/patient_add_topbar.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_add_page/patient_add_body/patient_add_form.dart';
-import 'package:starlife/page/Patient_Page/patient_feature/patient_add_page/patient_add_body/patient_add_bottombar.dart';
-import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_page.dart';
 import 'package:starlife/widget/base/custom_buttom_button.dart';
 
 class PatientAddPage extends StatefulWidget {

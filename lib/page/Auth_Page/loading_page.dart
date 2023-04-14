@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Auth_Page/splashscreen.dart';
 
-import '../global_controller.dart';
+import '../../controllers/global_controller.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     //todo load from box;
     await cGlobal.initState();
     if (cGlobal.token.isNotEmpty) {
-      log(cGlobal.token);
+      log(cGlobal.token.value);
       // Get.offAll(WelcomingPage());
       // Get.offAll(HomeNavbarButton());
     } else {

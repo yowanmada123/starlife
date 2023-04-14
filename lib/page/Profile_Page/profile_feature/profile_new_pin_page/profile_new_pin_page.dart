@@ -1,18 +1,20 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_list_page.dart';
 import 'package:starlife/controllers/profile_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/page/Profile_Page/profile_feature/profile_new_pin_page/profile_confirm_new_pin_page.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class ProfileNewPinPage extends StatefulWidget {
-  const ProfileNewPinPage({super.key});
-
+  const ProfileNewPinPage({super.key, required this.myPin});
+  final List<String> myPin;
   @override
   State<ProfileNewPinPage> createState() => _ProfileNewPinPageState();
 }
@@ -23,11 +25,28 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
   String _otp = '';
   String text = '';
   List<String> pin = [];
+  // List<bool> samePin = [];
   // List<String> pinfix = ['2', '2', '2', '2', '2', '2'];
 
-  bool truePin = true;
+  var truePin = true.obs;
   bool sixTimeTrue = false;
   int pinTrue = 0;
+  int samePin = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
+      print(widget.myPin);
+      // p.loadingPersonal.value = false;
+      // await p.getDataPersonal();
+      // pinfix = p.person!.pincode.split('');
+      // print(p.person!.pincode);
+    });
+    // h.getDataNews();
+    // loading.value = false;
+  }
+
   addNumber() {
     setState(() {
       if (_otp.length < 6) {
@@ -48,45 +67,51 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
     _otp = '';
   }
 
-  cekPin() {
-    if (pin.length == 6) {
-      p.changePIN();
-      CustomDialog(context);
-      Timer(Duration(seconds: 1), () {
-        Get.close(3);
-      });
-    } else {
-      setState(() {
-        truePin = false;
-      });
-    }
+  clearPin() {
+    pin.clear();
   }
 
-  Future<String?> CustomDialog(BuildContext context) {
-    return showDialog<String>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Column(children: [
-          const Icon(
-            Icons.done_rounded,
-            color: Colors.green,
-            size: 80,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          SizedBox(
-            width: c.sw * 170,
-            child: Text(
-              "Berhasil Mengubah Mengubah PIN",
-              style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),
-              textAlign: TextAlign.center,
-            ),
-          )
-        ]),
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
-      ),
-    );
+  cekPin() {
+    if (pin.length == 6) {
+      for (int i = 0; i < pin.length; i++) {
+        if (widget.myPin[i] != pin[i]) {
+          samePin++;
+        }
+      }
+      if (samePin != 0) {
+        String passwordLama = widget.myPin.join();
+        p.pinLamaController.text = passwordLama;
+        Get.to(ProfileNewPinConfirmPage(
+          newPin: pin,
+        ));
+      } else {
+        setState(() {
+          truePin.value = false;
+          pin.clear();
+          clearNumber();
+        });
+        Future.delayed(Duration(seconds: 2), () {
+          setState(() {
+            truePin.value = true;
+          });
+        });
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('PIN Tidak Boleh Sama dengan PIN Lama'),
+          backgroundColor: Colors.black87,
+        ));
+      }
+    } else {
+      setState(() {
+        truePin.value = false;
+        pin.clear();
+        clearNumber();
+      });
+      Future.delayed(Duration(seconds: 2), () {
+        setState(() {
+          truePin.value = true;
+        });
+      });
+    }
   }
 
   @override
@@ -112,12 +137,12 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text("Masukkan PIN").p16b().black(),
+              const Text("Masukkan PIN Baru Anda").p16b().black(),
               SizedBox(
                 height: 10,
               ),
               if (truePin == true) ...[
-                const Text("Buat Baru PIN Anda").p12r().black(),
+                const Text("Buat PIN Baru Anda").p12r().black(),
               ] else ...[
                 const Text("Mohon Isi PIN Dengan Tepat").p14r().red(),
               ]
@@ -145,20 +170,21 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                     if (index.isEven)
                       // NOTE: Adding a dot placeholder
                       CircleAvatar(
-                        radius: (truePin == true) ? 10 : 12,
-                        // NOTE: This is the actual condition of setting the placeholder dot color
-                        backgroundColor: index ~/ 2 < _otp.length
-                            ? (truePin == true)
-                                ? OPrimaryColor
-                                : Colors.red
-                            : inActiveColor,
-                      )
+                          radius: (truePin == true) ? 10 : 12,
+                          // NOTE: This is the actual condition of setting the placeholder dot color
+                          backgroundColor: index ~/ 2 < _otp.length
+                              ? (truePin == true)
+                                  ? OPrimaryColor
+                                  : Colors.red
+                              : (truePin.value)
+                                  ? inActiveColor
+                                  : Colors.red)
                     else
                       // NOTE: Adding a space
                       const SizedBox(width: 24),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
             ],
@@ -176,21 +202,21 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
         Container(
           height: 86,
           width: Get.width,
-          padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           child: BaseButton(
             ontap: () {
               print(pin.length);
               cekPin();
             },
             color: OPrimaryColor,
-            text: "Verifikasi",
+            text: "Konfirmasi PIN Baru",
             outlineRadius: 10,
             textSize: 14,
             textWeight: FontWeight.w400,
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: Container(
             height: 235,
             width: Get.width,
@@ -221,7 +247,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 15,
+                        width: 15,
                       ),
                       Expanded(
                         flex: 1,
@@ -243,7 +269,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 15,
+                        width: 15,
                       ),
                       Expanded(
                         flex: 1,
@@ -296,7 +322,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 15,
+                        width: 15,
                       ),
                       Expanded(
                         flex: 1,
@@ -318,7 +344,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 15,
+                        width: 15,
                       ),
                       Expanded(
                         flex: 1,
@@ -371,7 +397,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 15,
+                        width: 15,
                       ),
                       Expanded(
                         flex: 1,
@@ -393,7 +419,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 15,
+                        width: 15,
                       ),
                       Expanded(
                         flex: 1,
@@ -441,7 +467,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 15,
+                        width: 15,
                       ),
                       Expanded(
                         flex: 1,
@@ -463,7 +489,7 @@ class _ProfileNewPinPageState extends State<ProfileNewPinPage> {
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 15,
+                        width: 15,
                       ),
                       Expanded(
                         flex: 1,

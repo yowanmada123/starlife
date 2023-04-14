@@ -6,8 +6,8 @@ import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/pat
 import 'package:starlife/page/Patient_Page/patient_feature/patient_queue_page/patient_queue_page.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_body/patient_doctor_schedule.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_body/patient_topbar.dart';
-import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/patient_page_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/custom_buttom_button.dart';
 
@@ -75,20 +75,9 @@ class _PatientListPageState extends State<PatientListPage> {
               if (p.selectedPatientRm.value != null && p.selectedPatientRm.value != '') {
                 if (p.selectedDoctor.value != null && p.selectedDoctor.value != '') {
                   if (p.selectedSchedule.value != null && p.selectedDoctor.value != '') {
-                    // print(p.selectedPatientRm.value);
-                    // print(p.selectedDoctor.value);
-                    // print(p.selectedDoctor.value);
-                    print(p.selectedSchedule.value);
                     await p.cekDataAppointment(context, false);
                     if (p.loadingAppoinment.value) {
                       Get.to(const PatientQueuePage(), transition: Transition.rightToLeft);
-                      // print(p.selectedPatientRm.value);
-                      // print(p.selectedDoctor.value);
-                      // print(p.selectedDoctor.value);
-                      // print(p.selectedSchedule.value);
-                      // p.selectedPatientRm.value = '';
-                      // p.selectedDoctor.value = '';
-                      // p.selectedSchedule.value = '';
                     }
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -98,7 +87,7 @@ class _PatientListPageState extends State<PatientListPage> {
                   }
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text("Please Choose Patient First"),
+                    content: Text("Please Choose Doctor First"),
                     backgroundColor: Colors.black87,
                   ));
                 }

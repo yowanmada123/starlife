@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Home_Page/navigationbar/navigationbar.dart';
-import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
-import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_page.dart';
-import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_page.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/patient_page_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/showdialog_fill_button.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -33,7 +30,7 @@ class _PatientCheckBottomBarState extends State<PatientCheckBottomBar> {
           //       color: Colors.black
           //     )
           //   ),
-          height:    80,
+          height: 80,
           width: Get.width,
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -49,7 +46,7 @@ class _PatientCheckBottomBarState extends State<PatientCheckBottomBar> {
                           context: context,
                           title: "Masukkan No. Rekam Medis",
                           button: () {
-                            print(controller.text);
+                            // print(controller.text);
                             if (controller.text.isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                 content: Text("Please fill RM field"),
@@ -83,14 +80,14 @@ class _PatientCheckBottomBarState extends State<PatientCheckBottomBar> {
                           hint: "Masukkan No. Rekam Medis Anda");
                     },
                     child: Container(
-                      height:    47,
+                      height: 47,
                       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: OPrimaryColor)),
                       child: Center(child: const Text("Bukan").p14m().primary()),
                     ),
                   ),
                 ),
                 SizedBox(
-                  width: c.sw * 12,
+                  width: 12,
                 ),
                 Expanded(
                   flex: 2,
@@ -120,7 +117,7 @@ class _PatientCheckBottomBarState extends State<PatientCheckBottomBar> {
                       // Get.to(const PatientListPage());
                     },
                     child: Container(
-                      height:    47,
+                      height: 47,
                       decoration: BoxDecoration(color: OPrimaryColor, borderRadius: BorderRadius.circular(10)),
                       child: Center(child: const Text("Ya, Betul").p14m().white()),
                     ),

@@ -5,8 +5,7 @@ import 'package:get/get.dart';
 import 'package:starlife/models/model_medical_record.dart';
 import 'package:starlife/controllers/check_rm_controller.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_detail_page.dart';
-import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_detail_topbar.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
@@ -123,7 +122,7 @@ class _CheckRmListPageState extends State<CheckRmListPage> {
             height: 110,
             width: Get.width,
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,9 +132,9 @@ class _CheckRmListPageState extends State<CheckRmListPage> {
                     ),
                     Row(
                       children: [
-                        const ButtonBack(times: 2),
-                        SizedBox(
-                          width: c.sw * 16,
+                        const ButtonBack(),
+                        const SizedBox(
+                          width: 16,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -169,7 +168,10 @@ class ItemList extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         cr.idMedicalRecord.value = medicalRecord.id;
-        Get.to(CheckRmDetailPage(medicalRecord: medicalRecord));
+        print(medicalRecord.id);
+        Get.to(CheckRmDetailPage(
+          name: medicalRecord.nama,
+        ));
       },
       child: Column(
         children: [
@@ -197,7 +199,7 @@ class ItemList extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      width: c.sw * 13,
+                      width: 13,
                     ),
                     Expanded(
                       flex: 1,
@@ -235,7 +237,7 @@ class ItemList extends StatelessWidget {
                                 children: [
                                   SvgPicture.asset("assets/icon/ic_date.svg"),
                                   SizedBox(
-                                    width: c.sw * 4,
+                                    width: 4,
                                   ),
                                   Text(DateTime.parse(medicalRecord.tanggalTime).toDateHuman()).p10m().primary(),
                                 ],
@@ -248,7 +250,7 @@ class ItemList extends StatelessWidget {
                                     color: OPrimaryColor,
                                   ),
                                   SizedBox(
-                                    width: c.sw * 4,
+                                    width: 4,
                                   ),
                                   Text(DateTime.parse(medicalRecord.tanggalTime).toTimeDate()).p10m().primary(),
                                 ],

@@ -3,14 +3,15 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/widget/ext_text.dart';
 
-import '../../page/global_controller.dart';
+import '../../controllers/global_controller.dart';
 
 class CustomListform extends StatefulWidget {
   const CustomListform({
     super.key,
     required this.title,
     required this.content,
-    this.height, this.isMust,
+    this.height,
+    this.isMust,
   });
   final List<String> content;
   final String title;
@@ -37,7 +38,7 @@ class _CustomListformState extends State<CustomListform> {
               style: GoogleFonts.poppins(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w600),
               children: <TextSpan>[
                 TextSpan(
-                  text: (widget.isMust == true) ?'*' : '',
+                  text: (widget.isMust == true) ? '*' : '',
                   style: GoogleFonts.poppins(color: const Color(0xffF1416C), fontSize: 12, fontWeight: FontWeight.w600),
                 ),
               ],
@@ -45,7 +46,7 @@ class _CustomListformState extends State<CustomListform> {
           ),
         ),
         Container(
-            padding: EdgeInsets.only(left: c.sw * 15, top: 14, bottom: 14),
+            padding: EdgeInsets.only(left: 10, top: 14, bottom: 14),
             width: Get.width,
             // height:    46,
             decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Color(0xff28C6F5))),
@@ -54,25 +55,35 @@ class _CustomListformState extends State<CustomListform> {
                 padding: const EdgeInsets.all(0),
                 itemCount: widget.content.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.fiber_manual_record,
-                        color: Colors.grey,
-                        size: 5,
-                      ),
-                      SizedBox(
-                        width: c.sw * 5,
-                      ),
-                      Text(widget.content[index]).p12m().grey()
-                      // Text("").p12m().grey(),
-                    ],
+                  return Container(
+                    padding: const EdgeInsets.only(left: 1, right: 1),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.fiber_manual_record,
+                          color: Colors.grey,
+                          size: 5,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            widget.content[index],
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ).p12m().grey(),
+                        )
+                        // Text("").p12m().grey(),
+                      ],
+                    ),
                   );
                 })),
-        SizedBox(
-          height:    16,
+        const SizedBox(
+          height: 16,
         ),
       ],
     );

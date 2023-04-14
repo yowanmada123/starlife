@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Article_Page/article_body/article_recommendation.dart';
 import 'package:starlife/page/Article_Page/article_body/article_brochure.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 
 class HealthyArticlePage extends StatefulWidget {
   const HealthyArticlePage({super.key});

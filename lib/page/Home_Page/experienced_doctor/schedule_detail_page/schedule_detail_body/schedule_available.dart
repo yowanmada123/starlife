@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:starlife/models/model_doctor.dart';
-import 'package:starlife/page/Home_Page/home_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/home_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -52,7 +52,7 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
                       color: OPrimaryColor,
                       size: 25,
                     ),
-                    SizedBox(width: c.sw * 13),
+                    SizedBox(width: 13),
                     const Text("Pagi").p14m().black(),
                   ],
                 ),
@@ -74,11 +74,11 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Obx(() => Container(
-                      height: 20,
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                      decoration: BoxDecoration(color: OPrimaryColor, borderRadius: BorderRadius.circular(10)),
-                      child: Text(h.morningShcedule.toString()).p12m().white(),
-                    )),
+                          height: 20,
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                          decoration: BoxDecoration(color: OPrimaryColor, borderRadius: BorderRadius.circular(10)),
+                          child: Text(h.morningShcedule.toString()).p12m().white(),
+                        )),
                   ],
                 ),
               ),
@@ -100,7 +100,7 @@ class _ScheduleAvailableState extends State<ScheduleAvailable> {
                       color: OPrimaryColor,
                       size: 25,
                     ),
-                    SizedBox(width: c.sw * 13),
+                    SizedBox(width: 13),
                     const Text("Malam").p14m().black(),
                   ],
                 ),

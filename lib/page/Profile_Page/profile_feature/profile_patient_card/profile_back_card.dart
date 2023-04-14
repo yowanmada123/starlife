@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class ProfileBackCard extends StatefulWidget {
@@ -48,7 +48,7 @@ class _ProfileBackCardState extends State<ProfileBackCard> {
             right: 0,
             child: Image.asset(
               "assets/icon/ic_logo.png",
-              width: c.sw * 38,
+              width: 38,
               height: 38,
             )),
         Positioned(bottom: 0, right: 0, child: ClipRRect(borderRadius: const BorderRadius.all(Radius.circular(10)), child: Image.asset("assets/images/bg_bottomRight.png"))),
@@ -59,7 +59,7 @@ class _ProfileBackCardState extends State<ProfileBackCard> {
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 child: Image.asset(
                   "assets/images/bg_topLeft.png",
-                  width: c.sw * 70,
+                  width: 70,
                   height: 100,
                 )))
       ]),

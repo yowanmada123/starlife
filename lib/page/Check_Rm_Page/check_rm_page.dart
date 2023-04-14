@@ -8,8 +8,7 @@ import 'package:starlife/controllers/check_rm_controller.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_detail_page/check_rm_pin_page.dart';
 import 'package:starlife/page/Check_Rm_Page/check_rm_body/check_rm_immunitation_history.dart';
 import 'package:starlife/controllers/profile_controller.dart';
-import 'package:starlife/page/dio/dioController.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/rounded_inside.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -27,13 +26,15 @@ class _CheckRmPageState extends State<CheckRmPage> {
   final c = Get.put(GlobalController());
   final p = Get.put(ProfileController());
 
-  final dC = Get.put(DioController());
+  // final dC = Get.put(DioController());
   final loading = true.obs;
+  String? token;
   @override
   void initState() {
     super.initState();
     // print(p.person.rm);
     SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
+      token = await c.getToken();
       p.getPatients();
       p.getDataPersonal();
       // print("======================");
@@ -44,50 +45,67 @@ class _CheckRmPageState extends State<CheckRmPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            width: Get.width,
-            height: Get.height,
-            color: Colors.white,
-          ),
-          const TopBar(),
-          RoundedInside(
-            height: 97,
-            child: SingleChildScrollView(
-                child: Column(
+    return (token == null)
+        ? Scaffold(
+            body: Stack(
               children: [
-                Obx(
-                  () => (p.loadingPatientsData.value && p.loadingPersonal.value)
-                      ? SizedBox(
-                          // padding: EdgeInsets.only(top:    124),
-                          width: Get.width,
-                          height: Get.height,
-                          child: ListView.builder(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              itemCount: p.patients.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return (index + 1 == p.patients.length)
-                                    ? Column(
-                                        children: [
-                                          ItemList(patient: p.patients[index], rm: p.person!.rm),
-                                          const SizedBox(
-                                            height: 220,
-                                          ),
-                                        ],
-                                      )
-                                    : ItemList(patient: p.patients[index], rm: p.person!.rm);
-                              }),
-                        )
-                      : const Center(child: CircularProgressIndicator()),
+                Container(
+                  width: Get.width,
+                  height: Get.height,
+                  color: Colors.white,
+                ),
+                const TopBar(),
+                RoundedInside(
+                  height: 97,
+                  child: SingleChildScrollView(
+                      child: Column(
+                    children: [
+                      Obx(
+                        () => (p.loadingPatientsData.value && p.loadingPersonal.value)
+                            ? SizedBox(
+                                // padding: EdgeInsets.only(top:    124),
+                                width: Get.width,
+                                height: Get.height,
+                                child: ListView.builder(
+                                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                                    itemCount: p.patients.length,
+                                    itemBuilder: (BuildContext context, int index) {
+                                      return (index + 1 == p.patients.length)
+                                          ? Column(
+                                              children: [
+                                                ItemList(patient: p.patients[index], rm: p.person!.rm),
+                                                const SizedBox(
+                                                  height: 220,
+                                                ),
+                                              ],
+                                            )
+                                          : ItemList(patient: p.patients[index], rm: p.person!.rm);
+                                    }),
+                              )
+                            : Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const SizedBox(
+                                    height: 50,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: const [
+                                      CircularProgressIndicator(),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                      ),
+                    ],
+                  )),
                 ),
               ],
-            )),
-          ),
-        ],
-      ),
-    );
+            ),
+          )
+        : Container();
   }
 }
 
@@ -108,7 +126,7 @@ class ItemList extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         cr.patientRm.value = patient.rm;
-        print(cr.patientRm.value);
+        // print(cr.patientRm.value);
         Get.to(PinPage(
           patient: patient,
         ));
@@ -142,7 +160,7 @@ class ItemList extends StatelessWidget {
                           fit: BoxFit.cover,
                           imageErrorBuilder: (context, error, stackTrace) {
                             return Image.asset(
-                              'assets/images/img_avatar.png',
+                              'assets/images/default_profile.png',
                             );
                           },
                           // fit: BoxFit.fitWidth,
@@ -157,8 +175,8 @@ class ItemList extends StatelessWidget {
                     //       fit: BoxFit.cover,
                     //     ),
                     //   ),
-                    SizedBox(
-                      width: c.sw * 13,
+                    const SizedBox(
+                      width: 13,
                     ),
                     Expanded(
                       flex: 1,
@@ -185,8 +203,8 @@ class ItemList extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text('No. Rekam Medis').p10r().black(),
-                                Text(patient.rm).p10b().black(),
+                                const Text('No. Rekam Medis').p8r().black(),
+                                Text(patient.rm).p9b().black(),
                               ],
                             ),
                             Expanded(
@@ -257,38 +275,43 @@ class ItemList extends StatelessWidget {
                                                               ).p10r())),
                                           ],
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            BaseButton(
-                                              ontap: () {
-                                                Get.to(CekPermkembanganPage(
-                                                  name: patient.fname,
-                                                ));
-                                              },
-                                              text: "Cek Perkembangan",
-                                              textColor: Colors.white,
-                                              outlineRadius: 20,
-                                              width: c.sw * 98,
-                                              height: 20,
-                                              textSize: 8,
+                                            Expanded(
+                                              flex: 1,
+                                              child: BaseButton(
+                                                ontap: () {
+                                                  Get.to(CekPermkembanganPage(
+                                                    name: patient.fname,
+                                                  ));
+                                                },
+                                                text: "Cek Perkembangan",
+                                                textColor: Colors.white,
+                                                outlineRadius: 20,
+                                                // width: 98,
+                                                height: 20,
+                                                textSize: 8,
+                                              ),
                                             ),
-                                            SizedBox(
-                                              width: c.sw * 12,
+                                            const SizedBox(
+                                              width: 12,
                                             ),
-                                            BaseButton(
-                                              ontap: () {
-                                                Get.to(const CheckRmImmunizationHistoryPage());
-                                              },
-                                              text: "Riwayat Imunisasi",
-                                              textColor: Colors.white,
-                                              outlineRadius: 20,
-                                              width: c.sw * 98,
-                                              height: 20,
-                                              textSize: 8,
+                                            Expanded(
+                                              flex: 1,
+                                              child: BaseButton(
+                                                ontap: () {
+                                                  Get.to(const CheckRmImmunizationHistoryPage());
+                                                },
+                                                text: "Riwayat Imunisasi",
+                                                textColor: Colors.white,
+                                                outlineRadius: 20,
+                                                height: 20,
+                                                textSize: 8,
+                                              ),
                                             ),
                                           ],
                                         )

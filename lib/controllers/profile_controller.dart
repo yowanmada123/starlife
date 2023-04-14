@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +8,8 @@ import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart';
 import 'package:starlife/models/model_person.dart';
-import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/patient_page_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -51,7 +50,8 @@ class ProfileController extends GetxController {
   TextEditingController teleponController = TextEditingController(text: "");
   TextEditingController handphoneController = TextEditingController(text: "");
   TextEditingController orangtuaController = TextEditingController(text: "");
-  // TextEditingController pinCodeController = TextEditingController(text: "");
+  TextEditingController pinLamaController = TextEditingController(text: "");
+  TextEditingController pinBaruController = TextEditingController(text: "");
 
   @override
   void onClose() {
@@ -61,7 +61,7 @@ class ProfileController extends GetxController {
   }
 
   updateImageProfile() async {
-    var token = c.getToken();
+    var token = await c.getToken();
     FormData formData = FormData.fromMap({
       'token': token,
       'image': await MultipartFile.fromFile(filePhoto.path),
@@ -69,15 +69,16 @@ class ProfileController extends GetxController {
     try {
       var response = await Dio().post('${c.baseUrl}pasien_update_profile_picture', data: formData);
 
-      print(response.data["success"]);
+      // print(response.data["success"]);
       return response.data["success"].toString();
     } on DioError catch (e) {
+      Get.snackbar("Upload Fail", e.toString());
       throw Exception(e.toString());
     }
   }
 
   updateProfile(BuildContext context) async {
-    var token = c.getToken();
+    var token = await c.getToken();
     String uploadDone = await updateImageProfile();
     final formData = FormData.fromMap({
       'token': token,
@@ -98,51 +99,75 @@ class ProfileController extends GetxController {
       'kecamatan': kecamatanController.text,
       'mobile': teleponController.text,
       'phone': handphoneController.text,
+      'nama_orangtua': orangtuaController.text,
     });
 
-    if (uploadDone == "ok") {
-      try {
-        final response = await dio.post('${c.baseUrl}pasien_update_data', data: formData);
-        var ok = response.data?["success"];
-        if (ok == "ok" && ok != null) {
-          // ignore: use_build_context_synchronously
-          Get.snackbar("Success", "Update Success");
-          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          //   content: Text("Update Success"),
-          //   backgroundColor: Colors.black87,
-          // ));
-          // Get.back();
-          // return Patient.fromJson(response.data["response"]["data"]);
-        } else {
-          // ignore: use_build_context_synchronously
-          Get.snackbar("Error", "${response.data["response"]["message"]}");
-
-          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          //   content: Text(response.data["response"]["message"]),
-          //   backgroundColor: Colors.black87,
-          // ));
-          print(response.data["response"]["message"]);
-        }
-      } on DioError catch (e) {
-        throw Exception(e.toString());
+    try {
+      final response = await dio.post('${c.baseUrl}pasien_update_data', data: formData);
+      var ok = response.data?["success"];
+      print(response);
+      if (ok == "ok" && ok != null) {
+        Get.snackbar("Success", "Update Success");
+        Get.close(3);
+      } else {
+        Get.snackbar("Error", "${response.data["response"]["message"]}");
       }
+    } on DioError catch (e) {
+      throw Exception(e.toString());
     }
   }
 
-  changePIN() {}
+  changePIN() async {
+    // print(pinLamaController.text);
+    // print(pinBaruController.text);
+    var token = await c.getToken();
+    final formData = FormData.fromMap({
+      'token': token,
+      'pinlama': pinLamaController.text,
+      'pinbaru': pinBaruController.text,
+    });
+    try {
+      final response = await dio.post('${c.baseUrl}pasien_update_pinbaru', data: formData);
+      // print(response.data["success"]);
+      var ok = response.data?["success"];
+      if (ok == "ok" && ok != null) {
+        return "ok";
+      } else {
+        // ignore: use_build_context_synchronously
+        // print(response.data["response"]["message"]);
+      }
+      // return response.data["response"]["message"];
+    } on DioError catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
   getDataPersonal() async {
     loadingPersonal.value = false;
-    person = await getPersonalData();
-    var date = DateTime.parse(person!.dateOfBirth);
-    birthday = date.toSlashDate();
-    age = c.yourAge(DateTime.parse(person!.dateOfBirth));
-    date = DateTime.parse(person!.createDate);
-    createDate = date.toSlashDate();
-    loadingPersonal.value = true;
+    var token = await c.getToken();
+    if (token != null) {
+      await getPersonalData();
+      var date = DateTime.parse(person!.dateOfBirth);
+      birthday = date.toSlashDate();
+      age = c.yourAge(DateTime.parse(person!.dateOfBirth));
+      date = DateTime.parse(person!.createDate);
+      createDate = date.toSlashDate();
+      loadingPersonal.value = true;
+    }
+    // if (person != null) {
+
+    // }
+    // print(loadingPersonal.value);
+    // print("===============");
+    // print(loadingPersonal.value);
+    // print("===============");
+    // print(token);
   }
 
   getPersonalData() async {
-    var token = c.getToken();
+    var token = await c.getToken();
+    // print("AAAAA");
+    // print(token);
     final formData = FormData.fromMap({
       'token': token,
     });
@@ -155,10 +180,10 @@ class ProfileController extends GetxController {
       var ok = response.data?["success"];
       if (ok == "ok" && ok != null) {
         // print(response.data["response"]["data"]);
-        return Patient.fromJson(response.data["response"]["data"]);
+        person = Patient.fromJson(response.data["response"]["data"]);
       } else {
         // ignore: use_build_context_synchronously
-        print(response.data["response"]["message"]);
+        // print(response.data["response"]["message"]);
       }
       // return response.data["response"]["message"];
     } on DioError catch (e) {
@@ -168,7 +193,7 @@ class ProfileController extends GetxController {
 
   getPatients() async {
     patients.value = await getListPatientData();
-    var date = DateTime.parse(person!.dateOfBirth as String);
+    var date = DateTime.parse(person!.dateOfBirth);
     birthday = date.toSlashDate();
     loadingPatientsData.value = true;
     p.loadingAddNewPersonal.value = true;
@@ -177,7 +202,7 @@ class ProfileController extends GetxController {
   }
 
   getListPatientData() async {
-    var token = c.getToken();
+    var token = await c.getToken();
     // var data;
     final formData = FormData.fromMap({
       'token': token,
@@ -192,12 +217,12 @@ class ProfileController extends GetxController {
       // print(response.data["success"]);
       var ok = response.data?["success"];
       if (ok == "ok" && ok != null) {
-        print(response.data["response"]);
+        // print(response.data["response"]);
         var data = response.data as Map<String, dynamic>;
         return Patient.listFromJson(data["response"]);
       } else {
         // ignore: use_build_context_synchronously
-        print(response.data["response"]["message"]);
+        // print(response.data["response"]["message"]);
       }
     } on DioError catch (e) {
       throw Exception(e.toString());
@@ -255,7 +280,7 @@ class ProfileController extends GetxController {
               borderRadius: pw.BorderRadius.circular(10),
             ),
             child: pw.Padding(
-              padding: pw.EdgeInsets.all(30.0),
+              padding: const pw.EdgeInsets.all(30.0),
               child: pw.Center(child: pw.Image(pw.MemoryImage(qr))
                   // Image.asset("assets/icon/ic_qr_code.JPG"),
                   ),
@@ -263,7 +288,7 @@ class ProfileController extends GetxController {
         pw.Positioned(
           top: 0,
           right: 0,
-          child: pw.Container(width: c.sw * 38, height: 38, child: pw.Image(pw.MemoryImage(logo))),
+          child: pw.Container(width: 38, height: 38, child: pw.Image(pw.MemoryImage(logo))),
         ),
         // Image.asset(
         //   "assets/icon/ic_logo.png",
@@ -275,7 +300,7 @@ class ProfileController extends GetxController {
         pw.Positioned(
             top: 0,
             left: 0,
-            child: pw.Container(width: c.sw * 70, height: 100, child: pw.ClipRRect(horizontalRadius: 10, verticalRadius: 10, child: pw.Image(pw.MemoryImage(topLeft)))
+            child: pw.Container(width: 70, height: 100, child: pw.ClipRRect(horizontalRadius: 10, verticalRadius: 10, child: pw.Image(pw.MemoryImage(topLeft)))
                 // Image.asset(
                 //   "assets/images/bg_topLeft.png",
                 // ))
@@ -299,13 +324,13 @@ class ProfileController extends GetxController {
               pw.Text(
                 "Kartu Pasien Klinik Starlife",
                 textAlign: pw.TextAlign.center,
-                style: pw.TextStyle(font: boldFont, color: PdfColor.fromInt(0xff15577A), fontSize: 14, fontWeight: pw.FontWeight.bold),
+                style: pw.TextStyle(font: boldFont, color: const PdfColor.fromInt(0xff15577A), fontSize: 14, fontWeight: pw.FontWeight.bold),
                 // style: pw.GoogleFonts.poppins(color: PdfColor.fromInt(0xff15577A),fontSize: 14, fontWeight: FontWeight.w400),
               ),
               pw.Text(
                 "Kartu pasien ini diberikan kepada :",
                 textAlign: pw.TextAlign.center,
-                style: pw.TextStyle(font: regularFont, color: PdfColor.fromInt(0xff15577A), fontSize: 10),
+                style: pw.TextStyle(font: regularFont, color: const PdfColor.fromInt(0xff15577A), fontSize: 10),
               ),
               pw.SizedBox(
                 height: 13,
@@ -350,7 +375,7 @@ class ProfileController extends GetxController {
                       height: 4,
                     ),
                     pw.Padding(
-                      padding: pw.EdgeInsets.symmetric(horizontal: 50),
+                      padding: const pw.EdgeInsets.symmetric(horizontal: 50),
                       child: pw.Container(
                         height: 1,
                         decoration: const pw.BoxDecoration(
@@ -364,7 +389,7 @@ class ProfileController extends GetxController {
                       height: 4,
                     ),
                     pw.Container(
-                      padding: pw.EdgeInsets.symmetric(horizontal: 10),
+                      padding: const pw.EdgeInsets.symmetric(horizontal: 10),
                       width: 250,
                       child: pw.Row(
                         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
@@ -426,7 +451,7 @@ class ProfileController extends GetxController {
                       children: [
                         pw.Text(
                           "Alamat",
-                          style: pw.TextStyle(font: regularFont, color: PdfColor.fromInt(0xff15577A), fontSize: 8, fontWeight: pw.FontWeight.bold),
+                          style: pw.TextStyle(font: regularFont, color: const PdfColor.fromInt(0xff15577A), fontSize: 8, fontWeight: pw.FontWeight.bold),
                         ),
                         //   style: pw.TextStyle(color: Color(0xff15577A)),
                         // ).p8r(),
@@ -440,7 +465,7 @@ class ProfileController extends GetxController {
                             style: pw.TextStyle(
                                 font: regularFont,
                                 // font: ttf,
-                                color: PdfColor.fromInt(0xff15577A),
+                                color: const PdfColor.fromInt(0xff15577A),
                                 fontSize: 8,
                                 fontWeight: pw.FontWeight.bold),
                           ),
@@ -458,7 +483,7 @@ class ProfileController extends GetxController {
                       children: [
                         pw.Text(
                           "No. Telp",
-                          style: pw.TextStyle(font: regularFont, color: PdfColor.fromInt(0xff15577A), fontSize: 8, fontWeight: pw.FontWeight.bold),
+                          style: pw.TextStyle(font: regularFont, color: const PdfColor.fromInt(0xff15577A), fontSize: 8, fontWeight: pw.FontWeight.bold),
                         ),
 
                         // ).p8r(),
@@ -469,7 +494,7 @@ class ProfileController extends GetxController {
                           person!.phone,
                           // "0895522091349",
                           textAlign: TextAlign.left,
-                          style: pw.TextStyle(font: regularFont, color: PdfColor.fromInt(0xff15577A), fontSize: 8, fontWeight: pw.FontWeight.bold),
+                          style: pw.TextStyle(font: regularFont, color: const PdfColor.fromInt(0xff15577A), fontSize: 8, fontWeight: pw.FontWeight.bold),
                         ),
 
                         //   style: pw.TextStyle(color: Color(0xff15577A)),
@@ -485,7 +510,7 @@ class ProfileController extends GetxController {
                       children: [
                         pw.Text(
                           "Terdaftar Sejak",
-                          style: pw.TextStyle(font: regularFont, color: PdfColor.fromInt(0xff15577A), fontSize: 8, fontWeight: pw.FontWeight.bold),
+                          style: pw.TextStyle(font: regularFont, color: const PdfColor.fromInt(0xff15577A), fontSize: 8, fontWeight: pw.FontWeight.bold),
                         ),
 
                         // style: pw.TextStyle(color: Color(0xff15577A)),
@@ -494,7 +519,7 @@ class ProfileController extends GetxController {
                           createDate,
                           // "10/12/2022",
                           textAlign: pw.TextAlign.left,
-                          style: pw.TextStyle(font: regularFont, color: PdfColor.fromInt(0xff15577A), fontSize: 8, fontWeight: pw.FontWeight.bold),
+                          style: pw.TextStyle(font: regularFont, color: const PdfColor.fromInt(0xff15577A), fontSize: 8, fontWeight: pw.FontWeight.bold),
                         ),
 
                         // style: pw.TextStyle(color: Color(0xff15577A)),
@@ -535,7 +560,7 @@ class ProfileController extends GetxController {
 
                 // child: Image.asset(
                 //   "assets/images/bg_topLeft.png",
-                //   width: c.sw * 70,
+                //   width:   70,
                 //   height: 100,
                 // )
                 ))

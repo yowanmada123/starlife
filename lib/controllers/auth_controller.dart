@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
 import 'package:starlife/page/Auth_Page/Login/login_page.dart';
 import 'package:starlife/page/Home_Page/navigationbar/navigationbar.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 
 import '../page/Auth_Page/Login/login.dart';
 
@@ -31,22 +31,14 @@ class AuthController extends GetxController {
     final formData = FormData.fromMap({'username': email, 'password': password});
     try {
       final response = await dio.post('${c.baseUrl}login', data: formData);
-      print("=====================================");
-      print(response.statusCode);
-      print(response.data);
-      print(response.data["success"]);
       var ok = response.data?["success"];
       if (ok == "ok" && ok != null) {
-        print(response.data["response"]);
         c.setToken(response.data['response']['data']['token']);
         c.setLogin();
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Login Success'),
-          backgroundColor: Colors.black87,
-        ));
-        c.isLogin.value = true;
-        Get.offAll(HelloConvexAppBar());
+        c.token.value = c.getToken()!;
+        email = "";
+        password = "";
+        Get.offAll(const HelloConvexAppBar());
       } else {
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -66,7 +58,7 @@ class AuthController extends GetxController {
       final response = await dio.post('${c.baseUrl}register_starlife', data: formData);
       var ok = response.data?["success"];
       if (ok == "ok" && ok != null) {
-        print(response.data["response"]);
+        // print(response.data["response"]);
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Account Success Created'),
@@ -74,7 +66,7 @@ class AuthController extends GetxController {
         ));
         Get.offAll(const LoginPage());
       } else {
-        print(response.data["response"]);
+        // print(response.data["response"]);
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(response.data["response"]["message"]),

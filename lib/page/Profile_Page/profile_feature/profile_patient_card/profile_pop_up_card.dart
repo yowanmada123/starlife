@@ -3,7 +3,7 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
 import 'package:starlife/controllers/profile_controller.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_patient_card/profile_flip_card_animation.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -16,7 +16,7 @@ Future<Object?> ProfilePopUpCard(BuildContext context) {
     barrierDismissible: true,
     builder: (BuildContext context) {
       return Padding(
-        padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+        padding: EdgeInsets.symmetric(horizontal: 16),
         child: AlertDialog(
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
           contentPadding: EdgeInsets.zero,

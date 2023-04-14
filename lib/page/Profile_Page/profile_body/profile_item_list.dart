@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -22,9 +22,9 @@ class _ProfileItemListState extends State<ProfileItemList> {
         GestureDetector(
           onTap: widget.ontap,
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: c.sw * 10),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             width: Get.width,
-            height:    38,
+            height: 38,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -51,7 +51,7 @@ class _ProfileItemListState extends State<ProfileItemList> {
                       size: 18,
                     ),
                     SizedBox(
-                      width: c.sw * 10,
+                      width: 10,
                     ),
                     Text(widget.title).p12m().black(),
                   ],
@@ -66,7 +66,7 @@ class _ProfileItemListState extends State<ProfileItemList> {
           ),
         ),
         SizedBox(
-          height:    16,
+          height: 16,
         )
       ],
     );

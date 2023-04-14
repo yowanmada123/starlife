@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/models/model_doctor.dart';
-import 'package:starlife/page/Home_Page/home_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/home_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
@@ -96,7 +96,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(left: c.sw * 16, right: c.sw * 16, bottom: c.sw * 5),
+          padding: EdgeInsets.only(left: 16, right: 16, bottom: 5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -108,8 +108,8 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                left: c.sw * 16.0,
-                right: c.sw * 14,
+                left: 16.0,
+                right: 14,
               ),
               child: Icon(
                 Icons.date_range_outlined,
@@ -118,7 +118,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
               ),
             ),
             Container(
-              height:    36,
+              height: 36,
               decoration: const BoxDecoration(
                   border: Border(
                       left: BorderSide(
@@ -127,6 +127,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
               ))),
             ),
             Expanded(
+              flex: 1,
               child: Padding(
                 padding: const EdgeInsets.only(
                   left: 16.0,
@@ -143,7 +144,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
                         itemBuilder: (BuildContext context, int itemIndex) => Row(
                           children: [
                             SizedBox(
-                              width: c.sw * 2,
+                              width: 2,
                             ),
                             Obx(() => GestureDetector(
                                   onTap: () {
@@ -173,8 +174,8 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
                                         ),
                                       ],
                                     ),
-                                    height:    52,
-                                    width: c.sw * 50,
+                                    height: 52,
+                                    width: 50,
                                     child: Center(
                                         child: itemIndex == 0
                                             ? const Text("Hari ini").p12m().white()
@@ -205,7 +206,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
                                   ),
                                 )),
                             SizedBox(
-                              width: c.sw * 14,
+                              width: 14,
                             )
                           ],
                         ),
@@ -216,7 +217,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
           ],
         ),
         SizedBox(
-          height:    13,
+          height: 13,
         ),
         const Divider(),
       ],

@@ -1,14 +1,14 @@
 import 'package:age_calculator/age_calculator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
+import 'package:starlife/controllers/patient_page_controller.dart';
 import 'package:starlife/widget/base/custom_dropdown.dart';
 import 'package:starlife/widget/base/custom_phone_form.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 
 import '../../../../../widget/base/custom_fixed_form.dart';
 import '../../../../../widget/base/custom_form.dart';
-import '../../../../global_controller.dart';
+import '../../../../../controllers/global_controller.dart';
 
 class PatientAddForm extends StatefulWidget {
   final bool? passwordMode;
@@ -58,8 +58,8 @@ class _PatientAddFormState extends State<PatientAddForm> {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          SizedBox(
-            height:    115,
+          const SizedBox(
+            height: 115,
           ),
           const CustomFixedForm(content: "RM/545148-1151/015", title: "No. Rekam Medis"),
           CustomForm(
@@ -77,6 +77,7 @@ class _PatientAddFormState extends State<PatientAddForm> {
           Row(
             children: [
               Expanded(
+                flex: 1,
                 child: CustomFixedForm(
                   title: "Tanggal Lahir",
                   isMust: true,
@@ -94,7 +95,7 @@ class _PatientAddFormState extends State<PatientAddForm> {
                       setState(() {
                         date = data!.toSlashDate();
                         p.tanggalLahirController.text = data.toyyyyMMdd();
-                        print(p.tanggalLahirController.text);
+                        // print(p.tanggalLahirController.text);
                         birthday = data;
                         // duration = c.yourAge(birthday);
                         //  AgeCalculator.age(birthday, today: DateTime.now());
@@ -107,9 +108,10 @@ class _PatientAddFormState extends State<PatientAddForm> {
                 ),
               ),
               SizedBox(
-                width: c.sw * 24,
+                width: 24,
               ),
               Expanded(
+                flex: 1,
                 child: CustomFixedForm(
                   content: "$ageToString Tahun",
                   title: "Usia",
@@ -127,24 +129,26 @@ class _PatientAddFormState extends State<PatientAddForm> {
           Row(
             children: [
               Expanded(
+                  flex: 1,
                   child: CustomDropDown(
-                title: "Jenis Kelamin",
-                items: genderItems,
-                firstItem: 'Pilih Salah Satu',
-                controller: p.jenisKelaminController,
-                isMust: true,
-              )),
+                    title: "Jenis Kelamin",
+                    items: genderItems,
+                    firstItem: 'Pilih Salah Satu',
+                    controller: p.jenisKelaminController,
+                    isMust: true,
+                  )),
               SizedBox(
-                width: c.sw * 24,
+                width: 24,
               ),
               Expanded(
+                  flex: 1,
                   child: CustomDropDown(
-                title: "Agama",
-                items: religions,
-                firstItem: 'Pilih Salah Satu',
-                controller: p.agamaController,
-                isMust: true,
-              ))
+                    title: "Agama",
+                    items: religions,
+                    firstItem: 'Pilih Salah Satu',
+                    controller: p.agamaController,
+                    isMust: true,
+                  ))
             ],
           ),
           CustomForm(
@@ -157,7 +161,7 @@ class _PatientAddFormState extends State<PatientAddForm> {
             title: "Golongan Darah",
             items: goldarItem,
             firstItem: 'Pilih Salah Satu',
-            controller: p.jenisKelaminController,
+            controller: p.goldarController,
             isMust: true,
           ),
           CustomForm(
@@ -179,6 +183,7 @@ class _PatientAddFormState extends State<PatientAddForm> {
           Row(
             children: [
               Expanded(
+                flex: 1,
                 child: CustomForm(
                   controller: p.rwController,
                   hintText: "Masukkan RW",
@@ -186,10 +191,11 @@ class _PatientAddFormState extends State<PatientAddForm> {
                   isMust: false,
                 ),
               ),
-              SizedBox(
-                width: c.sw * 24,
+              const SizedBox(
+                width: 24,
               ),
               Expanded(
+                flex: 1,
                 child: CustomForm(
                   controller: p.rtController,
                   hintText: "Masukkan RT",

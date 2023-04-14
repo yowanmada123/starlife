@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/Home_Page/home_controller.dart';
+import 'package:starlife/controllers/home_controller.dart';
 import 'package:starlife/page/Home_Page/home_page_body/home_page_patient_queue.dart';
 import 'package:starlife/page/Home_Page/home_page_body/home_page_health_article.dart';
 import 'package:starlife/page/Home_Page/home_page_body/home_page_brochure.dart';
 import 'package:starlife/page/Home_Page/home_page_body/home_page_expeirenced_doctor.dart';
 import 'package:starlife/page/Home_Page/home_page_body/home_page_topbar.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 
 import 'home_page_body/home_page_service.dart';
 
@@ -36,12 +36,12 @@ class _HomePageState extends State<HomePage> {
           SingleChildScrollView(
               physics: const ScrollPhysics(),
               child: Column(
-                children: [
-                  const HomePageBrochure(),
-                  const HomePagePatientQueue(),
+                children: const [
+                  HomePageBrochure(),
+                  HomePagePatientQueue(),
                   HomePageService(),
-                  const HomePageExperiencedDoctor(),
-                  const HomePageHealthArticle(),
+                  HomePageExperiencedDoctor(),
+                  HomePageHealthArticle(),
                 ],
               )),
           const HomePageTopBar()

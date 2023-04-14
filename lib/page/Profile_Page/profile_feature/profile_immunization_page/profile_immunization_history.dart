@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -15,11 +15,10 @@ class ProfileImmunizationHistory extends StatefulWidget {
 class _ProfileImmunizationHistoryState extends State<ProfileImmunizationHistory> {
   final c = Get.put(GlobalController());
 
-  
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+      padding: EdgeInsets.symmetric(horizontal: 16),
       child: ListView.builder(
           itemCount: 8,
           itemBuilder: ((context, index) {
@@ -48,7 +47,7 @@ class _ItemListState extends State<ItemList> {
               children: [
                 Stack(children: [
                   Container(
-                    height: 145,
+                    height: 155,
                     width: Get.width,
                     foregroundDecoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -73,8 +72,8 @@ class _ItemListState extends State<ItemList> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
-                              height:    20,
-                              width: c.sw * 120,
+                              height: 20,
+                              width: 120,
                               decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Color(0xff20B09C)), borderRadius: BorderRadius.circular(6)),
                               child: Center(
                                 child: const Text(
@@ -116,8 +115,9 @@ class _ItemListState extends State<ItemList> {
                                 )),
                           ],
                         ),
-                        SizedBox(height: 2,),
-
+                        const SizedBox(
+                          height: 2,
+                        ),
                         Row(
                           children: [
                             Expanded(
@@ -144,8 +144,9 @@ class _ItemListState extends State<ItemList> {
                                 )),
                           ],
                         ),
-                        SizedBox(height: 2,),
-
+                        const SizedBox(
+                          height: 2,
+                        ),
                         Row(
                           children: [
                             Expanded(
@@ -172,18 +173,17 @@ class _ItemListState extends State<ItemList> {
                                 )),
                           ],
                         ),
-                        SizedBox(
-                          height:    8,
+                        const SizedBox(
+                          height: 8,
                         ),
                         Container(
                           width: Get.width,
                           height: 1,
                           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.white))),
                         ),
-                        SizedBox(
-                          height:    8,
+                        const SizedBox(
+                          height: 8,
                         ),
-                        
                       ],
                     ),
                   ),
@@ -194,8 +194,8 @@ class _ItemListState extends State<ItemList> {
           ),
         ],
       ),
-      SizedBox(
-        height:    20,
+      const SizedBox(
+        height: 20,
       )
     ]);
   }

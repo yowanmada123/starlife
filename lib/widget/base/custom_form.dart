@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/widget/ext_text.dart';
 
-import '../../page/global_controller.dart';
+import '../../controllers/global_controller.dart';
 
 class CustomForm extends StatefulWidget {
   const CustomForm({super.key, required this.controller, required this.hintText, required this.title, this.fillColor, this.isMust, this.editable});
@@ -27,7 +27,7 @@ class _CustomFormState extends State<CustomForm> {
         Container(
           color: Colors.white,
           width: Get.width,
-          height:    30,
+          height: 30,
           child: RichText(
             text: TextSpan(
               text: widget.title,
@@ -42,7 +42,7 @@ class _CustomFormState extends State<CustomForm> {
           ),
         ),
         Container(
-          height:    46,
+          height: 46,
           alignment: Alignment.center,
           child: TextField(
             enabled: (widget.editable == null) ? true : widget.editable,
@@ -54,7 +54,7 @@ class _CustomFormState extends State<CustomForm> {
               hintText: widget.hintText,
               filled: true,
               fillColor: (widget.fillColor == null) ? Colors.white : const Color(0xffD0F4FF),
-              contentPadding: EdgeInsets.only(bottom: 0, left: c.sw * 15),
+              contentPadding: EdgeInsets.only(bottom: 0, left: 15),
               focusedBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 borderSide: BorderSide(width: 1, color: Color(0xff28C6F5)),
@@ -67,7 +67,7 @@ class _CustomFormState extends State<CustomForm> {
           ),
         ),
         SizedBox(
-          height:    16,
+          height: 16,
         )
       ],
     );

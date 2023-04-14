@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/models/model_doctor.dart';
-import 'package:starlife/page/Home_Page/home_controller.dart';
-import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/home_controller.dart';
+import 'package:starlife/controllers/patient_page_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
@@ -64,7 +64,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
       }
     }
     for (var i = 0; i < 7; i++) {
-      print(days[i]);
+      // print(days[i]);
     }
   }
 
@@ -83,7 +83,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
   getData() async {
     h.loadingDoctorData.value = false;
     h.getDataScheduleDoctors();
-    print("HEHE");
+    // print("HEHE");
   }
 
   @override
@@ -91,7 +91,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical: 8),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -101,7 +101,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
         ),
         Padding(
           padding: EdgeInsets.only(
-            left: c.sw * 16.0,
+            left: 16.0,
           ),
           child: SizedBox(
               height: 54,
@@ -115,12 +115,12 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                   itemBuilder: (BuildContext context, int itemIndex) => Row(
                     children: [
                       SizedBox(
-                        width: c.sw * 2,
+                        width: 2,
                       ),
                       GestureDetector(
                         onTap: () async {
                           h.selectedDate.value = days[itemIndex].toyyyyMMdd();
-                          print(h.selectedDate.value);
+                          // print(h.selectedDate.value);
                           await getData();
                           setState(() {
                             selectedIndex = itemIndex;
@@ -131,7 +131,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: selectedIndex == itemIndex ? OPrimaryColor : Color(0xff9CA7BD),
+                            color: selectedIndex == itemIndex ? OPrimaryColor : const Color(0xff9CA7BD),
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
@@ -143,7 +143,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                             ],
                           ),
                           height: 52,
-                          width: 50,
+                          width: 52,
                           child: Center(
                               child: itemIndex == 0
                                   ? const Text(
@@ -165,7 +165,11 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                                                           ? 'Min'
                                                           : days[itemIndex].toEEEE() == 'Selasa'
                                                               ? 'Sel'
-                                                              : days[itemIndex].toEEEE(),
+                                                              : days[itemIndex].toEEEE() == 'Kamis'
+                                                                  ? 'Kam'
+                                                                  : days[itemIndex].toEEEE() == 'Rabu'
+                                                                      ? 'Rab'
+                                                                      : days[itemIndex].toEEEE(),
                                               maxLines: 1,
                                               style: const TextStyle(height: 1.5),
                                               textAlign: TextAlign.center,
@@ -179,14 +183,14 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 14,
+                        width: 14,
                       )
                     ],
                   ),
                 ),
               )),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Padding(
@@ -201,7 +205,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                     GestureDetector(
                       onTap: () {
                         h.selectedDepartment.value = "310";
-                        print(h.selectedDepartment.value);
+                        // print(h.selectedDepartment.value);
 
                         getData();
                         setState(() {
@@ -212,7 +216,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(color: selectedCategory == itemIndex ? OPrimaryColor : Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: OPrimaryColor)),
-                        // width: c.sw * 81,
+                        // width:   81,
                         child: Center(
                             child: Text(
                           category[itemIndex],
@@ -223,13 +227,13 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                       ),
                     ),
                     SizedBox(
-                      width: c.sw * 10,
+                      width: 10,
                     ),
                   ],
                 ),
               )),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
         Padding(
@@ -286,7 +290,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
       },
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
@@ -306,14 +310,14 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10.0),
                       child: Image.asset(
-                        width: c.sw * 105,
-                        height: c.sw * 105,
+                        width: 105,
+                        height: 105,
                         "assets/images/img_avatar_2.png",
                         fit: BoxFit.cover,
                       ),
                     ),
                     SizedBox(
-                      width: c.sw * 13,
+                      width: 13,
                     ),
                     Expanded(
                       flex: 1,
@@ -323,7 +327,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AutoSizeText(doctor.fname, maxLines: 1, style: GoogleFonts.poppins(fontSize: 14, color: OPrimaryColor, fontWeight: FontWeight.w700), minFontSize: 5),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Container(
@@ -333,13 +337,13 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                                 color: Color.fromARGB(255, 234, 234, 234),
                               ))),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Container(
                               child: Text(doctor.poli).p10r(),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Row(
@@ -360,12 +364,12 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                       ]),
                     ),
                     SizedBox(
-                      width: c.sw * 15,
+                      width: 15,
                     ),
                     Container(
                         width: 24,
                         height: 24,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(200), border: Border.all(color: selectedDoctorIndex == index ? OPrimaryColor : Color.fromARGB(255, 204, 203, 203)), color: selectedDoctorIndex == index ? OPrimaryColor : Colors.white),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(200), border: Border.all(color: selectedDoctorIndex == index ? OPrimaryColor : const Color.fromARGB(255, 204, 203, 203)), color: selectedDoctorIndex == index ? OPrimaryColor : Colors.white),
                         child: selectedDoctorIndex == index
                             ? const Center(
                                 child: Icon(
@@ -377,7 +381,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                   ],
                 ),
               )),
-          SizedBox(
+          const SizedBox(
             height: 5,
           )
         ],

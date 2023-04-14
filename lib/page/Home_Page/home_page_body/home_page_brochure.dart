@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/page/Profile_Page/profile_feature/profile_immunization_page/profile_immunization_page.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -50,7 +50,7 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
       child: Column(
         children: [
           Container(
-            height:    290,
+            height: 290,
             width: Get.width,
             decoration: BoxDecoration(
               color: OPrimaryColor,
@@ -67,8 +67,8 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
                 ),
                 Row(
                   children: [
-                    SizedBox(
-                      width: c.sw * 3,
+                    const SizedBox(
+                      width: 3,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -85,14 +85,30 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
                     ),
                     // SvgPicture.asset("assets/icon/ic_doctor.svg"),
                     ClipRRect(
-                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10)),
-                        child: SvgPicture.asset(
+                      borderRadius: const BorderRadius.all(Radius.circular(38)),
+                      child: SizedBox(
+                        width: 214,
+                        height: 160,
+                        child: FittedBox(
+                          fit: BoxFit.cover,
+                          child: SvgPicture.asset(
                             "assets/icon/ic_doctor.svg",
-                            width: c.sw * 198,
-                            height:    160,
+                            // width: Get.width,
+                            // height: 160,
                           ),
+                          // Image.asset(image),
                         ),
-                        
+                      ),
+                    ),
+                    // ClipRRect(
+                    //   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10)),
+                    //   child: SvgPicture.asset(
+                    //     "assets/icon/ic_doctor.svg",
+                    //     width: 197,
+                    //     height: 160,
+                    //   ),
+                    // ),
+
                     // ClipRRect(
                     //   borderRadius: BorderRadius.only(
                     //         bottomLeft: const Radius.circular(10)
@@ -103,13 +119,13 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
                     //         bottomLeft: const Radius.circular(10)
                     //       )
                     //     ),
-                    //     width: c.sw * 230,
+                    //     width:   230,
                     //       height:    160,
                     //     child: FittedBox(
                     //       fit: BoxFit.cover,
                     //       child: SvgPicture.asset(
                     //         "assets/icon/ic_doctor.svg",
-                    //         width: c.sw * 198,
+                    //         width:   198,
                     //         height:    160,
                     //       ),
                     //     ),
@@ -120,15 +136,15 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
               ],
             ),
           ),
-          SizedBox(
-            height:    12,
+          const SizedBox(
+            height: 12,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Image.asset(now),
           ),
-          SizedBox(
-            height:    12,
+          const SizedBox(
+            height: 12,
           ),
           SizedBox(
             height: 130,
@@ -153,8 +169,8 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
               itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) => SizedBox(
                 child: Column(
                   children: [
-                    SizedBox(
-                      height:    1,
+                    const SizedBox(
+                      height: 1,
                     ),
                     Container(
                       height: 120,
@@ -172,21 +188,21 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height:    1,
+                    const SizedBox(
+                      height: 1,
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          SizedBox(
-            height:    15,
+          const SizedBox(
+            height: 15,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Container(
-              height:    42,
+              height: 42,
               width: Get.width,
               decoration: BoxDecoration(color: const Color(0xffFFEBDB), borderRadius: BorderRadius.circular(15), border: Border.all(color: const Color(0xffFFA35C))),
               child: Center(
@@ -207,8 +223,8 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
               ),
             ),
           ),
-          SizedBox(
-            height:    15,
+          const SizedBox(
+            height: 15,
           ),
         ],
       ),

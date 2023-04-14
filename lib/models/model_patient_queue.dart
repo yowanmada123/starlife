@@ -51,7 +51,7 @@ class PatientQueue {
   String isVaksin;
   String formatNomor;
   String statusKedatanganDokter;
-  String antrianSedangDilayani;
+  int antrianSedangDilayani;
   int jumlahAntrian;
   String namaPasien;
   String namaDokter;
@@ -76,7 +76,7 @@ class PatientQueue {
         isVaksin: json["is_vaksin"] ?? "",
         formatNomor: json["format_nomor"] ?? "",
         statusKedatanganDokter: json["status_kedatangan_dokter"] ?? "",
-        antrianSedangDilayani: json["antrian_sedang_dilayani"] ?? "",
+        antrianSedangDilayani: json["antrian_sedang_dilayani"] ?? 0,
         jumlahAntrian: json["jumlah_antrian"] ?? "",
         namaPasien: json["nama_pasien"] ?? "",
         namaDokter: json["nama_dokter"] ?? "",

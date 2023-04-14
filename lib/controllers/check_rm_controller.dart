@@ -1,17 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:starlife/models/model_detail_medical_record.dart';
 import 'package:starlife/models/model_medical_record.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 
 class CheckRmController extends GetxController {
   var c = Get.put(GlobalController());
   final Dio dio = Dio();
   final medicalRecords = <MedicalRecord>[].obs;
   // final detailMedicalRecords = <DetailMedicalRecord>[].obs;
-  DetailMedicalRecord? detailMedicalRecords;
+  DetailMedicalRecord? detailMedicalRecord;
   final loadingDataMedicalRecord = false.obs;
   final loadingDetailMedicalRecord = false.obs;
   final patientRm = ''.obs;
@@ -19,21 +18,21 @@ class CheckRmController extends GetxController {
 
   getDetailDataMedicalRecord(BuildContext context) async {
     loadingDetailMedicalRecord.value = false;
-    detailMedicalRecords = await getDetailMedicalRecord(context);
+    detailMedicalRecord = await getDetailMedicalRecord(context);
     loadingDetailMedicalRecord.value = true;
   }
 
   getDetailMedicalRecord(BuildContext context) async {
-    var token = c.getToken();
-    print(token);
-    print(patientRm.value);
-    print(idMedicalRecord.value);
+    var token = await c.getToken();
+    // print(token);
+    // print(patientRm.value);
+    // print(idMedicalRecord.value);
     final formData = FormData.fromMap({'token': token, 'rm': patientRm.value, "id": idMedicalRecord.value});
     try {
       final response = await dio.post('${c.baseUrl}list_pasien_rekammedis_detail', data: formData);
       // print("=====================================");
       // print(response.statusCode);
-      print(response.data["response"]["data"]);
+      // print(response.data["response"]["data"]);
       // print(response.data["success"]);
       var ok = response.data?["success"];
       if (ok == "ok" && ok != null) {
@@ -44,9 +43,9 @@ class CheckRmController extends GetxController {
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(response.data["response"]["message"]),
-          backgroundColor: Color.fromARGB(221, 33, 32, 32),
+          backgroundColor: const Color.fromARGB(221, 33, 32, 32),
         ));
-        print(response.data["response"]["message"]);
+        // print(response.data["response"]["message"]);
       }
       // return response.data["response"]["message"];
     } on DioError catch (e) {
@@ -67,16 +66,16 @@ class CheckRmController extends GetxController {
   }
 
   getMedicalRecords(BuildContext context) async {
-    var token = c.getToken();
-    print(token);
-    print(patientRm.value);
+    var token = await c.getToken();
+    // print(token);
+    // print(patientRm.value);
     final formData = FormData.fromMap({'token': token, 'rm': patientRm.value});
     try {
       final response = await dio.post('${c.baseUrl}list_pasien_rekammedis', data: formData);
       // print("=====================================");
       // print(response.statusCode);
-      print(response.data["response"]);
-      print(response.data["success"]);
+      // print(response.data["response"]);
+      // print(response.data["success"]);
       var ok = response.data?["success"];
       if (ok == "ok" && ok != null) {
         var data = response.data as Map<String, dynamic>;
@@ -88,7 +87,7 @@ class CheckRmController extends GetxController {
           content: Text(response.data["response"]["message"]),
           backgroundColor: Colors.black87,
         ));
-        print(response.data["response"]["message"]);
+        // print(response.data["response"]["message"]);
       }
       // return response.data["response"]["message"];
     } on DioError catch (e) {

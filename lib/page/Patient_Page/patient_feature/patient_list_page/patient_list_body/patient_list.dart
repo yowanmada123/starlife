@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:starlife/page/Patient_Page/patient_controller/patient_page_controller.dart';
+import 'package:starlife/controllers/patient_page_controller.dart';
 import 'package:starlife/controllers/profile_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -45,7 +45,7 @@ class _PatientListState extends State<PatientList> {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 80,
           ),
           // Obx(() => (p.loadingAddNewPersonal.value || pr.loadingPatientsData.value)
@@ -66,7 +66,7 @@ class _PatientListState extends State<PatientList> {
                           ? Column(
                               children: [
                                 ItemList(index),
-                                SizedBox(
+                                const SizedBox(
                                   height: 20,
                                 )
                               ],
@@ -79,6 +79,7 @@ class _PatientListState extends State<PatientList> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget ItemList(int index) {
     return GestureDetector(
       onTap: () {
@@ -102,7 +103,7 @@ class _PatientListState extends State<PatientList> {
       },
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 13,
           ),
           Container(
@@ -138,7 +139,7 @@ class _PatientListState extends State<PatientList> {
                       ),
                     ),
                     SizedBox(
-                      width: c.sw * 13,
+                      width: 13,
                     ),
                     Expanded(
                       flex: 1,
@@ -166,11 +167,12 @@ class _PatientListState extends State<PatientList> {
                               children: [
                                 AutoSizeText(
                                   'No. Rekam Medis',
-                                  style: GoogleFonts.poppins(fontSize: 8),
-                                  minFontSize: 3,
+                                  style: GoogleFonts.poppins(),
+                                  minFontSize: 2,
+                                  maxFontSize: 7,
                                   maxLines: 1,
                                 ),
-                                AutoSizeText(pr.patients[index].rm, style: GoogleFonts.poppins(fontSize: 8, fontWeight: FontWeight.w700), minFontSize: 3, maxLines: 1)
+                                AutoSizeText(pr.patients[index].rm, style: GoogleFonts.poppins(fontWeight: FontWeight.w700), minFontSize: 2, maxFontSize: 8, maxLines: 1)
                               ],
                             ),
                           ],
@@ -207,11 +209,11 @@ class _PatientListState extends State<PatientList> {
                       ]),
                     ),
                     SizedBox(
-                      width: c.sw * 15,
+                      width: 8,
                     ),
                     Container(
-                        width: 24,
-                        height: 24,
+                        width: 20,
+                        height: 20,
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: selectedPatientIndex == index ? OPrimaryColor : Colors.grey), color: selectedPatientIndex == index ? OPrimaryColor : Colors.white),
                         child: selectedPatientIndex == index
                             ? const Center(

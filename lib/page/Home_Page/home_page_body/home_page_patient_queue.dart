@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:starlife/page/Home_Page/home_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/home_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
@@ -35,94 +35,6 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
       child: Obx(() => (h.loadingPatientQueueData.value)
           ? Column(
               children: [
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: SizedBox(
-                //     height:340,
-                //     width: Get.width,
-                //     child: PageView.builder(
-                //       controller: controller,
-                //       itemCount: c.pasienNumber,
-                //       allowImplicitScrolling: true,
-                //       pageSnapping: true,
-                //       physics: const BouncingScrollPhysics(),
-                //       itemBuilder: (BuildContext context, int index) {
-                //         return Container(
-                //           width: Get.width,
-                //         decoration: BoxDecoration(
-                //           borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                //           border: Border.all(color: Colors.grey.withOpacity(0.3))
-                //         ),
-                //                 margin: EdgeInsets.symmetric(horizontal: c.sw*8),
-                //                 child: Column(
-                //                   children: [
-                //                     SizedBox(
-                //                       height:    15,
-                //                     ),
-                //                     const Text("Nama Pasien").p14b().black(),
-                //                     const Text(
-                //                       "Muhaammad Aulia Daffa",
-                //                       textAlign: TextAlign.center,
-                //                     ).p18b().primary(),
-                //                     SizedBox(
-                //                       height:    12,
-                //                     ),
-                //                     const Text("Nama Pasien").p14b().black(),
-                //                     const Text("DM016").p80eb().primary(),
-                //                     Padding(
-                //                       padding: EdgeInsets.symmetric(horizontal: c.sw*16),
-                //                       child: Row(
-                //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //                         crossAxisAlignment: CrossAxisAlignment.center,
-                //                         children: [
-                //                           Column(
-                //                             children: [
-                //                               const Text("No. Rekam Medis").p10r().black(),
-                //                               const Text("RM105").p18b().primary(),
-                //                             ],
-                //                           ),
-                //                           Column(
-                //                             children: [
-                //                               const Text("Antrian Dilayani").p10r().black(),
-                //                               const Text("DM016").p18b().secondary(),
-                //                             ],
-                //                           ),
-                //                           Column(
-                //                             children: [
-                //                               const Text("Tanggal Pemeriksaan").p10r().black(),
-                //                               const Text("24 / 11 / 2022").p18b().primary(),
-                //                             ],
-                //                           ),
-                //                         ],
-                //                       ),
-                //                     ),
-                //                     SizedBox(
-                //                       height:    10,
-                //                     ),
-                //                     Container(
-                //                       width: Get.width,
-                //                       height: 1,
-                //                       margin: EdgeInsets.symmetric(horizontal: c.sw* 20),
-                //                       decoration: BoxDecoration(
-                //                         color: OPrimaryColor,
-
-                //                       ),
-                //                     ),
-                //                     SizedBox(
-                //                       height:    10,
-                //                     ),
-                //                     const Text("Status Kedatangan Dokter : ").p10r().black(),
-                //                     const Text("Sudah Datang").p18b().primary(),
-                //                     SizedBox(
-                //                       height:    20,
-                //                     ),
-                //                   ],
-                //                 ),
-                //               );
-                //        },
-                //     ),
-                //   ),
-                // ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
@@ -138,7 +50,7 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
                         return Container(
                           width: Get.width,
                           decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(15.0)), border: Border.all(color: Colors.grey.withOpacity(0.3))),
-                          margin: EdgeInsets.symmetric(horizontal: c.sw * 8),
+                          margin: EdgeInsets.symmetric(horizontal: 8),
                           child: Column(
                             children: [
                               const SizedBox(
@@ -170,7 +82,7 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
                               //     // "DM016"
                               //     h.listPatientQueue[index].formatNomor).p80eb().primary(),
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+                                padding: EdgeInsets.symmetric(horizontal: 16),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -180,7 +92,7 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
                                       // crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         const Text("No. Rekam Medis").p10r().black(),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 2,
                                         ),
                                         SizedBox(
@@ -206,7 +118,7 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
                                         const Text("Antrian Dilayani").p10r().black(),
                                         AutoSizeText(
                                           // "RM105",
-                                          h.listPatientQueue[index].antrianSedangDilayani,
+                                          h.listPatientQueue[index].antrianSedangDilayani.toString(),
                                           maxFontSize: 25,
                                           minFontSize: 10,
                                           maxLines: 1,
@@ -242,13 +154,13 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Container(
                                 width: Get.width,
                                 height: 1,
-                                margin: EdgeInsets.symmetric(horizontal: c.sw * 20),
+                                margin: EdgeInsets.symmetric(horizontal: 20),
                                 decoration: BoxDecoration(
                                   color: OPrimaryColor,
                                 ),
@@ -273,10 +185,12 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
                 const SizedBox(
                   height: 10,
                 ),
-                SmoothPageIndicator(
-                  controller: controller,
-                  count: h.listPatientQueue.length,
-                  effect: ExpandingDotsEffect(activeDotColor: OPrimaryColor, dotHeight: 8, spacing: 6),
+                SizedBox(
+                  child: SmoothPageIndicator(
+                    controller: controller,
+                    count: h.listPatientQueue.length,
+                    effect: ExpandingDotsEffect(activeDotColor: OPrimaryColor, dotHeight: 8, spacing: 6),
+                  ),
                 ),
                 const SizedBox(
                   height: 15,

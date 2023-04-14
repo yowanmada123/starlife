@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/controllers/profile_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/ext_text.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 
@@ -89,6 +89,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                   Row(
                     children: [
                       Expanded(
+                        flex: 1,
                         child: CustomFixedForm(
                           content: p.birthday,
                           title: "Tanggal Lahir",
@@ -97,9 +98,10 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 24,
+                        width: 24,
                       ),
                       Expanded(
+                        flex: 1,
                         child: CustomFixedForm(
                           content: "${p.age} Tahun",
                           title: "Usia",
@@ -118,6 +120,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                   Row(
                     children: [
                       Expanded(
+                        flex: 1,
                         child: CustomFixedForm(
                           content: p.person!.sex,
                           title: "Jenis Kelamin",
@@ -126,9 +129,10 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 24,
+                        width: 24,
                       ),
                       Expanded(
+                        flex: 1,
                         child: CustomFixedForm(
                           content: p.person!.agama,
                           title: "Agama",
@@ -172,6 +176,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                   Row(
                     children: [
                       Expanded(
+                        flex: 1,
                         child: CustomFixedForm(
                           content: p.person!.rw,
                           title: "RW",
@@ -180,9 +185,10 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                         ),
                       ),
                       SizedBox(
-                        width: c.sw * 24,
+                        width: 24,
                       ),
                       Expanded(
+                        flex: 1,
                         child: CustomFixedForm(
                           content: p.person!.rt,
                           title: "RT",

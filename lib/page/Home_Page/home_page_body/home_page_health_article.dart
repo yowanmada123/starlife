@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Article_Page/article_detail_page/article_detail_page.dart';
-import 'package:starlife/page/Home_Page/home_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/home_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -36,11 +36,12 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
     super.initState();
     h.getDataNews();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+        padding: EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -49,7 +50,7 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
         ),
       ),
       SizedBox(
-        height:    16,
+        height: 16,
       ),
       Padding(
         padding: const EdgeInsets.only(left: 16.0),
@@ -58,8 +59,7 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
             child: ListView.builder(
               itemCount: category.length,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (BuildContext context, int itemIndex) => 
-              Row(
+              itemBuilder: (BuildContext context, int itemIndex) => Row(
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -70,7 +70,7 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(color: selectedIndex == itemIndex ? OPrimaryColor : Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: OPrimaryColor)),
-                      // width: c.sw * 81,
+                      // width:   81,
                       child: Center(
                           child: Text(
                         category[itemIndex],
@@ -81,25 +81,26 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
                     ),
                   ),
                   SizedBox(
-                    width: c.sw * 10,
+                    width: 10,
                   ),
                 ],
               ),
             )),
       ),
       SizedBox(
-        height:    10,
+        height: 10,
       ),
-      Obx(() =>
-      (h.loadingNewsData.value) ?
-       ListView.builder(
+      Obx(() => (h.loadingNewsData.value)
+          ? ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: h.listNews.length,
               padding: EdgeInsets.zero,
               itemBuilder: (BuildContext context, int index) => GestureDetector(
                 onTap: () {
-                  Get.to(ArticleDetailPage(news: h.listNews[index],));
+                  Get.to(ArticleDetailPage(
+                    news: h.listNews[index],
+                  ));
                 },
                 child: Column(
                   children: [
@@ -120,15 +121,16 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
                             ),
                           ),
                           SizedBox(
-                            width: c.sw * 10,
+                            width: 10,
                           ),
                           Expanded(
+                            flex: 1,
                             child: SizedBox(
                               height: 80,
                               child: Stack(
                                 children: [
                                   SizedBox(
-                                      width: c.sw * 258,
+                                      width: 258,
                                       child: Text(
                                         h.listNews[index].title,
                                         style: const TextStyle(height: 1.5),
@@ -144,7 +146,7 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
                                           size: 10,
                                         ),
                                         SizedBox(
-                                          width: c.sw * 10,
+                                          width: 10,
                                         ),
                                         const Text(
                                           "1 minutes ago • Admin",
@@ -161,15 +163,15 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
                       ),
                     ),
                     SizedBox(
-                      height:    10,
+                      height: 10,
                     ),
                   ],
                 ),
               ),
-            ) : CircularProgressIndicator()
-            ),
+            )
+          : CircularProgressIndicator()),
       SizedBox(
-        height:    30,
+        height: 30,
       ),
     ]);
   }

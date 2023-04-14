@@ -3,16 +3,11 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
-import 'package:starlife/models/model_patient_queue.dart';
 import 'package:starlife/models/model_person.dart';
 import 'package:starlife/models/model_queue_check.dart';
-import 'package:starlife/models/patient_res.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_page.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_list_page/patient_list_page.dart';
-import 'package:starlife/page/Patient_Page/patient_list_main_page.dart';
-import 'package:starlife/controllers/profile_controller.dart';
-import 'package:starlife/page/global_controller.dart';
-import 'package:starlife/widget/extention/ext_date.dart';
+import 'package:starlife/controllers/global_controller.dart';
 
 class PatientPageController extends GetxController {
   var c = Get.put(GlobalController());
@@ -22,6 +17,7 @@ class PatientPageController extends GetxController {
   final loadingAppoinment = false.obs;
   Patient? person;
   ResponQueue? appointment;
+  ResponQueue? scheduledAppointment;
   // Patient person = Patient(id: "", fname: "", phone: "", mobile: "", address: "", sex: "", dateOfBirth: "", createdBy: "", createDate: "", status: "", agama: "", namaOrangtua: "", kota: "", kecamatan: "", kelurahan: "", rw: "", rt: "", pin: "", upline: "", pincode: "", tipePasien: "", rm: "");
   var jenisKelamin = ''.obs;
   var dio = Dio();
@@ -58,18 +54,20 @@ class PatientPageController extends GetxController {
   TextEditingController orangtuaController = TextEditingController(text: "");
 
   cekDataAppointment(BuildContext context, bool isSubmit) async {
-    appointment = await checkDoctorAppointment(context, isSubmit);
+    if (isSubmit) {
+      scheduledAppointment = await checkDoctorAppointment(context, isSubmit);
+    } else {
+      appointment = await checkDoctorAppointment(context, isSubmit);
+    }
     if (appointment != null) {
       loadingAppoinment.value = true;
-      print("SUKSES SUKSES SUKSES SUKSES SUKSES");
-    } else {
-      print("GAGAL GAGAL GAGAL GAGAL GAGAL");
+      // print("SUKSES SUKSES SUKSES SUKSES SUKSES");
     }
   }
 
   checkDoctorAppointment(BuildContext context, bool isSubmit) async {
-    var token = c.getToken();
-    final formData;
+    var token = await c.getToken();
+    final FormData formData;
     if (isSubmit) {
       formData = FormData.fromMap({
         "token": token,
@@ -90,18 +88,12 @@ class PatientPageController extends GetxController {
     }
     try {
       final response = await dio.post('${c.baseUrl}antriandaftar', data: formData);
-      print("=====================================");
-      print(response.statusCode);
+      // print("=====================================");
+      // print(response.statusCode);
       print(response.data);
-      print(response.data["response"]["data"]);
+      // print(response.data["response"]["data"]);
       var ok = response.data["success"];
       if (ok == "ok" && ok != null) {
-        // ignore: use_build_context_synchronously
-        // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        //   content: Text("Doctor Available, Get The Appointment !"),
-        //   backgroundColor: Colors.black87,
-        // ));
-
         return ResponQueue.fromJson(response.data["response"]["data"]);
       } else {
         // ignore: use_build_context_synchronously
@@ -117,7 +109,7 @@ class PatientPageController extends GetxController {
   }
 
   patientAdd(BuildContext context) async {
-    var token = c.getToken();
+    var token = await c.getToken();
     bool emailTrue = c.isEmail(emailController.text);
     bool phoneTrue = c.isPhone(handphoneController.text);
 
@@ -133,10 +125,10 @@ class PatientPageController extends GetxController {
           var gender = '';
           if (jenisKelaminController.text == "Laki-Laki") {
             gender = "male";
-            print(gender);
+            // print(gender);
           } else {
             gender = "famale";
-            print(gender);
+            // print(gender);
           }
           final formData = FormData.fromMap({
             "token": token,
@@ -147,13 +139,23 @@ class PatientPageController extends GetxController {
             'sex': gender,
             'address': alamatController.text,
             'phone': handphoneController.text,
+            'agama': agamaController.text,
+            'alergi': alergiObatController.text,
+            'blood_group': goldarController.text,
+            'kelurahan': kelurahanController.text,
+            'kota': kotaController.text,
+            'rw': rwController.text,
+            'rt': rtController.text,
+            'kecamatan': kecamatanController.text,
+            'mobile': teleponController.text,
+            'nama_orangtua': orangtuaController.text
           });
           try {
             final response = await dio.post('${c.baseUrl}register_pasien_lanjutan', data: formData);
-            print("=====================================");
-            print(response.statusCode);
-            print(response.data);
-            print(response.data["response"]["data"]);
+            // print("=====================================");
+            // print(response.statusCode);
+            // print(response.data);
+            // print(response.data["response"]["data"]);
             var ok = response.data["response"]["data"];
             if (ok == "sukses" && ok != null) {
               // ignore: use_build_context_synchronously
@@ -162,6 +164,7 @@ class PatientPageController extends GetxController {
                 backgroundColor: Colors.black87,
               ));
               Get.to(const PatientListPage());
+              clearDataEntry();
               // Get.to(const PatientListPage());
             } else {
               // ignore: use_build_context_synchronously
@@ -195,27 +198,28 @@ class PatientPageController extends GetxController {
   }
 
   patientOneWayAdd(BuildContext context) async {
-    var token = c.getToken();
+    var token = await c.getToken();
     if (namaController.text.isNotEmpty) {
       if (jenisKelaminController.text.isNotEmpty) {
         var gender = '';
         if (jenisKelaminController.text == "Laki-Laki") {
           gender = "male";
-          print(gender);
+          // print(gender);
         } else {
           gender = "famale";
-          print(gender);
+          // print(gender);
         }
         final formData = FormData.fromMap({"token": token, 'fname': namaController.text, 'sex': gender, 'address': alamatController.text, 'date_of_birth': tanggalLahirController.text});
         try {
           final response = await dio.post('${c.baseUrl}register_pasien_sekalijalan', data: formData);
-          print("=====================================");
-          print(response.statusCode);
-          print(response.data);
-          print(response.data["response"]["data"]);
+          // print("=====================================");
+          // print(response.statusCode);
+          // print(response.data);
+          // print(response.data["response"]["data"]);
           var ok = response.data["response"]["data"];
           if (ok == "sukses" && ok != null) {
-            Get.to(const PatientListPage());
+            Get.off(const PatientListPage());
+            clearDataEntry();
           } else {
             // ignore: use_build_context_synchronously
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -244,7 +248,7 @@ class PatientPageController extends GetxController {
   }
 
   addNewPatientByRm(BuildContext context, String rm) async {
-    var token = c.getToken();
+    var token = await c.getToken();
     try {
       final formData = FormData.fromMap({
         "token": token,
@@ -252,11 +256,12 @@ class PatientPageController extends GetxController {
         'submit': "1",
       });
       final response = await dio.post('${c.baseUrl}pasien_cekrm', data: formData);
-      print(response.statusCode);
-      print(response.data);
-      print(response.data["success"]);
+      // print(response.statusCode);
+      // print(response.data);
+      // print(response.data["success"]);
       var ok = response.data["response"]["data"];
       if (ok == "ok" && ok != null) {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(response.data["response"]["data"]),
           backgroundColor: Colors.black87,
@@ -264,7 +269,7 @@ class PatientPageController extends GetxController {
         loadingAddNewPersonal.value = true;
         // Get.to(const PatientListMainPage());
         // if(loadingAddNewPersonal.value){
-        Timer(Duration(seconds: 1), () {
+        Timer(const Duration(seconds: 1), () {
           // print("Yeah, this line is printed after 3 seconds");
           Get.off(const PatientListPage());
         });
@@ -277,7 +282,7 @@ class PatientPageController extends GetxController {
         ));
       }
       if (loadingAddNewPersonal.value == true) {
-        Timer(Duration(seconds: 1), () {
+        Timer(const Duration(seconds: 1), () {
           // print("Yeah, this line is printed after 3 seconds");
           Get.off(const PatientListPage());
         });
@@ -313,19 +318,40 @@ class PatientPageController extends GetxController {
   //   // loadingDataPersonal.value = false;
   //   // rmController.clear();
   // }
+  clearDataEntry() {
+    rmController = TextEditingController(text: "");
+    namaController = TextEditingController(text: "");
+    emailController = TextEditingController(text: "");
+    tanggalLahirController = TextEditingController(text: "");
+    usiaController = TextEditingController(text: "");
+    statusController = TextEditingController(text: "");
+    jenisKelaminController = TextEditingController(text: "");
+    agamaController = TextEditingController(text: "");
+    alergiObatController = TextEditingController(text: "");
+    goldarController = TextEditingController(text: "");
+    alamatController = TextEditingController(text: "");
+    kotaController = TextEditingController(text: "");
+    kelurahanController = TextEditingController(text: "");
+    rtController = TextEditingController(text: "");
+    rwController = TextEditingController(text: "");
+    kecamatanController = TextEditingController(text: "");
+    teleponController = TextEditingController(text: "");
+    handphoneController = TextEditingController(text: "");
+    orangtuaController = TextEditingController(text: "");
+  }
 
   getPatientByRm(BuildContext context, String rm) async {
-    var token = c.getToken();
+    var token = await c.getToken();
     final formData = FormData.fromMap({"token": token, 'rm': rmController.text});
     try {
       final response = await dio.post('${c.baseUrl}pasien_cekrm', data: formData);
       // print("=====================================");
-      print(response.statusCode);
-      print(response.data);
-      print(response.data["success"]);
+      // print(response.statusCode);
+      // print(response.data);
+      // print(response.data["success"]);
       var ok = response.data?["success"];
       if (ok == "ok" && ok != null) {
-        print(response.data["response"]["data"]);
+        // print(response.data["response"]["data"]);
         // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         //   content: Text("Hai ${response.data["response"]["data"]["fname"]} !!!"),
         //   backgroundColor: Colors.black87,
@@ -342,7 +368,7 @@ class PatientPageController extends GetxController {
         // return Patient.fromJson(response.data["response"]["data"]);
       } else {
         // ignore: use_build_context_synchronously
-        print(response.data["response"]["message"]);
+        // print(response.data["response"]["message"]);
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(response.data["response"]["message"]),

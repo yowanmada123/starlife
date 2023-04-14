@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
+import 'package:starlife/models/model_poli.dart';
 import 'package:starlife/page/Home_Page/experienced_doctor/experienced_doctor_list.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/base/rounded_inside.dart';
 import 'package:starlife/widget/ext_text.dart';
 
 class ExperiencedDoctorListPage extends StatefulWidget {
-  const ExperiencedDoctorListPage({super.key, this.title});
-  final String? title;
+  const ExperiencedDoctorListPage({super.key, this.poli});
+  final Poli? poli;
 
   @override
   State<ExperiencedDoctorListPage> createState() => _ExperiencedDoctorListPageState();
@@ -18,11 +20,15 @@ class ExperiencedDoctorListPage extends StatefulWidget {
 class _ExperiencedDoctorListPageState extends State<ExperiencedDoctorListPage> {
   final c = Get.put(GlobalController());
   @override
-  Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height - kToolbarHeight - 300) / 2;
-    final double itemWidth = size.width / 2;
+  // void initState() {
+  //   super.initState();
+  //   SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
+  //     // await h.getPoli();
+  //   });
+  // }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
@@ -51,21 +57,21 @@ class _ExperiencedDoctorListPageState extends State<ExperiencedDoctorListPage> {
             height: 128,
             width: Get.width,
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 53,
                     ),
                     Row(
                       children: [
                         const ButtonBack(),
-                        SizedBox(
-                          width: c.sw * 16,
+                        const SizedBox(
+                          width: 16,
                         ),
-                        Text(widget.title ?? "Dokter Berpengalaman").p16b().white(),
+                        (widget.poli == null) ? Text("Semua Dokter").p16b().white() : Text(widget.poli!.name).p16b().white()
                       ],
                     ),
                   ],

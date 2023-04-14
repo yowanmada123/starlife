@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/ext_text.dart';
@@ -24,8 +24,7 @@ class _CheckRmImmunizationHistoryPageState extends State<CheckRmImmunizationHist
             height: Get.height,
             color: Colors.white,
           ),
-          const CustomTopBar(height: 115
-          ),
+          const CustomTopBar(height: 115),
           SingleChildScrollView(
             child: Column(
               children: [
@@ -36,15 +35,17 @@ class _CheckRmImmunizationHistoryPageState extends State<CheckRmImmunizationHist
                   width: Get.width,
                   height: Get.height,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+                    padding: EdgeInsets.symmetric(horizontal: 16),
                     child: ListView.builder(
                         itemCount: 8,
                         itemBuilder: ((context, index) {
                           return index == 7
                               ? Column(
-                                  children: [
-                                    const ItemList(),
-                                    SizedBox(height: 120,)
+                                  children: const [
+                                    ItemList(),
+                                    SizedBox(
+                                      height: 120,
+                                    )
                                   ],
                                 )
                               : const ItemList();
@@ -53,24 +54,25 @@ class _CheckRmImmunizationHistoryPageState extends State<CheckRmImmunizationHist
                 )
               ],
             ),
-          ),Container(
+          ),
+          Container(
             color: Colors.transparent,
-            height:    128,
+            height: 128,
             width: Get.width,
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: c.sw * 16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height:    53,
+                    const SizedBox(
+                      height: 53,
                     ),
                     Row(
                       children: [
                         const ButtonBack(),
                         SizedBox(
-                          width: c.sw * 16,
+                          width: 16,
                         ),
                         const Text("Riwayat Imunisasi Anak").p16b().white(),
                       ],
@@ -78,7 +80,6 @@ class _CheckRmImmunizationHistoryPageState extends State<CheckRmImmunizationHist
                   ],
                 )),
           ),
-          
         ],
       ),
     );
@@ -130,8 +131,8 @@ class _ItemListState extends State<ItemList> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
-                              height:    20,
-                              width: c.sw * 120,
+                              height: 20,
+                              width: 120,
                               decoration: BoxDecoration(color: Colors.white, border: Border.all(color: const Color(0xff20B09C)), borderRadius: BorderRadius.circular(6)),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -229,16 +230,16 @@ class _ItemListState extends State<ItemList> {
                                 )),
                           ],
                         ),
-                        SizedBox(
-                          height:    6,
+                        const SizedBox(
+                          height: 6,
                         ),
                         Container(
                           width: Get.width,
                           height: 1,
                           decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.white))),
                         ),
-                        SizedBox(
-                          height:    6,
+                        const SizedBox(
+                          height: 6,
                         ),
                       ],
                     ),
@@ -250,8 +251,8 @@ class _ItemListState extends State<ItemList> {
           ),
         ],
       ),
-      SizedBox(
-        height:    20,
+      const SizedBox(
+        height: 20,
       )
     ]);
   }

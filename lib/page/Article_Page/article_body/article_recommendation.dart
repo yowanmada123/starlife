@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starlife/page/Article_Page/article_detail_page/article_detail_page.dart';
-import 'package:starlife/page/Home_Page/home_controller.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/home_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -37,6 +37,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
     h.getDataNews();
     // loading.value = false;
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,13 +45,13 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: c.sw * 16, vertical:    20),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           child: const Text("Rekomendasi Artikel").p16b().black(),
         ),
         Container(
           height: 22,
           width: Get.width,
-          padding: EdgeInsets.symmetric(horizontal: c.sw*16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ListView.builder(
             padding: EdgeInsets.zero,
             itemCount: category.length,
@@ -66,7 +67,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(color: selectedIndex == itemIndex ? OPrimaryColor : Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: OPrimaryColor)),
-                    // width: c.sw * 81,
+                    // width:   81,
                     child: Center(
                         child: Text(
                       category[itemIndex],
@@ -76,15 +77,15 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
                     ).p12r()),
                   ),
                 ),
-                SizedBox(
-                  width: c.sw * 10,
+                const SizedBox(
+                  width: 10,
                 ),
               ],
             ),
           ),
         ),
-        SizedBox(
-          height:    20,
+        const SizedBox(
+          height: 20,
         ),
         SizedBox(
           width: Get.width,
@@ -93,147 +94,149 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
             shrinkWrap: true,
             itemCount: h.listNews.length,
             padding: EdgeInsets.zero,
-            itemBuilder: (BuildContext context, int itemIndex) => 
-            // itemIndex == 2
-             (itemIndex + 1 == h.listNews.length)
-                ? Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(ArticleDetailPage(news:h.listNews[itemIndex]));
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                child: SizedBox(
-                                  width: 80,
-                                  height: 80,
-                                  child: FittedBox(
-                                    fit: BoxFit.cover,
-                                    child: Image.asset(articels[0].image),
+            itemBuilder: (BuildContext context, int itemIndex) =>
+                // itemIndex == 2
+                (itemIndex + 1 == h.listNews.length)
+                    ? Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(ArticleDetailPage(news: h.listNews[itemIndex]));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                    child: SizedBox(
+                                      width: 80,
+                                      height: 80,
+                                      child: FittedBox(
+                                        fit: BoxFit.cover,
+                                        child: Image.asset(articels[0].image),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: c.sw * 10,
-                              ),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 80,
-                                  child: Stack(
-                                    children: [
-                                      SizedBox(
-                                          width: c.sw * 258,
-                                          child: Text(
-                                            h.listNews[itemIndex].title,
-                                            style: const TextStyle(height: 1.5),
-                                          ).p14b().black()),
-                                      Positioned(
-                                        bottom: 0,
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            const Icon(
-                                              Icons.timelapse_rounded,
-                                              color: Colors.grey,
-                                              size: 10,
-                                            ),
-                                            SizedBox(
-                                              width: c.sw * 10,
-                                            ),
-                                            const Text(
-                                              "21 minutes ago • Admin",
-                                              style: TextStyle(height: 1.5),
-                                            ).p10r().grey(),
-                                          ],
-                                        ),
-                                      )
-                                    ],
+                                  const SizedBox(
+                                    width: 10,
                                   ),
-                                ),
-                              )
-                            ],
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(
+                                      height: 80,
+                                      child: Stack(
+                                        children: [
+                                          SizedBox(
+                                              width: 258,
+                                              child: Text(
+                                                h.listNews[itemIndex].title,
+                                                style: const TextStyle(height: 1.5),
+                                              ).p14b().black()),
+                                          Positioned(
+                                            bottom: 0,
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                const Icon(
+                                                  Icons.timelapse_rounded,
+                                                  color: Colors.grey,
+                                                  size: 10,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                const Text(
+                                                  "21 minutes ago • Admin",
+                                                  style: TextStyle(height: 1.5),
+                                                ).p10r().grey(),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                    ],
-                  )
-                : Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(ArticleDetailPage(news:h.listNews[itemIndex]));
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                child: SizedBox(
-                                  width: 80,
-                                  height: 80,
-                                  child: FittedBox(
-                                    fit: BoxFit.cover,
-                                    child: Image.asset(articels[0].image),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: c.sw * 10,
-                              ),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 80,
-                                  child: Stack(
-                                    children: [
-                                      SizedBox(
-                                          width: c.sw * 258,
-                                          child: Text(
-                                            h.listNews[itemIndex].title,
-                                            style: const TextStyle(height: 1.5),
-                                          ).p14b().black()),
-                                      Positioned(
-                                        bottom: 0,
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            const Icon(
-                                              Icons.timelapse_rounded,
-                                              color: Colors.grey,
-                                              size: 10,
-                                            ),
-                                            SizedBox(
-                                              width: c.sw * 10,
-                                            ),
-                                            const Text(
-                                              "1 minutes ago • Admin",
-                                              style: TextStyle(height: 1.5),
-                                            ).p10r().grey(),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
+                          const SizedBox(
+                            height: 50,
                           ),
-                        ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(ArticleDetailPage(news: h.listNews[itemIndex]));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                    child: SizedBox(
+                                      width: 80,
+                                      height: 80,
+                                      child: FittedBox(
+                                        fit: BoxFit.cover,
+                                        child: Image.asset(articels[0].image),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(
+                                      height: 80,
+                                      child: Stack(
+                                        children: [
+                                          SizedBox(
+                                              width: 258,
+                                              child: Text(
+                                                h.listNews[itemIndex].title,
+                                                style: const TextStyle(height: 1.5),
+                                              ).p14b().black()),
+                                          Positioned(
+                                            bottom: 0,
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                const Icon(
+                                                  Icons.timelapse_rounded,
+                                                  color: Colors.grey,
+                                                  size: 10,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                const Text(
+                                                  "1 minutes ago • Admin",
+                                                  style: TextStyle(height: 1.5),
+                                                ).p10r().grey(),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                        ],
                       ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                    ],
-                  ),
           ),
         )
       ],

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/models/model_news.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/ext_text.dart';
 
@@ -18,8 +18,7 @@ class ArticleDetailBrochure extends StatelessWidget {
       children: [
         Container(
           height: 420,
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(bottomRight: Radius.circular(20), bottomLeft: Radius.circular(20))),
+          decoration: const BoxDecoration(borderRadius: BorderRadius.only(bottomRight: Radius.circular(20), bottomLeft: Radius.circular(20))),
           child: Stack(children: [
             Container(
               width: Get.width,
@@ -54,13 +53,13 @@ class ArticleDetailBrochure extends StatelessWidget {
               ),
             ),
             Container(
-             height: 395,
-             width: Get.width,
-             padding: EdgeInsets.only(left: c.sw*16, right: c.sw*16, bottom: c.sh*16),
-             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              height: 395,
+              width: Get.width,
+              padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   const Text("1 Minute Ago").p10r().white(),
                   AutoSizeText(
                     style: GoogleFonts.poppins(fontWeight: FontWeight.w700, color: Colors.white),
@@ -68,12 +67,12 @@ class ArticleDetailBrochure extends StatelessWidget {
                     minFontSize: 18,
                     maxFontSize: 20,
                   )
-              ],
-             ), 
+                ],
+              ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 50.0, left:    16),
-              child: const ButtonBack(),
+            const Padding(
+              padding: EdgeInsets.only(top: 50.0, left: 16),
+              child: ButtonBack(),
             ),
             // Padding(
             //   padding: EdgeInsets.only(top: 50.0, left:    16),
@@ -98,8 +97,8 @@ class ArticleDetailBrochure extends StatelessWidget {
             // )
           ]),
         ),
-        SizedBox(
-          height:    20,
+        const SizedBox(
+          height: 20,
         ),
       ],
     );

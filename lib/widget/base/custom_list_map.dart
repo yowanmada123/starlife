@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starlife/widget/ext_text.dart';
 
-import '../../page/global_controller.dart';
+import '../../controllers/global_controller.dart';
 
 class CustomListOfMap extends StatefulWidget {
   const CustomListOfMap({
@@ -46,7 +46,7 @@ class _CustomListOfMapState extends State<CustomListOfMap> {
           ),
         ),
         Container(
-            padding: EdgeInsets.only(left: c.sw * 15, top: 14, bottom: 14),
+            padding: EdgeInsets.only(left: 15, top: 14, bottom: 14),
             width: Get.width,
             // height:    46,
             decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Color(0xff28C6F5))),
@@ -56,8 +56,7 @@ class _CustomListOfMapState extends State<CustomListOfMap> {
                 itemCount: widget.content.length,
                 itemBuilder: (BuildContext context, int index) {
                   return (index + 1 == widget.content.length)
-                      ? 
-                        Column(
+                      ? Column(
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -69,7 +68,7 @@ class _CustomListOfMapState extends State<CustomListOfMap> {
                                   size: 5,
                                 ),
                                 SizedBox(
-                                  width: c.sw * 5,
+                                  width: 5,
                                 ),
                                 Text(widget.content[index]['obat']).p12m().grey()
                                 // Text("").p12m().grey(),
@@ -87,9 +86,7 @@ class _CustomListOfMapState extends State<CustomListOfMap> {
                             ),
                           ],
                         )
-                      
-                      : 
-                        Column(
+                      : Column(
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -101,7 +98,7 @@ class _CustomListOfMapState extends State<CustomListOfMap> {
                                   size: 5,
                                 ),
                                 SizedBox(
-                                  width: c.sw * 5,
+                                  width: 5,
                                 ),
                                 Text(widget.content[index]['obat']).p12m().grey()
                                 // Text("").p12m().grey(),
@@ -118,13 +115,13 @@ class _CustomListOfMapState extends State<CustomListOfMap> {
                               ),
                             ),
                             SizedBox(
-                              height:    10,
+                              height: 10,
                             )
                           ],
                         );
                 })),
         SizedBox(
-          height:    16,
+          height: 16,
         ),
       ],
     );

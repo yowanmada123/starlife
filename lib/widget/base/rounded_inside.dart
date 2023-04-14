@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:starlife/page/global_controller.dart';
+import 'package:starlife/controllers/global_controller.dart';
 
 class RoundedInside extends StatefulWidget {
   const RoundedInside({super.key, required this.child, required this.height});
