@@ -9,6 +9,7 @@ import 'package:starlife/widget/ext_text.dart';
 
 import 'profile_body/profile_patient.dart';
 
+// Halaman ProfilePage.
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -18,12 +19,6 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final c = Get.put(GlobalController());
-
-  @override
-  void initState() {
-    super.initState();
-    print(c.getToken());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +35,10 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: SingleChildScrollView(
               child: Column(
-                children: [
-                  const ProfilePatient(),
+                children: const [
+                  // Tampilan Body dari profile page bagian atas
+                  ProfilePatient(),
+                  // Tampilan Body dari profile page bagian bawah yang mengandung fitur pada halaman.
                   ProfileFeature(),
                 ],
               ),

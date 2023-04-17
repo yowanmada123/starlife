@@ -5,6 +5,8 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan lokasi praktek atau bagian dari halaman detail shcedule dokter
+
 class SchedulePracticeLocation extends StatefulWidget {
   const SchedulePracticeLocation({super.key, required this.doctor});
   final Doctor doctor;

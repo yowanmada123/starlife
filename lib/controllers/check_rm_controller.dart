@@ -16,12 +16,14 @@ class CheckRmController extends GetxController {
   final patientRm = ''.obs;
   final idMedicalRecord = ''.obs;
 
+  // Fungsi untuk memanggil fungsi getDetailMedicalRecord dan mengubah status loadingDetailMedicalRecord
   getDetailDataMedicalRecord(BuildContext context) async {
     loadingDetailMedicalRecord.value = false;
     detailMedicalRecord = await getDetailMedicalRecord(context);
     loadingDetailMedicalRecord.value = true;
   }
 
+  // Fungsi untuk mendapatkan Detail Medical Record daripada user.
   getDetailMedicalRecord(BuildContext context) async {
     var token = await c.getToken();
     // print(token);
@@ -53,6 +55,7 @@ class CheckRmController extends GetxController {
     }
   }
 
+  // Fungsi untuk memanggil fungsi getMedicalRecords dan mengubah status loadingDataMedicalRecord
   getDataMedicalRecords(BuildContext context) async {
     loadingDataMedicalRecord.value = false;
     // print("AAAAAAAAAAAAAAAAAAa");
@@ -65,6 +68,7 @@ class CheckRmController extends GetxController {
     // loadingDataMedicalRecord.value = true;
   }
 
+  // Fungsi untuk mendapatkan Daftar / List Medical record yang pernah dijalankan pada device user.
   getMedicalRecords(BuildContext context) async {
     var token = await c.getToken();
     // print(token);

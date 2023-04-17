@@ -9,6 +9,8 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan List Pasien atau bagian dari halaman patient list main page
+
 class PatientList extends StatefulWidget {
   final bool? passwordMode;
 
@@ -25,12 +27,10 @@ class _PatientListState extends State<PatientList> {
   final pr = Get.put(ProfileController());
   int selectedPatientIndex = -1;
 
+  // Fungsi yang berguna untuk mengambil data personal dan data pasien
   @override
   void initState() {
     super.initState();
-
-    // pr.loadingPatientsData.value = false;
-    // print(p.patients.);
     SchedulerBinding.instance.scheduleFrameCallback((timeStamp) {
       pr.loadingPatientsData.value = false;
       pr.loadingPersonal.value = false;
@@ -79,10 +79,11 @@ class _PatientListState extends State<PatientList> {
     );
   }
 
-  // ignore: non_constant_identifier_names
+  // Widget yang menampilkan item pasien
   Widget ItemList(int index) {
     return GestureDetector(
       onTap: () {
+        // Berfungsi untuk memilih pasien yang bertujuan untuk menyimpan nomer rm dan mengubah index yang dipilih.
         setState(() {
           selectedPatientIndex = index;
           p.selectedPatient.value = true;
@@ -90,16 +91,6 @@ class _PatientListState extends State<PatientList> {
           // print(p.selectedPatient.value);
           print(p.selectedPatientRm.value);
         });
-        // setState(() {
-        //   _pasiens[index].isSelected = !_pasiens[index].isSelected;
-        //   if (_pasiens[index].isSelected == true) {
-        //     p.selectedPasien.add(_pasiens[index]);
-        //     print(p.selectedPasien);
-        //   } else {
-        //     p.selectedPasien.removeWhere((item) => item.id == _pasiens[index].id);
-        //     print(p.selectedPasien);
-        //   }
-        // });
       },
       child: Column(
         children: [

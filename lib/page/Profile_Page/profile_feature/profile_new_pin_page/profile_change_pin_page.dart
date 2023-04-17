@@ -14,6 +14,8 @@ import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/showdialog_fill_button.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Halaman untuk mengubah PIN daripada user.
+
 class ProfileChangePinPage extends StatefulWidget {
   const ProfileChangePinPage({super.key});
 
@@ -32,6 +34,8 @@ class _ProfileChangePinPageState extends State<ProfileChangePinPage> {
   final _forgotPasswordMail = TextEditingController(text: "");
   bool _isObscure = true;
   var oldPin = '';
+
+  // Fungsi yang berguna untuk mengambil data personal pasien yang juga berisi PIn
   @override
   void initState() {
     super.initState();

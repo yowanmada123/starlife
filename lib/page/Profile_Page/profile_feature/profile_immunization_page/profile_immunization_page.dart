@@ -8,6 +8,7 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Halaman Profile Imunisasi. 
 class ProfileImmunizationPage extends StatefulWidget {
   const ProfileImmunizationPage({super.key});
 
@@ -18,6 +19,8 @@ class ProfileImmunizationPage extends StatefulWidget {
 class _ProfileImmunizationPageState extends State<ProfileImmunizationPage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final c = Get.put(GlobalController());
+
+  // fungsi untuk inisialisasi tabController / swipeable topnavigation bar,
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
@@ -80,10 +83,10 @@ class _ProfileImmunizationPageState extends State<ProfileImmunizationPage> with 
                 child: TabBarView(
                   controller: _tabController,
                   children: const [
-                    // first tab bar view widget
+                    // first tab bar view widget atau tampilan ProfileImmunizationSchedule
                     ProfileImmunizationSchedule(),
 
-                    // second tab bar view widget
+                    // second tab bar view widget atau tampilan ProfileImmunizationHistory
                     ProfileImmunizationHistory(),
                   ],
                 ),

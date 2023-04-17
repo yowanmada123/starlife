@@ -8,6 +8,7 @@ import 'package:starlife/widget/extention/ext_date.dart';
 import '../../../../../widget/base/custom_fixed_form.dart';
 import '../../../../../controllers/global_controller.dart';
 
+// Body Halaman Pengecekan Pasien berdasarkan nomer RM
 class PatientCheckData extends StatefulWidget {
   const PatientCheckData({super.key, required this.rm});
   final String rm;
@@ -25,12 +26,14 @@ class _PatientCheckDataState extends State<PatientCheckData> {
   String birthday = '';
   String age = '';
 
+  // Fungsi yang berguna untuk memanggil fungsi checkDataPersonal().
   @override
   void initState() {
     super.initState();
     checkDataPersonal();
   }
 
+  // Fungsi yang berguna untuk memanggil fungsi getPatientByRm dan assign data pasien.
   checkDataPersonal() async {
     try {
       person = await getPatientByRm();
@@ -47,6 +50,7 @@ class _PatientCheckDataState extends State<PatientCheckData> {
     }
   }
 
+  // Fungsi yang berguna untuk check data personal menggunakan nomer RM.
   getPatientByRm() async {
     var token = await c.getToken();
     final formData = FormData.fromMap({"token": token, 'rm': widget.rm});

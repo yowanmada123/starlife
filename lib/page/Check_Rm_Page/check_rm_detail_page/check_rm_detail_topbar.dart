@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 
+// Tampilan TopBar halaman Check Rekam Medis Pasien
 class CheckRmTopBar extends StatefulWidget {
   const CheckRmTopBar({super.key});
-
 
   @override
   State<CheckRmTopBar> createState() => _CheckRmTopBarState();

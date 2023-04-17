@@ -17,6 +17,7 @@ import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/showdialog_two_button.dart';
 
+// Tampilan fitur - fitur yang tersedia pada Halaman ProfilePage
 class ProfileFeature extends StatefulWidget {
   const ProfileFeature({super.key});
 
@@ -77,6 +78,8 @@ class _ProfileFeatureState extends State<ProfileFeature> {
             Get.to(const ProfileChangePinPage());
           },
         ),
+
+        // Login Button
         Container(
             width: Get.width,
             height: 38,
@@ -100,6 +103,7 @@ class _ProfileFeatureState extends State<ProfileFeature> {
                 dialogBuilder(
                     context: context,
                     buttonLeft: () async {
+                      // Fungsi yang dijalankan ketika user menekan button ya setelah button LogOut
                       await c.removeToken();
                       c.token.value = '';
                       setState(() {
@@ -117,6 +121,7 @@ class _ProfileFeatureState extends State<ProfileFeature> {
                           backgroundColor: Colors.black87,
                         ));
                       });
+                      ////////////////////////////////////////////////////////////////////////////
                     },
                     buttonRight: () {
                       Get.back();

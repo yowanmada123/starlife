@@ -6,6 +6,7 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan Artikel Rekomendasi bagian daripada halaman artikel kesehatan.
 class ArticleRecommendations extends StatefulWidget {
   const ArticleRecommendations({super.key});
 
@@ -31,6 +32,7 @@ class _ArticleRecommendationsState extends State<ArticleRecommendations> {
 
   final h = Get.put(HomeController());
 
+  // Fungsi yang berguna untuk mengambil semua data artikel kesehatan.
   @override
   void initState() {
     super.initState();

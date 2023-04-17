@@ -12,11 +12,11 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan Profile Pasien pada halaman Profile Page bagian atas. 
 class ProfilePatient extends StatefulWidget {
   const ProfilePatient({
     super.key,
   });
-  // final Patient patient;
 
   @override
   State<ProfilePatient> createState() => _ProfilePatientState();
@@ -26,6 +26,7 @@ class _ProfilePatientState extends State<ProfilePatient> {
   final c = Get.put(GlobalController());
   final p = Get.put(ProfileController());
 
+  // Fungsi untuk mengambil data personal pasien 
   @override
   void initState() {
     super.initState();

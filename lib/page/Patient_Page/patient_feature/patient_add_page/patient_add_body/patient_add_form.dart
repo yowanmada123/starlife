@@ -10,6 +10,8 @@ import '../../../../../widget/base/custom_fixed_form.dart';
 import '../../../../../widget/base/custom_form.dart';
 import '../../../../../controllers/global_controller.dart';
 
+// Tampilan body untuk halaman penambahan pasien lanjutan.
+
 class PatientAddForm extends StatefulWidget {
   final bool? passwordMode;
 

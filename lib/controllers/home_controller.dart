@@ -24,6 +24,7 @@ class HomeController extends GetxController {
   final selectedDepartment = ''.obs;
   final selectedPoli = ''.obs;
 
+  // Fungsi untuk mengambil data list dokter berdasarkan poli
   getListDoctorByPoli() async {
     loadingDoctorData.value = false;
     final formData = FormData.fromMap({'id': selectedDepartment.value});
@@ -41,6 +42,7 @@ class HomeController extends GetxController {
     }
   }
 
+  // Fungsi untuk mengambil data list poli
   getPoli() async {
     loadingPoliData.value = false;
     try {
@@ -57,10 +59,12 @@ class HomeController extends GetxController {
     }
   }
 
+  // Fungsi untuk memanggil fungsi getDataNews.
   getDataNews() async {
     await getNews();
   }
 
+  // Fungsi untuk mengambil daftar atau list data berita.
   getNews() async {
     loadingNewsData.value = false;
     try {
@@ -77,10 +81,12 @@ class HomeController extends GetxController {
     }
   }
 
+  // Fungsi untuk memanggil fungsi getDoctors.
   getDataDoctors() async {
     await getDoctors();
   }
 
+  // Fungsi untuk mengambil daftar atau list semua dokter.
   getDoctors() async {
     loadingDoctorData.value = false;
     try {
@@ -96,10 +102,12 @@ class HomeController extends GetxController {
     }
   }
 
+  // Fungsi untuk memanggil fungsi getDataScheduleDoctors()
   getDataScheduleDoctors() async {
     await getSchedule();
   }
 
+  // Fungsi untuk mengambil data schedule dokter berdasarkan tanggal dan poli
   getSchedule() async {
     loadingDoctorData.value = false;
     var token = await c.getToken();
@@ -122,20 +130,13 @@ class HomeController extends GetxController {
       } else {
         print("DATA KOSONG");
       }
-      // var ok = response.data["success"].toString();
-      // if (ok == "ok") {
-
-      // }
-      // if (response.data["response"] == null || response.data["response"] == []) {
-      //   print("Tidak ada jadwal dokter");
-      // }
-      // return Doctor.listFromJson(data['response']);
     } on DioError catch (e) {
       print("Status code : ${e.response?.statusCode.toString()}");
       throw Exception("Failed to load posts");
     }
   }
 
+  // Fungsi untuk memanggil fungsi getPatientQueue()
   getDataPatientQueue() async {
     loadingPatientQueueData.value = false;
     await getPatientQueue();
@@ -146,6 +147,7 @@ class HomeController extends GetxController {
     // print("=======================");
   }
 
+  // Fungsi untuk mengambil data antrian pasien yang telah dibuat.
   getPatientQueue() async {
     var token = await c.getToken();
     final formData = FormData.fromMap({

@@ -7,6 +7,7 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Fungsi yang berguna untuk menampilkan kartu pasien.
 Future<Object?> ProfilePopUpCard(BuildContext context) {
   final c = Get.put(GlobalController());
   final p = Get.put(ProfileController());
@@ -41,8 +42,10 @@ Future<Object?> ProfilePopUpCard(BuildContext context) {
                   height: 34,
                   child: BaseButton(
                     ontap: () {
+                      // Fungsi untuk convert tampilan kartu ke bentuk PDF
                       p.getPDF();
                       // p.tryToDownload();
+                      ///////////////////////
                     },
                     text: "Download Kartu Pasien",
                     textColor: Colors.white,

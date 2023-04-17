@@ -4,6 +4,7 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan Pengalaman dokter atau bagian dari halaman detail shcedule dokter
 class ScheduleDoctorExperience extends StatelessWidget {
   ScheduleDoctorExperience({super.key});
   final c = Get.put(GlobalController());

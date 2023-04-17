@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan biografi dokter atau bagian dari halaman detail shcedule dokter
 class ScheduleDoctorBiography extends StatefulWidget {
   const ScheduleDoctorBiography({super.key});
 

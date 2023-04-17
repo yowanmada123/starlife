@@ -6,6 +6,7 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan artikel kesehatan atau bagian pada halaman HomePage
 class HomePageHealthArticle extends StatefulWidget {
   const HomePageHealthArticle({super.key});
 
@@ -31,6 +32,7 @@ class _HomePageHealthArticleState extends State<HomePageHealthArticle> {
 
   final h = Get.put(HomeController());
 
+  // Fungsi untuk mengambil data semua berita
   @override
   void initState() {
     super.initState();

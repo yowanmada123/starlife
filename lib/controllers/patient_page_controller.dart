@@ -53,6 +53,7 @@ class PatientPageController extends GetxController {
   TextEditingController handphoneController = TextEditingController(text: "");
   TextEditingController orangtuaController = TextEditingController(text: "");
 
+  // Fungsi untuk mmeanggil fungsi checkDoctorAppointment()
   cekDataAppointment(BuildContext context, bool isSubmit) async {
     if (isSubmit) {
       scheduledAppointment = await checkDoctorAppointment(context, isSubmit);
@@ -65,9 +66,12 @@ class PatientPageController extends GetxController {
     }
   }
 
+  // Fungsi untuk check dokter appoinment.
   checkDoctorAppointment(BuildContext context, bool isSubmit) async {
     var token = await c.getToken();
     final FormData formData;
+
+    // Jika "isSubmit" == true maka fungsi tersebut untuk mengambil nomor antrian dan membuat jadwal antrian
     if (isSubmit) {
       formData = FormData.fromMap({
         "token": token,
@@ -77,7 +81,10 @@ class PatientPageController extends GetxController {
         'submit': 1,
         // 'jam': selectedSchedule.value,
       });
-    } else {
+    }
+    // Jika "isSubmit" == false maka fungsi tersebut untuk menambilkan jadwal antrian yang akan diambil
+
+    else {
       formData = FormData.fromMap({
         "token": token,
         'rm': selectedPatientRm.value,
@@ -108,6 +115,7 @@ class PatientPageController extends GetxController {
     }
   }
 
+  // Fungsi untuk mendaftarkan pasien lanjutan
   patientAdd(BuildContext context) async {
     var token = await c.getToken();
     bool emailTrue = c.isEmail(emailController.text);
@@ -197,6 +205,7 @@ class PatientPageController extends GetxController {
     }
   }
 
+  // Fungsi untuk mendaftarkan pasien sekali jalan
   patientOneWayAdd(BuildContext context) async {
     var token = await c.getToken();
     if (namaController.text.isNotEmpty) {
@@ -247,6 +256,7 @@ class PatientPageController extends GetxController {
     // Get.to(const PatientListPage());
   }
 
+  // Fungsi untuk mendaftarkan user yang telah memiliki nomor rm
   addNewPatientByRm(BuildContext context, String rm) async {
     var token = await c.getToken();
     try {
@@ -296,28 +306,7 @@ class PatientPageController extends GetxController {
     }
   }
 
-  // checkDataPersonal(BuildContext context, String rm) async {
-  //   try{
-  //     person = await getPatientByRm(context);
-  //     // var date = DateTime.parse(person.dateOfBirth);
-  //     // birthday = date.toSlashDate();
-  //     // age = c.yourAge(DateTime.parse(person.dateOfBirth));
-  //     // if(truePerson.value){
-  //     //   loadingDataPersonal.value = true;
-  //     //   // Get.off(PatientCheckPage(rm: rm));
-  //     //   // truePerson.value = false;
-  //     // }
-  //   }catch (e){
-  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //       content: Text(e.toString()),
-  //       backgroundColor: Colors.black87,
-  //     ));
-  //     throw Exception(e.toString());
-  //   }
-  //   // Get.to(const PatientCheckPage());
-  //   // loadingDataPersonal.value = false;
-  //   // rmController.clear();
-  // }
+  // Fungsi yang berguna untuk membersihkan kontroler setelah pendaftaran user.
   clearDataEntry() {
     rmController = TextEditingController(text: "");
     namaController = TextEditingController(text: "");
@@ -340,6 +329,7 @@ class PatientPageController extends GetxController {
     orangtuaController = TextEditingController(text: "");
   }
 
+  // Fungsi untuk mengambil data detail user menggunakan nomor RM
   getPatientByRm(BuildContext context, String rm) async {
     var token = await c.getToken();
     final formData = FormData.fromMap({"token": token, 'rm': rmController.text});

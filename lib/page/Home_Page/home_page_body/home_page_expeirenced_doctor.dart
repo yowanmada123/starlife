@@ -12,6 +12,8 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+
+// Tampilan dokter berpengalaman atau bagian pada halaman HomePage
 class HomePageExperiencedDoctor extends StatefulWidget {
   const HomePageExperiencedDoctor({super.key});
 
@@ -24,6 +26,7 @@ class _HomePageExperiencedDoctorState extends State<HomePageExperiencedDoctor> {
   final h = Get.put(HomeController());
   late Timer timer;
 
+  // Fungsi untuk mengambil data semua dokter 
   @override
   void initState() {
     h.getDataDoctors();

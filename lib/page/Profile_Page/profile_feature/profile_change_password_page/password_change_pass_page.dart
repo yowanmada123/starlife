@@ -11,6 +11,7 @@ import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/showdialog_fill_button.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Halaman untuk mengubah passwrod daripada user.
 class ProfileChangePasswordPage extends StatefulWidget {
   const ProfileChangePasswordPage({super.key});
 

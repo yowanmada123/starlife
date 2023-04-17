@@ -5,6 +5,7 @@ import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Halaman untuk check imunisasi history.
 class CheckRmImmunizationHistoryPage extends StatefulWidget {
   const CheckRmImmunizationHistoryPage({super.key});
 

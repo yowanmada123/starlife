@@ -5,6 +5,8 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilantopbar halaman atau bagian dari halaman detail shcedule dokter
+
 class ScheduleTopBar extends StatefulWidget {
   const ScheduleTopBar({super.key, required this.doctor});
   final Doctor doctor;

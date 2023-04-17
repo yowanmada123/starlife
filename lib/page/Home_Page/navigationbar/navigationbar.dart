@@ -6,9 +6,10 @@ import 'package:starlife/page/Auth_Page/Login/login_page.dart';
 import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 
+// Halaman pertama pada aplikasi yakni convex app bar,
 class HelloConvexAppBar extends StatefulWidget {
   const HelloConvexAppBar({super.key});
-  
+
   @override
   State<HelloConvexAppBar> createState() => _HelloConvexAppBarState();
 }
@@ -43,18 +44,14 @@ class _HelloConvexAppBarState extends State<HelloConvexAppBar> {
             initialActiveIndex: c.tabHomeIndex.value,
             disableDefaultTabController: true,
             onTap: (int i) async {
+              // Dicek apakah user telah login atau belum. Jika sudah maka user dapat mengakses halaman yang tidak dapat diakses ketika user belum login.
               String? token = await c.getToken();
               if (i == 1 || i == 2 || i == 4) {
                 if (token == null) {
                   c.onTabTapped(0);
-                  // Navigator.of(context).pushReplacement(builde: context, )
                   Get.offAll(const HelloConvexAppBar());
                   Get.to(const LoginPage());
-                  // Future.delayed(const Duration(milliseconds: 10), () async {
-
-                  // });
                 } else {
-                  // c.isLogin.value = true;
                   c.onTabTapped(i);
                 }
               } else {

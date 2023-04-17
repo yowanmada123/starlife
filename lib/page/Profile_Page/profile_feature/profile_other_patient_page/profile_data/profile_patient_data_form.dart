@@ -9,6 +9,7 @@ import 'package:starlife/widget/extention/ext_date.dart';
 
 import '../../../../../../widget/base/custom_fixed_form.dart';
 
+// Tampilan body daripada halaman detail pasien 
 class ProfilePatientDataform extends StatefulWidget {
   const ProfilePatientDataform({super.key, required this.patient});
   final Patient patient;
@@ -25,6 +26,7 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
   String date = '';
   String age = '';
 
+  // Fungsi yamg berguna untuk assign nilai pasien ke kontroller pada Profile Controller.
   @override
   void initState() {
     super.initState();
@@ -87,6 +89,7 @@ class _ProfilePatientDataformState extends State<ProfilePatientDataform> {
                     height: 26,
                     child: BaseButton(
                       ontap: () {
+                        // Fungsi yang berguna untuk menuju ke halaman edit pasien. 
                         Get.to(ProfileEditDataPage(
                           patient: widget.patient,
                         ));

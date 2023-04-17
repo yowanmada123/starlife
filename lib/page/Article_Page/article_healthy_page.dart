@@ -4,6 +4,7 @@ import 'package:starlife/page/Article_Page/article_body/article_recommendation.d
 import 'package:starlife/page/Article_Page/article_body/article_brochure.dart';
 import 'package:starlife/controllers/global_controller.dart';
 
+// Halaman Utama Artikel Kesehatan
 class HealthyArticlePage extends StatefulWidget {
   const HealthyArticlePage({super.key});
 
@@ -25,14 +26,7 @@ class _HealthyArticlePageState extends State<HealthyArticlePage> {
           ),
           // const ArticleBackground(),
           SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start, 
-              mainAxisAlignment: MainAxisAlignment.start, 
-              children: const [
-                  ArticleBrochure(),
-                  ArticleRecommendations()
-              ]
-            ),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.start, children: const [ArticleBrochure(), ArticleRecommendations()]),
           ),
         ],
       ),

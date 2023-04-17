@@ -4,6 +4,7 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan topbar pada  halaman pengecekan pasien.
 class PatientCheckTopBar extends StatefulWidget {
   const PatientCheckTopBar({super.key});
 

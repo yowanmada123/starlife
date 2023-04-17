@@ -11,6 +11,7 @@ import 'package:starlife/controllers/global_controller.dart';
 
 import 'home_page_body/home_page_service.dart';
 
+// Halaman HomePage pada aplikasi
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -33,6 +34,8 @@ class _HomePageState extends State<HomePage> {
             height: Get.height,
             color: Colors.white,
           ),
+
+          // Body dari halaman HomePage
           SingleChildScrollView(
               physics: const ScrollPhysics(),
               child: Column(
@@ -45,6 +48,8 @@ class _HomePageState extends State<HomePage> {
                 ],
               )),
           const HomePageTopBar()
+
+          ///////////////////////////////
         ],
       ),
     );

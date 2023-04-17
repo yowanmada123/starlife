@@ -11,6 +11,8 @@ import 'package:starlife/widget/ext_text.dart';
 
 import 'profile_data/profile_patient.dart';
 
+
+// Halaman yang menampilkan daftar atau list daripada pasien yang terdafar dalam akun,
 class ProfileOtherPatient extends StatefulWidget {
   const ProfileOtherPatient({super.key});
 
@@ -22,6 +24,7 @@ class _ProfileOtherPatientState extends State<ProfileOtherPatient> {
   final c = Get.put(GlobalController());
   final p = Get.put(ProfileController());
 
+  // Fungsi yang berguna untuk mengambil data pasien dan personal data. 
   @override
   void initState() {
     super.initState();
@@ -101,6 +104,7 @@ class _ProfileOtherPatientState extends State<ProfileOtherPatient> {
   }
 }
 
+// Tampilan Item List daripada halaman list pasien lain
 class ItemList extends StatefulWidget {
   const ItemList({
     super.key,
@@ -121,6 +125,7 @@ class _ItemListState extends State<ItemList> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        // fungsi untuk menuju halaman ProfilePatientDataPage()
         Get.to(ProfilePatientDataPage(
           patient: widget.patient,
         ));

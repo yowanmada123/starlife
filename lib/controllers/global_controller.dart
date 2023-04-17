@@ -18,94 +18,74 @@ class GlobalController extends GetxController {
   final postEndpoint = "https://jsonplaceholder.typicode.com/posts";
   int pasienNumber = 0;
 
+  // Fungsi yang dijalankan untuk mengambil token dengan mengambil nilai kembalian dari fungsi getToken()
   initState() {
     token.value = getToken() ?? '';
   }
 
+  // Fungsi yang dijalankan pertama kali untuk set token yang akan disimpan pada internal device.
   void setToken(String val) {
     box.write('token', val);
     token.value = val;
   }
 
+  // Fungsi yang dijalankan untuk set flag login.
   setLogin() {
     box.write('isLogin', true);
     isLogin.value = true;
   }
 
+  // Fungsi yang dijalankan mengambil status login untuk pengecekan pada laman dalam aplikasi.
   bool getLoginStatus() {
     bool isLogin = box.read('isLogin');
     return isLogin;
   }
 
+  // Fungsi untuk mengambil token yang telah tersimpan pada device.
   String? getToken() {
     String? token = box.read('token');
     return token;
   }
 
+  // Fungsi untuk menghapus key "token" pada interal device.
   removeToken() {
     box.remove('token');
     box.erase();
   }
 
+  // Fungsi untuk mengecek format email
   bool isEmail(String em) {
     String p = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regExp = RegExp(p);
     return regExp.hasMatch(em);
   }
 
+  // Fungsi untuk mengecek suatu string apakah hanya terdiri dari sebua number,
   bool isNumber(String number) {
     String p = r'^[0-9]+$';
     RegExp regExp = RegExp(p);
     return regExp.hasMatch(number);
   }
 
+  // Fungsi untuk mengecek format nomor dengan diawali dengan "+628"
   bool isPhone(String phone) {
     String q = r'^(\+62)8[1-9][0-9]{6,10}$';
     RegExp regExp = RegExp(q);
     return regExp.hasMatch(phone);
   }
 
+  // Fungsi untuk mengkalkulasi sebuah umur dari sebuah tanggal
   String yourAge(DateTime birthday) {
     var duration = AgeCalculator.age(birthday, today: DateTime.now());
     return duration.years.toString();
   }
 
+  // Fungsi untuk mengubah index pada navigation bar
   void onTabTapped(int index) async {
-    // String? token = await getToken();
-    // print(index);
     tabHomeIndex.value = index;
-    // if (index == 1 || index == 2 || index == 4) {
-    //   if (c.isLogin.value == false) {
-    //     c.tabHomeIndex.value = 0;
-    //     Get.offAll(HelloConvexAppBar());
-    //     Get.to(const LoginPage());
-    //   } else {
-    //     c.tabHomeIndex.value = index;
-    //   }
-    // } else {
-    // c.tabHomeIndex.value = index;
-    // }
-
-    // if (index == 1 || index == 2 || index == 4) {
-    //   if (token == null) {
-    //     // tabHomeIndex.value = index;
-    //     Future.delayed(const Duration(milliseconds: 20), () async {
-    //       // Get.off(HelloConvexAppBar());
-    //       tabHomeIndex.value = 0;
-    //       Get.off(HelloConvexAppBar());
-    //       Get.to(const LoginPage());
-
-    //       // Get.to(const LoginPage());
-    //     });
-    //   } else {
-    //     isLogin.value = true;
-    //     tabHomeIndex.value = index;
-    //   }
-    // } else {
-    //   tabHomeIndex.value = index;
-    // }
   }
 
+  // List halaman / fitur utama pada aplikasi
   final List<Widget> children = [
     const HomePage(),
     const CheckRmPage(),

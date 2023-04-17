@@ -11,6 +11,7 @@ import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/base/rounded_inside.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Halaman Detail Informasi terkait pasien.
 class ProfileAccountInformation extends StatefulWidget {
   const ProfileAccountInformation({super.key});
 
@@ -37,6 +38,7 @@ class _ProfileAccountInformationState extends State<ProfileAccountInformation> {
             child: SingleChildScrollView(
               child: Column(
                 children: const [
+                  // Tampilan body daripada halaman Detail Informasi pasien
                   ProfileDataForm(),
                 ],
               ),

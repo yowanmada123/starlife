@@ -9,6 +9,7 @@ import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/showdialog_fill_button.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Halaman Input PIN untuk mengakses Rekam Medis. 
 class PinPage extends StatefulWidget {
   const PinPage({
     super.key,
@@ -23,13 +24,11 @@ class PinPage extends StatefulWidget {
 }
 
 class _PinPageState extends State<PinPage> {
+  // Fungsi yang berguna untuk spliting pincode  menjadi array.
   @override
   void initState() {
     super.initState();
     pinfix = widget.patient.pincode.split('');
-    // print(widget.patient.pincode);
-    // print(pinfix);
-    // print(p.person.rm);
   }
 
   final c = Get.put(GlobalController());
@@ -43,6 +42,8 @@ class _PinPageState extends State<PinPage> {
   var truePin = true.obs;
   bool sixTimeTrue = false;
   int pinTrue = 0;
+
+  // Fungsi yang berguna untuk menambahkan panjang daripada pin ketika di angka dipilih
   addNumber() {
     setState(() {
       if (_otp.length < 6) {
@@ -51,6 +52,7 @@ class _PinPageState extends State<PinPage> {
     });
   }
 
+  // Fungsi yang berguna untuk mengurangi panjang daripada pin ketika button backspace di pilih
   removeNumber() {
     setState(() {
       if (_otp.isNotEmpty) {
@@ -59,14 +61,17 @@ class _PinPageState extends State<PinPage> {
     });
   }
 
+  // Fungsi yang berguna untuk menghapus isi daripada PIN
   clearNumber() {
     _otp = '';
   }
 
+  // Fungsi yang berguna untuk  clear PIN yang telah diiputkan
   clearPin() {
     pin.clear();
   }
 
+  // Fungsi yang berguna untuk Check dan validasi apakah PIN yagn diinputkan benar.
   cekPin() {
     if (pin.length == 6) {
       for (int i = 0; i < pin.length; i++) {

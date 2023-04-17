@@ -13,6 +13,7 @@ import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 
+// Halaman antrian pasien. 
 class PatientQueuePage extends StatefulWidget {
   const PatientQueuePage({super.key});
 
@@ -25,6 +26,7 @@ class _PatientQueuePageState extends State<PatientQueuePage> {
   final p = Get.put(PatientPageController());
   var date = DateTime.now();
 
+  // Fungsi yang berguna untuk cek data appointment dokter. 
   @override
   void initState() {
     super.initState();

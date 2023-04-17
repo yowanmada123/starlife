@@ -8,6 +8,7 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan Brosur atau bagian pada halaman HomePage
 class HomePageBrochure extends StatefulWidget {
   const HomePageBrochure({super.key});
 
@@ -21,6 +22,7 @@ class _HomePageBrochureState extends State<HomePageBrochure> {
   var time = DateTime.now().hour;
   String now = "";
 
+  // Asset Greeting pada bagian brosur
   init() {
     if (time < 12) {
       now = "assets/images/pagi.png";

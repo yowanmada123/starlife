@@ -7,6 +7,7 @@ import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/base/rounded_inside.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Halaman detail Rekam Medis Pasien
 class CheckRmDetailPage extends StatefulWidget {
   const CheckRmDetailPage({
     super.key,

@@ -9,6 +9,7 @@ import 'package:starlife/widget/base/base_form.dart';
 import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan Halaman Register untuk user.
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -30,7 +31,6 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _isPinRmObscure = true;
   bool _isSyarat = false;
 
-  // final bool isValid = EmailValidator.validate(email);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -298,6 +298,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         padding: EdgeInsets.symmetric(horizontal: 26),
                         child: BaseButton(
                           ontap: () {
+                            // button Register
                             bool isEmail = c.isEmail(_emailController.text);
                             bool isPhone = c.isPhone(_nomorController.text);
                             bool isNum = c.isNumber(_pinRmController.text);
@@ -313,7 +314,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                           lc.phone = _nomorController.text;
                                           lc.pinrm = _pinRmController.text;
                                           lc.password = _passwordController.text;
+
+                                          // Pemanggilan fungsi Register
                                           lc.register(context);
+                                          // ============================
                                         } else {
                                           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                             content: Text('Please agree with the terms and conditions'),

@@ -60,6 +60,7 @@ class ProfileController extends GetxController {
     // person = Patient(id: "", fname: "", phone: "", mobile: "", address: "", sex: "", dateOfBirth: "", createdBy: "", createDate: "", status: "", agama: "", namaOrangtua: "", kota: "", kecamatan: "", kelurahan: "", rw: "", rt: "", pin: "", upline: "", pincode: "", tipePasien: "", rm: "");
   }
 
+  // Fungsi untuk update foto profile dari user
   updateImageProfile() async {
     var token = await c.getToken();
     FormData formData = FormData.fromMap({
@@ -77,6 +78,7 @@ class ProfileController extends GetxController {
     }
   }
 
+  // Fungsi untuk update data profile dari user
   updateProfile(BuildContext context) async {
     var token = await c.getToken();
     String uploadDone = await updateImageProfile();
@@ -117,6 +119,7 @@ class ProfileController extends GetxController {
     }
   }
 
+  // Fungsi untuk mengubah PIN user,
   changePIN() async {
     // print(pinLamaController.text);
     // print(pinBaruController.text);
@@ -142,6 +145,7 @@ class ProfileController extends GetxController {
     }
   }
 
+  // Fungsi untuk memanggil funngsi getPersonalData() sekaligus untuk mengonvert beberapa data.
   getDataPersonal() async {
     loadingPersonal.value = false;
     var token = await c.getToken();
@@ -154,16 +158,9 @@ class ProfileController extends GetxController {
       createDate = date.toSlashDate();
       loadingPersonal.value = true;
     }
-    // if (person != null) {
-
-    // }
-    // print(loadingPersonal.value);
-    // print("===============");
-    // print(loadingPersonal.value);
-    // print("===============");
-    // print(token);
   }
 
+  // Fungsi untuk mengambil data personal dari user menggunakan token yang telah diset
   getPersonalData() async {
     var token = await c.getToken();
     // print("AAAAA");
@@ -191,16 +188,16 @@ class ProfileController extends GetxController {
     }
   }
 
+  // Fungsi untuk memanggil fungsi getListPatientData()
   getPatients() async {
     patients.value = await getListPatientData();
     var date = DateTime.parse(person!.dateOfBirth);
     birthday = date.toSlashDate();
     loadingPatientsData.value = true;
     p.loadingAddNewPersonal.value = true;
-    // print(patients.length);
-    // print(patients[1].pincode);
   }
 
+  // Fungsi untuk mengambil daftar / List data pasien yang terdaftar dalam akun
   getListPatientData() async {
     var token = await c.getToken();
     // var data;
@@ -229,6 +226,7 @@ class ProfileController extends GetxController {
     }
   }
 
+  // Fungsi untuk membuat dan mengeksport kartu pasien dalam bentuk PDF
   void getPDF() async {
     var r = await rootBundle.load("assets/fonts/Poppins-Regular.ttf");
     var m = await rootBundle.load("assets/fonts/Poppins-Medium.ttf");
@@ -269,6 +267,7 @@ class ProfileController extends GetxController {
     // await getDownloadsDirectory()
   }
 
+  // Fungsi tampilan pada pasien card bagian belakang
   backCard(Uint8List logo, Uint8List qr, Uint8List bottomRight, Uint8List topLeft, Font regularFont, Font mediumFont, Font boldFont) {
     return pw.SizedBox(
       child: pw.Stack(children: [
@@ -309,6 +308,7 @@ class ProfileController extends GetxController {
     );
   }
 
+  // Fungsi tampilan pada pasien card bagian depan
   frontCard(Uint8List logo, Uint8List bottomRight, Uint8List topLeft, Font regularFont, Font mediumFont, Font boldFont) {
     return pw.SizedBox(
       child: pw.Stack(children: [

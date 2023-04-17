@@ -4,7 +4,7 @@ import 'package:starlife/page/Auth_Page/splashscreen.dart';
 void main() {
   runApp(const MyApp());
 }
-
+// Main Page atau halaman utama saat pertama build aplikasi
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

@@ -10,6 +10,7 @@ import 'package:starlife/widget/extention/ext_date.dart';
 
 import '../../../../../widget/base/custom_fixed_form.dart';
 
+// Tampilan Body daripada halaman detail informasi pasien.
 class ProfileDataForm extends StatefulWidget {
   final bool? passwordMode;
 
@@ -25,6 +26,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
   bool visible = false;
   String convertedDate = '';
 
+  // Fungsi yang berguna untuk mengambil data pasien.
   @override
   void initState() {
     super.initState();

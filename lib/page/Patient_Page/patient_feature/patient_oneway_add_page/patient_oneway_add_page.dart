@@ -5,6 +5,7 @@ import 'package:starlife/page/Patient_Page/patient_feature/patient_oneway_add_pa
 import 'package:starlife/page/Patient_Page/patient_feature/patient_oneway_add_page/patient_oneway_add_body/patient_oneway_topbar.dart';
 import 'package:starlife/widget/base/custom_buttom_button.dart';
 
+// Halaman penambahan pasien sekali jalan
 class PatientOneWayAddPage extends StatefulWidget {
   const PatientOneWayAddPage({super.key});
 

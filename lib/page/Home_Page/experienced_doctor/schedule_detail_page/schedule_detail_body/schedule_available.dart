@@ -7,6 +7,7 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan Schedule yang available sesuai hari yang dipilih pada halaman detail schedule dokter
 class ScheduleAvailable extends StatefulWidget {
   const ScheduleAvailable({super.key, required this.doctor});
   final Doctor doctor;

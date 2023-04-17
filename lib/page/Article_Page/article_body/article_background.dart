@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 
+
+// Tampilan background dari halaman artikel kesehatan.
 class ArticleBackground extends StatefulWidget {
   const ArticleBackground({super.key});
 

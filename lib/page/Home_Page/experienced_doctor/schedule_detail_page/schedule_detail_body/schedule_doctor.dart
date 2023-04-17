@@ -7,6 +7,8 @@ import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 
+// Tampilan list shcedule dokter atau bagian dari halaman detail shcedule dokter
+
 class ScheduleDoctor extends StatefulWidget {
   const ScheduleDoctor({super.key, required this.doctor});
   final Doctor doctor;
@@ -36,6 +38,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
     });
   }
 
+  // Fungsi untuk assign jadwal buka tutup berdasarkan hari.
   selectedDay(int i) {
     switch (days[i].toEEEE()) {
       case "Senin":
@@ -69,6 +72,7 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
     print(h.morningShcedule);
   }
 
+  // Fungsi untuk menambahkan dan menampilkan 7 hari mulai dari hari ini.
   init() {
     for (var i = 0; i < 7; i++) {
       if (i == 0) {
@@ -77,10 +81,6 @@ class _ScheduleDoctorState extends State<ScheduleDoctor> {
       } else {
         days.add(DateTime(today.year, today.month, today.day + i));
       }
-    }
-    for (var i = 0; i < 7; i++) {
-      // print(days[i].toEEEE().toLowerCase());
-      // selectedDay(i);
     }
   }
 

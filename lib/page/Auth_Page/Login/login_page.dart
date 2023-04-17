@@ -15,6 +15,7 @@ import 'package:starlife/widget/ext_text.dart';
 
 import '../Register/register_page.dart';
 
+// Tampilan Halaman Login untuk user.
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 

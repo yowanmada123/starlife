@@ -10,6 +10,7 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan Topbar pada halaman HomePage
 class HomePageTopBar extends StatefulWidget {
   const HomePageTopBar({super.key});
 
@@ -20,6 +21,8 @@ class HomePageTopBar extends StatefulWidget {
 class _HomePageTopBarState extends State<HomePageTopBar> {
   final c = Get.put(GlobalController());
   final p = Get.put(ProfileController());
+
+  // Fungsi yang berugna untuk mengambil data personal yang akan berpengaruh pada tampilan topbar,
   @override
   void initState() {
     super.initState();

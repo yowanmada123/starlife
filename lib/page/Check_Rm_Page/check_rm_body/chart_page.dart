@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:starlife/utils/colors.dart';
 
+// Halaman yang berfungsi untuk menampilkan data chart.
 class LineChartSample2 extends StatefulWidget {
   const LineChartSample2({super.key});
 
@@ -10,10 +11,7 @@ class LineChartSample2 extends StatefulWidget {
 }
 
 class _LineChartSample2State extends State<LineChartSample2> {
-  List<Color> gradientColors = [
-    OPrimaryColor,
-    OSecondaryColor
-  ];
+  List<Color> gradientColors = [OPrimaryColor, OSecondaryColor];
 
   bool showAvg = false;
 
@@ -183,9 +181,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
-              colors: gradientColors
-                  .map((color) => color.withOpacity(0.3))
-                  .toList(),
+              colors: gradientColors.map((color) => color.withOpacity(0.3)).toList(),
             ),
           ),
         ),
@@ -261,10 +257,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
           isCurved: true,
           gradient: LinearGradient(
             colors: [
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                  .lerp(0.2)!,
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                  .lerp(0.2)!,
+              ColorTween(begin: gradientColors[0], end: gradientColors[1]).lerp(0.2)!,
+              ColorTween(begin: gradientColors[0], end: gradientColors[1]).lerp(0.2)!,
             ],
           ),
           barWidth: 5,
@@ -276,12 +270,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
             show: true,
             gradient: LinearGradient(
               colors: [
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
+                ColorTween(begin: gradientColors[0], end: gradientColors[1]).lerp(0.2)!.withOpacity(0.1),
+                ColorTween(begin: gradientColors[0], end: gradientColors[1]).lerp(0.2)!.withOpacity(0.1),
               ],
             ),
           ),

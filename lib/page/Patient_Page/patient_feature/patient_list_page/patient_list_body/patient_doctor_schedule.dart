@@ -10,6 +10,7 @@ import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 
+// Tampilan List Schedule Dokter atau bagian dari halaman patient list main page
 class PatientDoctorSchedule extends StatefulWidget {
   const PatientDoctorSchedule({super.key});
 
@@ -28,26 +29,6 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
   int selectedCategory = 0;
   int selectedDoctorIndex = -1;
   var category = [
-    // {
-    //   "id" : "310",
-    //   "nama" : "IGD",
-    // },
-    // {
-    //   "id" : "310",
-    //   "nama" : "Dokter Gigi",
-    // },
-    // {
-    //   "id" : "310",
-    //   "nama" : "Dokter Anak",
-    // },
-    // {
-    //   "id" : "310",
-    //   "nama" : "Dokter Kandungan",
-    // },
-    // {
-    //   "id" : "310",
-    //   "nama" : "Dokter Bedah",
-    // },
     'IGD',
     'Dokter Mata',
     'Dokter Anak',
@@ -55,6 +36,8 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
     'Dokter Kandungan',
     'Dokter Bedah',
   ];
+
+  // Fungsi untuk menambahkan dan menampilkan 7 hari kedepan mulai dari sekarang
   init() {
     for (var i = 0; i < 7; i++) {
       if (i == 0) {
@@ -63,11 +46,9 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
         days.add(DateTime(today.year, today.month, today.day + i));
       }
     }
-    for (var i = 0; i < 7; i++) {
-      // print(days[i]);
-    }
   }
 
+  // Fungsi untuk mengambil data semua dokter untuk diawal
   @override
   void initState() {
     super.initState();
@@ -75,15 +56,13 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
     h.selectedDate.value = DateTime.now().toString();
     p.selectedSchedule.value = DateTime.now().toString();
     h.selectedDepartment.value = "310";
-    // print("HAHAHAHAHAHAHAHAHAHA");
     h.getDataDoctors();
-    // print("HAHA");
   }
 
+  // Fungsi untuk mengambil data skedul dokter sesuai dengan jadwal dan poli yang dipilih
   getData() async {
     h.loadingDoctorData.value = false;
     h.getDataScheduleDoctors();
-    // print("HEHE");
   }
 
   @override
@@ -119,15 +98,13 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                       ),
                       GestureDetector(
                         onTap: () async {
+                          // Berfungsi untuk memilih tanggal tujuan
                           h.selectedDate.value = days[itemIndex].toyyyyMMdd();
-                          // print(h.selectedDate.value);
                           await getData();
                           setState(() {
                             selectedIndex = itemIndex;
                           });
                           p.selectedSchedule.value = days[itemIndex].toyyyyMMdd();
-                          // print(days[itemIndex]);
-                          // print(p.selectedSchedule.value);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -182,7 +159,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                                     )),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 14,
                       )
                     ],
@@ -204,6 +181,7 @@ class _PatientDoctorScheduleState extends State<PatientDoctorSchedule> {
                   children: [
                     GestureDetector(
                       onTap: () {
+                        // Berfungsi untuk memilih poli daripada dokter yang dipilih
                         h.selectedDepartment.value = "310";
                         // print(h.selectedDepartment.value);
 

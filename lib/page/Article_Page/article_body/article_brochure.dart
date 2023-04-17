@@ -7,6 +7,7 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan background dari halaman artikel kesehatan.
 class ArticleBrochure extends StatefulWidget {
   const ArticleBrochure({super.key});
 
@@ -17,14 +18,9 @@ class ArticleBrochure extends StatefulWidget {
 class _ArticleBrochureState extends State<ArticleBrochure> {
   final c = Get.put(GlobalController());
   final controller = PageController(viewportFraction: 1, keepPage: true);
-  // List<Artikel> articels = [
-  //   Artikel(id: "01", title: "Kenali dan Pahami 10 Tanda Masalah Gigi & Mulut", image: "assets/images/img_artikel.png"),
-  //   Artikel(id: "02", title: "Koreksi Gangguan Penglihatan dengan Lensa Kontak", image: "assets/images/img_artikel2.png"),
-  //   Artikel(id: "03", title: "Kenali Tanda-Tanda Mata Kamu Sedang Bermasalah", image: "assets/images/img_artikel3.png"),
-  // ];
-
   final h = Get.put(HomeController());
 
+  // Fungsi yang berguna untuk mengambil data artikel kesehatan.
   @override
   void initState() {
     super.initState();

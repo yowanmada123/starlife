@@ -8,6 +8,7 @@ import 'package:starlife/widget/base/custom_buttom_button.dart';
 import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Halaman detail pasien yang terdaftar pada list pasien.
 class ProfilePatientDataPage extends StatelessWidget {
   ProfilePatientDataPage({super.key, required this.patient});
   final Patient patient;
@@ -24,6 +25,7 @@ class ProfilePatientDataPage extends StatelessWidget {
             color: Colors.white,
           ),
           const CustomTopBar(height: 115),
+          //Tampilan Body daripada halaman detail pasien.
           ProfilePatientDataform(
             patient: patient,
           ),

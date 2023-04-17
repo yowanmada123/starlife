@@ -13,6 +13,7 @@ import 'schedule_detail_body/schedule_doctor.dart';
 import 'schedule_detail_body/schedule_practice_location.dart';
 import 'schedule_detail_body/schedule_available.dart';
 
+// Halaman Detail Schedule daripada dokter.
 class ScheduleDetailPage extends StatefulWidget {
   const ScheduleDetailPage({super.key, required this.doctor});
   final Doctor doctor;
@@ -23,6 +24,8 @@ class ScheduleDetailPage extends StatefulWidget {
 class _ScheduleDetailPageState extends State<ScheduleDetailPage> {
   final c = Get.put(GlobalController());
   final p = Get.put(ProfileController());
+
+  // Fungsi untuk mengambil data personal untuk mengecek apakah user telah login atau belum yang berpengaruh pada UI pada halaman ini
   @override
   void initState() {
     super.initState();
@@ -41,6 +44,8 @@ class _ScheduleDetailPageState extends State<ScheduleDetailPage> {
             width: Get.width,
             color: Colors.white,
           ),
+
+          // Body daripada halaman detail schedule
           Container(
             height: Get.height,
             width: Get.width,
@@ -69,7 +74,14 @@ class _ScheduleDetailPageState extends State<ScheduleDetailPage> {
           ScheduleTopBar(
             doctor: widget.doctor,
           ),
-          Obx(() => (p.loadingPersonal.value) ? const ScheduleDoctorBottomBar() : Container())
+
+          // Tampilan Bottombar halaman atau bagian dari halaman detail shcedule dokter
+          Obx(() => (p.loadingPersonal.value)
+
+              // Tampilan halaman jika user telah login
+              ? const ScheduleDoctorBottomBar()
+              // Tampilan halaman jika user belum login
+              : Container())
           // if (c.token != null || c.token != '') ...[
           // ]
         ],

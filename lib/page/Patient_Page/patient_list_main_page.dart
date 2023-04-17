@@ -11,6 +11,7 @@ import 'package:starlife/widget/base/custom_buttom_button.dart';
 
 import '../../controllers/patient_page_controller.dart';
 
+// Halaman List Pasien, List Dokter dan list Schedule
 class PatientListMainPage extends StatefulWidget {
   const PatientListMainPage({super.key});
 
@@ -37,7 +38,10 @@ class _PatientListMainPageState extends State<PatientListMainPage> {
           physics: const ScrollPhysics(),
           child: Column(
             children: [
+              // Tampilan List Pasien atau bagian dari halaman patient list main page
               const PatientList(),
+
+              // Tampilan button Tambah Pasien atau bagian dari halaman patient list main page
               Container(
                   height: 60,
                   width: Get.width,
@@ -53,16 +57,11 @@ class _PatientListMainPageState extends State<PatientListMainPage> {
                     iconColor: Colors.white,
                     outlineRadius: 20,
                   )),
-              // Obx(() => Visibility(
-              //     visible: p.selectedPasien.isEmpty ? false : true,
-              //     child: Column(
-              //       children: [
 
-              //       ],
-              //     ),
-              //   )),
+              // Tampilan List Schedule Dokter atau bagian dari halaman patient list main page
               const PatientDoctorSchedule(),
-              // const PatientDoctorList(),
+
+              // Tampilan button Lihat Antrian atau bagian dari halaman patient list main page
               CustomButtomButton(
                   ontap: () async {
                     if (p.selectedPatientRm.value != null && p.selectedPatientRm.value != '') {
@@ -100,6 +99,8 @@ class _PatientListMainPageState extends State<PatientListMainPage> {
           ),
         ),
       ),
+
+      // Tampilan TopBar atau bagian dari halaman patient list main page
       const PatientTopBar(buttonBack: false),
     ])
         // :

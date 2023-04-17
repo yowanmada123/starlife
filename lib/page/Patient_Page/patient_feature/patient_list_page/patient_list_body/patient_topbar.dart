@@ -4,6 +4,8 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan TopBar Halaman Patient atau bagian dari halaman patient list main page
+
 class PatientTopBar extends StatefulWidget {
   final bool buttonBack;
   const PatientTopBar({super.key, required this.buttonBack});

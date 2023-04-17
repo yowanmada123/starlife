@@ -10,9 +10,9 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan Body List Dokter.
 class ListDoctor extends StatefulWidget {
   final Poli? poli;
-
   const ListDoctor({super.key, this.poli});
 
   @override
@@ -22,8 +22,9 @@ class ListDoctor extends StatefulWidget {
 class _ListDoctorState extends State<ListDoctor> {
   var screenHeight = Get.height / 763;
   final c = Get.put(GlobalController());
-
   final h = Get.put(HomeController());
+
+  // Fungsi untuk mengambil data dokter berdasarkan poli jika poli tidak kosong.
   @override
   void initState() {
     super.initState();
@@ -32,9 +33,7 @@ class _ListDoctorState extends State<ListDoctor> {
         h.selectedDepartment.value = widget.poli!.dprtId;
         h.getListDoctorByPoli();
       });
-    }else{
-
-    }
+    } else {}
   }
 
   @override

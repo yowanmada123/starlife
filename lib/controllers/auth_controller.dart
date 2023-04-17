@@ -26,7 +26,7 @@ class AuthController extends GetxController {
     password = '';
     confirmPassword = '';
   }
-
+ // Fungsi Login User Untuk masuk ke aplikasi dengan user yang sudah terdaftar.
   Future<Login?> login(BuildContext context) async {
     final formData = FormData.fromMap({'username': email, 'password': password});
     try {
@@ -52,6 +52,7 @@ class AuthController extends GetxController {
     }
   }
 
+  // Fungsi Register User Untuk mendaftarkan user baru.
   Future<Register?> register(BuildContext context) async {
     final formData = FormData.fromMap({"nama": name, "email": email, "phone": phone, "pincode": pinrm, "password": password});
     try {

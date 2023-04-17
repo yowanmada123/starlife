@@ -8,6 +8,7 @@ import 'package:starlife/widget/extention/ext_date.dart';
 import '../../../../../widget/base/custom_fixed_form.dart';
 import '../../../../../widget/base/custom_form.dart';
 
+// Tampilan Body untuk halaman penambahan pasien sekali jalan
 class PatientOneWayForm extends StatefulWidget {
   final bool? passwordMode;
 

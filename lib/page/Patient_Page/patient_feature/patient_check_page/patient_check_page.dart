@@ -5,6 +5,7 @@ import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/pa
 import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_body/patient_check_topbar.dart';
 import 'package:starlife/page/Patient_Page/patient_feature/patient_check_page/patient_check_body/patient_check_data.dart';
 
+// Halaman Pengecekan Pasien berdasarkan nomer RM
 class PatientCheckPage extends StatefulWidget {
   const PatientCheckPage({super.key, required this.rm});
   final String rm;
@@ -15,14 +16,6 @@ class PatientCheckPage extends StatefulWidget {
 
 class _PatientCheckPageState extends State<PatientCheckPage> {
   final p = Get.put(PatientPageController());
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   print("=====================");
-  //   print(widget.rm);
-  //   print("=====================");
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

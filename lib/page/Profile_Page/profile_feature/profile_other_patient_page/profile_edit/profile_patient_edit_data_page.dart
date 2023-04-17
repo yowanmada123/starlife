@@ -9,6 +9,7 @@ import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/base/custom_buttom_button.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Halaman edit pasien profile. 
 class ProfileEditDataPage extends StatefulWidget {
   ProfileEditDataPage({super.key, this.patient});
   Patient? patient;
@@ -60,6 +61,7 @@ class _ProfileEditDataPageState extends State<ProfileEditDataPage> {
           ),
           CustomButtomButton(
             ontap: () {
+              // Fungsi untuk update data pasien
               p.updateProfile(context);
             },
             text: "Simpan",

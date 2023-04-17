@@ -10,6 +10,7 @@ import 'package:starlife/utils/colors.dart';
 import 'package:starlife/widget/ext_text.dart';
 import 'package:starlife/widget/extention/ext_date.dart';
 
+// Tampilan List Appointment dengan Dokter atau bagian pada halaman HomePage
 class HomePagePatientQueue extends StatefulWidget {
   const HomePagePatientQueue({super.key});
 
@@ -22,6 +23,8 @@ class _HomePagePatientQueueState extends State<HomePagePatientQueue> {
   final h = Get.put(HomeController());
   final controller = PageController(viewportFraction: 1, keepPage: true);
   @override
+
+  // Fungsi untuk mengambil daftar atau list antrian janji dengan dokter.
   void initState() {
     super.initState();
     SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {

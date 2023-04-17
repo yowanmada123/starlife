@@ -4,6 +4,7 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan topbar untuk halaman penambahan pasien lanjutan.
 class PatientAddTopBar extends StatefulWidget {
   const PatientAddTopBar({super.key});
 

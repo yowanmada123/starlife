@@ -7,6 +7,7 @@ import 'package:starlife/controllers/home_controller.dart';
 
 import 'package:starlife/utils/colors.dart';
 
+// Splashscreen yang berisi halaman animasi
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -51,6 +52,7 @@ class _BlankScreenState extends State<BlankScreen> {
   int time = 1;
   @override
   void initState() {
+    // Delay untuk mengambil data pasien di halaman homepage
     SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
       await h.getDataPatientQueue();
     });

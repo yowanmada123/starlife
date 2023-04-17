@@ -4,6 +4,7 @@ import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/base/button_back.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan TopBar untuk halaman penambahan pasien sekali jalan
 class PatientOneWayTopBar extends StatefulWidget {
   const PatientOneWayTopBar({super.key});
 

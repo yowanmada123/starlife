@@ -7,6 +7,8 @@ import 'package:starlife/page/Home_Page/service_page/all_service_page.dart';
 import 'package:starlife/controllers/global_controller.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Tampilan service dokter atau bagian pada halaman HomePage
+
 class HomePageService extends StatefulWidget {
   const HomePageService({super.key});
 
@@ -17,6 +19,8 @@ class HomePageService extends StatefulWidget {
 class _HomePageServiceState extends State<HomePageService> {
   final c = Get.put(GlobalController());
   final h = Get.put(HomeController());
+  
+  // Fungsi untuk mengambil daftar atau list poli.
   @override
   void initState() {
     super.initState();

@@ -9,6 +9,7 @@ import 'package:starlife/widget/base/custom_topbar.dart';
 import 'package:starlife/widget/base/rounded_inside.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Halaman Daftar atau list Dokter Berpengalaman
 class ExperiencedDoctorListPage extends StatefulWidget {
   const ExperiencedDoctorListPage({super.key, this.poli});
   final Poli? poli;
@@ -19,13 +20,6 @@ class ExperiencedDoctorListPage extends StatefulWidget {
 
 class _ExperiencedDoctorListPageState extends State<ExperiencedDoctorListPage> {
   final c = Get.put(GlobalController());
-  @override
-  // void initState() {
-  //   super.initState();
-  //   SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
-  //     // await h.getPoli();
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +41,8 @@ class _ExperiencedDoctorListPageState extends State<ExperiencedDoctorListPage> {
                   SizedBox(
                     height: 10,
                   ),
+
+                  // Body dari halaman list dokter.
                   ListDoctor(),
                 ],
               ),

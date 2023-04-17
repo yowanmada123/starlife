@@ -13,6 +13,7 @@ import 'package:starlife/widget/base/button_base.dart';
 import 'package:starlife/widget/base/rounded_inside.dart';
 import 'package:starlife/widget/ext_text.dart';
 
+// Halaman CheckRM 
 class CheckRmPage extends StatefulWidget {
   const CheckRmPage({super.key});
 
@@ -21,14 +22,14 @@ class CheckRmPage extends StatefulWidget {
 }
 
 class _CheckRmPageState extends State<CheckRmPage> {
-  // final List<String> entrie = <String>['Sarah Celestia Bella', 'Darwaman Gunawangsa', 'Gunawan Ardiansyah', 'Muhammad Aulia Daffa', 'Darwaman Gunawangsa', 'Gunawan Ardiansyah', 'Muhammad Aulia Daffa'];
-  // final List<String> role = <String>['Anda', 'Suami', 'Anak ke-1', 'Anak ke-2', 'Anak ke-3', 'Anak ke-4', 'Anak ke-5'];
   final c = Get.put(GlobalController());
   final p = Get.put(ProfileController());
 
   // final dC = Get.put(DioController());
   final loading = true.obs;
   String? token;
+
+  // Fungsi yang berguna untuk mengambil data pasien dan data personal.
   @override
   void initState() {
     super.initState();
