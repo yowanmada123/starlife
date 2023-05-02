@@ -1,0 +1,10 @@
+^D:\YOWANDA\KERJA\KERJA\BURNINGROOM\STARLIFE\BUILD\WINDOWS\CMAKEFILES\35D3C6772AE0C7CE8C72E8CC8906D491\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

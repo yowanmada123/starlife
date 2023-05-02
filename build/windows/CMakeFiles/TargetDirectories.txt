@@ -1,0 +1,13 @@
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/CMakeFiles/INSTALL.dir
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/CMakeFiles/ALL_BUILD.dir
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/CMakeFiles/ZERO_CHECK.dir
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/flutter/CMakeFiles/flutter_wrapper_plugin.dir
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/flutter/CMakeFiles/flutter_wrapper_app.dir
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/flutter/CMakeFiles/flutter_assemble.dir
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/flutter/CMakeFiles/INSTALL.dir
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/runner/CMakeFiles/starlife.dir
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/runner/CMakeFiles/INSTALL.dir
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/runner/CMakeFiles/ALL_BUILD.dir
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/plugins/permission_handler_windows/CMakeFiles/permission_handler_windows_plugin.dir
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/plugins/permission_handler_windows/CMakeFiles/INSTALL.dir
+D:/YOWANDA/KERJA/KERJA/Burningroom/starlife/build/windows/plugins/permission_handler_windows/CMakeFiles/ALL_BUILD.dir

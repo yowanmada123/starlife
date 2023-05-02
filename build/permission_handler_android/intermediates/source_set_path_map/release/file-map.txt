@@ -1,0 +1,12 @@
+com.baseflow.permissionhandler.permission_handler_android-jetified-window-1.0.0-beta04-0 C:\Users\Mada\.gradle\caches\transforms-3\196fed55f097d803ed8689c12e879c52\transformed\jetified-window-1.0.0-beta04\res
+com.baseflow.permissionhandler.permission_handler_android-jetified-window-java-1.0.0-beta04-1 C:\Users\Mada\.gradle\caches\transforms-3\7c3f00c2335771859546f46efeddbf13\transformed\jetified-window-java-1.0.0-beta04\res
+com.baseflow.permissionhandler.permission_handler_android-core-1.6.0-2 C:\Users\Mada\.gradle\caches\transforms-3\89766d7d59fc7fc8d6e3690bb36b7e4a\transformed\core-1.6.0\res
+com.baseflow.permissionhandler.permission_handler_android-jetified-annotation-experimental-1.1.0-3 C:\Users\Mada\.gradle\caches\transforms-3\cba5034dea4c669b2d400a2c38d489c3\transformed\jetified-annotation-experimental-1.1.0\res
+com.baseflow.permissionhandler.permission_handler_android-main-4 C:\Users\Mada\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_android-10.2.0\android\src\main\res
+com.baseflow.permissionhandler.permission_handler_android-release-5 C:\Users\Mada\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_android-10.2.0\android\src\release\res
+com.baseflow.permissionhandler.permission_handler_android-pngs-6 D:\YOWANDA\KERJA\KERJA\Burningroom\starlife\build\permission_handler_android\generated\res\pngs\release
+com.baseflow.permissionhandler.permission_handler_android-resValues-7 D:\YOWANDA\KERJA\KERJA\Burningroom\starlife\build\permission_handler_android\generated\res\resValues\release
+com.baseflow.permissionhandler.permission_handler_android-rs-8 D:\YOWANDA\KERJA\KERJA\Burningroom\starlife\build\permission_handler_android\generated\res\rs\release
+com.baseflow.permissionhandler.permission_handler_android-mergeReleaseResources-9 D:\YOWANDA\KERJA\KERJA\Burningroom\starlife\build\permission_handler_android\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.baseflow.permissionhandler.permission_handler_android-mergeReleaseResources-10 D:\YOWANDA\KERJA\KERJA\Burningroom\starlife\build\permission_handler_android\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.baseflow.permissionhandler.permission_handler_android-merged_res-11 D:\YOWANDA\KERJA\KERJA\Burningroom\starlife\build\permission_handler_android\intermediates\merged_res\release
